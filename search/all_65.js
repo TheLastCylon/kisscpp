@@ -10,5 +10,5 @@ var searchData=
   ['error_5flow',['error_low',['../namespacekisscpp_1_1manip.html#a9a44ab7028cdfcb6db302b0fb19e54d1',1,'kisscpp::manip']]],
   ['error_5fnormal',['error_normal',['../namespacekisscpp_1_1manip.html#afdc850f7fe0e092d671b7c6479b03d93',1,'kisscpp::manip']]],
   ['example_5fecho_2emd',['example_echo.md',['../example__echo_8md.html',1,'']]],
-  ['example_20_3a_20kc_5c_5fecho',['Example : kc\_echo',['../md_example_echo.html',1,'']]]
+  ['example_20_3a_20kc_5fecho',['Example : kc_echo',['../md_example_echo.html',1,'']]]
 ];

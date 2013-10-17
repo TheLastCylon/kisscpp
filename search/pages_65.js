@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['example_20_3a_20kc_5c_5fecho',['Example : kc\_echo',['../md_example_echo.html',1,'']]]
+  ['example_20_3a_20kc_5fecho',['Example : kc_echo',['../md_example_echo.html',1,'']]]
 ];

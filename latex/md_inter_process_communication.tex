@@ -1,18 +1,18 @@
-As part of the standardization attempts in K\-I\-S\-S\-C\-P\-P a dicision was made to use J\-S\-O\-N as a communications protocol. Yes, there are more optimal protocols to use in terms of speed, and yes, there are better protocols in terms of human readability.
+As part of the standardization attempts in K\-I\-S\-S\-C\-P\-P a decision was made to use J\-S\-O\-N as a communications protocol. Yes, there are more optimal protocols to use in terms of speed, and yes, there are better protocols in terms of human readability.
 
-J\-S\-O\-N however, is the best match for both speed and human readibility.
+J\-S\-O\-N however, is the best match for both speed and human readability.
 
 \section*{Is human readibility important?}
 
 If your are a Computer Science student, your answer is probably\-: No.
 
-If you've spent any amount of time trying to figure out the spegethi code, created by someone who left the company 3 years ago, your answer is probably\-: Yes.
+If you've spent any amount of time trying to figure out the spaghetti code, created by someone who left the company 3 years ago, your answer is probably\-: Yes.
 
 K\-I\-S\-S\-C\-P\-P is meant to be used in the real world, by organizations that can suffer a 15 millisecond delay in I\-P\-C speed, but can not suffer the three days debugging time on an unreadable protocol.
 
 All software needs debugging at some point, and as such, needs to be read by humans. i.\-e. Human readable comms protocols are important, and K\-I\-S\-S\-C\-P\-P will provide.
 
-This however, does not exclude the posibility of non-\/human readable protocols being used in the future, if such becomes available in the boost ptree tools.
+This however, does not exclude the possibility of non-\/human readable protocols being used in the future, if such becomes available in the boost property tree tools.
 
 \section*{Reserved identifiers.}
 
@@ -21,7 +21,7 @@ Within the context of J\-S\-O\-N as a protocol, we need to standardise on a few 
 \begin{TabularC}{5}
 \hline
 \rowcolor{lightgray}{\bf Identifier }&{\bf Required in }&{\bf purpose/meaning }&{\bf Description }&{\bf typical values }\\\cline{1-5}
-kcm-\/cmd &Request &Handler Id &A string, uniquely identifying the servier handler to envoke. &An arbitrary string. \\\cline{1-5}
+kcm-\/cmd &Request &Handler Id &A string, uniquely identifying the server handler to invoke. &An arbitrary string. \\\cline{1-5}
 kcm-\/sts &Response &Status &Used in the response to indicate request status &Enumerated. \\\cline{1-5}
 kcm-\/erm &Response\-: where kcm-\/sts != 0 &Error -\/ message &An error message &An arbitrary string. \\\cline{1-5}
 kcm-\/hst &instance of client class &host &used by client class to indicate server host &An arbitrary string. \\\cline{1-5}
@@ -31,21 +31,21 @@ kcm-\/prt &instance of client class &port &used by client class to indicate serv
 
 \section*{Basic terminology}
 
-The digram below provides a view on teminology problems I need to get out of the way here. The phrase \char`\"{}\-Making a request.\char`\"{} with respect to inter process communication, could mean steps 1 through 6, or simpling step 1 or even steps 1 through 3.
+The digram below provides a view on terminology problems I need to get out of the way here. The phrase \char`\"{}\-Making a request.\char`\"{} with respect to inter process communication, could mean steps 1 through 6, or simpling step 1 or even steps 1 through 3.
 
-So, in order to make my life easier and improve understanding of documentation, I'm going to use a simple convention, that uses this diagram, to get rid of all the ambiguity with regard to talking about the various statges of inter process communication at applicaiton level.
+So, in order to make my life easier and improve understanding of documentation, I'm going to use a simple convention, that uses this diagram, to get rid of all the ambiguity with regard to talking about the various stages of inter process communication at application level.
 
-I'll be using the word I\-P\-C\-O\-M, followed by parenthisis, and the steps I'm refering to, contained within the parenthisis.
+I'll be using the word I\-P\-C\-O\-M, followed by parenthesis, and the steps I'm referring to, contained within the parenthesis.
 
 i.\-e.
 
 
 \begin{DoxyItemize}
-\item I\-P\-C\-O\-M(1-\/2) would be refering to steps 1 and 2 on the digram.
+\item I\-P\-C\-O\-M(1-\/2) would be referring to steps 1 and 2 on the digram.
 \item I\-P\-C\-O\-M(1-\/5) would refer to steps 1 through 5, while
 \item I\-P\-C\-O\-M(4) would refer to only step 4.
 \end{DoxyItemize}
 
-With that in mind, I'd now be able to say\-: I\-P\-C\-O\-M(1-\/6) and you'll instantly know I'm refering to the {\itshape entire} communication cycle.
+With that in mind, I'd now be able to say\-: I\-P\-C\-O\-M(1-\/6) and you'll instantly know I'm referring to the {\itshape entire} communication cycle.
 
  

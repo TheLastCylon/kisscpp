@@ -79,21 +79,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Inter Process Communication. </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>As part of the standardization attempts in KISSCPP a dicision was made to use JSON as a communications protocol. Yes, there are more optimal protocols to use in terms of speed, and yes, there are better protocols in terms of human readability.</p>
-<p>JSON however, is the best match for both speed and human readibility.</p>
+<div class="textblock"><p>As part of the standardization attempts in KISSCPP a decision was made to use JSON as a communications protocol. Yes, there are more optimal protocols to use in terms of speed, and yes, there are better protocols in terms of human readability.</p>
+<p>JSON however, is the best match for both speed and human readability.</p>
 <h1>Is human readibility important?</h1>
 <p>If your are a Computer Science student, your answer is probably: No.</p>
-<p>If you've spent any amount of time trying to figure out the spegethi code, created by someone who left the company 3 years ago, your answer is probably: Yes.</p>
+<p>If you've spent any amount of time trying to figure out the spaghetti code, created by someone who left the company 3 years ago, your answer is probably: Yes.</p>
 <p>KISSCPP is meant to be used in the real world, by organizations that can suffer a 15 millisecond delay in IPC speed, but can not suffer the three days debugging time on an unreadable protocol.</p>
 <p>All software needs debugging at some point, and as such, needs to be read by humans. i.e. Human readable comms protocols are important, and KISSCPP will provide.</p>
-<p>This however, does not exclude the posibility of non-human readable protocols being used in the future, if such becomes available in the boost ptree tools.</p>
+<p>This however, does not exclude the possibility of non-human readable protocols being used in the future, if such becomes available in the boost property tree tools.</p>
 <h1>Reserved identifiers.</h1>
 <p>Within the context of JSON as a protocol, we need to standardise on a few identifiers, in order to make sure we can handle communication basics.</p>
 <table class="doxtable">
 <tr>
 <th>Identifier </th><th>Required in </th><th>purpose/meaning </th><th>Description </th><th>typical values </th></tr>
 <tr>
-<td>kcm-cmd </td><td>Request </td><td>Handler Id </td><td>A string, uniquely identifying the servier handler to envoke. </td><td>An arbitrary string. </td></tr>
+<td>kcm-cmd </td><td>Request </td><td>Handler Id </td><td>A string, uniquely identifying the server handler to invoke. </td><td>An arbitrary string. </td></tr>
 <tr>
 <td>kcm-sts </td><td>Response </td><td>Status </td><td>Used in the response to indicate request status </td><td>Enumerated. </td></tr>
 <tr>
@@ -104,23 +104,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <td>kcm-prt </td><td>instance of client class </td><td>port </td><td>used by client class to indicate server port </td><td>An arbitrary string. </td></tr>
 </table>
 <h1>Basic terminology</h1>
-<p>The digram below provides a view on teminology problems I need to get out of the way here. The phrase "Making a request." with respect to inter process communication, could mean steps 1 through 6, or simpling step 1 or even steps 1 through 3.</p>
-<p>So, in order to make my life easier and improve understanding of documentation, I'm going to use a simple convention, that uses this diagram, to get rid of all the ambiguity with regard to talking about the various statges of inter process communication at applicaiton level.</p>
-<p>I'll be using the word IPCOM, followed by parenthisis, and the steps I'm refering to, contained within the parenthisis.</p>
+<p>The digram below provides a view on terminology problems I need to get out of the way here. The phrase "Making a request." with respect to inter process communication, could mean steps 1 through 6, or simpling step 1 or even steps 1 through 3.</p>
+<p>So, in order to make my life easier and improve understanding of documentation, I'm going to use a simple convention, that uses this diagram, to get rid of all the ambiguity with regard to talking about the various stages of inter process communication at application level.</p>
+<p>I'll be using the word IPCOM, followed by parenthesis, and the steps I'm referring to, contained within the parenthesis.</p>
 <p>i.e.</p>
 <ul>
-<li>IPCOM(1-2) would be refering to steps 1 and 2 on the digram.</li>
+<li>IPCOM(1-2) would be referring to steps 1 and 2 on the digram.</li>
 <li>IPCOM(1-5) would refer to steps 1 through 5, while</li>
 <li>IPCOM(4) would refer to only step 4.</li>
 </ul>
-<p>With that in mind, I'd now be able to say: IPCOM(1-6) and you'll instantly know I'm refering to the <em>entire</em> communication cycle.</p>
+<p>With that in mind, I'd now be able to say: IPCOM(1-6) and you'll instantly know I'm referring to the <em>entire</em> communication cycle.</p>
 <div class="image">
 <img src="dia/ipc_fig_1.png"  alt="ipc figure 1" title="Figure 1"/>
 </div>
  </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Oct 17 2013 13:59:09 for KISSCPP by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Oct 17 2013 16:24:17 for KISSCPP by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>
