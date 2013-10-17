@@ -63,5 +63,5 @@ i.e.
 With that in mind, I'd now be able to say: IPCOM(1-6) and you'll instantly know
 I'm refering to the _entire_ communication cycle.
 
-![ipc figure 1](../dia/ipc_fig_1.png "Figure 1")
+![ipc figure 1](dia/ipc_fig_1.png "Figure 1")
 

@@ -134,14 +134,14 @@ class LogStreamSettings
       return *this;
     }
 
-    msg_type           getMessageType() const throw() { return messageType; }
-    msg_severity       getSeverity   () const throw() { return severity;    }
+    log_type           getMessageType() const throw() { return messageType; }
+    log_severity       getSeverity   () const throw() { return severity;    }
     const std::string& getEntityName () const throw() { return entityName;  }
     const std::string& getSource     () const throw() { return source;      }
     uint32_t           getMask       () const throw() { return mask;        }
 
-    void setMessageType(msg_type           mt) { messageType = mt;}
-    void setSeverity   (msg_severity       ms) { severity    = ms;}
+    void setMessageType(log_type           mt) { messageType = mt;}
+    void setSeverity   (log_severity       ms) { severity    = ms;}
     void setEntityName (const std::string& en) { entityName  = en;}
     void setSource     (const std::string& s ) { source      = s ;}
     void setMask       (uint32_t           m ) { mask        = m ;}
@@ -164,8 +164,8 @@ class LogStreamSettings
     }
 
   private:
-    msg_type         messageType;
-    msg_severity     severity;
+    log_type         messageType;
+    log_severity     severity;
     std::string      entityName;
     std::string      source;          // The source of the log message.
     uint32_t         mask;            // The application subsystem mask.
@@ -252,14 +252,14 @@ class LogStream
     LogStream& oct  () { mBuf << std::oct;      return *this; }; // Print numbers in octal.
     LogStream& base () { mBuf << std::showbase; return *this; }; // Show the base when printing numbers.
 
-    msg_type           getMessageType() const throw() { return lssPerm.getMessageType(); }
-    msg_severity       getSeverity   () const throw() { return lssPerm.getSeverity(); }
+    log_type           getMessageType() const throw() { return lssPerm.getMessageType(); }
+    log_severity       getSeverity   () const throw() { return lssPerm.getSeverity(); }
     const std::string& getEntityName () const throw() { if(!lssTemp.getEntityName().empty()) return lssTemp.getEntityName(); else return lssPerm.getEntityName(); }
     uint32_t           getMask       () const throw() { return lssPerm.getMask(); }
     const std::string& getSource     () const throw() { if(!lssTemp.getSource    ().empty()) return lssTemp.getSource();     else return lssPerm.getSource();     }
 
-    LogStream& setMessageType(msg_type           mt, const bool perminant = true ){ if(perminant) { lssPerm.setMessageType(mt);} lssTemp.setMessageType(mt); return *this; }
-    LogStream& setSeverity   (msg_severity       ms, const bool perminant = true ){ if(perminant) { lssPerm.setSeverity   (ms);} lssTemp.setSeverity   (ms); return *this; }
+    LogStream& setMessageType(log_type           mt, const bool perminant = true ){ if(perminant) { lssPerm.setMessageType(mt);} lssTemp.setMessageType(mt); return *this; }
+    LogStream& setSeverity   (log_severity       ms, const bool perminant = true ){ if(perminant) { lssPerm.setSeverity   (ms);} lssTemp.setSeverity   (ms); return *this; }
     LogStream& setEntityName (const std::string& en, const bool perminant = false){ if(perminant) { lssPerm.setEntityName (en);} lssTemp.setEntityName (en); return *this; }
     LogStream& setSource     (const std::string& s , const bool perminant = true ){ if(perminant) { lssPerm.setSource     (s) ;} lssTemp.setSource     (s) ; return *this; }
 
