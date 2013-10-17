@@ -1,10 +1,10 @@
-# Example : kc\_echo
+# Example : kc_echo
 
 Below, is the main.cpp for the kc\_echo application. It serves as a basic
-demonstratoin of the power we have available to us, through KISSCPP.
+demonstration of the power we have available to us, through KISSCPP.
 
 It is a typical example of a main.cpp file, if you end up with a main.cpp
-file, that has more in it, you either have some very spicific requirements
+file, that has more in it, you either have some very specific requirements
 or you aren't using the library as intended.
 
 ~~~~(main.cpp)

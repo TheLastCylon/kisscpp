@@ -12,44 +12,44 @@ pressure, and a re-factor was in order. The problem here though, was the 37 near
 duplicate functions each spanning said 2000 lines of code.
 
 At one point, I was convinced that this kind of code, was a result of
-incompitant developers in that environment. I was partially correct, in that
-there were developers that were incompitent. However, this was a reflection
+incompetent developers in that environment. I was partially correct, in that
+there were developers that were incompetent. However, this was a reflection
 of management and the prevailing employment strategies, as well as a
-non-existant internal communication structure.
+non-existent internal communication structure.
 
 It was the kind of environment, where non-technical people were placed in senior
 technical positions, resulting in decisions around tooling being made by people
 who never use the tools.
 
-Sadly, I'm not exagirating. If I were, I'd probably still be working in that
+Sadly, I'm not exaggerating. If I were, I'd probably still be working in that
 environment.
 
 In short though, it was the typical Waterfall development, perpetuated by a
-poor implimentation of the Rational Unified Process, where hamstrung
+poor implementation of the Rational Unified Process, where hamstrung
 project-managers had no choice but to pester hamstrung developers into hacking
 a 15 year old, poorly designed system, so as to provide the appearance of
 valuable solutions to the business.
 
-KISSCPP is the culmination of frustration and experiance, into a library that
-will make it possible for developers at lartge corporates, to deliver
+KISSCPP is the culmination of frustration and experience, into a library that
+will make it possible for developers at large corporates, to deliver
 re-factored components, at a fraction of the cost of maintaining old ones.
 
 Yes, the system will have to be re-designed to make use of KISSCPP, but the cost
-would be rediculously low compared to maintaining a system like the one I
+would be ridiculously low compared to maintaining a system like the one I
 had to deal with.
 
 ## Development speed
 
 Over the years I've had to listen to the "My language is better than yours"
-debate, one too many times. The more I litened to these debates, the more I
+debate, one too many times. The more I listened to these debates, the more I
 realized that there are several types of Software Developers.
 
 1. **Those that don't know.**
-> These are the ones, that are just starting out. They are totaly new to the
+> These are the ones, that are just starting out. They are totally new to the
 > industry and can be forgiven almost anything.
 2. **Those that think they know.**
 > These are the ones that will blindly stick to a single programming language/
-> tool/methedology/paradigm etc. They will happily argue that a business will
+> tool/methodology/paradigm etc. They will happily argue that a business will
 > only need the tool they happen to be proficient in. They are also the kind
 > of developer that will argue, that Delphi is a programming language and PHP
 > is fast enough to be used as a tool for creating a database cache service.
@@ -58,9 +58,9 @@ realized that there are several types of Software Developers.
 > languages, using diverse paradigms. They are the ones that will convince a
 > business of the need for a multitude of tools and skills to manage it's own
 > software. They will prescribe PHP for the web requirements, Java for
-> business components, C++ for the componets that feel the need for speed, C
+> business components, C++ for the components that feel the need for speed, C
 > for those that feel the need for warp speed, assembler for trans-warp speeds
-> and machine code for instantanious teleportation.
+> and machine code for instantaneous teleportation.
 
 There is a particular kind of the "Think they know" developer, that I aim to
 address, using the KISSCPP library. They are the ones who argue, that getting
