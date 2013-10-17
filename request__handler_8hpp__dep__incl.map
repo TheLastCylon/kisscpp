@@ -1,7 +1,7 @@
-<map id="/home/bothadj/TheLastCylon/kisscpp/master/kisscpp/kisscpp/request_handler.hpp" name="/home/bothadj/TheLastCylon/kisscpp/master/kisscpp/kisscpp/request_handler.hpp">
-<area shape="rect" id="node3" href="$request__router_8hpp.html" title="/home/bothadj/TheLastCylon\l/kisscpp/master/kisscpp\l/kisscpp/request_router.hpp" alt="" coords="152,117,341,181"/>
-<area shape="rect" id="node5" href="$connection_8hpp.html" title="/home/bothadj/TheLastCylon\l/kisscpp/master/kisscpp\l/kisscpp/connection.hpp" alt="" coords="87,229,276,293"/>
-<area shape="rect" id="node9" href="$server_8hpp.html" title="/home/bothadj/TheLastCylon\l/kisscpp/master/kisscpp\l/kisscpp/server.hpp" alt="" coords="219,341,408,405"/>
-<area shape="rect" id="node7" href="$connection_8cpp.html" title="/home/bothadj/TheLastCylon\l/kisscpp/master/kisscpp\l/kisscpp/connection.cpp" alt="" coords="5,341,195,405"/>
-<area shape="rect" id="node11" href="$server_8cpp.html" title="/home/bothadj/TheLastCylon\l/kisscpp/master/kisscpp\l/kisscpp/server.cpp" alt="" coords="219,453,408,517"/>
+<map id="request_handler.hpp" name="request_handler.hpp">
+<area shape="rect" id="node3" href="$request__router_8hpp.html" title="request_router.hpp" alt="" coords="68,83,199,112"/>
+<area shape="rect" id="node5" href="$connection_8hpp.html" title="connection.hpp" alt="" coords="33,160,143,189"/>
+<area shape="rect" id="node9" href="$server_8hpp.html" title="server.hpp" alt="" coords="139,237,221,267"/>
+<area shape="rect" id="node7" href="$connection_8cpp.html" title="connection.cpp" alt="" coords="5,237,115,267"/>
+<area shape="rect" id="node11" href="$server_8cpp.html" title="server.cpp" alt="" coords="139,315,221,344"/>
 </map>

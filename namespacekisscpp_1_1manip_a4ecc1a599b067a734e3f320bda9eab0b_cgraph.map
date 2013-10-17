@@ -1,6 +1,6 @@
 <map id="kisscpp::manip::debug_normal" name="kisscpp::manip::debug_normal">
 <area shape="rect" id="node3" href="$namespacekisscpp_1_1manip.html#a35ce61527ad7974643c8841ed9177d7c" title="kisscpp::manip::debug" alt="" coords="211,48,363,77"/>
 <area shape="rect" id="node8" href="$namespacekisscpp_1_1manip.html#adf0550f278ff821441ada6dd998af178" title="kisscpp::manip::normal" alt="" coords="208,111,365,140"/>
-<area shape="rect" id="node5" href="$classkisscpp_1_1_log_stream.html#ad878a5863435605edaa35ee254f7702c" title="kisscpp::LogStream\l::setMessageType" alt="" coords="413,29,552,75"/>
-<area shape="rect" id="node10" href="$classkisscpp_1_1_log_stream.html#a5a2f4fb927e1162065847fa64f9c2662" title="kisscpp::LogStream\l::setSeverity" alt="" coords="413,122,552,169"/>
+<area shape="rect" id="node5" href="$classkisscpp_1_1_log_stream.html#adf597c630a454a9a84be5f2b0ade08af" title="kisscpp::LogStream\l::setMessageType" alt="" coords="413,29,552,75"/>
+<area shape="rect" id="node10" href="$classkisscpp_1_1_log_stream.html#a51e9ca608e2ed914d127bccdb2148837" title="kisscpp::LogStream\l::setSeverity" alt="" coords="413,122,552,169"/>
 </map>

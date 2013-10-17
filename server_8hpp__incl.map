@@ -1,9 +1,9 @@
-<map id="/home/bothadj/TheLastCylon/kisscpp/master/kisscpp/kisscpp/server.hpp" name="/home/bothadj/TheLastCylon/kisscpp/master/kisscpp/kisscpp/server.hpp">
-<area shape="rect" id="node17" href="$io__service__pool_8hpp.html" title="io_service_pool.hpp" alt="" coords="1513,117,1649,147"/>
-<area shape="rect" id="node28" href="$connection_8hpp.html" title="connection.hpp" alt="" coords="901,117,1011,147"/>
-<area shape="rect" id="node54" href="$request__router_8hpp.html" title="request_router.hpp" alt="" coords="321,204,452,233"/>
-<area shape="rect" id="node68" href="$logstream_8hpp.html" title="logstream.hpp" alt="" coords="609,368,713,397"/>
-<area shape="rect" id="node43" href="$boost__ptree_8hpp.html" title="boost_ptree.hpp" alt="" coords="1105,368,1220,397"/>
-<area shape="rect" id="node62" href="$request__handler_8hpp.html" title="request_handler.hpp" alt="" coords="523,291,661,320"/>
-<area shape="rect" id="node86" href="$request__status_8hpp.html" title="request_status.hpp" alt="" coords="365,291,499,320"/>
+<map id="server.hpp" name="server.hpp">
+<area shape="rect" id="node17" href="$io__service__pool_8hpp.html" title="io_service_pool.hpp" alt="" coords="1513,83,1649,112"/>
+<area shape="rect" id="node28" href="$connection_8hpp.html" title="connection.hpp" alt="" coords="901,83,1011,112"/>
+<area shape="rect" id="node54" href="$request__router_8hpp.html" title="request_router.hpp" alt="" coords="321,169,452,199"/>
+<area shape="rect" id="node68" href="$logstream_8hpp.html" title="logstream.hpp" alt="" coords="609,333,713,363"/>
+<area shape="rect" id="node43" href="$boost__ptree_8hpp.html" title="boost_ptree.hpp" alt="" coords="1105,333,1220,363"/>
+<area shape="rect" id="node62" href="$request__handler_8hpp.html" title="request_handler.hpp" alt="" coords="523,256,661,285"/>
+<area shape="rect" id="node86" href="$request__status_8hpp.html" title="request_status.hpp" alt="" coords="365,256,499,285"/>
 </map>
