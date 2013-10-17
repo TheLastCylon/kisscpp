@@ -1,0 +1,118 @@
+\hypertarget{logstream_8hpp}{\section{/home/bothadj/\-The\-Last\-Cylon/kisscpp/master/kisscpp/kisscpp/logstream.hpp File Reference}
+\label{logstream_8hpp}\index{/home/bothadj/\-The\-Last\-Cylon/kisscpp/master/kisscpp/kisscpp/logstream.\-hpp@{/home/bothadj/\-The\-Last\-Cylon/kisscpp/master/kisscpp/kisscpp/logstream.\-hpp}}
+}
+{\ttfamily \#include $<$sstream$>$}\\*
+{\ttfamily \#include $<$fstream$>$}\\*
+{\ttfamily \#include $<$stdint.\-h$>$}\\*
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include $<$stdexcept$>$}\\*
+{\ttfamily \#include $<$deque$>$}\\*
+{\ttfamily \#include $<$boost/thread/mutex.\-hpp$>$}\\*
+{\ttfamily \#include $<$boost/thread/locks.\-hpp$>$}\\*
+{\ttfamily \#include $<$boost/date\-\_\-time/posix\-\_\-time/posix\-\_\-time.\-hpp$>$}\\*
+Include dependency graph for logstream.\-hpp\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{logstream_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{logstream_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classkisscpp_1_1_log_stream_settings}{kisscpp\-::\-Log\-Stream\-Settings}
+\item 
+class \hyperlink{classkisscpp_1_1_log_stream}{kisscpp\-::\-Log\-Stream}
+\item 
+class \hyperlink{classkisscpp_1_1_manip_result}{kisscpp\-::\-Manip\-Result$<$ T $>$}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \hyperlink{namespacekisscpp}{kisscpp}
+\item 
+namespace \hyperlink{namespacekisscpp_1_1manip}{kisscpp\-::manip}
+\item 
+namespace \hyperlink{namespacekisscpp_1_1manip_1_1helpers}{kisscpp\-::manip\-::helpers}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespacekisscpp_a18db16d1f4c281bec16e637c56b0cc88}{kisscpp\-::log\-\_\-type} \{ \hyperlink{namespacekisscpp_a18db16d1f4c281bec16e637c56b0cc88ab6a9321dc7352cd6324cb5b91c2b9ef0}{kisscpp\-::mt\-E\-R\-R\-O\-R}, 
+\hyperlink{namespacekisscpp_a18db16d1f4c281bec16e637c56b0cc88a378ae6ee57c62c566ad2d616f66ee458}{kisscpp\-::mt\-I\-N\-F\-O}, 
+\hyperlink{namespacekisscpp_a18db16d1f4c281bec16e637c56b0cc88a926c3f839cf24323a4b9d03ee862634c}{kisscpp\-::mt\-D\-E\-B\-U\-G}
+ \}
+\begin{DoxyCompactList}\small\item\em Used in conjunction with log\-\_\-serverity as a log filter. \end{DoxyCompactList}\item 
+enum \hyperlink{namespacekisscpp_a2479a56cdedf21357ca5c68adc699d00}{kisscpp\-::log\-\_\-severity} \{ \hyperlink{namespacekisscpp_a2479a56cdedf21357ca5c68adc699d00a7b054f29b30a3946f37bb9d03d578b2c}{kisscpp\-::ms\-H\-I\-G\-H}, 
+\hyperlink{namespacekisscpp_a2479a56cdedf21357ca5c68adc699d00a097d4becef0ba04d783713819cb5bdb7}{kisscpp\-::ms\-N\-O\-R\-M\-A\-L}, 
+\hyperlink{namespacekisscpp_a2479a56cdedf21357ca5c68adc699d00af1ae3c1971eb3325095d18460ab65a7b}{kisscpp\-::ms\-L\-O\-W}
+ \}
+\begin{DoxyCompactList}\small\item\em Used in conjunction with log\-\_\-type as a log filter. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Log\-Stream \& \hyperlink{namespacekisscpp_1_1manip_a416806b7a937a2437ffadb9b523e1cf3}{kisscpp\-::manip\-::flush} (Log\-Stream \&s)
+\item 
+Log\-Stream \& \hyperlink{namespacekisscpp_1_1manip_ad682f16cb474bc7ff2c991ad2c45db66}{kisscpp\-::manip\-::endl} (Log\-Stream \&s)
+\item 
+Log\-Stream \& \hyperlink{namespacekisscpp_1_1manip_a5d7a175caf56eafe6f39469a0b0ac034}{kisscpp\-::manip\-::dec} (Log\-Stream \&s)
+\item 
+Log\-Stream \& \hyperlink{namespacekisscpp_1_1manip_a1463e1f81c1a4a6c6e19e883f1160059}{kisscpp\-::manip\-::hex} (Log\-Stream \&s)
+\item 
+Log\-Stream \& \hyperlink{namespacekisscpp_1_1manip_a1d9bd6b119890c9396e1dce048c07032}{kisscpp\-::manip\-::oct} (Log\-Stream \&s)
+\item 
+Log\-Stream \& \hyperlink{namespacekisscpp_1_1manip_a3a365ff3909fcd0d76c2f7fa4da3b2b0}{kisscpp\-::manip\-::base} (Log\-Stream \&s)
+\item 
+Log\-Stream \& \hyperlink{namespacekisscpp_1_1manip_ac2256889dabb1c6247c14dc8385b4d9b}{kisscpp\-::manip\-::error} (Log\-Stream \&s, const bool permanent)
+\item 
+Log\-Stream \& \hyperlink{namespacekisscpp_1_1manip_a0fe4bf2c9708816662d11a09ad6d2748}{kisscpp\-::manip\-::info} (Log\-Stream \&s, const bool permanent)
+\item 
+Log\-Stream \& \hyperlink{namespacekisscpp_1_1manip_a35ce61527ad7974643c8841ed9177d7c}{kisscpp\-::manip\-::debug} (Log\-Stream \&s, const bool permanent)
+\item 
+Log\-Stream \& \hyperlink{namespacekisscpp_1_1manip_adb1fe27024e605bfbfdd2411487c5163}{kisscpp\-::manip\-::high} (Log\-Stream \&s, const bool permanent)
+\item 
+Log\-Stream \& \hyperlink{namespacekisscpp_1_1manip_adf0550f278ff821441ada6dd998af178}{kisscpp\-::manip\-::normal} (Log\-Stream \&s, const bool permanent)
+\item 
+Log\-Stream \& \hyperlink{namespacekisscpp_1_1manip_a11159fc8dd5d521c86492de7ed2ae568}{kisscpp\-::manip\-::low} (Log\-Stream \&s, const bool permanent)
+\item 
+Log\-Stream \& \hyperlink{namespacekisscpp_1_1manip_a5972fe83732cb8ba6300185389d22ddb}{kisscpp\-::manip\-::error\-\_\-high} (Log\-Stream \&s, const bool permanent)
+\item 
+Log\-Stream \& \hyperlink{namespacekisscpp_1_1manip_afdc850f7fe0e092d671b7c6479b03d93}{kisscpp\-::manip\-::error\-\_\-normal} (Log\-Stream \&s, const bool permanent)
+\item 
+Log\-Stream \& \hyperlink{namespacekisscpp_1_1manip_a9a44ab7028cdfcb6db302b0fb19e54d1}{kisscpp\-::manip\-::error\-\_\-low} (Log\-Stream \&s, const bool permanent)
+\item 
+Log\-Stream \& \hyperlink{namespacekisscpp_1_1manip_ac496d5f1a7f553592a8c49738accaa4c}{kisscpp\-::manip\-::debug\-\_\-high} (Log\-Stream \&s, const bool permanent)
+\item 
+Log\-Stream \& \hyperlink{namespacekisscpp_1_1manip_a4ecc1a599b067a734e3f320bda9eab0b}{kisscpp\-::manip\-::debug\-\_\-normal} (Log\-Stream \&s, const bool permanent)
+\item 
+Log\-Stream \& \hyperlink{namespacekisscpp_1_1manip_a5e5923564d6fb200e5cfaea12bc8a9b6}{kisscpp\-::manip\-::debug\-\_\-low} (Log\-Stream \&s, const bool permanent)
+\item 
+Log\-Stream \& \hyperlink{namespacekisscpp_1_1manip_a853f871c83288cb0bb4497bcec0cd53d}{kisscpp\-::manip\-::info\-\_\-high} (Log\-Stream \&s, const bool permanent)
+\item 
+Log\-Stream \& \hyperlink{namespacekisscpp_1_1manip_a65c0a0f3d375100d63948829dff63ff8}{kisscpp\-::manip\-::info\-\_\-normal} (Log\-Stream \&s, const bool permanent)
+\item 
+Log\-Stream \& \hyperlink{namespacekisscpp_1_1manip_a1ff3a75e91cbe44fbf5ea28ba076008b}{kisscpp\-::manip\-::info\-\_\-low} (Log\-Stream \&s, const bool permanent)
+\item 
+Log\-Stream \& \hyperlink{namespacekisscpp_1_1manip_1_1helpers_a3734b7b27eea582e8d748c99ca2da137}{kisscpp\-::manip\-::helpers\-::mask} (Log\-Stream \&s, uint32\-\_\-t m)
+\item 
+Log\-Stream \& \hyperlink{namespacekisscpp_1_1manip_1_1helpers_ad663c6941c8fb0937690a6468cc4b350}{kisscpp\-::manip\-::helpers\-::ent} (Log\-Stream \&s, std\-::string ent\-\_\-name)
+\item 
+Log\-Stream \& \hyperlink{namespacekisscpp_1_1manip_1_1helpers_a97784407250b5ea47c0b20441a7472e5}{kisscpp\-::manip\-::helpers\-::source} (Log\-Stream \&s, std\-::string source)
+\item 
+Manip\-Result$<$ uint32\-\_\-t $>$ \hyperlink{namespacekisscpp_1_1manip_a3d1f5d1f8f0de8f2fc4c2fd5614453b1}{kisscpp\-::manip\-::mask} (uint32\-\_\-t m)
+\item 
+Manip\-Result$<$ std\-::string $>$ \hyperlink{namespacekisscpp_1_1manip_afa562934b333ee12ecd3219872410a8f}{kisscpp\-::manip\-::ent} (const std\-::string \&ent\-\_\-name)
+\item 
+Manip\-Result$<$ std\-::string $>$ \hyperlink{namespacekisscpp_1_1manip_a0660364105e23b9121ecf3d6d19858a5}{kisscpp\-::manip\-::src} (const std\-::string \&source)
+\item 
+{\footnotesize template$<$typename T $>$ }\\Log\-Stream \& \hyperlink{namespacekisscpp_a7a056a2a9cc68e577ced326d1ebf86c1}{kisscpp\-::operator$<$$<$} (Log\-Stream \&s, Manip\-Result$<$ T $>$ m)
+\end{DoxyCompactItemize}

@@ -1,0 +1,169 @@
+$<$link href=\char`\"{}./github.\-css\char`\"{} rel=\char`\"{}stylesheet\char`\"{}$>$$<$/link$>$
+
+\section*{K\-I\-S\-S-\/\-Base}
+
+K\-I\-S\-S-\/\-Base is a library containing classes, templates and supporting functions to facilitate rapid application development of C++ server side applications. It is in it's part, heavily dependent upon the C++ Boost libraries.
+
+\subsection*{Why}
+
+I come from an I\-T industry where an incredibly vast majority of developers, think 1995 lines of C code, in a single function, is acceptable. What's more, is that this seems to be justification enough for 37 copies of that function, to exist within the same application.
+
+At one point, I was convinced that this kind of behaviour was directly related to the incompitance of supposed senior developers in that environment.
+
+I was partially correct, in that there were developers that were incompitent. Unfortunatly, that turned out to be a reflection of the incompitence of management and a lack of satisfactory communication with business.
+
+In short, it was the typical waterfall development environment where managers spent more time protecting their employment than seeing to the needs of their developers. Consiquintly, developers were blamed for the problems created by these managers and business people. While not being given the opertunity to properly solve those problems.
+
+After 4 years in that environment I realized that the developers are not nearly as incompetent as I suspected, but rater accutely demoralized. It turns out that beurocracy is actually a developer's equivalent of Kryptonite.
+
+After living in an I\-T industry where deranged developers, believe that C functions spanning 1995 lines of code, and 37 copies of that same functions, baring a few parameters here and there
+
+After living in an I\-T industry where nobody outside the open source community seems to share my perspective on clean, reusable and reliable code,
+
+\subsection*{Mandate}
+
+This project owes it's existance to the K\-I\-S\-S-\/\-S\-M\-P\-P project. It was developed to satisfiy the requirement for a standardised framework, used to create custom server side applications, that run as daemons.
+
+The utility of this library in other applications was recognised early in it's development, as such, it was decided to break this away from the K\-I\-S\-S-\/\-S\-M\-P\-P project, to allow for it's independent growth and maintinance.
+
+In order to keep this library sane, portable and future proof a few limitations in terms of technologies used were settled upon.
+
+
+\begin{DoxyEnumerate}
+\item Other than the standard C++ library, only the Boost library may be used. i.\-e. No other library may be linked to.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item In order to satisfy the requirement for a standardised internal representation of inter process communications, the boost property tree and supporting framework was investigated and approved over custom implementations.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item It was decided that the Inter Process Protocol for K\-I\-S\-S-\/\-Base derived applications, will be {\bfseries J\-S\-O\-N}. Other protocols were considered, but only {\bfseries J\-S\-O\-N} served all the requirements of an I\-P\-C within this context. Other protocols may be supported in the future, but only if they are provided as part of the boost property tree library.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item The networking
+\end{DoxyEnumerate}
+
+and use inter process comm for custom create a bases from which to implement applications that run as server side daemons for custom requirements.
+
+The mandate of this project collection of classes that form a
+
+Welcome!
+
+Before reading any further, please take note\-:
+
+K\-I\-S\-S-\/\-S\-M\-P\-P is {\itshape not}, I repeat, {\itshape not} a library that will assist you with creating your own S\-M\-P\-P client.
+
+The intent behind K\-I\-S\-S-\/\-S\-M\-P\-P, is to completely negate your need to create a custom S\-M\-P\-P client and/or server. As such, the name \char`\"{}\-K\-I\-S\-S-\/\-S\-M\-P\-P\char`\"{} does not refer to a single application, but rather an applications-\/suite and several libraries, that endevor to do the S\-M\-P\-P specific stuff for you.
+
+The entire S\-M\-P\-P Session Management process is tucked away, where you'll never have to touch it if you don't want to. All that's expected from you, is to know how to use basic networking ({\itshape in the technology of your choice}) and have some mechanism for decoding and encoding data from and to {\itshape J\-S\-O\-N} format.
+
+If you have that, you are almost ready to start using the K\-I\-S\-S-\/\-S\-M\-P\-P client, for sending and recieving text messages.
+
+Take a look at the interface specification of the K\-I\-S\-S-\/\-S\-M\-P\-P Client (ksmppcd). You'll find that you'll never have to issue a Bind request or deal with enquire\-\_\-link P\-D\-Us. Once you've completed the configuration of the client, you could manage the sending and recieving of messages with nothing more than a well written shell script. {\itshape It might be foolish, but it would be possible.}
+
+\section*{Terms and Definitions}
+
+\begin{TabularC}{2}
+\hline
+\rowcolor{lightgray}{\bf Term }&{\bf Definition }\\\cline{1-2}
+K\-I\-S\-S &{\bfseries K}eep {\bfseries I}t {\bfseries S}imple {\bfseries S}tupid \\\cline{1-2}
+S\-M\-P\-P &{\bfseries S}hort {\bfseries M}essage {\bfseries P}eer-\/to-\/peer {\bfseries P}rotocol \\\cline{1-2}
+M\-C &{\bfseries M}essage {\bfseries C}entre (the people you connect to, using an smpp client) \\\cline{1-2}
+E\-S\-M\-C &{\bfseries E}xternal {\bfseries S}hort {\bfseries M}essage {\bfseries C}entre (The entity connecting to a Message Centre) \\\cline{1-2}
+\end{TabularC}
+
+
+\section*{Basics of interfacing with K\-I\-S\-S-\/\-S\-M\-P\-P Client (ksmppcd)}
+
+All applications in the K\-I\-S\-S-\/\-S\-M\-P\-P application suit, use J\-S\-O\-N as an interface protocol. There are many reasons for this, but here are some major ones\-:
+
+
+\begin{DoxyItemize}
+\item It's human readable.
+\item It's much less bandwidth intensive than X\-M\-L, S\-O\-A\-P, etc., etc., etc.
+\item It's incredibly well supported across major programming/scripting languages.
+\end{DoxyItemize}
+
+T\-O\-D\-O\-: Define message centre.
+
+\begin{TabularC}{4}
+\hline
+\rowcolor{lightgray}{\bf }&\PBS\centering {\bf }&{\bf }&{\bf }\\\cline{1-4}
+Parameter &\PBS\centering Mandatory? &Valid Values &Clarification \\\cline{1-4}
+cmd &\PBS\centering Yes &send &The send command \\\cline{1-4}
+source-\/addr &\PBS\centering Yes &a valid address for your M\-C. &\\\cline{1-4}
+destination-\/addr &\PBS\centering Yes &a valid address for your M\-C. &\\\cline{1-4}
+short-\/message &\PBS\centering Yes &The text message you want to send \\\cline{1-4}
+\end{TabularC}
+
+
+socket and your applications are expected to expose a few callback interfaces. Other than that, the aim is to be as platform and technology agnostic, as can be reasonably expected.
+
+You will not be forced to write code in any language you feel uncomfortable with. Nor will you need to cram new and foreign ideas into your organization.
+
+
+\begin{DoxyEnumerate}
+\item {\itshape a collection of applications and libraries} that endevour to completeley negate the need for having to create your own {\bfseries S\-M\-P\-P} client.
+\end{DoxyEnumerate}
+
+You are reading this so chances are good, that you want to know what {\bfseries K\-I\-S\-S-\/\-S\-M\-P\-P} is. Let's get the obvious out of the way first\-: K\-I\-S\-S is an acronym for {\bfseries K}eep {\bfseries I}t {\bfseries S}imple {\bfseries S}tupid, and S\-M\-P\-P is an acronym for {\bfseries S}hort {\bfseries M}essage {\bfseries P}eer-\/to-\/peer {\bfseries P}rotocol. From those two acronyms, you'd possibly be led to think, that {\bfseries K\-I\-S\-S-\/\-S\-M\-P\-P} is a library aimed at simplifying your life, with regard to implementing your own {\bfseries S\-M\-P\-P} client. However, you'd be mistaken.
+
+So, what is it then?
+
+Well, first off, {\bfseries K\-I\-S\-S-\/\-S\-M\-P\-P} isn't a library, it's a collection of applications and libraries
+
+\begin{DoxyVerb}A code block
+this is a cool code block
+\end{DoxyVerb}
+
+
+\subsection*{This is a test}
+
+\subsubsection*{This is a test}
+
+
+\begin{DoxyEnumerate}
+\item list item
+\begin{DoxyItemize}
+\item asdf
+\item asdf
+\item asdf
+\begin{DoxyItemize}
+\item qwer
+\item qwer
+\item qwer
+\end{DoxyItemize}
+\item asdf
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+\begin{DoxyVerb}A code block
+\end{DoxyVerb}
+
+
+asdf
+
+
+\begin{DoxyEnumerate}
+\item list item
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item list item
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item list item
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item list item
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item list item
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item list item
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item list item
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item list item 
+\end{DoxyEnumerate}
