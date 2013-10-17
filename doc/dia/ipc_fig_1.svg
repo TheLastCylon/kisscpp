@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
+<svg width="38cm" height="24cm" viewBox="113 37 760 470" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g>
+    <rect style="fill: #ffffff" x="309.976" y="261.8" width="64.05" height="38"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="309.976" y="261.8" width="64.05" height="38"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="342.001" y="284.7">
+      <tspan x="342.001" y="284.7">Server</tspan>
+    </text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="564.5" y="258.8" width="64.05" height="38"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="564.5" y="258.8" width="64.05" height="38"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="596.525" y="281.7">
+      <tspan x="596.525" y="281.7">Client</tspan>
+    </text>
+  </g>
+  <g>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 596.525,258.8 A 152.479,152.479 0 0 0 347.517,253.795"/>
+    <polygon style="fill: #000000" points="343.21,259.919 344.414,248.804 347.267,253.611 352.825,254.212 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="343.21,259.919 344.414,248.804 347.267,253.611 352.825,254.212 "/>
+  </g>
+  <g>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 342.001,299.8 A 157.813,157.813 0 0 0 590.628,304.53"/>
+    <polygon style="fill: #000000" points="595.224,298.619 593.474,309.661 590.861,304.719 585.34,303.844 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="595.224,298.619 593.474,309.661 590.861,304.719 585.34,303.844 "/>
+  </g>
+  <g>
+    <polygon style="fill: #ffffff" points="638,146.8 859.6,146.8 871.6,158.8 871.6,180.8 638,180.8 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="638,146.8 859.6,146.8 871.6,158.8 871.6,180.8 638,180.8 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" points="859.6,146.8 859.6,158.8 871.6,158.8 "/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="645" y="171.7">
+      <tspan x="645" y="171.7">(1) Client Generates request</tspan>
+    </text>
+  </g>
+  <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 4; stroke: #000000" x1="624.289" y1="257.803" x2="729.818" y2="181.793"/>
+  <g>
+    <polygon style="fill: #ffffff" points="370,38.6 560.8,38.6 572.8,50.6 572.8,72.6 370,72.6 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="370,38.6 560.8,38.6 572.8,50.6 572.8,72.6 370,72.6 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" points="560.8,38.6 560.8,50.6 572.8,50.6 "/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="377" y="63.5">
+      <tspan x="377" y="63.5">(2) Client sends request</tspan>
+    </text>
+  </g>
+  <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 4; stroke: #000000" x1="565" y1="225" x2="481.346" y2="73.6008"/>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="445.375" y="215">
+    <tspan x="445.375" y="215">Request</tspan>
+  </text>
+  <g>
+    <polygon style="fill: #ffffff" points="114.5,146.8 328.4,146.8 340.4,158.8 340.4,180.8 114.5,180.8 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="114.5,146.8 328.4,146.8 340.4,158.8 340.4,180.8 114.5,180.8 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" points="328.4,146.8 328.4,158.8 340.4,158.8 "/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="121.5" y="171.7">
+      <tspan x="121.5" y="171.7">(3) Server recieves request</tspan>
+    </text>
+  </g>
+  <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 4; stroke: #000000" x1="342.001" y1="261.8" x2="248.495" y2="181.804"/>
+  <g>
+    <polygon style="fill: #ffffff" points="114.5,369.932 343.8,369.932 355.8,381.932 355.8,403.932 114.5,403.932 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="114.5,369.932 343.8,369.932 355.8,381.932 355.8,403.932 114.5,403.932 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" points="343.8,369.932 343.8,381.932 355.8,381.932 "/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="121.5" y="394.832">
+      <tspan x="121.5" y="394.832">(4) Server generates response</tspan>
+    </text>
+  </g>
+  <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 4; stroke: #000000" x1="321.914" y1="300.752" x2="253.267" y2="368.937"/>
+  <g>
+    <polygon style="fill: #ffffff" points="366.15,471.932 564.65,471.932 576.65,483.932 576.65,505.932 366.15,505.932 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="366.15,471.932 564.65,471.932 576.65,483.932 576.65,505.932 366.15,505.932 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" points="564.65,471.932 564.65,483.932 576.65,483.932 "/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="373.15" y="496.832">
+      <tspan x="373.15" y="496.832">(5) Server sends response</tspan>
+    </text>
+  </g>
+  <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 4; stroke: #000000" x1="377" y1="335.332" x2="460.332" y2="470.923"/>
+  <g>
+    <polygon style="fill: #ffffff" points="638,369.932 859.6,369.932 871.6,381.932 871.6,403.932 638,403.932 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="638,369.932 859.6,369.932 871.6,381.932 871.6,403.932 638,403.932 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 1; stroke: #000000" points="859.6,369.932 859.6,381.932 871.6,381.932 "/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="645" y="394.832">
+      <tspan x="645" y="394.832">(6) Client recieves response</tspan>
+    </text>
+  </g>
+  <line style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 4; stroke: #000000" x1="596.525" y1="296.8" x2="723.182" y2="368.927"/>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="440.625" y="353.5">
+    <tspan x="440.625" y="353.5">Response</tspan>
+  </text>
+</svg>
