@@ -95,7 +95,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </ol>
 <p>Both these architectures have their own problem sets when dealing with code maintenance and application deployment. Depending on the situation you are facing, you could decide to use either one.</p>
 <p>KISSCPP currently leans more towards solving the distributed message based system. This will only be the case while a message broker using the KISSCPP library, does not exists. This is currently in planning phase and will be released as a separate project.</p>
-<h1>Why not use Google's protocol buffers?</h1>
+<h1>Q&amp;A</h1>
+<h2>Why not use Google's protocol buffers?</h2>
 <p>I wanted to, really, how awesome would it be to say I use Google's cool stuff :) But there is the real world of business needs, a world where:</p>
 <ol type="1">
 <li>JSON is much better supported across a much wider programming and scripting language base. i.e. More people would be able to use JSON than protocol buffers. Think about it. KISSCPP based applications will need to interface with arbitrary systems. Using JSON has a much higher chance of success than protocol buffers ever would.</li>
@@ -103,20 +104,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>Having to re-compile and re-deploy components every time an interface changes, causes huge issues for all but the smallest of systems. Yes, interfaces don't change every day, but they change often enough to make the lives of all involved in the development process, a royal pain in the posterior.</li>
 <li>Protocol buffers destroy any possibility of having templitized messages.</li>
 </ol>
-<h1>Why not use CORBA?</h1>
+<h2>Why not use CORBA?</h2>
 <ol type="1">
 <li>Maintaining IDL files routinely becomes a mess. In the real-world, interfaces change just often enough to make this a problem.</li>
 <li>Again, having to re-compile and re-deploy components every time an interface changes, causes problems. See my comments on protocol buffers.</li>
 <li>CORBA destroys any possibility of having templitized messages.</li>
 </ol>
-<h1>Why not use 0mq?</h1>
+<h2>Why not use 0mq?</h2>
 <p>0mq lacks one huge feature: Persistence! There are other issues with it, but persistence is the big one.</p>
-<h1>Why not use GO?</h1>
+<h2>Why not use GO?</h2>
 <p>GO is too young to know wither or not it will stick and become an industry standard. If it does, that would be awesome, but I don't see a future where big corporates are going to re-factor towards using GO for their server side components. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Dec 29 2013 04:57:38 for KISSCPP by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Dec 29 2013 05:10:08 for KISSCPP by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>
