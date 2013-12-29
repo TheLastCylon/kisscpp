@@ -44,7 +44,7 @@ identifiers, in order to make sure we can handle communication basics.
 
 The digram below provides a view on terminology problems I need to get out of the
 way here. The phrase "Making a request." with respect to inter process
-communication, could mean steps 1 through 6, or simpling step 1 or even steps 1
+communication, could mean steps 1 through 6, or simply step 1 or even steps 1
 through 3.
 
 So, in order to make my life easier and improve understanding of documentation,
