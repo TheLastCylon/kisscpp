@@ -12,8 +12,9 @@ C++, while allowing developers to focus on getting business rules implemented.
 
 Take for instance, the two theoretical message based system as described in below:
 
+1. **Distributed Message based system**
 ![Distributed Message based system](dia/message_based_system_1.png "Figure 1")
-
+2. **Message Broker based system**
 ![Message Broker based system](dia/message_based_system_2.png "Figure 2")
 
 Both these architectures have their own problem sets when dealing with code
@@ -28,7 +29,7 @@ released as a separate project.
 ## Why not use Google's protocol buffers?
 
 I wanted to, really, how awesome would it be to say I use Google's cool stuff :)
-But there is the real world of business needs, a world where
+But there is the real world of business needs, a world where:
 
 1. JSON is much better supported across a much wider programming and scripting
    language base. i.e. More people would be able to use JSON than protocol
@@ -51,7 +52,7 @@ But there is the real world of business needs, a world where
    interfaces change just often enough to make this a problem.
 2. Again, having to re-compile and re-deploy components every time an interface
    changes, causes problems. See my comments on protocol buffers.
-3. CORBA destroy any possibility of having templitized messages.
+3. CORBA destroys any possibility of having templitized messages.
 
 ## Why not use 0mq?
 
