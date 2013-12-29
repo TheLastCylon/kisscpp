@@ -83,16 +83,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>The ability to send, receive, parse and process messages, is a technical problem that should be centralised in a simple library.</p>
 <p>KISSCPP provides a framework and an application level communications standard, allowing developers to create message based systems quickly and easily. It provides the major functionality for creating client-server applications in C++, while allowing developers to focus on getting business rules implemented.</p>
 <p>Take for instance, the two theoretical message based system as described in below:</p>
-<div class="image">
+<ol type="1">
+<li><b>Distributed Message based system</b> <div class="image">
 <img src="dia/message_based_system_1.png"  alt="Distributed Message based system" title="Figure 1"/>
 </div>
-<div class="image">
+</li>
+<li><b>Message Broker based system</b> <div class="image">
 <img src="dia/message_based_system_2.png"  alt="Message Broker based system" title="Figure 2"/>
 </div>
+</li>
+</ol>
 <p>Both these architectures have their own problem sets when dealing with code maintenance and application deployment. Depending on the situation you are facing, you could decide to use either one.</p>
 <p>KISSCPP currently leans more towards solving the distributed message based system. This will only be the case while a message broker using the KISSCPP library, does not exists. This is currently in planning phase and will be released as a separate project.</p>
 <h1>Why not use Google's protocol buffers?</h1>
-<p>I wanted to, really, how awesome would it be to say I use Google's cool stuff :) But there is the real world of business needs, a world where</p>
+<p>I wanted to, really, how awesome would it be to say I use Google's cool stuff :) But there is the real world of business needs, a world where:</p>
 <ol type="1">
 <li>JSON is much better supported across a much wider programming and scripting language base. i.e. More people would be able to use JSON than protocol buffers. Think about it. KISSCPP based applications will need to interface with arbitrary systems. Using JSON has a much higher chance of success than protocol buffers ever would.</li>
 <li>The documentation for protocol buffers, suggest that it's only really for message sizes up to 1 Mb. Seeing as I've worked in environments where the 1Mb message size is routinely exceeded, I decided on using something more forgiving.</li>
@@ -103,7 +107,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <ol type="1">
 <li>Maintaining IDL files routinely becomes a mess. In the real-world, interfaces change just often enough to make this a problem.</li>
 <li>Again, having to re-compile and re-deploy components every time an interface changes, causes problems. See my comments on protocol buffers.</li>
-<li>CORBA destroy any possibility of having templitized messages.</li>
+<li>CORBA destroys any possibility of having templitized messages.</li>
 </ol>
 <h1>Why not use 0mq?</h1>
 <p>0mq lacks one huge feature: Persistence! There are other issues with it, but persistence is the big one.</p>
@@ -112,7 +116,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Dec 29 2013 04:42:20 for KISSCPP by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Dec 29 2013 04:57:38 for KISSCPP by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

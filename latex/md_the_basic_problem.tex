@@ -7,8 +7,10 @@ K\-I\-S\-S\-C\-P\-P provides a framework and an application level communications
 Take for instance, the two theoretical message based system as described in below\-:
 
 
-
-
+\begin{DoxyEnumerate}
+\item {\bfseries Distributed Message based system} 
+\item {\bfseries Message Broker based system} 
+\end{DoxyEnumerate}
 
 Both these architectures have their own problem sets when dealing with code maintenance and application deployment. Depending on the situation you are facing, you could decide to use either one.
 
@@ -16,7 +18,7 @@ K\-I\-S\-S\-C\-P\-P currently leans more towards solving the distributed message
 
 \section*{Why not use Google's protocol buffers?}
 
-I wanted to, really, how awesome would it be to say I use Google's cool stuff \-:) But there is the real world of business needs, a world where
+I wanted to, really, how awesome would it be to say I use Google's cool stuff \-:) But there is the real world of business needs, a world where\-:
 
 
 \begin{DoxyEnumerate}
@@ -32,7 +34,7 @@ I wanted to, really, how awesome would it be to say I use Google's cool stuff \-
 \begin{DoxyEnumerate}
 \item Maintaining I\-D\-L files routinely becomes a mess. In the real-\/world, interfaces change just often enough to make this a problem.
 \item Again, having to re-\/compile and re-\/deploy components every time an interface changes, causes problems. See my comments on protocol buffers.
-\item C\-O\-R\-B\-A destroy any possibility of having templitized messages.
+\item C\-O\-R\-B\-A destroys any possibility of having templitized messages.
 \end{DoxyEnumerate}
 
 \section*{Why not use 0mq?}
