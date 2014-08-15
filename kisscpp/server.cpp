@@ -31,8 +31,8 @@ namespace kisscpp
        new_connection_    (),
        request_router_    ()
    {
-     LogStream log(-1, __PRETTY_FUNCTION__);
-     log << "Address : " << address << " Port : " << port << endl;
+     LogStream log(__PRETTY_FUNCTION__);
+     log << manip::info_normal << "Address : " << address << " Port : " << port << endl;
 
      // Register to handle the signals that indicate when the server should exit.
      // It is safe to register for the same signal multiple times in a program,
@@ -65,28 +65,28 @@ namespace kisscpp
   //--------------------------------------------------------------------------------
   void Server::run()
   {
-    LogStream log(-1, __PRETTY_FUNCTION__);
+    LogStream log(__PRETTY_FUNCTION__);
     io_service_pool_.run();
   }
 
   //--------------------------------------------------------------------------------
   void Server::stop()
   {
-    LogStream log(-1, __PRETTY_FUNCTION__);
+    LogStream log(__PRETTY_FUNCTION__);
     handle_stop();
   }
 
   //--------------------------------------------------------------------------------
   void Server::register_handler(RequestHandlerPtr _handler)
   {
-    LogStream log(-1, __PRETTY_FUNCTION__);
+    LogStream log(__PRETTY_FUNCTION__);
     request_router_.register_handler(_handler);
   }
 
   //--------------------------------------------------------------------------------
   void Server::start_accept()
   {
-    LogStream log(-1, __PRETTY_FUNCTION__);
+    LogStream log(__PRETTY_FUNCTION__);
     new_connection_.reset(new Connection(io_service_pool_.get_io_service(), request_router_));
     acceptor_.async_accept(new_connection_->socket(),
                            boost::bind(&Server::handle_accept,
@@ -97,7 +97,7 @@ namespace kisscpp
   //--------------------------------------------------------------------------------
   void Server::handle_accept(const boost::system::error_code& e)
   {
-    LogStream log(-1, __PRETTY_FUNCTION__);
+    LogStream log(__PRETTY_FUNCTION__);
     if(!e) {
       new_connection_->start();
     }
@@ -108,15 +108,15 @@ namespace kisscpp
   //--------------------------------------------------------------------------------
   void Server::handle_stop()
   {
-    LogStream log(-1, __PRETTY_FUNCTION__);
+    LogStream log(__PRETTY_FUNCTION__);
     io_service_pool_.stop();
   }
 
   //--------------------------------------------------------------------------------
   void Server::handle_log_reopen()
   {
-    LogStream log(-1, __PRETTY_FUNCTION__);
-    log << "Setting reopen log" << endl;
+    LogStream log(__PRETTY_FUNCTION__);
+    log << manip::debug_normal << "Setting reopen log" << endl;
     log.set2ReOpen();
   }
 }

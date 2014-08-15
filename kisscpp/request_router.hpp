@@ -41,7 +41,7 @@ namespace kisscpp
       //--------------------------------------------------------------------------------
       void register_handler(RequestHandlerPtr _handler)
       {
-        LogStream log(-1, __PRETTY_FUNCTION__);
+        LogStream log(__PRETTY_FUNCTION__);
         requestHandlerMap[_handler->commandId()] = _handler;
       }
 
@@ -50,7 +50,7 @@ namespace kisscpp
       //SharedPtree route_request(const SharedPtree request)
       void route_request(const BoostPtree &request, BoostPtree &response)
       {
-        LogStream   log(-1, __PRETTY_FUNCTION__);
+        LogStream   log(__PRETTY_FUNCTION__);
         try {
           std::string command = request.get<std::string>("kcm-cmd");
 

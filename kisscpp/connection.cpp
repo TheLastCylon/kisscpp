@@ -23,21 +23,21 @@ namespace kisscpp
   //--------------------------------------------------------------------------------
   Connection::Connection(boost::asio::io_service& io_service, RequestRouter& handler) : socket_(io_service), request_router_(handler)
   {
-    LogStream log(-1, __PRETTY_FUNCTION__);
+    LogStream log(__PRETTY_FUNCTION__);
     //parsed_request_.reset(new BoostPtree());
   }
 
   //--------------------------------------------------------------------------------
   boost::asio::ip::tcp::socket& Connection::socket()
   {
-    LogStream log(-1, __PRETTY_FUNCTION__);
+    LogStream log(__PRETTY_FUNCTION__);
     return socket_;
   }
 
   //--------------------------------------------------------------------------------
   void Connection::start()
   {
-    LogStream log(-1, __PRETTY_FUNCTION__);
+    LogStream log(__PRETTY_FUNCTION__);
 
     using namespace boost::property_tree::json_parser;
 
@@ -46,7 +46,7 @@ namespace kisscpp
     boost::system::error_code error_code;
 
     try {
-      log << "About to read from socket." << endl;
+      log << manip::debug_normal << "About to read from socket." << endl;
 
       boost::asio::read_until(socket_, incomming_stream_buffer_, '\n');
 
@@ -54,17 +54,16 @@ namespace kisscpp
 
       std::getline(raw_request_, ts, '\n');
 
-      log << "Raw socket read : " << ts << endl;
+      log << manip::debug_normal << "Raw socket read : " << ts << endl;
       
       std::stringstream ss;
       ss << ts;
 
-      log << "Done reading from socket." << endl;
+      log << manip::debug_normal << "Done reading from socket." << endl;
 
       read_json(ss, parsed_request_);
-      //  read_json(raw_request_, (*parsed_request_.get()));
 
-      log << "JSON string read. Routing." << endl;
+      log << manip::debug_normal << "JSON string read. Routing." << endl;
 
       request_router_.route_request(parsed_request_, raw_response_);
 
@@ -72,7 +71,7 @@ namespace kisscpp
 
       write_json(response, raw_response_, false);
 
-      log << "About to send response: " << response.str() << endl;
+      log << manip::debug_normal << "About to send response: " << response.str() << endl;
 
       encoded_response_ << response.str();
 
@@ -81,9 +80,9 @@ namespace kisscpp
       boost::asio::write(socket_, outgoing_stream_buffer_, boost::asio::transfer_all());
 
     } catch(boost::property_tree::json_parser::json_parser_error &je) {
-      log << "json parsing Error: " << je.message() << endl;
+      log << manip::error_normal << "json parsing Error: " << je.message() << endl;
     } catch(boost::system::system_error &se) {
-      log << "Boost System Error: " << se.what() << endl;
+      log << manip::error_normal << "Boost System Error: " << se.what() << endl;
     }
   }
 }

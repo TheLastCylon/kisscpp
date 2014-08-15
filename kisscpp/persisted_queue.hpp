@@ -73,7 +73,7 @@ class Base64BiCoder
   protected:
     boost::shared_ptr<std::string> encodeToBase64String(const std::string&  s)
     {
-      kisscpp::LogStream            log(-1, __PRETTY_FUNCTION__);
+      LogStream                      log(__PRETTY_FUNCTION__);
       unsigned int                   writePaddChars = (3 - s.length() % 3) % 3;
       boost::shared_ptr<std::string> base64;
 
@@ -86,12 +86,12 @@ class Base64BiCoder
 
     boost::shared_ptr<std::string> decodeFromBase64(const std::string& s)
     {
-      kisscpp::LogStream            log(-1, __PRETTY_FUNCTION__);
+      LogStream                      log(__PRETTY_FUNCTION__);
       unsigned int                   paddChars = count(s.begin(), s.end(), '=');
       std::string                    is        = s;
       boost::shared_ptr<std::string> result;
 
-      log << "base 64 string to decode : " << s << endl;
+      log << manip::debug_normal << "base 64 string to decode : " << s << endl;
 
       if(is[is.size()-1] == '=') is[is.size()-1] = 'A';
       if(is[is.size()-2] == '=') is[is.size()-2] = 'A';
@@ -100,7 +100,7 @@ class Base64BiCoder
 
       result->erase(result->end()-paddChars,result->end());  // erase padding '\0' characters
 
-      log << "decoded base 64 string: " << result->c_str() << endl;
+      log << manip::debug_normal << "decoded base 64 string: " << result->c_str() << endl;
 
       return result;
     }

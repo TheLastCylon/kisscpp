@@ -30,7 +30,7 @@ namespace kisscpp
     response_ = _response;
     request_  = _request;
  
-    LogStream            log     (-1, __PRETTY_FUNCTION__);
+    LogStream            log     (__PRETTY_FUNCTION__);
     tcp::resolver        resolver(io_service_);
     tcp::resolver::query query   (request_.get<std::string>("kcm-hst"), request_.get<std::string>("kcm-prt"));
 
@@ -46,7 +46,7 @@ namespace kisscpp
   //--------------------------------------------------------------------------------
   void client::handle_connect(const boost::system::error_code& error)
   {
-    LogStream log(-1, __PRETTY_FUNCTION__);
+    LogStream log(__PRETTY_FUNCTION__);
     if(!error) {
 
       boost::asio::streambuf request;
@@ -55,9 +55,8 @@ namespace kisscpp
       std::stringstream ss;
 
       write_json(ss, request_, false);
-      //write_json(request_stream, (*request_.get()), false);
 
-      log << "Sending JSON request: " << ss.str() << endl;
+      log << manip::debug_normal << "Sending JSON request: " << ss.str() << endl;
 
       request_stream << ss.str();
 
@@ -76,7 +75,7 @@ namespace kisscpp
   //--------------------------------------------------------------------------------
   void client::handle_write(const boost::system::error_code& error)
   {
-    LogStream log(-1, __PRETTY_FUNCTION__);
+    LogStream log(__PRETTY_FUNCTION__);
     if(!error) {
       boost::asio::async_read_until(socket_,
                                     incomming_stream_buffer_,
@@ -94,7 +93,7 @@ namespace kisscpp
   //--------------------------------------------------------------------------------
   void client::handle_read(const boost::system::error_code& error)
   {
-    LogStream log(-1, __PRETTY_FUNCTION__);
+    LogStream log(__PRETTY_FUNCTION__);
     if(!error) {
       std::stringstream ss;
       std::string       ts;
@@ -102,11 +101,11 @@ namespace kisscpp
 
       std::getline(raw_request_, ts, '\n');
 
-      log << "Raw socket read : " << ts << endl;
+      log << manip::debug_normal << "Raw socket read : " << ts << endl;
       
       ss << ts;
 
-      log << "Done reading from socket." << endl;
+      log << manip::debug_normal << "Done reading from socket." << endl;
 
       read_json(ss, response_);
 
@@ -127,7 +126,7 @@ namespace kisscpp
         }
       } else {
         timeout_timer_.cancel();
-        log << "Excellent!" << endl;
+        log << manip::debug_normal << "Excellent!" << endl;
       }
 
     } else {
@@ -142,7 +141,7 @@ namespace kisscpp
   //--------------------------------------------------------------------------------
   void client::handle_timeout(const boost::system::error_code& e)
   {
-    kisscpp::LogStream log(-1, __PRETTY_FUNCTION__);
+    LogStream log(__PRETTY_FUNCTION__);
 
     if(e != boost::asio::error::operation_aborted) {
       socket_.cancel();

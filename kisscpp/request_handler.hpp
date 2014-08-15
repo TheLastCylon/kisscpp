@@ -35,7 +35,7 @@ namespace kisscpp
     public:
       RequestHandler(const std::string &_id, const std::string &_description) : id(_id), description(_description)
       {
-        LogStream log(-1, __PRETTY_FUNCTION__);
+        LogStream log(__PRETTY_FUNCTION__);
       };
 
       virtual ~RequestHandler() {};
@@ -44,7 +44,7 @@ namespace kisscpp
 
       std::string commandId()
       {
-        LogStream log(-1, __PRETTY_FUNCTION__);
+        LogStream log(__PRETTY_FUNCTION__);
         return id;
       }
 
