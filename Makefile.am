@@ -28,9 +28,12 @@ lib_LTLIBRARIES = libkisscpp-@KISSCPP_API_VERSION@.la
 ## which are already listed elsewhere in a _HEADERS variable assignment.
 libkisscpp_@KISSCPP_API_VERSION@_la_SOURCES = kisscpp/client.cpp \
                                               kisscpp/connection.cpp \
+                                              kisscpp/errorstate.cpp \
                                               kisscpp/io_service_pool.cpp \
                                               kisscpp/logstream.cpp \
-                                              kisscpp/server.cpp
+                                              kisscpp/server.cpp \
+                                              kisscpp/standard_handlers.cpp \
+                                              kisscpp/statskeeper.cpp
 
 ## Instruct libtool to include ABI version information in the generated shared
 ## library file (.so).  The library ABI version is defined in configure.ac, so
@@ -46,6 +49,7 @@ kisscpp_includedir = $(includedir)/kisscpp-$(KISSCPP_API_VERSION)
 nobase_kisscpp_include_HEADERS = kisscpp/boost_ptree.hpp \
                                  kisscpp/client.hpp \
                                  kisscpp/connection.hpp \
+                                 kisscpp/errorstate.hpp \
                                  kisscpp/io_service_pool.hpp \
                                  kisscpp/logstream.hpp \
                                  kisscpp/persisted_queue.hpp \
@@ -55,6 +59,9 @@ nobase_kisscpp_include_HEADERS = kisscpp/boost_ptree.hpp \
                                  kisscpp/request_router.hpp \
                                  kisscpp/request_handler.hpp \
                                  kisscpp/server.hpp \
+                                 kisscpp/standard_handlers.hpp \
+                                 kisscpp/statable_queue.hpp \
+                                 kisscpp/statskeeper.hpp \
                                  kisscpp/threadsafe_persisted_priority_queue.hpp \
                                  kisscpp/threadsafe_persisted_queue.hpp \
                                  kisscpp/threadsafe_queue.hpp

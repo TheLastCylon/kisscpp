@@ -220,6 +220,7 @@ class PersistedQueue : public boost::noncopyable
     QueuedObjectPointerType front();
     void                    clear();
     bool                    empty();
+    size_t                  size();
 
   protected:
 

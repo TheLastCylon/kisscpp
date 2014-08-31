@@ -22,54 +22,61 @@
 #include <boost/shared_ptr.hpp>
 #include <boost/thread/mutex.hpp>
 #include <boost/thread/locks.hpp>
+#include "statable_queue.hpp"
 
 //--------------------------------------------------------------------------------
 namespace kisscpp
 {
 
-template <class _qoT, >
-class ThreadsafeQueue : public boost::noncopyable
-{
-  public:
-    ThreadsafeQueue() {}
+  template <class _qoT, >
+  class ThreadsafeQueue : public statable_queue, public boost::noncopyable
+  {
+    public:
+      ThreadsafeQueue() {}
 
-    ~ThreadsafeQueue() {}
+      ~ThreadsafeQueue() {}
 
-    void push(boost::shared_ptr<_qoT> p)
-    {
-      boost::lock_guard<boost::mutex> guard(queueMutex);
-      queue->push_back(p);
-    }
+      void push(boost::shared_ptr<_qoT> p)
+      {
+        boost::lock_guard<boost::mutex> guard(queueMutex);
+        queue->push_back(p);
+      }
 
-    boost::shared_ptr<_qoT> pop()
-    {
-      boost::lock_guard<boost::mutex> guard(queueMutex);
-      return queue->pop_front();
-    }
+      boost::shared_ptr<_qoT> pop()
+      {
+        boost::lock_guard<boost::mutex> guard(queueMutex);
+        return queue->pop_front();
+      }
 
-    boost::shared_ptr<_qoT> front()
-    {
-      boost::lock_guard<boost::mutex> guard(queueMutex);
-      return queue->front();
-    }
+      boost::shared_ptr<_qoT> front()
+      {
+        boost::lock_guard<boost::mutex> guard(queueMutex);
+        return queue->front();
+      }
 
-    boost::shared_ptr<_qoT> back()
-    {
-      boost::lock_guard<boost::mutex> guard(queueMutex);
-      return queue->back();
-    }
+      boost::shared_ptr<_qoT> back()
+      {
+        boost::lock_guard<boost::mutex> guard(queueMutex);
+        return queue->back();
+      }
 
-    bool empty()
-    {
-      boost::lock_guard<boost::mutex> guard(queueMutex);
-      return queue->empty();
-    }
+      bool empty()
+      {
+        boost::lock_guard<boost::mutex> guard(queueMutex);
+        return queue->empty();
+      }
 
-  protected:
-  private:
-    std::deque<boost::shared_ptr<_qoT> > queue;
-    boost::mutex                         queueMutex;
-};
+      size_t size()
+      {
+        boost::lock_guard<boost::mutex> guard(queueMutex);
+        return queue->size();
+      }
+
+    protected:
+    private:
+      std::deque<boost::shared_ptr<_qoT> > queue;
+      boost::mutex                         queueMutex;
+  };
 
 }
 #endif

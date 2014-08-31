@@ -23,7 +23,9 @@ namespace kisscpp
   //--------------------------------------------------------------------------------
   Server::Server(const std::string& address,
                  const std::string& port,
-                 std::size_t        io_service_pool_size)
+                 std::size_t        io_service_pool_size,
+                 unsigned long int  gp /*= 300*/,
+                 unsigned long int  hl /*= 12*/)
      : io_service_pool_   (io_service_pool_size),
        stop_signals_      (io_service_pool_.get_io_service()),
        log_reopen_signals_(io_service_pool_.get_io_service()),
@@ -48,6 +50,19 @@ namespace kisscpp
 
      stop_signals_.async_wait(boost::bind(&Server::handle_stop, this));
      log_reopen_signals_.async_wait(boost::bind(&Server::handle_log_reopen, this));
+
+     StatsKeeper::instance(gp,hl); // create the stats keeper instance here.
+                                   // so that it's available as soon as the server is
+                                   // constructed.
+
+     ErrorStateList::instance();   // same goes for the error state list.
+
+
+     statsReporter.reset(new StatsReporter());
+     errorReporter.reset(new ErrorReporter());
+
+     register_handler(statsReporter);
+     register_handler(errorReporter);
 
      // Open the acceptor with the option to reuse the address (i.e. SO_REUSEADDR).
      boost::asio::ip::tcp::resolver        resolver(acceptor_.get_io_service());

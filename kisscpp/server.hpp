@@ -32,6 +32,9 @@
 #include "connection.hpp"
 #include "request_router.hpp"
 #include "logstream.hpp"
+#include "statskeeper.hpp"
+#include "errorstate.hpp"
+#include "standard_handlers.hpp"
 
 namespace kisscpp
 {
@@ -41,7 +44,9 @@ namespace kisscpp
       // Construct the server to listen on the specified TCP address and port
       explicit Server(const std::string& address,
                       const std::string& port,
-                      std::size_t        io_service_pool_size);
+                      std::size_t        io_service_pool_size,
+                      unsigned long int  gp = 300,  // statistics Gather Period as a number of seconds (defaults to 5minutes)
+                      unsigned long int  hl = 12);  // number of historical gather periods to keep
 
       void run();  // Run the server's io_service loop.
       void stop(); // stop the server.
@@ -60,6 +65,9 @@ namespace kisscpp
       boost::asio::ip::tcp::acceptor acceptor_;               // Acceptor used to listen for incoming connections.
       ConnectionPtr                  new_connection_;         // The next connection to be accepted.
       RequestRouter                  request_router_;         // The handler for all incoming requests.
+
+      RequestHandlerPtr              statsReporter;
+      RequestHandlerPtr              errorReporter;
   };
 }
 

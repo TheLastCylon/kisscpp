@@ -24,13 +24,14 @@
 #include <boost/thread/mutex.hpp>
 #include <boost/thread/locks.hpp>
 #include "persisted_queue.hpp"
+#include "statable_queue.hpp"
 
 //--------------------------------------------------------------------------------
 namespace kisscpp
 {
 
 template <class _qoT, class _sT>
-class ThreadsafePersistedQueue : public boost::noncopyable
+class ThreadsafePersistedQueue : public statable_queue, public boost::noncopyable
 {
   public:
     ThreadsafePersistedQueue(const std::string& queueName,
@@ -63,6 +64,12 @@ class ThreadsafePersistedQueue : public boost::noncopyable
     {
       boost::lock_guard<boost::mutex> guard(objectMutex);
       return persistedQ->empty();
+    }
+
+    size_t size()
+    {
+      boost::lock_guard<boost::mutex> guard(objectMutex);
+      return persistedQ->size();
     }
 
   protected:

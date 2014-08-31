@@ -133,6 +133,13 @@ bool PersistedQueue<_qoT, _sT>::empty()
 
 //--------------------------------------------------------------------------------
 template <class _qoT, class _sT>
+size_t PersistedQueue<_qoT, _sT>::size()
+{
+  return (firstPage->size() + lastPage->size()  + (persistedFileNames.size() * _maxItemsPerPage));
+}
+
+//--------------------------------------------------------------------------------
+template <class _qoT, class _sT>
 void PersistedQueue<_qoT, _sT>::setWorkingDirectory(std::string wdir)
 {
   _workingDirectory  = boost::filesystem::path(wdir, boost::filesystem::native);
