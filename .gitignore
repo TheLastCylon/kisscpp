@@ -1,6 +1,7 @@
 *.swp
 *.lo
 *.la
+*.o
 stamp-h*
 .libs/
 Makefile
@@ -19,3 +20,5 @@ kisscppconfig.h
 libtool
 ltmain.sh
 missing
+.deps
+.gitignore
