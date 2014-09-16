@@ -137,10 +137,12 @@ namespace kisscpp
     statsReporter.reset(new StatsReporter());
     errorReporter.reset(new ErrorReporter());
     handlerReporter.reset(new HandlerReporter(request_router_));
+    logLevelAdjuster.reset(new LogLevelAdjuster());
 
     register_handler(statsReporter);
     register_handler(errorReporter);
     register_handler(handlerReporter);
+    register_handler(logLevelAdjuster);
   }
 }
 

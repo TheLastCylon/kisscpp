@@ -5,6 +5,10 @@
 #include <string>
 #include <unistd.h>
 #include <boost/shared_ptr.hpp>
+#include <boost/algorithm/string.hpp>    
+
+
+
 
 #include "logstream.hpp"
 #include "request_handler.hpp"
@@ -71,6 +75,24 @@ namespace kisscpp
     private:
       RequestRouter &requestRouter;
   };
+
+  //--------------------------------------------------------------------------------
+  class LogLevelAdjuster : public RequestHandler
+  {
+    public:
+      LogLevelAdjuster() :
+        RequestHandler("set_log_level", "Adjust the log level to specified levels")
+      {
+        LogStream log(__PRETTY_FUNCTION__);
+      }
+
+      ~LogLevelAdjuster() {};
+
+      void run(const BoostPtree &request, BoostPtree &response);
+    protected:
+    private:
+  };
+
 }
 
 #endif // _STANDARD_HANDLERS_HPP_

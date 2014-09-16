@@ -71,6 +71,7 @@ namespace kisscpp
       RequestHandlerPtr              statsReporter;
       RequestHandlerPtr              errorReporter;
       RequestHandlerPtr              handlerReporter;
+      RequestHandlerPtr              logLevelAdjuster;
   };
 }
 

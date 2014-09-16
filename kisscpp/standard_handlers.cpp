@@ -124,5 +124,55 @@ namespace kisscpp
       response.put("kcm-erm", e.what());
     }
   }
+
+  //--------------------------------------------------------------------------------
+  void LogLevelAdjuster::run(const BoostPtree &request, BoostPtree &response)
+  {
+    LogStream log(__PRETTY_FUNCTION__);
+
+    try {
+      bool        validLogType     = false;
+      bool        validLogSeverity = false;
+      std::string newLogType       = request.get<std::string>("type");
+      std::string newLogSeverity   = request.get<std::string>("severity");
+
+      boost::algorithm::to_lower(newLogType);
+      boost::algorithm::to_lower(newLogSeverity);
+
+      if     (newLogType     == "debug" ) { log.setMessageType(LT_DEBUG ,true); validLogType = true; }
+      else if(newLogType     == "info"  ) { log.setMessageType(LT_INFO  ,true); validLogType = true; }
+      else if(newLogType     == "error" ) { log.setMessageType(LT_ERROR ,true); validLogType = true; }
+      else {
+        response.put("kcm-sts", RQST_INVALID_PARAMETER);
+        response.put("kcm-erm", "invalid log type");
+      }
+
+      if(validLogType) {
+        if     (newLogSeverity == "low"   ) { log.setSeverity(LS_LOW   ,true); validLogSeverity = true; }
+        else if(newLogSeverity == "normal") { log.setSeverity(LS_NORMAL,true); validLogSeverity = true; }
+        else if(newLogSeverity == "high"  ) { log.setSeverity(LS_HIGH  ,true); validLogSeverity = true; }
+        else {
+          response.put("kcm-sts", RQST_INVALID_PARAMETER);
+          response.put("kcm-erm", "invalid log severity");
+        }
+      }
+
+      if(validLogType && validLogSeverity) {
+        response.put("kcm-sts" , RQST_SUCCESS);
+      }
+
+    } catch (boost::property_tree::ptree_bad_path &e) {
+
+      log << "Exception: " << e.what() << manip::endl;
+      response.put("kcm-sts", RQST_MISSING_PARAMETER);
+      response.put("kcm-erm", e.what());
+
+    } catch (std::exception& e) {
+
+      log << "Exception: " << e.what() << manip::endl;
+      response.put("kcm-sts", RQST_UNKNOWN);                    
+      response.put("kcm-erm", e.what());
+    }
+  }
 }
 
