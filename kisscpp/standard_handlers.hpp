@@ -4,9 +4,11 @@
 #include <iostream>
 #include <string>
 #include <unistd.h>
+#include <boost/shared_ptr.hpp>
 
 #include "logstream.hpp"
 #include "request_handler.hpp"
+#include "request_router.hpp"
 #include "boost_ptree.hpp"
 #include "request_status.hpp"
 #include "statskeeper.hpp"
@@ -49,6 +51,25 @@ namespace kisscpp
       void run(const BoostPtree &request, BoostPtree &response);
     protected:
     private:
+  };
+
+  //--------------------------------------------------------------------------------
+  class HandlerReporter : public RequestHandler
+  {
+    public:
+      HandlerReporter(RequestRouter &rr) :
+        RequestHandler("show_handlers", "shows a list of the request handlers for this application"),
+        requestRouter(rr)
+      {
+        LogStream log(__PRETTY_FUNCTION__);
+      }
+
+      ~HandlerReporter() {};
+
+      void run(const BoostPtree &request, BoostPtree &response);
+    protected:
+    private:
+      RequestRouter &requestRouter;
   };
 }
 

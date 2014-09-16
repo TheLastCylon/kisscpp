@@ -93,5 +93,36 @@ namespace kisscpp
       response.put("kcm-erm", e.what());
     }
   }
+
+  //--------------------------------------------------------------------------------
+  void HandlerReporter::run(const BoostPtree &request, BoostPtree &response)
+  {
+    LogStream log(__PRETTY_FUNCTION__);
+
+    try {
+      sharedRequestHandlerInfoList requestHandlerList = requestRouter.getHandlerDescriptions();
+
+      response.put("kcm-sts" , RQST_SUCCESS);
+
+      for(requestHandlerInfoListIter itr = requestHandlerList->begin(); itr != requestHandlerList->end(); ++itr) {
+        BoostPtree handlerDetails;
+
+        handlerDetails.put("id"         ,itr->first);
+        handlerDetails.put("description",itr->second);
+        response.add_child("handler"    ,handlerDetails); 
+      }
+    } catch (boost::property_tree::ptree_bad_path &e) {
+
+      log << "Exception: " << e.what() << manip::endl;
+      response.put("kcm-sts", RQST_MISSING_PARAMETER);
+      response.put("kcm-erm", e.what());
+
+    } catch (std::exception& e) {
+
+      log << "Exception: " << e.what() << manip::endl;
+      response.put("kcm-sts", RQST_UNKNOWN);                    
+      response.put("kcm-erm", e.what());
+    }
+  }
 }
 

@@ -58,11 +58,7 @@ namespace kisscpp
      ErrorStateList::instance();   // same goes for the error state list.
 
 
-     statsReporter.reset(new StatsReporter());
-     errorReporter.reset(new ErrorReporter());
-
-     register_handler(statsReporter);
-     register_handler(errorReporter);
+     initialize_standard_handlers();
 
      // Open the acceptor with the option to reuse the address (i.e. SO_REUSEADDR).
      boost::asio::ip::tcp::resolver        resolver(acceptor_.get_io_service());
@@ -133,6 +129,18 @@ namespace kisscpp
     LogStream log(__PRETTY_FUNCTION__);
     log << manip::debug_normal << "Setting reopen log" << endl;
     log.set2ReOpen();
+  }
+
+  //--------------------------------------------------------------------------------
+  void Server::initialize_standard_handlers()
+  {
+    statsReporter.reset(new StatsReporter());
+    errorReporter.reset(new ErrorReporter());
+    handlerReporter.reset(new HandlerReporter(request_router_));
+
+    register_handler(statsReporter);
+    register_handler(errorReporter);
+    register_handler(handlerReporter);
   }
 }
 

@@ -24,6 +24,7 @@
 #include <string>
 #include <map>
 #include <boost/noncopyable.hpp>
+#include <boost/shared_ptr.hpp>
 #include "boost_ptree.hpp"
 #include "request_handler.hpp"
 #include "logstream.hpp"
@@ -31,6 +32,12 @@
 
 namespace kisscpp
 {
+  typedef std::map<std::string, RequestHandlerPtr>  requestHandlerMapType;
+  typedef requestHandlerMapType::iterator           requestHandlerMapTypeIter;
+  typedef std::map<std::string, std::string>        requestHandlerInfoList;
+  typedef requestHandlerInfoList::iterator          requestHandlerInfoListIter;
+  typedef boost::shared_ptr<requestHandlerInfoList> sharedRequestHandlerInfoList;
+
   //--------------------------------------------------------------------------------
   // The router for all incoming requests.
   class RequestRouter : private boost::noncopyable
@@ -50,7 +57,7 @@ namespace kisscpp
       //SharedPtree route_request(const SharedPtree request)
       void route_request(const BoostPtree &request, BoostPtree &response)
       {
-        LogStream   log(__PRETTY_FUNCTION__);
+        LogStream log(__PRETTY_FUNCTION__);
         try {
           std::string command = request.get<std::string>("kcm-cmd");
 
@@ -71,9 +78,25 @@ namespace kisscpp
         }
       }
 
+      //--------------------------------------------------------------------------------
+      sharedRequestHandlerInfoList getHandlerDescriptions()
+      {
+        sharedRequestHandlerInfoList retval;
+
+        retval.reset(new requestHandlerInfoList());
+
+        for(requestHandlerMapTypeIter itr = requestHandlerMap.begin(); itr != requestHandlerMap.end(); ++itr) {
+          (*retval)[itr->first] = itr->second->getDescription();
+        }
+
+        return retval;
+      }
+
     private:
-      std::map<std::string, RequestHandlerPtr> requestHandlerMap;
+      requestHandlerMapType requestHandlerMap;
   };
+
+  typedef boost::shared_ptr<RequestRouter> sharedRequestRouter;
 }
 
 #endif

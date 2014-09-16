@@ -42,11 +42,8 @@ namespace kisscpp
 
       virtual void run(const BoostPtree& request, BoostPtree& response) = 0;
 
-      std::string commandId()
-      {
-        LogStream log(__PRETTY_FUNCTION__);
-        return id;
-      }
+      std::string commandId()      { return id; }
+      std::string getDescription() { return description; }
 
     protected:
     private:

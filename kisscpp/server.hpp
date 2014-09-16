@@ -58,6 +58,7 @@ namespace kisscpp
       void handle_accept(const boost::system::error_code& e); // Handle completion of an asynchronous accept operation.
       void handle_stop();                                     // Handle a request to stop the server.
       void handle_log_reopen();                               // Handle a request to reopen log.
+      void initialize_standard_handlers();
 
       IoServicePool                  io_service_pool_;        // The pool of io_service objects used to perform asynchronous operations.
       boost::asio::signal_set        stop_signals_;           // The signal_set is used to register for process termination notifications.
@@ -66,8 +67,10 @@ namespace kisscpp
       ConnectionPtr                  new_connection_;         // The next connection to be accepted.
       RequestRouter                  request_router_;         // The handler for all incoming requests.
 
+      // Standard Handlers
       RequestHandlerPtr              statsReporter;
       RequestHandlerPtr              errorReporter;
+      RequestHandlerPtr              handlerReporter;
   };
 }
 
