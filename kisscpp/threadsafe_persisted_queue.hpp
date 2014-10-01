@@ -31,7 +31,7 @@ namespace kisscpp
 {
 
 template <class _qoT, class _sT>
-class ThreadsafePersistedQueue : public statable_queue, public boost::noncopyable
+class ThreadsafePersistedQueue : public StatAbleQueue, public boost::noncopyable
 {
   public:
     ThreadsafePersistedQueue(const std::string& queueName,

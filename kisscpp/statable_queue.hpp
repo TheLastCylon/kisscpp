@@ -8,8 +8,8 @@ namespace kisscpp
   class StatAbleQueue
   {
     public:
-      StatAbleQueue();
-      ~StatAbleQueue();
+      StatAbleQueue() {};
+      ~StatAbleQueue() {};
 
       virtual size_t size() = 0;
 

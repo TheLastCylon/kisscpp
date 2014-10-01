@@ -29,7 +29,7 @@ namespace kisscpp
 {
 
   template <class _qoT, >
-  class ThreadsafeQueue : public statable_queue, public boost::noncopyable
+  class ThreadsafeQueue : public StatAbleQueue, public boost::noncopyable
   {
     public:
       ThreadsafeQueue() {}
