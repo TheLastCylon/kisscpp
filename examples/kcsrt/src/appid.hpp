@@ -1,4 +1,4 @@
-// File  : boost_ptree.hpp
+// File  : appid.hpp
 // Author: Dirk J. Botha <bothadj@gmail.com>
 //
 // This file is part of kisscpp library.
@@ -16,27 +16,11 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the kisscpp library. If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _BOOST_PTREE_HPP_
-#define _BOOST_PTREE_HPP_
+#ifndef _APPID_HPP_
+#define _APPID_HPP_
 
-#define BOOST_SPIRIT_THREADSAFE
-
-#include <boost/shared_ptr.hpp>
-#include <boost/scoped_ptr.hpp>
-#include <boost/property_tree/ptree.hpp>
-//#include <boost/property_tree/ini_parser.hpp>
-#include <boost/property_tree/json_parser.hpp>
-#include <boost/foreach.hpp>
-
-typedef boost::property_tree::ptree   BoostPtree;
-typedef boost::shared_ptr<BoostPtree> SharedPtree;
-typedef boost::scoped_ptr<BoostPtree> ScopedPtree;
-
-namespace bpt = boost::property_tree;
-
-namespace kisscpp
-{
-  void ptreeMerge(BoostPtree &pt1, BoostPtree &pt2, std::string node = "");
-}
+#ifndef _APPLICATION_ID_NAME_PART_
+#define _APPLICATION_ID_NAME_PART_ "kcsrt"
+#endif
 
 #endif

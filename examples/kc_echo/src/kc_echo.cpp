@@ -1,7 +1,12 @@
 #include "kc_echo.hpp"
 
 //--------------------------------------------------------------------------------
-kc_echo::kc_echo() : Server("localhost", "9100", 1)
+kc_echo::kc_echo() :
+  Server("localhost",
+         "9100",
+         1,
+         "kc_echo",
+         "0")
 {
   kisscpp::LogStream log(__PRETTY_FUNCTION__, "/tmp/kc_echo.log", true);
   registerHandlers();

@@ -20,8 +20,13 @@
 
 //--------------------------------------------------------------------------------
 kcsrt::kcsrt(const std::string &in_port,
-             const std::string &out_port) :
-  Server ("localhost", in_port, 1)
+             const std::string &out_port,
+             const std::string &instance) :
+  Server ("localhost",
+          in_port,
+          1,
+          "kcsrt",
+          instance)
 {
   i_port  = in_port;
   o_port  = out_port;

@@ -26,8 +26,10 @@ lib_LTLIBRARIES = libkisscpp-@KISSCPP_API_VERSION@.la
 ## rules which invoke the C++ compiler to produce a libtool object file (.lo)
 ## from each source file.  Note that it is not necessary to list header files
 ## which are already listed elsewhere in a _HEADERS variable assignment.
-libkisscpp_@KISSCPP_API_VERSION@_la_SOURCES = kisscpp/client.cpp \
+libkisscpp_@KISSCPP_API_VERSION@_la_SOURCES = kisscpp/boost_ptree.cpp \
+                                              kisscpp/client.cpp \
                                               kisscpp/connection.cpp \
+                                              kisscpp/configuration.cpp \
                                               kisscpp/errorstate.cpp \
                                               kisscpp/io_service_pool.cpp \
                                               kisscpp/logstream.cpp \
@@ -49,6 +51,7 @@ kisscpp_includedir = $(includedir)/kisscpp-$(KISSCPP_API_VERSION)
 nobase_kisscpp_include_HEADERS = kisscpp/boost_ptree.hpp \
                                  kisscpp/client.hpp \
                                  kisscpp/connection.hpp \
+                                 kisscpp/configuration.hpp \
                                  kisscpp/errorstate.hpp \
                                  kisscpp/io_service_pool.hpp \
                                  kisscpp/logstream.hpp \

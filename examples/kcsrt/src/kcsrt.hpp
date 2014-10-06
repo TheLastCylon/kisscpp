@@ -33,7 +33,9 @@ class kcsrt : public kisscpp::Server        /// Step 1: Derive your application'
 {
   public:
     kcsrt(const std::string &in_port,
-          const std::string &out_port);
+          const std::string &out_port,
+          const std::string &instance);
+
     ~kcsrt();
 
   protected:

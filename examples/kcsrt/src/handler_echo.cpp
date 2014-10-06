@@ -25,10 +25,11 @@ void EchoHandler::run(const BoostPtree &request, BoostPtree &response)
   kisscpp::StatsKeeper::instance()->increment("recieved");
 
   try {
+    std::string message = request.get<std::string>("message");
 
     // This is where you build your response
-    response.put("kcm-sts" , kisscpp::RQST_SUCCESS);                // Make sure to set kcm-sts to RQST_SUCCESS in the event of success
-    response.put("you-sent", request.get<std::string>("message"));  // populate any aditional response parameters.
+    response.put("kcm-sts" , kisscpp::RQST_SUCCESS); // Make sure to set kcm-sts to RQST_SUCCESS in the event of success
+    response.put("you-sent", message);               // populate any aditional response parameters.
 
   } catch (boost::property_tree::ptree_bad_path &e) {
 

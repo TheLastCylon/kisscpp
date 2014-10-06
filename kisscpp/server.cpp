@@ -24,54 +24,58 @@ namespace kisscpp
   Server::Server(const std::string& address,
                  const std::string& port,
                  std::size_t        io_service_pool_size,
-                 unsigned long int  gp /*= 300*/,
-                 unsigned long int  hl /*= 12*/)
-     : io_service_pool_   (io_service_pool_size),
-       stop_signals_      (io_service_pool_.get_io_service()),
-       log_reopen_signals_(io_service_pool_.get_io_service()),
-       acceptor_          (io_service_pool_.get_io_service()),
-       new_connection_    (),
-       request_router_    ()
-   {
-     LogStream log(__PRETTY_FUNCTION__);
-     log << manip::info_normal << "Address : " << address << " Port : " << port << endl;
+                 const std::string& application_id       /*= "kisscpp_application"*/,
+                 const std::string& application_instance /*= "0"*/,
+                 const std::string& config_root_path     /*= ""*/,
+                 unsigned long int  gp                   /*= 300*/,
+                 unsigned long int  hl                   /*= 12*/)
+    : io_service_pool_   (io_service_pool_size),
+      stop_signals_      (io_service_pool_.get_io_service()),
+      log_reopen_signals_(io_service_pool_.get_io_service()),
+      acceptor_          (io_service_pool_.get_io_service()),
+      new_connection_    (),
+      request_router_    ()
+  {
+    LogStream log(__PRETTY_FUNCTION__);
+    log << manip::info_normal << "Address : " << address << " Port : " << port << endl;
 
-     // Register to handle the signals that indicate when the server should exit.
-     // It is safe to register for the same signal multiple times in a program,
-     // provided all registration for the specified signal is made through Asio.
-     stop_signals_.add(SIGINT);
-     stop_signals_.add(SIGTERM);
+    // Register to handle the signals that indicate when the server should exit.
+    // It is safe to register for the same signal multiple times in a program,
+    // provided all registration for the specified signal is made through Asio.
+    stop_signals_.add(SIGINT);
+    stop_signals_.add(SIGTERM);
 
 #if defined(SIGQUIT)
-     stop_signals_.add(SIGQUIT);
+    stop_signals_.add(SIGQUIT);
 #endif
 
-     log_reopen_signals_.add(SIGHUP);
+    log_reopen_signals_.add(SIGHUP);
 
-     stop_signals_.async_wait(boost::bind(&Server::handle_stop, this));
-     log_reopen_signals_.async_wait(boost::bind(&Server::handle_log_reopen, this));
+    stop_signals_.async_wait(boost::bind(&Server::handle_stop, this));
+    log_reopen_signals_.async_wait(boost::bind(&Server::handle_log_reopen, this));
 
-     StatsKeeper::instance(gp,hl); // create the stats keeper instance here.
-                                   // so that it's available as soon as the server is
-                                   // constructed.
+    Config::instance(application_id, application_instance, config_root_path);
 
-     ErrorStateList::instance();   // same goes for the error state list.
+    StatsKeeper::instance(gp,hl); // create the stats keeper instance here.
+                                  // so that it's available as soon as the server is
+                                  // constructed.
 
+    ErrorStateList::instance();   // same goes for the error state list.
 
-     initialize_standard_handlers();
+    initialize_standard_handlers();
 
-     // Open the acceptor with the option to reuse the address (i.e. SO_REUSEADDR).
-     boost::asio::ip::tcp::resolver        resolver(acceptor_.get_io_service());
-     boost::asio::ip::tcp::resolver::query query(address, port);
-     boost::asio::ip::tcp::endpoint        endpoint = *resolver.resolve(query);
+    // Open the acceptor with the option to reuse the address (i.e. SO_REUSEADDR).
+    boost::asio::ip::tcp::resolver        resolver(acceptor_.get_io_service());
+    boost::asio::ip::tcp::resolver::query query(address, port);
+    boost::asio::ip::tcp::endpoint        endpoint = *resolver.resolve(query);
 
-     acceptor_.open(endpoint.protocol());
-     acceptor_.set_option(boost::asio::ip::tcp::acceptor::reuse_address(true));
-     acceptor_.bind(endpoint);
-     acceptor_.listen();
+    acceptor_.open(endpoint.protocol());
+    acceptor_.set_option(boost::asio::ip::tcp::acceptor::reuse_address(true));
+    acceptor_.bind(endpoint);
+    acceptor_.listen();
 
-     start_accept();
-   }
+    start_accept();
+  }
 
   //--------------------------------------------------------------------------------
   void Server::run()

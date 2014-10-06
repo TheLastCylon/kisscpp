@@ -35,6 +35,7 @@
 #include "statskeeper.hpp"
 #include "errorstate.hpp"
 #include "standard_handlers.hpp"
+#include "configuration.hpp"
 
 namespace kisscpp
 {
@@ -45,8 +46,11 @@ namespace kisscpp
       explicit Server(const std::string& address,
                       const std::string& port,
                       std::size_t        io_service_pool_size,
-                      unsigned long int  gp = 300,  // statistics Gather Period as a number of seconds (defaults to 5minutes)
-                      unsigned long int  hl = 12);  // number of historical gather periods to keep
+                      const std::string& application_id       = "kisscpp_application",
+                      const std::string& application_instance = "0",
+                      const std::string& config_root_path     = "",
+                      unsigned long int  gp                   = 300,  // statistics Gather Period as a number of seconds (defaults to 5minutes)
+                      unsigned long int  hl                   = 12);  // number of historical gather periods to keep
 
       void run();  // Run the server's io_service loop.
       void stop(); // stop the server.

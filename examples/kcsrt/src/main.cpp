@@ -52,7 +52,9 @@ int main(int argc, char* argv[])
       return 1;
     }
 
-    kcsrt app(vm["in-port"].as<std::string>(), vm["out-port"].as<std::string>());
+    kcsrt app(vm["in-port"].as<std::string>(),
+              vm["out-port"].as<std::string>(),
+              "0");
     app.run();
 
   } catch (std::exception& e) {
