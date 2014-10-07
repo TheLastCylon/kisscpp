@@ -36,11 +36,11 @@ namespace kisscpp
       new_connection_    (),
       request_router_    ()
   {
-    if (checkLockFile(application_id, application_instance) {
+    if (checkLockFile(application_id, application_instance)) {
       createLockFile();
 
       LogStream log(__PRETTY_FUNCTION__);
-      log << manip::info_normal << "Address : " << address << " Port : " << port << endl;
+      log << manip::info_normal << "Address : " << address << " Port : " << port << manip::endl;
 
       // Register to handle the signals that indicate when the server should exit.
       // It is safe to register for the same signal multiple times in a program,
@@ -135,7 +135,7 @@ namespace kisscpp
   void Server::handle_log_reopen()
   {
     LogStream log(__PRETTY_FUNCTION__);
-    log << manip::debug_normal << "Setting reopen log" << endl;
+    log << manip::debug_normal << "Setting reopen log" << manip::endl;
     log.set2ReOpen();
   }
 
@@ -174,7 +174,7 @@ namespace kisscpp
       std::cerr << "Lockfile for this appid and instance already exists ["
                 << lockFilePath.native()
                 << "] stop the executing process before starting it again or remove the lock file if there is no process executing with this applicaiton and instnace id combination."
-                << std::endl();
+                << std::endl;
     }
 
     return retval;
@@ -192,8 +192,8 @@ namespace kisscpp
   //--------------------------------------------------------------------------------
   void Server::removeLockFile()
   {
-    if(bfs::exists(file)) {
-      bfs::filesystem::remove(file);
+    if(bfs::exists(lockFilePath)) {
+      bfs::remove(lockFilePath);
     }
   }
 }

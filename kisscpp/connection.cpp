@@ -57,9 +57,9 @@ namespace kisscpp
 
       log << manip::debug_high
           << "Recieved request from ["
-          << socket_remote_endpoint().address().to_string()
+          << socket_.remote_endpoint().address().to_string()
           << ":"
-          << socket_remote_endpoint().port()
+          << socket_.remote_endpoint().port()
           << "] > "
           << ts
           << endl;
