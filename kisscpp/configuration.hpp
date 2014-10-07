@@ -49,8 +49,8 @@ namespace kisscpp
       template<typename T> T                  get         (const std::string &s, T default_value) { return cfg_data.get         <T>(s,default_value); }
       template<typename T> boost::optional<T> get_optional(const std::string &s)                  { return cfg_data.get_optional<T>(s);               }
 
-      std::string getApplicationId()       { return application_id; }
-      std::string getApplicationInstance() { return application_instance; }
+      std::string getAppId()       { return application_id; }
+      std::string getAppInstance() { return application_instance; }
 
       //--------------------------------------------------------------------------------
       // TODO: Add method for reloading configuration.

@@ -8,7 +8,6 @@ kc_echo::kc_echo() :
          "kc_echo",
          "0")
 {
-  kisscpp::LogStream log(__PRETTY_FUNCTION__, "/tmp/kc_echo.log", true);
   registerHandlers();
 }
 

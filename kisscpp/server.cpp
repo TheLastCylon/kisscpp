@@ -28,7 +28,8 @@ namespace kisscpp
                  const std::string& application_instance /*= "0"*/,
                  const std::string& config_root_path     /*= ""*/,
                  unsigned long int  gp                   /*= 300*/,
-                 unsigned long int  hl                   /*= 12*/)
+                 unsigned long int  hl                   /*= 12*/,
+                 bool               runAsDaemon          /*= false*/)
     : io_service_pool_   (io_service_pool_size),
       stop_signals_      (io_service_pool_.get_io_service()),
       log_reopen_signals_(io_service_pool_.get_io_service()),
@@ -38,30 +39,17 @@ namespace kisscpp
   {
     if (createLockFile(application_id, application_instance)) {
 
-      LogStream log(__PRETTY_FUNCTION__);
-      log << manip::info_normal << "Address : " << address << " Port : " << port << manip::endl;
+      if(runAsDaemon) {
+        becomeDaemonProcess();
+      }
 
-      // Register to handle the signals that indicate when the server should exit.
-      // It is safe to register for the same signal multiple times in a program,
-      // provided all registration for the specified signal is made through Asio.
-      stop_signals_.add(SIGINT);
-      stop_signals_.add(SIGTERM);
-
-#if defined(SIGQUIT)
-      stop_signals_.add(SIGQUIT);
-#endif
-
-      log_reopen_signals_.add(SIGHUP);
-
-      stop_signals_.async_wait(boost::bind(&Server::handle_stop, this));
-      log_reopen_signals_.async_wait(boost::bind(&Server::handle_log_reopen, this));
+      signalRegistrations();
 
       Config::instance(application_id, application_instance, config_root_path);
 
-      StatsKeeper::instance(gp,hl); // create the stats keeper instance here.
-                                    // so that it's available as soon as the server is
-                                    // constructed.
+      initializeLogging();
 
+      StatsKeeper::instance(gp,hl); // create the stats keeper instance here. So that it's available as soon as the server is constructed.
       ErrorStateList::instance();   // same goes for the error state list.
 
       initialize_standard_handlers();
@@ -82,7 +70,9 @@ namespace kisscpp
                 << lockFilePath.native()
                 << "]"
                 << std::endl
-                << "If this message is not preceded by a message indicating that a lock file already exists, you most likely have a permissions problem, or the directory you wish to create lock files in, does not exist."
+                << "If this message is not preceded by a message indicating that a lock file already exists, "
+                << "you most likely have a permissions problem, or the directory in which you wish to create lock files, "
+                << "does not exist."
                 << std::endl;
 
       throw std::runtime_error("Could not create lock file: Terminating.");
@@ -93,6 +83,14 @@ namespace kisscpp
   void Server::run()
   {
     LogStream log(__PRETTY_FUNCTION__);
+
+    log << manip::info_normal
+        << "--------------------------------------------------------------------------------" << manip::endl
+        << "Starting Process : instance [" << Config::instance()->getAppInstance()
+        << "] of application ["            << Config::instance()->getAppId() << "]"           << manip::endl
+//        << "Server details  : address ["  << address << "] on port [" << port << "]"          << manip::endl
+        << "--------------------------------------------------------------------------------" << manip::flush;
+
     io_service_pool_.run();
   }
 
@@ -101,6 +99,11 @@ namespace kisscpp
   {
     LogStream log(__PRETTY_FUNCTION__);
     handle_stop();
+
+    log << manip::info_normal
+        << "--------------------------------------------------------------------------------" << manip::endl
+        << "                                 Process Stoped."                                 << manip::endl
+        << "--------------------------------------------------------------------------------" << manip::flush;
   }
 
   //--------------------------------------------------------------------------------
@@ -216,5 +219,84 @@ namespace kisscpp
       bfs::remove(lockFilePath);
     }
   }
+
+  //--------------------------------------------------------------------------------
+  void Server::signalRegistrations()
+  {
+    // Register to handle the signals that indicate when the server should exit.
+    // It is safe to register for the same signal multiple times in a program,
+    // provided all registration for the specified signal is made through Asio.
+    stop_signals_.add(SIGINT);
+    stop_signals_.add(SIGTERM);
+
+#if defined(SIGQUIT)
+    stop_signals_.add(SIGQUIT);
+#endif
+
+    log_reopen_signals_.add(SIGHUP);
+
+    stop_signals_.async_wait(boost::bind(&Server::handle_stop, this));
+    log_reopen_signals_.async_wait(boost::bind(&Server::handle_log_reopen, this));
+
+  }
+
+  //--------------------------------------------------------------------------------
+  void Server::initializeLogging()
+  {
+    std::string  logFileRoot   = "/tmp";
+    std::string  logFileName   = Config::instance()->getAppId()       + "." +
+                                 Config::instance()->getAppInstance() + ".log";
+    char        *kcpp_log_root = std::getenv("KCPP_LOG_ROOT");
+    bfs::path    logFileRootPath;
+    bfs::path    logFilePath;
+
+    if(kcpp_log_root) {
+      logFileRoot = std::string(kcpp_log_root);
+    }
+    
+    logFileRoot    += "/" + Config::instance()->getAppId();
+
+    logFileRootPath = logFileRoot;
+
+    bfs::create_directories(logFileRootPath);
+
+    logFilePath  = logFileRoot + "/" + logFileName;
+
+    kisscpp::LogStream log(__PRETTY_FUNCTION__, logFilePath.native(), true);
+  }
+
+  //--------------------------------------------------------------------------------
+  void Server::becomeDaemonProcess()
+  {
+    if(getpid() == 1) return; // If the process is already running as a Daemon, do nothing.
+
+    pid_t pid, sid;
+        
+    pid = fork();
+
+    if(pid < 0) {
+      throw std::runtime_error("Could not fork child process to become a daemon.");
+    } else if(pid > 0) {
+      _exit(EXIT_SUCCESS);
+    }
+
+    umask(0);
+                
+    sid = setsid();
+    if (sid < 0) {
+      throw std::runtime_error("Could not obtain valid session id for this child process.");
+    }
+        
+    if ((chdir("/")) < 0) {
+      throw std::runtime_error("Could not change working directory to save, guarenteed root path.");
+    }
+        
+    close(STDIN_FILENO);
+    close(STDOUT_FILENO);
+    close(STDERR_FILENO);
+  }
 }
+
+
+
 

@@ -19,6 +19,10 @@
 #ifndef _SERVER_SERVER_HPP
 #define _SERVER_SERVER_HPP
 
+#include <sys/types.h>  // getpid()
+#include <unistd.h>     // getpid()
+#include <sys/stat.h>   // umask
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -56,7 +60,8 @@ namespace kisscpp
                       const std::string& application_instance = "0",
                       const std::string& config_root_path     = "",
                       unsigned long int  gp                   = 300,  // statistics Gather Period as a number of seconds (defaults to 5minutes)
-                      unsigned long int  hl                   = 12);  // number of historical gather periods to keep
+                      unsigned long int  hl                   = 12,   // number of historical gather periods to keep
+                      bool               runAsDaemon          = false);
 
       ~Server()
       {
@@ -77,6 +82,9 @@ namespace kisscpp
       bool checkLockFile (const std::string &appid, const std::string& instance);
       bool createLockFile(const std::string &appid, const std::string& instance);
       void removeLockFile();
+      void signalRegistrations();
+      void initializeLogging();
+      void becomeDaemonProcess();
 
       IoServicePool                  io_service_pool_;        // The pool of io_service objects used to perform asynchronous operations.
       boost::asio::signal_set        stop_signals_;           // The signal_set is used to register for process termination notifications.

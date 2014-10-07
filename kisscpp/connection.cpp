@@ -55,14 +55,14 @@ namespace kisscpp
 
       std::getline(raw_request_, ts, '\n');
 
-      log << info_normal
+      log << manip::info_normal
           << "Recieved request from ["
           << socket_.remote_endpoint().address().to_string()
           << ":"
           << socket_.remote_endpoint().port()
           << "] > "
           << ts
-          << endl;
+          << manip::endl;
       
       ss << ts;
 
@@ -72,10 +72,10 @@ namespace kisscpp
 
       write_json(response, raw_response_, false);
 
-      log << info_normal
+      log << manip::info_normal
           << "Sending response: "
           << response.str()
-          << endl;
+          << manip::endl;
 
       encoded_response_ << response.str();
 
