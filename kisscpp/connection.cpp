@@ -46,36 +46,38 @@ namespace kisscpp
     boost::system::error_code error_code;
 
     try {
-      log << manip::debug_normal << "About to read from socket." << endl;
+
+      std::string       ts;
+      std::stringstream ss;
+      std::stringstream response;
 
       boost::asio::read_until(socket_, incomming_stream_buffer_, '\n');
 
-      std::string ts;
-
       std::getline(raw_request_, ts, '\n');
 
-      log << manip::debug_normal << "Raw socket read : " << ts << endl;
+      log << manip::debug_high
+          << "Recieved request from ["
+          << socket_remote_endpoint().address().to_string()
+          << ":"
+          << socket_remote_endpoint().port()
+          << "] > "
+          << ts
+          << endl;
       
-      std::stringstream ss;
       ss << ts;
-
-      log << manip::debug_normal << "Done reading from socket." << endl;
 
       read_json(ss, parsed_request_);
 
-      log << manip::debug_normal << "JSON string read. Routing." << endl;
-
       request_router_.route_request(parsed_request_, raw_response_);
-
-      std::stringstream response;
 
       write_json(response, raw_response_, false);
 
-      log << manip::debug_normal << "About to send response: " << response.str() << endl;
+      log << manip::debug_high
+          << "Sending response: "
+          << response.str()
+          << endl;
 
       encoded_response_ << response.str();
-
-      //write_json(encoded_response_, (*raw_response_.get()), false);
 
       boost::asio::write(socket_, outgoing_stream_buffer_, boost::asio::transfer_all());
 

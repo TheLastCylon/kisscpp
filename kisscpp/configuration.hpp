@@ -27,7 +27,6 @@
 #include "logstream.hpp"
 
 namespace bfs = boost::filesystem;
-//namespace bpt = boost::property_tree::ptree;
 
 namespace kisscpp
 {

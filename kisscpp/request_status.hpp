@@ -36,6 +36,7 @@ namespace kisscpp
     RQST_MISSING_PARAMETER,             //!< used to indicate the absence of an expected parameter
     RQST_APPLICATION_BUSY,              //!< used by server applications to inform requesters that a request won't be processed due to server overload.
     RQST_APPLICATION_SHUTING_DOWN,      //!< used by server applications to inform requesters that a request won't be processed due to the server shutting down.
+    RQST_CLIENT_DENIED,                 //!< The Client is not in the white list and my not communicate to this process.
     RQST_UNKNOWN                        //!< Sorry, I don't know what went wrong.
   };
 

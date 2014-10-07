@@ -20,13 +20,19 @@
 #define _SERVER_SERVER_HPP
 
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <vector>
+#include <cstdlib>
+#include <ctime>
 
 #include <boost/asio.hpp>
 #include <boost/noncopyable.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/bind.hpp>
+#include <boost/filesystem.hpp>
+
+namespace bfs = boost::filesystem;
 
 #include "io_service_pool.hpp"
 #include "connection.hpp"
@@ -52,6 +58,11 @@ namespace kisscpp
                       unsigned long int  gp                   = 300,  // statistics Gather Period as a number of seconds (defaults to 5minutes)
                       unsigned long int  hl                   = 12);  // number of historical gather periods to keep
 
+      ~Server()
+      {
+        removeLockFile();
+      }
+
       void run();  // Run the server's io_service loop.
       void stop(); // stop the server.
 
@@ -63,6 +74,9 @@ namespace kisscpp
       void handle_stop();                                     // Handle a request to stop the server.
       void handle_log_reopen();                               // Handle a request to reopen log.
       void initialize_standard_handlers();
+      bool checkLockFile(const std::string &appid, const std::string& instance);
+      void createLockFile();
+      void removeLockFile();
 
       IoServicePool                  io_service_pool_;        // The pool of io_service objects used to perform asynchronous operations.
       boost::asio::signal_set        stop_signals_;           // The signal_set is used to register for process termination notifications.
@@ -70,6 +84,7 @@ namespace kisscpp
       boost::asio::ip::tcp::acceptor acceptor_;               // Acceptor used to listen for incoming connections.
       ConnectionPtr                  new_connection_;         // The next connection to be accepted.
       RequestRouter                  request_router_;         // The handler for all incoming requests.
+      bfs::path                      lockFilePath;
 
       // Standard Handlers
       RequestHandlerPtr              statsReporter;
