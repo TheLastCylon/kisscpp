@@ -36,8 +36,7 @@ namespace kisscpp
       new_connection_    (),
       request_router_    ()
   {
-    if (checkLockFile(application_id, application_instance)) {
-      createLockFile();
+    if (createLockFile(application_id, application_instance)) {
 
       LogStream log(__PRETTY_FUNCTION__);
       log << manip::info_normal << "Address : " << address << " Port : " << port << manip::endl;
@@ -78,6 +77,15 @@ namespace kisscpp
       acceptor_.listen();
 
       start_accept();
+    } else {
+      std::cerr << "Could not create Lockfile for this appid and instance: ["
+                << lockFilePath.native()
+                << "]"
+                << std::endl
+                << "If this message is not preceded by a message indicating that a lock file already exists, you most likely have a permissions problem, or the directory you wish to create lock files in, does not exist."
+                << std::endl;
+
+      throw std::runtime_error("Could not create lock file: Terminating.");
     }
   }
 
@@ -173,7 +181,9 @@ namespace kisscpp
     } else {
       std::cerr << "Lockfile for this appid and instance already exists ["
                 << lockFilePath.native()
-                << "] stop the executing process before starting it again or remove the lock file if there is no process executing with this applicaiton and instnace id combination."
+                << "]"
+                << std::endl
+                << "If there is no process executing with this applicaiton id and instnace combination, you will have to remove the lock file manually."
                 << std::endl;
     }
 
@@ -181,12 +191,22 @@ namespace kisscpp
   }
 
   //--------------------------------------------------------------------------------
-  void Server::createLockFile()
+  bool Server::createLockFile(const std::string &appid, const std::string& instance)
   {
-    std::ofstream lockFile;
-    lockFile.open(lockFilePath.c_str(), std::ios::out);
-    lockFile << std::time(NULL);
-    lockFile.close();
+    bool retval = false;
+
+    if (checkLockFile(appid, instance)) {
+      std::ofstream lockFile;
+      lockFile.open(lockFilePath.c_str(), std::ios::out);
+
+      if(!lockFile.fail()) {
+        lockFile << std::time(NULL) << std::endl;
+        lockFile.close();
+        retval = true;
+      }
+    }
+
+    return retval;
   }
 
   //--------------------------------------------------------------------------------

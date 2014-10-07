@@ -37,15 +37,15 @@ namespace kisscpp
   //! Used in conjunction with log_serverity as a log filter.
   enum log_type {
     LT_DEBUG = 0, //!< A log for debugging purposes only.
-    LT_INFO,      //!< A purely informational log
-    LT_ERROR      //!< An error log
+    LT_INFO  = 1, //!< A purely informational log
+    LT_ERROR = 2  //!< An error log
   };
 
   //! Used in conjunction with log_type as a log filter.
   enum log_severity {
-    LS_LOW = 0,   //!< Low
-    LS_NORMAL,    //!< Normal
-    LS_HIGH       //!< High
+    LS_LOW    = 0,   //!< Low
+    LS_NORMAL = 1,   //!< Normal
+    LS_HIGH   = 2    //!< High
   };
 
   //--------------------------------------------------------------------------------

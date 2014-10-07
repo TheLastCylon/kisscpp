@@ -74,8 +74,8 @@ namespace kisscpp
       void handle_stop();                                     // Handle a request to stop the server.
       void handle_log_reopen();                               // Handle a request to reopen log.
       void initialize_standard_handlers();
-      bool checkLockFile(const std::string &appid, const std::string& instance);
-      void createLockFile();
+      bool checkLockFile (const std::string &appid, const std::string& instance);
+      bool createLockFile(const std::string &appid, const std::string& instance);
       void removeLockFile();
 
       IoServicePool                  io_service_pool_;        // The pool of io_service objects used to perform asynchronous operations.

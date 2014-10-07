@@ -51,7 +51,7 @@ namespace kisscpp
   void LogStream::start_write()
   {
     if(lssPerm.getMessageType() <= LT_DEBUG &&
-       lssPerm.getSeverity   () <= LS_NORMAL) {
+       lssPerm.getSeverity   () <= LS_LOW) {
       std::string msg  = "+ [" + getSource() + "]";
       locked_write(msg);
     }
@@ -61,7 +61,7 @@ namespace kisscpp
   void LogStream::end_write()
   {
     if(lssPerm.getMessageType() <= LT_DEBUG &&
-       lssPerm.getSeverity   () <= LS_NORMAL) {
+       lssPerm.getSeverity   () <= LS_LOW) {
       std::string msg  = "- [" + getSource() + "]";
       locked_write(msg);
     }
@@ -70,8 +70,11 @@ namespace kisscpp
   //--------------------------------------------------------------------------------
   void LogStream::write()
   {
-    if(lssTemp.getMessageType() >= lssPerm.getMessageType() &&
-       lssTemp.getSeverity   () >= lssPerm.getSeverity   ()) {
+    if        (lssPerm.getMessageType() <  lssTemp.getMessageType()) {
+      std::string msg = ": " + mBuf.str();
+      locked_write(msg);
+    } else if (lssPerm.getMessageType() == lssTemp.getMessageType() &&
+               lssPerm.getSeverity   () <= lssTemp.getSeverity   ()) {
       std::string msg = ": " + mBuf.str();
       locked_write(msg);
     }
