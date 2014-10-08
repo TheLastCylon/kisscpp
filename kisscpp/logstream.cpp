@@ -97,9 +97,12 @@ namespace kisscpp
       if((stringPool.size() > maxBufferSize || doFlush) && outFile.is_open()) {
         while(stringPool.size() > 0) {
           outFile << stringPool.front() << std::endl;
-          if(log2consoleFlag) { std::cout << stringPool.front() << std::endl; }
+          if(log2consoleFlag) {
+            std::cout << stringPool.front() << std::endl;
+          }
           stringPool.pop_front();
         }
+        outFile << std::flush;
       }
     } catch(std::runtime_error &e) {
       stringPool.push_back(str);

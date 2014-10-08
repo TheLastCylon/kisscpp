@@ -21,15 +21,13 @@
 namespace kisscpp
 {
   //--------------------------------------------------------------------------------
-  Server::Server(const std::string& address,
-                 const std::string& port,
-                 std::size_t        io_service_pool_size,
+  Server::Server(std::size_t        io_service_pool_size,
                  const std::string& application_id       /*= "kisscpp_application"*/,
                  const std::string& application_instance /*= "0"*/,
+                 bool               runAsDaemon          /*= true*/,
                  const std::string& config_root_path     /*= ""*/,
-                 unsigned long int  gp                   /*= 300*/,
-                 unsigned long int  hl                   /*= 12*/,
-                 bool               runAsDaemon          /*= false*/)
+                 const std::string& address              /*= "get_from_config"*/,
+                 const std::string& port                 /*= "get_from_config"*/)
     : io_service_pool_   (io_service_pool_size),
       stop_signals_      (io_service_pool_.get_io_service()),
       log_reopen_signals_(io_service_pool_.get_io_service()),
@@ -47,16 +45,23 @@ namespace kisscpp
 
       Config::instance(application_id, application_instance, config_root_path);
 
-      initializeLogging();
+      initializeLogging((!runAsDaemon));
 
-      StatsKeeper::instance(gp,hl); // create the stats keeper instance here. So that it's available as soon as the server is constructed.
+      // create the stats keeper instance here. So that it's available as soon as the server is constructed.
+      StatsKeeper::instance(Config::instance()->get<unsigned long int>("stats.gather_period" ,300),
+                            Config::instance()->get<unsigned long int>("stats.history_length",12));
+
       ErrorStateList::instance();   // same goes for the error state list.
 
       initialize_standard_handlers();
 
       // Open the acceptor with the option to reuse the address (i.e. SO_REUSEADDR).
       boost::asio::ip::tcp::resolver        resolver(acceptor_.get_io_service());
-      boost::asio::ip::tcp::resolver::query query(address, port);
+      //boost::asio::ip::tcp::resolver::query query(address, port);
+
+      boost::asio::ip::tcp::resolver::query query(Config::instance()->get<std::string>("server.address"),
+                                                  Config::instance()->get<std::string>("server.port"));
+
       boost::asio::ip::tcp::endpoint        endpoint = *resolver.resolve(query);
 
       acceptor_.open(endpoint.protocol());
@@ -86,9 +91,10 @@ namespace kisscpp
 
     log << manip::info_normal
         << "--------------------------------------------------------------------------------" << manip::endl
-        << "Starting Process : instance [" << Config::instance()->getAppInstance()
-        << "] of application ["            << Config::instance()->getAppId() << "]"           << manip::endl
-//        << "Server details  : address ["  << address << "] on port [" << port << "]"          << manip::endl
+        << "Starting Process : " << Config::instance()->getAppId()                            << manip::endl
+        << "Instance         : " << Config::instance()->getAppInstance()                      << manip::endl
+        << "Server address   : " << Config::instance()->get<std::string>("server.address")    << manip::endl
+        << "Server port      : " << Config::instance()->get<std::string>("server.port")       << manip::endl
         << "--------------------------------------------------------------------------------" << manip::flush;
 
     io_service_pool_.run();
@@ -102,7 +108,10 @@ namespace kisscpp
 
     log << manip::info_normal
         << "--------------------------------------------------------------------------------" << manip::endl
-        << "                                 Process Stoped."                                 << manip::endl
+        << "Stopping Process : " << Config::instance()->getAppId()                            << manip::endl
+        << "Instance         : " << Config::instance()->getAppInstance()                      << manip::endl
+        << "Server address   : " << Config::instance()->get<std::string>("server.address")    << manip::endl
+        << "Server port      : " << Config::instance()->get<std::string>("server.port")       << manip::endl
         << "--------------------------------------------------------------------------------" << manip::flush;
   }
 
@@ -241,7 +250,7 @@ namespace kisscpp
   }
 
   //--------------------------------------------------------------------------------
-  void Server::initializeLogging()
+  void Server::initializeLogging(bool log2console)
   {
     std::string  logFileRoot   = "/tmp";
     std::string  logFileName   = Config::instance()->getAppId()       + "." +
@@ -262,7 +271,7 @@ namespace kisscpp
 
     logFilePath  = logFileRoot + "/" + logFileName;
 
-    kisscpp::LogStream log(__PRETTY_FUNCTION__, logFilePath.native(), true);
+    kisscpp::LogStream log(__PRETTY_FUNCTION__, logFilePath.native(), log2console);
   }
 
   //--------------------------------------------------------------------------------
@@ -296,7 +305,4 @@ namespace kisscpp
     close(STDERR_FILENO);
   }
 }
-
-
-
 

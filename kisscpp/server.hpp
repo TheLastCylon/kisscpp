@@ -53,15 +53,13 @@ namespace kisscpp
   {
     public:
       // Construct the server to listen on the specified TCP address and port
-      explicit Server(const std::string& address,
-                      const std::string& port,
-                      std::size_t        io_service_pool_size,
+      explicit Server(std::size_t        io_service_pool_size,
                       const std::string& application_id       = "kisscpp_application",
                       const std::string& application_instance = "0",
+                      bool               runAsDaemon          = true,
                       const std::string& config_root_path     = "",
-                      unsigned long int  gp                   = 300,  // statistics Gather Period as a number of seconds (defaults to 5minutes)
-                      unsigned long int  hl                   = 12,   // number of historical gather periods to keep
-                      bool               runAsDaemon          = false);
+                      const std::string& address              = "get_from_config",
+                      const std::string& port                 = "get_from_config");
 
       ~Server()
       {
@@ -83,7 +81,7 @@ namespace kisscpp
       bool createLockFile(const std::string &appid, const std::string& instance);
       void removeLockFile();
       void signalRegistrations();
-      void initializeLogging();
+      void initializeLogging(bool log2console);
       void becomeDaemonProcess();
 
       IoServicePool                  io_service_pool_;        // The pool of io_service objects used to perform asynchronous operations.
