@@ -27,6 +27,7 @@
 #include "boost_ptree.hpp"
 #include "logstream.hpp"
 #include "request_status.hpp"
+#include "configuration.hpp"
 
 using boost::asio::ip::tcp;
 

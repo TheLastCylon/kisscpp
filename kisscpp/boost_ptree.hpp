@@ -21,6 +21,7 @@
 
 #define BOOST_SPIRIT_THREADSAFE
 
+#include <string>
 #include <boost/shared_ptr.hpp>
 #include <boost/scoped_ptr.hpp>
 #include <boost/property_tree/ptree.hpp>
@@ -35,7 +36,8 @@ namespace bpt = boost::property_tree;
 
 namespace kisscpp
 {
-  void ptreeMerge(BoostPtree &pt1, BoostPtree &pt2, std::string node = "");
+  void ptreeMerge   (BoostPtree &pt1, BoostPtree &pt2, std::string node = "");
+  void ptreeAddOrPut(BoostPtree &pt1, std::string name, std::string value);
 }
 
 #endif

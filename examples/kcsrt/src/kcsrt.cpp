@@ -19,18 +19,19 @@
 #include "kcsrt.hpp"
 
 //--------------------------------------------------------------------------------
-kcsrt::kcsrt(const std::string &in_port,
+kcsrt::kcsrt(const std::string &instance,
              const std::string &out_port,
-             const std::string &instance) :
-  Server ("localhost",
-          in_port,
-          1,
+             const bool        &runAsDaemon) :
+  Server ( 1,
           "kcsrt",
-          instance)
+          instance,
+          runAsDaemon)
 {
-  i_port  = in_port;
-  o_port  = out_port;
-  running = true;
+  kisscpp::LogStream log(__PRETTY_FUNCTION__);
+
+  i_port      = kisscpp::Config::instance()->get<std::string>("server.port");
+  o_port      = out_port;
+  running     = true;
 
   stats       = kisscpp::StatsKeeper::instance();
   errorStates = kisscpp::ErrorStateList::instance();
@@ -40,27 +41,18 @@ kcsrt::kcsrt(const std::string &in_port,
   stats->setStatValue("success" ,0);
   stats->setStatValue("fail"    ,0);
 
-  std::string logfilePath = "/tmp/kcsrt_";
-  logfilePath += in_port;
-  logfilePath += ".log";
-
-  kisscpp::LogStream log(__PRETTY_FUNCTION__, logfilePath, false, 10000);
-
   registerHandlers();
   threadGroup.create_thread(boost::bind(&kcsrt::sendingProcessor, this));
-  log << "APP START" << kisscpp::manip::flush;
 }
 
 //--------------------------------------------------------------------------------
 kcsrt::~kcsrt()
 {
   kisscpp::LogStream log(__PRETTY_FUNCTION__);
-  stop();
 
   running = false;
-  stop();
   threadGroup.join_all();
-  log << "APP END" << kisscpp::manip::flush;
+  stop();
 }
 
 //--------------------------------------------------------------------------------

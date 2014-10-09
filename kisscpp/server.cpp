@@ -256,11 +256,16 @@ namespace kisscpp
     std::string  logFileName   = Config::instance()->getAppId()       + "." +
                                  Config::instance()->getAppInstance() + ".log";
     char        *kcpp_log_root = std::getenv("KCPP_LOG_ROOT");
+    char        *kcpp_exec_env = std::getenv("KCPP_EXEC_ENV");
     bfs::path    logFileRootPath;
     bfs::path    logFilePath;
 
     if(kcpp_log_root) {
       logFileRoot = std::string(kcpp_log_root);
+    }
+
+    if(kcpp_exec_env) {
+      logFileRoot += "/" + std::string(kcpp_exec_env);
     }
     
     logFileRoot    += "/" + Config::instance()->getAppId();

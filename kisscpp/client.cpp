@@ -34,6 +34,9 @@ namespace kisscpp
     tcp::resolver        resolver(io_service_);
     tcp::resolver::query query   (request_.get<std::string>("kcm-hst"), request_.get<std::string>("kcm-prt"));
 
+    ptreeAddOrPut(request_, "kcm_client.id"      , Config::instance()->getAppId());
+    ptreeAddOrPut(request_, "kcm_client.instance", Config::instance()->getAppInstance());
+
     endpoint_iterator_ = resolver.resolve(query);
 
     boost::asio::async_connect(socket_,

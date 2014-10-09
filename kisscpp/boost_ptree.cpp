@@ -34,5 +34,16 @@ namespace kisscpp
       }
     }
   }
+
+
+  //--------------------------------------------------------------------------------
+  void ptreeAddOrPut(BoostPtree &pt1, std::string name, std::string value)
+  {
+    if(pt1.find(name) != pt1.not_found()) { // if the node exists
+      pt1.put(name, value);
+    } else {
+      pt1.add(name, value);
+    }
+  }
 }
 

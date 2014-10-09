@@ -1,0 +1,17 @@
+{
+  "server" : {
+    "address"        : "localhost",
+    "port"           : "9100"
+  },
+
+  "stats"  : {
+    "gather_period"  : "300",
+    "history_length" : "12"
+  }
+
+  "coms_white_list" : {
+    "all_ip_addrs" : "true",
+    "all_apps"     : "true"
+  }
+
+}

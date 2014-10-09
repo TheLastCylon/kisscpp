@@ -26,15 +26,16 @@
 #include <kisscpp/logstream.hpp>
 #include <kisscpp/logstream.hpp>
 #include <kisscpp/statskeeper.hpp>
+#include <kisscpp/configuration.hpp>
 #include "handler_echo.hpp"
 
 // ----------------------- TODO: -----------------------------
 class kcsrt : public kisscpp::Server        /// Step 1: Derive your application's main class, from kisscpp::Server
 {
   public:
-    kcsrt(const std::string &in_port,
+    kcsrt(const std::string &instance,
           const std::string &out_port,
-          const std::string &instance);
+          const bool        &runAsDaemon);
 
     ~kcsrt();
 

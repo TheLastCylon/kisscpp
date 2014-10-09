@@ -29,9 +29,10 @@ int main(int argc, char* argv[])
     bpo::options_description desc("Options");
 
     desc.add_options()
-      ("help,h"     , "Print help messages")
-      ("in-port,i"  , bpo::value<std::string>()->required(), "Port for incomming communications")
-      ("out-port,o" , bpo::value<std::string>()->required(), "Port for outgoing communications");
+      ("help,h"         , "Print help messages")
+      ("console-mode,C" , "Start the application in console-mode")
+      ("instance,I"     , bpo::value<std::string>()->required(), "Instance id for the process you wish to start up.")
+      ("out-port,o"     , bpo::value<std::string>()->required(), "Port for outgoing communications");
 
     bpo::variables_map vm;
 
@@ -52,9 +53,10 @@ int main(int argc, char* argv[])
       return 1;
     }
 
-    kcsrt app(vm["in-port"].as<std::string>(),
+    kcsrt app(vm["instance"].as<std::string>(),
               vm["out-port"].as<std::string>(),
-              "0");
+              !vm.count("console-mode"));
+
     app.run();
 
   } catch (std::exception& e) {

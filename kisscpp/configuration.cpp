@@ -38,11 +38,8 @@ namespace kisscpp
   void Config::initiate(const std::string explicit_config_path /* = "" */)
   {
     std::string        cfg_root_path     = "/etc/kisscpp";
-    std::string        execution_env     = "";
     char              *kcpp_cfg_root     = std::getenv("KCPP_CFG_ROOT");
     char              *kcpp_exec_env     = std::getenv("KCPP_EXEC_ENV");
-    std::stringstream  t_config_path_instance;
-    std::stringstream  t_config_path_common;
 
     if(explicit_config_path.empty()) {
       if(kcpp_cfg_root) {
@@ -52,24 +49,44 @@ namespace kisscpp
       cfg_root_path   = explicit_config_path;
     }
 
+    cfg_root_path    += "/" + application_id;
+
     if(kcpp_exec_env) {
-      execution_env = kcpp_exec_env;
+      cfg_root_path  += "/" + std::string(kcpp_exec_env);
     }
 
-    t_config_path_instance << cfg_root_path        << '/'
-                           << execution_env        << '/'
-                           << application_id       << '.'
-                           << application_instance << ".kcppcfg";
-
-    t_config_path_common   << cfg_root_path        << '/'
-                           << execution_env        << '/'
-                           << application_id       << '.'
-                           << "common"             << ".kcppcfg";
-
-    config_path_instance = t_config_path_instance.str();
-    config_path_common   = t_config_path_common.str();
+    config_path_instance = cfg_root_path + '/' + application_id + '.' + application_instance + ".kcppcfg";
+    config_path_common   = cfg_root_path + '/' + application_id + '.' + "common"             + ".kcppcfg";
 
     loadConfig();
+  }
+
+  //--------------------------------------------------------------------------------
+  bool Config::isAllowedIp(const std::string &ip_address)
+  {
+    bool retval = false;
+
+    if(allow_all_ip_addrs) {
+      retval = true;
+    } else {
+      retval = (comms_white_list_ip_addrs.find(ip_address) != comms_white_list_ip_addrs.end());
+    }
+
+    return retval;
+  }
+
+  //--------------------------------------------------------------------------------
+  bool Config::isAllowedClient(const std::string &app_id, const std::string &app_instance)
+  {
+    bool retval = false;
+
+    if(allow_all_applications) {
+      retval = true;
+    } else if (comms_white_list_applications.find(app_id) != comms_white_list_applications.end()) {
+      retval = ((comms_white_list_applications[app_id]).isAllowedInstance(app_instance));
+    }
+
+    return retval;
   }
 
   //--------------------------------------------------------------------------------
@@ -86,6 +103,8 @@ namespace kisscpp
     } else {                                                // If we could not load the common config.
       loadConfig(config_path_instance, cfg_data);           // Try to load the instance config.
     }
+
+    populateWhiteLists();
   }
 
   //--------------------------------------------------------------------------------
@@ -108,4 +127,45 @@ namespace kisscpp
 
     return retval;
   }
+
+  //--------------------------------------------------------------------------------
+  void Config::populateWhiteLists()
+  {
+    if(cfg_data.find("coms_white_list") != cfg_data.not_found()) {
+
+      allow_all_ip_addrs     = (cfg_data.get<std::string>("coms_white_list.all_ip_addrs","false") == "true")?true:false;
+      allow_all_applications = (cfg_data.get<std::string>("coms_white_list.all_apps"    ,"false") == "true")?true:false;
+
+      if(!allow_all_ip_addrs) {
+        BOOST_FOREACH(boost::property_tree::ptree::value_type &v, cfg_data.get_child("coms_white_list.ip_list")) {
+          comms_white_list_ip_addrs.insert(v.second.data());
+        }
+      }
+
+      if(!allow_all_applications) {
+        BOOST_FOREACH(boost::property_tree::ptree::value_type &v, cfg_data.get_child("coms_white_list.application_list")) {
+
+          if(v.first == "application") {
+
+            std::string app_id                                    = v.second.get<std::string>("id");
+            (comms_white_list_applications[app_id]).all_instances = (v.second.get<std::string>("all_instances","false") == "true")?true:false;
+
+            if(!(comms_white_list_applications[app_id]).all_instances) {
+              BOOST_FOREACH(boost::property_tree::ptree::value_type &app_data, v.second.get_child("instance_list")) {
+                (comms_white_list_applications[app_id]).addAppInstance(app_data.second.data());
+              }
+            }
+          }
+
+        }
+      }
+
+    } else {
+
+      allow_all_ip_addrs     = true;
+      allow_all_applications = true;
+
+    }
+  }
 }
+

@@ -33,6 +33,7 @@
 #include "boost_ptree.hpp"
 #include "request_router.hpp"
 #include "logstream.hpp"
+#include "configuration.hpp"
 
 namespace kisscpp
 {
@@ -50,8 +51,8 @@ namespace kisscpp
       void start();
 
     private:
-      void handle_read (const boost::system::error_code& e, std::size_t bytes_transferred);
-      void handle_write(const boost::system::error_code& e);
+      bool allowedIpAddress(const std::string &ip_address);
+      bool allowedClient   ();
 
       boost::asio::ip::tcp::socket socket_;
       RequestRouter               &request_router_;

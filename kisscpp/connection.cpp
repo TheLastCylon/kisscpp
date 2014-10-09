@@ -21,10 +21,11 @@
 namespace kisscpp
 {
   //--------------------------------------------------------------------------------
-  Connection::Connection(boost::asio::io_service& io_service, RequestRouter& handler) : socket_(io_service), request_router_(handler)
+  Connection::Connection(boost::asio::io_service& io_service, RequestRouter& handler) :
+    socket_(io_service),
+    request_router_(handler)
   {
     LogStream log(__PRETTY_FUNCTION__);
-    //parsed_request_.reset(new BoostPtree());
   }
 
   //--------------------------------------------------------------------------------
@@ -47,6 +48,7 @@ namespace kisscpp
 
     try {
 
+      std::string       client_ip = socket_.remote_endpoint().address().to_string();
       std::string       ts;
       std::stringstream ss;
       std::stringstream response;
@@ -57,18 +59,49 @@ namespace kisscpp
 
       log << manip::info_normal
           << "Recieved request from ["
-          << socket_.remote_endpoint().address().to_string()
+          << client_ip
           << ":"
           << socket_.remote_endpoint().port()
           << "] > "
           << ts
           << manip::endl;
-      
-      ss << ts;
 
-      read_json(ss, parsed_request_);
+      if(allowedIpAddress(client_ip)) {
 
-      request_router_.route_request(parsed_request_, raw_response_);
+        ss << ts;
+        read_json(ss, parsed_request_);
+
+        if(allowedClient()) {
+
+          request_router_.route_request(parsed_request_, raw_response_);
+
+        } else {
+
+          log << manip::info_normal
+              << "Request denied for client ["
+              << parsed_request_.get<std::string>("kcm_client.id")
+              << "] instance ["
+              << parsed_request_.get<std::string>("kcm_client.instance")
+              << "]"
+              << manip::endl;
+
+          raw_response_.put("kcm-sts", RQST_CLIENT_DENIED);
+          raw_response_.put("kcm-erm", "Your application and/or instance id is not in my white-list.");
+
+        }
+
+      } else {
+
+        log << manip::info_normal
+            << "Request denied for ip address ["
+            << client_ip
+            << "]"
+            << manip::endl;
+
+        raw_response_.put("kcm-sts", RQST_CLIENT_DENIED);
+        raw_response_.put("kcm-erm", "Your IP address is not in my white-list.");
+
+      }
 
       write_json(response, raw_response_, false);
 
@@ -86,6 +119,19 @@ namespace kisscpp
     } catch(boost::system::system_error &se) {
       log << manip::error_normal << "Boost System Error: " << se.what() << endl;
     }
+  }
+
+  //--------------------------------------------------------------------------------
+  bool Connection::allowedIpAddress(const std::string &ip_address)
+  {
+    return (Config::instance()->isAllowedIp(ip_address));
+  }
+
+  //--------------------------------------------------------------------------------
+  bool Connection::allowedClient()
+  {
+    return (Config::instance()->isAllowedClient(parsed_request_.get<std::string>("kcm_client.id"),
+                                                parsed_request_.get<std::string>("kcm_client.instance")));
   }
 }
 

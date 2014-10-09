@@ -1,0 +1,6 @@
+{
+  "stats"  : {
+    "gather_period"  : "300",
+    "history_length" : "12"
+  }
+}

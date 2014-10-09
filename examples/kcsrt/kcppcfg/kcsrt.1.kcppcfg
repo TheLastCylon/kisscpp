@@ -1,0 +1,19 @@
+{
+  "server" : {
+    "address"        : "localhost",
+    "port"           : "9100"
+  },
+  "coms_white_list" : {
+    "ip_list"      : {
+      "ip" : "127.0.0.1"
+    },
+    "application_list" : {
+      "application" : {
+        "id"            : "kcsrt",
+        "instance_list" : {
+          "id":"3"
+        }
+      }
+    }
+  }
+}
