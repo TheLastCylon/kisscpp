@@ -1,7 +1,9 @@
 <map id="request_handler.hpp" name="request_handler.hpp">
-<area shape="rect" id="node3" href="$request__router_8hpp.html" title="request_router.hpp" alt="" coords="68,83,199,112"/>
-<area shape="rect" id="node5" href="$connection_8hpp.html" title="connection.hpp" alt="" coords="33,160,143,189"/>
-<area shape="rect" id="node9" href="$server_8hpp.html" title="server.hpp" alt="" coords="139,237,221,267"/>
-<area shape="rect" id="node7" href="$connection_8cpp.html" title="connection.cpp" alt="" coords="5,237,115,267"/>
-<area shape="rect" id="node11" href="$server_8cpp.html" title="server.cpp" alt="" coords="139,315,221,344"/>
+<area shape="rect" id="node2" href="$request__router_8hpp.html" title="request_router.hpp" alt="" coords="119,80,248,107"/>
+<area shape="rect" id="node7" href="$standard__handlers_8hpp.html" title="standard_handlers.hpp" alt="" coords="219,155,372,181"/>
+<area shape="rect" id="node3" href="$connection_8hpp.html" title="connection.hpp" alt="" coords="33,155,143,181"/>
+<area shape="rect" id="node5" href="$server_8hpp.html" title="server.hpp" alt="" coords="140,229,221,256"/>
+<area shape="rect" id="node4" href="$connection_8cpp.html" title="connection.cpp" alt="" coords="5,229,115,256"/>
+<area shape="rect" id="node6" href="$server_8cpp.html" title="server.cpp" alt="" coords="140,304,221,331"/>
+<area shape="rect" id="node8" href="$standard__handlers_8cpp.html" title="standard_handlers.cpp" alt="" coords="246,229,399,256"/>
 </map>

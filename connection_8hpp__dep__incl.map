@@ -1,5 +1,5 @@
 <map id="connection.hpp" name="connection.hpp">
-<area shape="rect" id="node3" href="$connection_8cpp.html" title="connection.cpp" alt="" coords="5,83,115,112"/>
-<area shape="rect" id="node5" href="$server_8hpp.html" title="server.hpp" alt="" coords="139,83,221,112"/>
-<area shape="rect" id="node7" href="$server_8cpp.html" title="server.cpp" alt="" coords="139,160,221,189"/>
+<area shape="rect" id="node2" href="$connection_8cpp.html" title="connection.cpp" alt="" coords="5,80,115,107"/>
+<area shape="rect" id="node3" href="$server_8hpp.html" title="server.hpp" alt="" coords="140,80,221,107"/>
+<area shape="rect" id="node4" href="$server_8cpp.html" title="server.cpp" alt="" coords="140,155,221,181"/>
 </map>

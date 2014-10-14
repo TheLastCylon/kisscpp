@@ -1,0 +1,22 @@
+<map id="kisscpp::LogStream::setMessageType" name="kisscpp::LogStream::setMessageType">
+<area shape="rect" id="node2" href="$namespacekisscpp_1_1manip.html#a53df3ad3d908fa67b2d4a73000241b4f" title="kisscpp::manip::error" alt="" coords="221,115,365,141"/>
+<area shape="rect" id="node8" href="$namespacekisscpp_1_1manip.html#aff72768a5e8b0486de0cecb0bd95f3e4" title="kisscpp::manip::info" alt="" coords="224,312,363,339"/>
+<area shape="rect" id="node15" href="$namespacekisscpp_1_1manip.html#a795be5b59b6a02e1d8f6d9d5bb41c3a4" title="kisscpp::manip::debug" alt="" coords="217,392,370,419"/>
+<area shape="rect" id="node21" href="$classkisscpp_1_1_log_level_adjuster.html#a971d59364d21bbaa283ea520caefa604" title="kisscpp::LogLevelAdjuster::run" alt="" coords="193,443,394,469"/>
+<area shape="rect" id="node3" href="$classkisscpp_1_1client.html#a4cc9b8f3247cb73910d20549014ba859" title="kisscpp::client::client" alt="" coords="462,5,607,32"/>
+<area shape="rect" id="node4" href="$namespacekisscpp_1_1manip.html#aee969aa657dcd750d102fc48a29ba516" title="kisscpp::manip::error_high" alt="" coords="447,56,622,83"/>
+<area shape="rect" id="node5" href="$namespacekisscpp_1_1manip.html#af7d168675689cf70931df8d3acb4b4e9" title="kisscpp::manip::error\l_normal" alt="" coords="463,107,607,149"/>
+<area shape="rect" id="node7" href="$namespacekisscpp_1_1manip.html#ab5930b238c7e5301822bc09c41120a59" title="kisscpp::manip::error_low" alt="" coords="449,173,620,200"/>
+<area shape="rect" id="node6" href="$classkisscpp_1_1_connection.html#aaad88f72fad4844f03e5dd55320caeae" title="kisscpp::Connection\l::start" alt="" coords="701,130,843,171"/>
+<area shape="rect" id="node9" href="$namespacekisscpp_1_1manip.html#a0e2079570591f8a3cc788872b65c6580" title="kisscpp::manip::info_high" alt="" coords="449,224,620,251"/>
+<area shape="rect" id="node10" href="$namespacekisscpp_1_1manip.html#aee465aa1a8d15e1750422696f7d3dc81" title="kisscpp::manip::info\l_normal" alt="" coords="465,275,604,317"/>
+<area shape="rect" id="node14" href="$namespacekisscpp_1_1manip.html#ae246ac6f24cae0a1452a3bb8a64f538e" title="kisscpp::manip::info_low" alt="" coords="451,341,618,368"/>
+<area shape="rect" id="node11" href="$classkisscpp_1_1_log_stream.html#a69ca636671642a5340a270e4f22acfaa" title="kisscpp::LogStream\l::LogStream" alt="" coords="703,217,841,258"/>
+<area shape="rect" id="node12" href="$classkisscpp_1_1_server.html#aa41d65074f051e5f5481671cd18d0435" title="kisscpp::Server::run" alt="" coords="703,283,841,309"/>
+<area shape="rect" id="node13" href="$classkisscpp_1_1_server.html#aba167cdf551f3b29937c923ad7d18964" title="kisscpp::Server::stop" alt="" coords="699,333,845,360"/>
+<area shape="rect" id="node16" href="$namespacekisscpp_1_1manip.html#aaf086b98ab45fa8c08557762e019afb7" title="kisscpp::manip::debug_high" alt="" coords="443,392,627,419"/>
+<area shape="rect" id="node17" href="$namespacekisscpp_1_1manip.html#ac4893fff26af38ff60229792840064b3" title="kisscpp::manip::debug\l_normal" alt="" coords="458,443,611,485"/>
+<area shape="rect" id="node20" href="$namespacekisscpp_1_1manip.html#a14eb82a3948c039a023b254d02e4dd01" title="kisscpp::manip::debug_low" alt="" coords="445,509,625,536"/>
+<area shape="rect" id="node18" href="$classkisscpp_1_1_base64_bi_coder.html#af8b91f925c229a0892be4e5d9428fb13" title="kisscpp::Base64BiCoder\l\&lt; boost::property_tree\l::ptree \&gt;::decodeFromBase64" alt="" coords="675,436,869,492"/>
+<area shape="rect" id="node19" href="$classkisscpp_1_1_ptree_base64_bicoder.html#a38542388704d80131d4a505646439715" title="kisscpp::PtreeBase64Bicoder\l::decode" alt="" coords="917,443,1112,485"/>
+</map>

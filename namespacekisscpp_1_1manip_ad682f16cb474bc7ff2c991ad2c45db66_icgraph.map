@@ -1,6 +1,12 @@
 <map id="kisscpp::manip::endl" name="kisscpp::manip::endl">
-<area shape="rect" id="node3" href="$classkisscpp_1_1_connection.html#aaad88f72fad4844f03e5dd55320caeae" title="kisscpp::Connection\l::start" alt="" coords="224,5,365,51"/>
-<area shape="rect" id="node5" href="$classkisscpp_1_1_base64_bi_coder.html#af8b91f925c229a0892be4e5d9428fb13" title="kisscpp::Base64BiCoder\l\&lt; boost::property_tree\l::ptree \&gt;::decodeFromBase64" alt="" coords="197,75,392,139"/>
-<area shape="rect" id="node9" href="$classkisscpp_1_1_server.html#a8ee2f2b0d682ae296eace71505888a7d" title="kisscpp::Server::Server" alt="" coords="216,163,373,192"/>
-<area shape="rect" id="node7" href="$classkisscpp_1_1_ptree_base64_bicoder.html#a38542388704d80131d4a505646439715" title="kisscpp::PtreeBase64Bicoder\l::decode" alt="" coords="440,83,635,130"/>
+<area shape="rect" id="node2" href="$classkisscpp_1_1_connection.html#aaad88f72fad4844f03e5dd55320caeae" title="kisscpp::Connection\l::start" alt="" coords="228,5,369,46"/>
+<area shape="rect" id="node3" href="$classkisscpp_1_1_base64_bi_coder.html#af8b91f925c229a0892be4e5d9428fb13" title="kisscpp::Base64BiCoder\l\&lt; boost::property_tree\l::ptree \&gt;::decodeFromBase64" alt="" coords="201,69,396,125"/>
+<area shape="rect" id="node5" href="$classkisscpp_1_1_server.html#a87029a4be5b4825225eb88e36fb3ddfb" title="kisscpp::Server::Server" alt="" coords="219,149,378,176"/>
+<area shape="rect" id="node6" href="$classkisscpp_1_1_server.html#aa41d65074f051e5f5481671cd18d0435" title="kisscpp::Server::run" alt="" coords="229,200,368,227"/>
+<area shape="rect" id="node7" href="$classkisscpp_1_1_server.html#aba167cdf551f3b29937c923ad7d18964" title="kisscpp::Server::stop" alt="" coords="225,251,372,277"/>
+<area shape="rect" id="node8" href="$classkisscpp_1_1_stats_reporter.html#af57d8c01b118a4693b8b226c3f9dbbe5" title="kisscpp::StatsReporter::run" alt="" coords="207,301,390,328"/>
+<area shape="rect" id="node9" href="$classkisscpp_1_1_error_reporter.html#a7afc458c0a447f93f138f006acb57117" title="kisscpp::ErrorReporter::run" alt="" coords="209,352,388,379"/>
+<area shape="rect" id="node10" href="$classkisscpp_1_1_handler_reporter.html#a5085be2e4dcfa1e98bf517c8d0b5443f" title="kisscpp::HandlerReporter::run" alt="" coords="201,403,397,429"/>
+<area shape="rect" id="node11" href="$classkisscpp_1_1_log_level_adjuster.html#a971d59364d21bbaa283ea520caefa604" title="kisscpp::LogLevelAdjuster::run" alt="" coords="198,453,399,480"/>
+<area shape="rect" id="node4" href="$classkisscpp_1_1_ptree_base64_bicoder.html#a38542388704d80131d4a505646439715" title="kisscpp::PtreeBase64Bicoder\l::decode" alt="" coords="448,77,643,118"/>
 </map>

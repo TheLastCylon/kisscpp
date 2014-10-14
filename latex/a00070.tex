@@ -1,0 +1,85 @@
+\hypertarget{a00070}{\section{persisted\-\_\-queue.\-hpp File Reference}
+\label{a00070}\index{persisted\-\_\-queue.\-hpp@{persisted\-\_\-queue.\-hpp}}
+}
+{\ttfamily \#include $<$sstream$>$}\\*
+{\ttfamily \#include $<$string$>$}\\*
+{\ttfamily \#include $<$fstream$>$}\\*
+{\ttfamily \#include $<$deque$>$}\\*
+{\ttfamily \#include $<$algorithm$>$}\\*
+{\ttfamily \#include $<$cerrno$>$}\\*
+{\ttfamily \#include $<$boost/noncopyable.\-hpp$>$}\\*
+{\ttfamily \#include $<$boost/shared\-\_\-ptr.\-hpp$>$}\\*
+{\ttfamily \#include $<$boost/regex.\-hpp$>$}\\*
+{\ttfamily \#include $<$boost/archive/iterators/base64\-\_\-from\-\_\-binary.\-hpp$>$}\\*
+{\ttfamily \#include $<$boost/archive/iterators/binary\-\_\-from\-\_\-base64.\-hpp$>$}\\*
+{\ttfamily \#include $<$boost/archive/iterators/transform\-\_\-width.\-hpp$>$}\\*
+{\ttfamily \#include $<$boost/archive/iterators/remove\-\_\-whitespace.\-hpp$>$}\\*
+{\ttfamily \#include $<$boost/filesystem/operations.\-hpp$>$}\\*
+{\ttfamily \#include $<$boost/filesystem/path.\-hpp$>$}\\*
+{\ttfamily \#include $<$boost/filesystem/exception.\-hpp$>$}\\*
+{\ttfamily \#include \char`\"{}logstream.\-hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}persisted\-\_\-queue.\-tpp\char`\"{}}\\*
+Include dependency graph for persisted\-\_\-queue.\-hpp\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00113}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=311pt]{a00114}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{a00019}{kisscpp\-::\-Base64\-Bi\-Coder$<$ T $>$}
+\item 
+class \hyperlink{a00026}{kisscpp\-::\-File\-Sequince\-String}
+\item 
+class \hyperlink{a00035}{kisscpp\-::\-Persisted\-Queue$<$ \-\_\-qo\-T, \-\_\-s\-T $>$}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00089}{kisscpp}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{a00070_afaed39dc5f50bc993872e2d46490667c}{Queued\-Object\-Pointer\-Type}~boost\-::shared\-\_\-ptr$<$\-\_\-qo\-T $>$
+\item 
+\#define \hyperlink{a00070_a0f866dc82edb46503a53b3e043f81f2f}{Queue\-Type}~std\-::deque$<$\hyperlink{a00070_afaed39dc5f50bc993872e2d46490667c}{Queued\-Object\-Pointer\-Type} $>$
+\item 
+\#define \hyperlink{a00070_a36c99d1cf9ec37c4de496d05bf664cd0}{Queue\-Type\-Ptr}~boost\-::shared\-\_\-ptr$<$\hyperlink{a00070_a0f866dc82edb46503a53b3e043f81f2f}{Queue\-Type} $>$
+\item 
+\#define \hyperlink{a00070_a55cfd939382843e351914f95c204427e}{Queue\-Type\-Iterator}~typename std\-::deque$<$boost\-::shared\-\_\-ptr$<$\-\_\-qo\-T $>$ $>$\-::iterator
+\item 
+\#define \hyperlink{a00070_a77d3f6a01bab89b6b730110f7809ead6}{value\-\_\-type}~Queue\-Type\-::value\-\_\-type
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const unsigned \hyperlink{a00089_a743621016edf95f7afda64b2da3bb576}{kisscpp\-::\-Number\-Of\-File\-Sequince\-Digits} = 3
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{a00070_afaed39dc5f50bc993872e2d46490667c}{\index{persisted\-\_\-queue.\-hpp@{persisted\-\_\-queue.\-hpp}!Queued\-Object\-Pointer\-Type@{Queued\-Object\-Pointer\-Type}}
+\index{Queued\-Object\-Pointer\-Type@{Queued\-Object\-Pointer\-Type}!persisted_queue.hpp@{persisted\-\_\-queue.\-hpp}}
+\subsubsection[{Queued\-Object\-Pointer\-Type}]{\setlength{\rightskip}{0pt plus 5cm}\#define Queued\-Object\-Pointer\-Type~boost\-::shared\-\_\-ptr$<$\-\_\-qo\-T $>$}}\label{a00070_afaed39dc5f50bc993872e2d46490667c}
+\hypertarget{a00070_a0f866dc82edb46503a53b3e043f81f2f}{\index{persisted\-\_\-queue.\-hpp@{persisted\-\_\-queue.\-hpp}!Queue\-Type@{Queue\-Type}}
+\index{Queue\-Type@{Queue\-Type}!persisted_queue.hpp@{persisted\-\_\-queue.\-hpp}}
+\subsubsection[{Queue\-Type}]{\setlength{\rightskip}{0pt plus 5cm}\#define Queue\-Type~std\-::deque$<${\bf Queued\-Object\-Pointer\-Type} $>$}}\label{a00070_a0f866dc82edb46503a53b3e043f81f2f}
+\hypertarget{a00070_a55cfd939382843e351914f95c204427e}{\index{persisted\-\_\-queue.\-hpp@{persisted\-\_\-queue.\-hpp}!Queue\-Type\-Iterator@{Queue\-Type\-Iterator}}
+\index{Queue\-Type\-Iterator@{Queue\-Type\-Iterator}!persisted_queue.hpp@{persisted\-\_\-queue.\-hpp}}
+\subsubsection[{Queue\-Type\-Iterator}]{\setlength{\rightskip}{0pt plus 5cm}\#define Queue\-Type\-Iterator~typename std\-::deque$<$boost\-::shared\-\_\-ptr$<$\-\_\-qo\-T $>$ $>$\-::iterator}}\label{a00070_a55cfd939382843e351914f95c204427e}
+\hypertarget{a00070_a36c99d1cf9ec37c4de496d05bf664cd0}{\index{persisted\-\_\-queue.\-hpp@{persisted\-\_\-queue.\-hpp}!Queue\-Type\-Ptr@{Queue\-Type\-Ptr}}
+\index{Queue\-Type\-Ptr@{Queue\-Type\-Ptr}!persisted_queue.hpp@{persisted\-\_\-queue.\-hpp}}
+\subsubsection[{Queue\-Type\-Ptr}]{\setlength{\rightskip}{0pt plus 5cm}\#define Queue\-Type\-Ptr~boost\-::shared\-\_\-ptr$<${\bf Queue\-Type} $>$}}\label{a00070_a36c99d1cf9ec37c4de496d05bf664cd0}
+\hypertarget{a00070_a77d3f6a01bab89b6b730110f7809ead6}{\index{persisted\-\_\-queue.\-hpp@{persisted\-\_\-queue.\-hpp}!value\-\_\-type@{value\-\_\-type}}
+\index{value\-\_\-type@{value\-\_\-type}!persisted_queue.hpp@{persisted\-\_\-queue.\-hpp}}
+\subsubsection[{value\-\_\-type}]{\setlength{\rightskip}{0pt plus 5cm}\#define value\-\_\-type~Queue\-Type\-::value\-\_\-type}}\label{a00070_a77d3f6a01bab89b6b730110f7809ead6}

@@ -1,10 +1,6 @@
 <map id="kisscpp::LogStream::flush" name="kisscpp::LogStream::flush">
-<area shape="rect" id="node3" href="$namespacekisscpp_1_1manip.html#a416806b7a937a2437ffadb9b523e1cf3" title="kisscpp::manip::flush" alt="" coords="192,57,339,87"/>
-<area shape="rect" id="node5" href="$classkisscpp_1_1_log_stream.html#ae2b779d35193c4eb8dbefd4c0ae5e51b" title="kisscpp::LogStream\l::~LogStream" alt="" coords="387,14,525,61"/>
-<area shape="rect" id="node7" href="$classkisscpp_1_1_log_stream.html#ab672ebf40d6162ba7114355d2c2cc7dd" title="kisscpp::LogStream\l::endl" alt="" coords="387,83,525,130"/>
-<area shape="rect" id="node9" href="$namespacekisscpp_1_1manip.html#ad682f16cb474bc7ff2c991ad2c45db66" title="kisscpp::manip::endl" alt="" coords="575,92,716,121"/>
-<area shape="rect" id="node11" href="$classkisscpp_1_1_connection.html#aaad88f72fad4844f03e5dd55320caeae" title="kisscpp::Connection\l::start" alt="" coords="792,5,933,51"/>
-<area shape="rect" id="node13" href="$classkisscpp_1_1_base64_bi_coder.html#af8b91f925c229a0892be4e5d9428fb13" title="kisscpp::Base64BiCoder\l\&lt; boost::property_tree\l::ptree \&gt;::decodeFromBase64" alt="" coords="765,75,960,139"/>
-<area shape="rect" id="node17" href="$classkisscpp_1_1_server.html#a8ee2f2b0d682ae296eace71505888a7d" title="kisscpp::Server::Server" alt="" coords="784,163,941,192"/>
-<area shape="rect" id="node15" href="$classkisscpp_1_1_ptree_base64_bicoder.html#a38542388704d80131d4a505646439715" title="kisscpp::PtreeBase64Bicoder\l::decode" alt="" coords="1008,83,1203,130"/>
+<area shape="rect" id="node2" href="$namespacekisscpp_1_1manip.html#a416806b7a937a2437ffadb9b523e1cf3" title="kisscpp::manip::flush" alt="" coords="192,71,339,97"/>
+<area shape="rect" id="node3" href="$classkisscpp_1_1_log_stream.html#ae2b779d35193c4eb8dbefd4c0ae5e51b" title="kisscpp::LogStream\l::~LogStream" alt="" coords="391,5,529,46"/>
+<area shape="rect" id="node4" href="$classkisscpp_1_1_server.html#aa41d65074f051e5f5481671cd18d0435" title="kisscpp::Server::run" alt="" coords="391,71,529,97"/>
+<area shape="rect" id="node5" href="$classkisscpp_1_1_server.html#aba167cdf551f3b29937c923ad7d18964" title="kisscpp::Server::stop" alt="" coords="387,121,533,148"/>
 </map>

@@ -1,10 +1,19 @@
 <map id="boost_ptree.hpp" name="boost_ptree.hpp">
-<area shape="rect" id="node3" href="$client_8hpp.html" title="client.hpp" alt="" coords="5,83,83,112"/>
-<area shape="rect" id="node7" href="$connection_8hpp.html" title="connection.hpp" alt="" coords="71,237,180,267"/>
-<area shape="rect" id="node15" href="$request__router_8hpp.html" title="request_router.hpp" alt="" coords="157,160,288,189"/>
-<area shape="rect" id="node19" href="$request__handler_8hpp.html" title="request_handler.hpp" alt="" coords="208,83,347,112"/>
-<area shape="rect" id="node5" href="$client_8cpp.html" title="client.cpp" alt="" coords="5,160,83,189"/>
-<area shape="rect" id="node9" href="$connection_8cpp.html" title="connection.cpp" alt="" coords="48,315,157,344"/>
-<area shape="rect" id="node11" href="$server_8hpp.html" title="server.hpp" alt="" coords="181,315,264,344"/>
-<area shape="rect" id="node13" href="$server_8cpp.html" title="server.cpp" alt="" coords="181,392,264,421"/>
+<area shape="rect" id="node2" href="$boost__ptree_8cpp.html" title="boost_ptree.cpp" alt="" coords="5,80,120,107"/>
+<area shape="rect" id="node3" href="$client_8hpp.html" title="client.hpp" alt="" coords="15,155,93,181"/>
+<area shape="rect" id="node5" href="$configuration_8hpp.html" title="configuration.hpp" alt="" coords="195,80,316,107"/>
+<area shape="rect" id="node7" href="$connection_8hpp.html" title="connection.hpp" alt="" coords="181,229,291,256"/>
+<area shape="rect" id="node11" href="$request__router_8hpp.html" title="request_router.hpp" alt="" coords="417,155,547,181"/>
+<area shape="rect" id="node12" href="$standard__handlers_8hpp.html" title="standard_handlers.hpp" alt="" coords="651,229,804,256"/>
+<area shape="rect" id="node14" href="$request__handler_8hpp.html" title="request_handler.hpp" alt="" coords="468,80,607,107"/>
+<area shape="rect" id="node15" href="$errorstate_8hpp.html" title="errorstate.hpp" alt="" coords="573,155,675,181"/>
+<area shape="rect" id="node17" href="$statskeeper_8hpp.html" title="statskeeper.hpp" alt="" coords="801,155,916,181"/>
+<area shape="rect" id="node4" href="$client_8cpp.html" title="client.cpp" alt="" coords="15,229,93,256"/>
+<area shape="rect" id="node6" href="$configuration_8cpp.html" title="configuration.cpp" alt="" coords="170,155,291,181"/>
+<area shape="rect" id="node9" href="$server_8hpp.html" title="server.hpp" alt="" coords="420,304,501,331"/>
+<area shape="rect" id="node8" href="$connection_8cpp.html" title="connection.cpp" alt="" coords="181,304,291,331"/>
+<area shape="rect" id="node10" href="$server_8cpp.html" title="server.cpp" alt="" coords="420,379,501,405"/>
+<area shape="rect" id="node13" href="$standard__handlers_8cpp.html" title="standard_handlers.cpp" alt="" coords="651,304,804,331"/>
+<area shape="rect" id="node16" href="$errorstate_8cpp.html" title="errorstate.cpp" alt="" coords="525,229,627,256"/>
+<area shape="rect" id="node18" href="$statskeeper_8cpp.html" title="statskeeper.cpp" alt="" coords="880,229,995,256"/>
 </map>

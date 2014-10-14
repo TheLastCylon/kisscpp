@@ -1,0 +1,10 @@
+<map id="standard_handlers.hpp" name="standard_handlers.hpp">
+<area shape="rect" id="node7" href="$logstream_8hpp.html" title="logstream.hpp" alt="" coords="956,229,1060,256"/>
+<area shape="rect" id="node16" href="$request__handler_8hpp.html" title="request_handler.hpp" alt="" coords="500,155,639,181"/>
+<area shape="rect" id="node18" href="$boost__ptree_8hpp.html" title="boost_ptree.hpp" alt="" coords="817,229,932,256"/>
+<area shape="rect" id="node23" href="$request__router_8hpp.html" title="request_router.hpp" alt="" coords="691,80,820,107"/>
+<area shape="rect" id="node25" href="$request__status_8hpp.html" title="request_status.hpp" alt="" coords="343,155,476,181"/>
+<area shape="rect" id="node26" href="$statskeeper_8hpp.html" title="statskeeper.hpp" alt="" coords="1223,155,1337,181"/>
+<area shape="rect" id="node29" href="$errorstate_8hpp.html" title="errorstate.hpp" alt="" coords="1026,155,1128,181"/>
+<area shape="rect" id="node28" href="$statable__queue_8hpp.html" title="statable_queue.hpp" alt="" coords="1553,229,1687,256"/>
+</map>

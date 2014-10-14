@@ -1,0 +1,184 @@
+\subsection*{Format}
+
+After much investigation and debate, J\-S\-O\-N was yet again selected as the preferred format. In the case of configuration files, we found that I\-N\-I format lacks the ability for nested records and X\-M\-L quickly becomes an unreadable mess. The only down side we have identified with the use of J\-S\-O\-N as a configuration file format, was it's lack of native support for comments. This is a shortcoming we are more than willing to live with. If you need comments in your configuration files, you actually need way more than just a configuration file.
+
+\subsection*{Reserved identifiers}
+
+The following are reserved identifiers, for use in configuration files\-: Note\-: The prefix of {\bfseries kcc} is shorthand for (K)iss(\-C)pp (C)onfiguration.
+
+\begin{TabularC}{2}
+\hline
+\rowcolor{lightgray}{\bf {\bfseries Identifier} }&{\bf {\bfseries Description}  }\\\cline{1-2}
+kcc-\/server.\-address &the hostname or ip address of the server. \\\cline{1-2}
+kcc-\/server.\-port &the port of the server. \\\cline{1-2}
+kcc-\/stats.\-gather-\/period &Seconds between gathering statistics for historic purposes. \\\cline{1-2}
+kcc-\/stats.\-history-\/length &Number of historic stats gatherings to keep. \\\cline{1-2}
+kcc-\/log-\/level.\-type &The default type limitation on logs. \\\cline{1-2}
+kcc-\/log-\/level.\-severity &The default severity limitation on logs. \\\cline{1-2}
+kcc-\/white-\/list &A root node containing data regarding white list communications. More detail available {\bfseries T\-O\-D\-O\-: Add link to more detail} \\\cline{1-2}
+\end{TabularC}
+\subsection*{Configuration file naming standard}
+
+K\-I\-S\-S\-C\-P\-P applications will have configuration files named as follows\-:
+
+
+\begin{DoxyCode}
+<application-\textcolor{keywordtype}{id}>.<application-instance-\textcolor{keywordtype}{id} or \textcolor{stringliteral}{"common"}>.kcppcfg
+\end{DoxyCode}
+
+
+i.\-e. An application with the id \char`\"{}foo\char`\"{}, being executed with an instance identifier of \char`\"{}bar\char`\"{} will look for a configuration file named\-:
+
+
+\begin{DoxyCode}
+foo.bar.kcppcfg
+\end{DoxyCode}
+
+
+This file must contain configuration data that is specific to the {\bfseries foo} application running as instance {\bfseries bar}.
+
+There is however, a mechanism for allowing shared configuration to exist in a single file. This is known as the common-\/configuration file. This file will have the instance id portion of the file name, replaced by the string \char`\"{}common\char`\"{}.
+
+i.\-e. An application with the id {\bfseries foo}, being executed with an instance identifier of {\bfseries bar} will look for shared configuration details in a file named.
+
+
+\begin{DoxyCode}
+foo.common.kcppcfg
+\end{DoxyCode}
+
+
+\subsection*{Configuration file location}
+
+Due to the fact that K\-I\-S\-S\-C\-P\-P is a library meant for large systems consisting of interdependent processes, we did have to standardize on most aspects of the configuration files. The control we can give you, is based around a holistic approach, and the fact that the developer is not the only one that needs to be considered here. System administrators and support personnel also need to have a sane standard to work with.
+
+As such, the following decision were made\-:
+
+
+\begin{DoxyEnumerate}
+\item Only the root path for configuration files, will be under user control. i.\-e. You can specify nothing more than the path under which K\-I\-S\-S\-C\-P\-P will search for the following\-:
+\begin{DoxyItemize}
+\item A sub-\/directory with a name matching the application-\/id.
+\item Files contained in that sub-\/directory, that match the file naming standard discussed above.
+\end{DoxyItemize}
+\item A mechanism for environment separation will be available. i.\-e. You have the ability to keep environment specific files separated from each other. This mechanism is provided through the {\bfseries K\-C\-P\-P\-\_\-\-E\-X\-E\-C\-\_\-\-E\-N\-V} environment variable
+\end{DoxyEnumerate}
+
+The configuration file path, is constructed in one of three ways\-:
+
+
+\begin{DoxyItemize}
+\item Where {\bfseries K\-C\-P\-P\-\_\-\-C\-F\-G\-\_\-\-R\-O\-O\-T} and {\bfseries K\-C\-P\-P\-\_\-\-E\-X\-E\-C\-\_\-\-E\-N\-V} are used\-: \$\-K\-C\-P\-P\-\_\-\-C\-F\-G\-\_\-\-R\-O\-O\-T/$<$application-\/id$>$/\$\-K\-C\-P\-P\-\_\-\-E\-X\-E\-C\-\_\-\-E\-N\-V/$<$application-\/configuration-\/file-\/name$>$
+\item Where only {\bfseries K\-C\-P\-P\-\_\-\-C\-F\-G\-\_\-\-R\-O\-O\-T} is used\-: \$\-K\-C\-P\-P\-\_\-\-C\-F\-G\-\_\-\-R\-O\-O\-T/$<$application-\/id$>$/$<$application-\/configuration-\/file-\/name$>$
+\item Developers can override any setting of {\bfseries K\-C\-P\-P\-\_\-\-C\-F\-G\-\_\-\-R\-O\-O\-T} by specifying the path at the time of instantiating the Server class.
+\end{DoxyItemize}
+
+That means, when you have a K\-I\-S\-S\-C\-P\-P application with the name {\bfseries foo} and you start instance {\bfseries bar} of it, while having {\bfseries K\-C\-P\-P\-\_\-\-C\-F\-G\-\_\-\-R\-O\-O\-T} set to {\bfseries /put/configurations/here}
+
+Your application will look in\-:
+\begin{DoxyItemize}
+\item /put/configurations/here/foo
+\item for a files named
+\begin{DoxyItemize}
+\item foo.\-common.\-kcppcfg and
+\item foo.\-bar.\-kcppcfg
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+Meaning that the full path to these files will be\-:
+\begin{DoxyItemize}
+\item /put/configurations/here/foo/foo.common.\-kcppcfg and
+\item /put/configurations/here/foo/foo.bar.\-kcppcfg
+\end{DoxyItemize}
+
+Now, with all of that in play, you can still set the {\bfseries K\-C\-P\-P\-\_\-\-E\-X\-E\-C\-\_\-\-E\-N\-V} environment variable. This comes in handy when you have differing configurations for your test, quality control and production environments.
+
+Thus, with all the above and {\bfseries K\-C\-P\-P\-\_\-\-E\-X\-E\-C\-\_\-\-E\-N\-V} set too\-: {\bfseries live}
+
+Your application will look in\-:
+\begin{DoxyItemize}
+\item /put/configurations/here/foo/live
+\item for a files named
+\begin{DoxyItemize}
+\item foo.\-common.\-kcppcfg and
+\item foo.\-bar.\-kcppcfg
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+Meaning that the full path to these files will be\-:
+\begin{DoxyItemize}
+\item /put/configurations/here/foo/live/foo.common.\-kcppcfg and
+\item /put/configurations/here/foo/live/foo.bar.\-kcppcfg
+\end{DoxyItemize}
+
+\subsection*{Example.}
+
+Ok, let's say you have an application called {\bfseries ninjarules} and you need to run three instances of that application on the same machine.
+
+To keep things sane, you set {\bfseries K\-C\-P\-P\-\_\-\-C\-F\-G\-\_\-\-R\-O\-O\-T} too {\bfseries /my/central/config}. You also know that your test and your live environments will have different configurations so you plan on setting {\bfseries K\-C\-P\-P\-\_\-\-E\-X\-E\-C\-\_\-\-E\-N\-V} to {\bfseries live} and {\bfseries test} respectively, so that you can avoid having to maintain both sets of configurations in one file.
+
+You further decide, although you can use any arbitrary string as an instance identifier, that you'll stick to the simple numbers 1, 2 and 3, for your various instances.
+
+Your application will therefore look in these directories\-:
+\begin{DoxyItemize}
+\item In the {\bfseries live} environment\-: /my/central/config/ninjarules/live
+\item In the {\bfseries test} environment\-: /my/central/config/ninjarules/test
+\end{DoxyItemize}
+
+For files named\-:
+\begin{DoxyItemize}
+\item ninjarules.\-common.\-kcppcfg,
+\item ninjarules.\-1.\-kcppcfg,
+\item ninjarules.\-2.\-kcppcfg and
+\item ninjarules.\-3.\-kcppcfg
+\end{DoxyItemize}
+
+There are some things that will be common for all instances of {\bfseries ninjarules}, so you'll want to keep them in the common configuration. Here's an example of that\-: 
+\begin{DoxyCode}
+\{(ninjarules.common.json)\}
+\{
+  \textcolor{stringliteral}{"kcc-stats"}     : \{
+    \textcolor{stringliteral}{"gather-period"}  : \textcolor{stringliteral}{"300"},
+    \textcolor{stringliteral}{"history-length"} : \textcolor{stringliteral}{"12"}
+  \},
+
+  \textcolor{stringliteral}{"kcc-log-level"} : \{
+    \textcolor{stringliteral}{"type"}           : \textcolor{stringliteral}{"info"},
+    \textcolor{stringliteral}{"severity"}       : \textcolor{stringliteral}{"normal"}
+  \}
+\}
+\end{DoxyCode}
+
+
+And the of course, there will be the instance level configuration files\-: 
+\begin{DoxyCode}
+\{(ninjarules.1.kcppcfg)\}
+\{
+  \textcolor{stringliteral}{"kcc-server"}    : \{
+    \textcolor{stringliteral}{"address"}        : \textcolor{stringliteral}{"locahost"},
+    \textcolor{stringliteral}{"port"}           : \textcolor{stringliteral}{"9001"}
+  \}
+\}
+\end{DoxyCode}
+ 
+\begin{DoxyCode}
+\{(ninjarules.2.kcppcfg)\}
+\{
+  \textcolor{stringliteral}{"kcc-server"}    : \{
+    \textcolor{stringliteral}{"address"}        : \textcolor{stringliteral}{"locahost"},
+    \textcolor{stringliteral}{"port"}           : \textcolor{stringliteral}{"9002"}
+  \}
+\}
+\end{DoxyCode}
+ 
+\begin{DoxyCode}
+\{(ninjarules.3.kcppcfg)\}
+\{
+  \textcolor{stringliteral}{"kcc-server"}    : \{
+    \textcolor{stringliteral}{"address"}        : \textcolor{stringliteral}{"locahost"},
+    \textcolor{stringliteral}{"port"}           : \textcolor{stringliteral}{"9003"}
+  \}
+\}
+\end{DoxyCode}
+
+
+\href{md_inter_process_communication.html}{\tt Inter Process Communication} 

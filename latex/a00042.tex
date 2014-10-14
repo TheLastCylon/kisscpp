@@ -1,0 +1,162 @@
+\hypertarget{a00042}{\section{kisscpp\-:\-:Stats\-Keeper Class Reference}
+\label{a00042}\index{kisscpp\-::\-Stats\-Keeper@{kisscpp\-::\-Stats\-Keeper}}
+}
+
+
+{\ttfamily \#include $<$statskeeper.\-hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{a00042_a1d75a31af13458128e88afaf95280357}{start} ()
+\item 
+void \hyperlink{a00042_a4f6a639706fc26b421bc9ab2f0ef9ca0}{stop} ()
+\item 
+\hyperlink{a00042_adc9c6986efc28efc5198f579c3093a6f}{$\sim$\-Stats\-Keeper} ()
+\item 
+void \hyperlink{a00042_abea7ffc45ac76e92dc2cf9db86040336}{set\-Stat\-Value} (std\-::string id, double value=0)
+\item 
+void \hyperlink{a00042_a1d7da29c8056a6280eeb54371f1a7ac3}{increment} (std\-::string id, double value=1)
+\item 
+void \hyperlink{a00042_ae41c3d5bc4373f271ae773f81f3f294a}{decrement} (std\-::string id, double value=1)
+\item 
+void \hyperlink{a00042_ab7899e972216b5c6281db4cfd7d2be0d}{add\-Statable\-Queue} (std\-::string id, \hyperlink{a00089_a141592ccd82280d2692ca3b9b490faab}{shared\-Stat\-Able\-Q} ssq)
+\item 
+\hyperlink{a00089_aec223e8bce5f3988c62ceb0ccad11a68}{Shared\-Stats\-Map\-Type} \hyperlink{a00042_a031493a516bae72e9b56ccf52d93ed5e}{get\-Current\-Stats} ()
+\item 
+\hyperlink{a00089_aec223e8bce5f3988c62ceb0ccad11a68}{Shared\-Stats\-Map\-Type} \hyperlink{a00042_a6352b48ba6b6e4122ba0f1c28a5a581c}{get\-Last\-Gathered\-Stats} ()
+\item 
+\hyperlink{a00089_afa626c76d3dca5d5e1be4146f211fefa}{Shared\-Stats\-History\-Map\-Type} \hyperlink{a00042_a4678b93e4ba79c70ddefaf8d22994ed3}{get\-Full\-Stats\-History} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{a00042}{Stats\-Keeper} $\ast$ \hyperlink{a00042_a78b5744a055b105990c0ba433a8cfec7}{instance} (unsigned long int gp=300, unsigned long int hl=12)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00042_adc9c6986efc28efc5198f579c3093a6f}{\index{kisscpp\-::\-Stats\-Keeper@{kisscpp\-::\-Stats\-Keeper}!$\sim$\-Stats\-Keeper@{$\sim$\-Stats\-Keeper}}
+\index{$\sim$\-Stats\-Keeper@{$\sim$\-Stats\-Keeper}!kisscpp::StatsKeeper@{kisscpp\-::\-Stats\-Keeper}}
+\subsubsection[{$\sim$\-Stats\-Keeper}]{\setlength{\rightskip}{0pt plus 5cm}kisscpp\-::\-Stats\-Keeper\-::$\sim$\-Stats\-Keeper (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{a00042_adc9c6986efc28efc5198f579c3093a6f}
+
+
+Here is the call graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=336pt]{a00042_adc9c6986efc28efc5198f579c3093a6f_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00042_ab7899e972216b5c6281db4cfd7d2be0d}{\index{kisscpp\-::\-Stats\-Keeper@{kisscpp\-::\-Stats\-Keeper}!add\-Statable\-Queue@{add\-Statable\-Queue}}
+\index{add\-Statable\-Queue@{add\-Statable\-Queue}!kisscpp::StatsKeeper@{kisscpp\-::\-Stats\-Keeper}}
+\subsubsection[{add\-Statable\-Queue}]{\setlength{\rightskip}{0pt plus 5cm}void kisscpp\-::\-Stats\-Keeper\-::add\-Statable\-Queue (
+\begin{DoxyParamCaption}
+\item[{std\-::string}]{id, }
+\item[{{\bf shared\-Stat\-Able\-Q}}]{ssq}
+\end{DoxyParamCaption}
+)}}\label{a00042_ab7899e972216b5c6281db4cfd7d2be0d}
+\hypertarget{a00042_ae41c3d5bc4373f271ae773f81f3f294a}{\index{kisscpp\-::\-Stats\-Keeper@{kisscpp\-::\-Stats\-Keeper}!decrement@{decrement}}
+\index{decrement@{decrement}!kisscpp::StatsKeeper@{kisscpp\-::\-Stats\-Keeper}}
+\subsubsection[{decrement}]{\setlength{\rightskip}{0pt plus 5cm}void kisscpp\-::\-Stats\-Keeper\-::decrement (
+\begin{DoxyParamCaption}
+\item[{std\-::string}]{id, }
+\item[{double}]{value = {\ttfamily 1}}
+\end{DoxyParamCaption}
+)}}\label{a00042_ae41c3d5bc4373f271ae773f81f3f294a}
+\hypertarget{a00042_a031493a516bae72e9b56ccf52d93ed5e}{\index{kisscpp\-::\-Stats\-Keeper@{kisscpp\-::\-Stats\-Keeper}!get\-Current\-Stats@{get\-Current\-Stats}}
+\index{get\-Current\-Stats@{get\-Current\-Stats}!kisscpp::StatsKeeper@{kisscpp\-::\-Stats\-Keeper}}
+\subsubsection[{get\-Current\-Stats}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Shared\-Stats\-Map\-Type} kisscpp\-::\-Stats\-Keeper\-::get\-Current\-Stats (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{a00042_a031493a516bae72e9b56ccf52d93ed5e}
+\hypertarget{a00042_a4678b93e4ba79c70ddefaf8d22994ed3}{\index{kisscpp\-::\-Stats\-Keeper@{kisscpp\-::\-Stats\-Keeper}!get\-Full\-Stats\-History@{get\-Full\-Stats\-History}}
+\index{get\-Full\-Stats\-History@{get\-Full\-Stats\-History}!kisscpp::StatsKeeper@{kisscpp\-::\-Stats\-Keeper}}
+\subsubsection[{get\-Full\-Stats\-History}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Shared\-Stats\-History\-Map\-Type} kisscpp\-::\-Stats\-Keeper\-::get\-Full\-Stats\-History (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{a00042_a4678b93e4ba79c70ddefaf8d22994ed3}
+\hypertarget{a00042_a6352b48ba6b6e4122ba0f1c28a5a581c}{\index{kisscpp\-::\-Stats\-Keeper@{kisscpp\-::\-Stats\-Keeper}!get\-Last\-Gathered\-Stats@{get\-Last\-Gathered\-Stats}}
+\index{get\-Last\-Gathered\-Stats@{get\-Last\-Gathered\-Stats}!kisscpp::StatsKeeper@{kisscpp\-::\-Stats\-Keeper}}
+\subsubsection[{get\-Last\-Gathered\-Stats}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Shared\-Stats\-Map\-Type} kisscpp\-::\-Stats\-Keeper\-::get\-Last\-Gathered\-Stats (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{a00042_a6352b48ba6b6e4122ba0f1c28a5a581c}
+\hypertarget{a00042_a1d7da29c8056a6280eeb54371f1a7ac3}{\index{kisscpp\-::\-Stats\-Keeper@{kisscpp\-::\-Stats\-Keeper}!increment@{increment}}
+\index{increment@{increment}!kisscpp::StatsKeeper@{kisscpp\-::\-Stats\-Keeper}}
+\subsubsection[{increment}]{\setlength{\rightskip}{0pt plus 5cm}void kisscpp\-::\-Stats\-Keeper\-::increment (
+\begin{DoxyParamCaption}
+\item[{std\-::string}]{id, }
+\item[{double}]{value = {\ttfamily 1}}
+\end{DoxyParamCaption}
+)}}\label{a00042_a1d7da29c8056a6280eeb54371f1a7ac3}
+\hypertarget{a00042_a78b5744a055b105990c0ba433a8cfec7}{\index{kisscpp\-::\-Stats\-Keeper@{kisscpp\-::\-Stats\-Keeper}!instance@{instance}}
+\index{instance@{instance}!kisscpp::StatsKeeper@{kisscpp\-::\-Stats\-Keeper}}
+\subsubsection[{instance}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Stats\-Keeper} $\ast$ kisscpp\-::\-Stats\-Keeper\-::instance (
+\begin{DoxyParamCaption}
+\item[{unsigned long int}]{gp = {\ttfamily 300}, }
+\item[{unsigned long int}]{hl = {\ttfamily 12}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{a00042_a78b5744a055b105990c0ba433a8cfec7}
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=346pt]{a00042_a78b5744a055b105990c0ba433a8cfec7_icgraph}
+\end{center}
+\end{figure}
+
+
+\hypertarget{a00042_abea7ffc45ac76e92dc2cf9db86040336}{\index{kisscpp\-::\-Stats\-Keeper@{kisscpp\-::\-Stats\-Keeper}!set\-Stat\-Value@{set\-Stat\-Value}}
+\index{set\-Stat\-Value@{set\-Stat\-Value}!kisscpp::StatsKeeper@{kisscpp\-::\-Stats\-Keeper}}
+\subsubsection[{set\-Stat\-Value}]{\setlength{\rightskip}{0pt plus 5cm}void kisscpp\-::\-Stats\-Keeper\-::set\-Stat\-Value (
+\begin{DoxyParamCaption}
+\item[{std\-::string}]{id, }
+\item[{double}]{value = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}}\label{a00042_abea7ffc45ac76e92dc2cf9db86040336}
+\hypertarget{a00042_a1d75a31af13458128e88afaf95280357}{\index{kisscpp\-::\-Stats\-Keeper@{kisscpp\-::\-Stats\-Keeper}!start@{start}}
+\index{start@{start}!kisscpp::StatsKeeper@{kisscpp\-::\-Stats\-Keeper}}
+\subsubsection[{start}]{\setlength{\rightskip}{0pt plus 5cm}void kisscpp\-::\-Stats\-Keeper\-::start (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{a00042_a1d75a31af13458128e88afaf95280357}
+\hypertarget{a00042_a4f6a639706fc26b421bc9ab2f0ef9ca0}{\index{kisscpp\-::\-Stats\-Keeper@{kisscpp\-::\-Stats\-Keeper}!stop@{stop}}
+\index{stop@{stop}!kisscpp::StatsKeeper@{kisscpp\-::\-Stats\-Keeper}}
+\subsubsection[{stop}]{\setlength{\rightskip}{0pt plus 5cm}void kisscpp\-::\-Stats\-Keeper\-::stop (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{a00042_a4f6a639706fc26b421bc9ab2f0ef9ca0}
+
+
+Here is the caller graph for this function\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=336pt]{a00042_a4f6a639706fc26b421bc9ab2f0ef9ca0_icgraph}
+\end{center}
+\end{figure}
+
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00082}{statskeeper.\-hpp}\item 
+\hyperlink{a00081}{statskeeper.\-cpp}\end{DoxyCompactItemize}

@@ -1,6 +1,0 @@
-<map id="kisscpp::manip::mask" name="kisscpp::manip::mask">
-<area shape="rect" id="node3" href="$classkisscpp_1_1_log_stream_settings.html#ac0fcc9f978329329f027a251620fe3d2" title="kisscpp::LogStreamSettings\l::operator=" alt="" coords="440,5,627,51"/>
-<area shape="rect" id="node5" href="$classkisscpp_1_1_log_stream_settings.html#ae82b178a57c244164c9c259fefcc218a" title="kisscpp::LogStreamSettings\l::getMask" alt="" coords="205,34,392,81"/>
-<area shape="rect" id="node8" href="$classkisscpp_1_1_log_stream_settings.html#a9d56dd2574f403d624d527a23159d123" title="kisscpp::LogStreamSettings\l::setMask" alt="" coords="205,103,392,150"/>
-<area shape="rect" id="node10" href="$classkisscpp_1_1_log_stream_settings.html#ab7f41d86de63b83115c465f64909835e" title="kisscpp::LogStreamSettings\l::reset" alt="" coords="205,173,392,219"/>
-</map>

@@ -1,0 +1,6 @@
+<map id="kisscpp::RequestHandler" name="kisscpp::RequestHandler">
+<area shape="rect" id="node3" href="$classkisscpp_1_1_error_reporter.html" title="kisscpp::ErrorReporter" alt="" coords="379,5,533,32"/>
+<area shape="rect" id="node4" href="$classkisscpp_1_1_handler_reporter.html" title="kisscpp::HandlerReporter" alt="" coords="371,56,541,83"/>
+<area shape="rect" id="node5" href="$classkisscpp_1_1_log_level_adjuster.html" title="kisscpp::LogLevelAdjuster" alt="" coords="369,107,543,133"/>
+<area shape="rect" id="node6" href="$classkisscpp_1_1_stats_reporter.html" title="kisscpp::StatsReporter" alt="" coords="378,157,534,184"/>
+</map>

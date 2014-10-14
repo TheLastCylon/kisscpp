@@ -1,0 +1,90 @@
+\hypertarget{a00037}{\section{kisscpp\-:\-:Request\-Handler Class Reference}
+\label{a00037}\index{kisscpp\-::\-Request\-Handler@{kisscpp\-::\-Request\-Handler}}
+}
+
+
+{\ttfamily \#include $<$request\-\_\-handler.\-hpp$>$}
+
+
+
+Inheritance diagram for kisscpp\-:\-:Request\-Handler\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{a00160}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for kisscpp\-:\-:Request\-Handler\-:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=206pt]{a00161}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00037_a0c726aac7632902905126e5d381dd12e}{Request\-Handler} (const std\-::string \&\-\_\-id, const std\-::string \&\-\_\-description)
+\item 
+virtual \hyperlink{a00037_afc972ed679cfcc264f8694083be0273e}{$\sim$\-Request\-Handler} ()
+\item 
+virtual void \hyperlink{a00037_a3606f772c07297826847a8e36226cdaa}{run} (const \hyperlink{a00048_ab36820650b8e0db36402aea80485633c}{Boost\-Ptree} \&request, \hyperlink{a00048_ab36820650b8e0db36402aea80485633c}{Boost\-Ptree} \&response)=0
+\item 
+std\-::string \hyperlink{a00037_aa67ecd0d2dc726b1e76ae1e29329aed3}{command\-Id} ()
+\item 
+std\-::string \hyperlink{a00037_ab0f562cba2b870143c4861f3939e7c3d}{get\-Description} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00037_a0c726aac7632902905126e5d381dd12e}{\index{kisscpp\-::\-Request\-Handler@{kisscpp\-::\-Request\-Handler}!Request\-Handler@{Request\-Handler}}
+\index{Request\-Handler@{Request\-Handler}!kisscpp::RequestHandler@{kisscpp\-::\-Request\-Handler}}
+\subsubsection[{Request\-Handler}]{\setlength{\rightskip}{0pt plus 5cm}kisscpp\-::\-Request\-Handler\-::\-Request\-Handler (
+\begin{DoxyParamCaption}
+\item[{const std\-::string \&}]{\-\_\-id, }
+\item[{const std\-::string \&}]{\-\_\-description}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{a00037_a0c726aac7632902905126e5d381dd12e}
+\hypertarget{a00037_afc972ed679cfcc264f8694083be0273e}{\index{kisscpp\-::\-Request\-Handler@{kisscpp\-::\-Request\-Handler}!$\sim$\-Request\-Handler@{$\sim$\-Request\-Handler}}
+\index{$\sim$\-Request\-Handler@{$\sim$\-Request\-Handler}!kisscpp::RequestHandler@{kisscpp\-::\-Request\-Handler}}
+\subsubsection[{$\sim$\-Request\-Handler}]{\setlength{\rightskip}{0pt plus 5cm}virtual kisscpp\-::\-Request\-Handler\-::$\sim$\-Request\-Handler (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{a00037_afc972ed679cfcc264f8694083be0273e}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00037_aa67ecd0d2dc726b1e76ae1e29329aed3}{\index{kisscpp\-::\-Request\-Handler@{kisscpp\-::\-Request\-Handler}!command\-Id@{command\-Id}}
+\index{command\-Id@{command\-Id}!kisscpp::RequestHandler@{kisscpp\-::\-Request\-Handler}}
+\subsubsection[{command\-Id}]{\setlength{\rightskip}{0pt plus 5cm}std\-::string kisscpp\-::\-Request\-Handler\-::command\-Id (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{a00037_aa67ecd0d2dc726b1e76ae1e29329aed3}
+\hypertarget{a00037_ab0f562cba2b870143c4861f3939e7c3d}{\index{kisscpp\-::\-Request\-Handler@{kisscpp\-::\-Request\-Handler}!get\-Description@{get\-Description}}
+\index{get\-Description@{get\-Description}!kisscpp::RequestHandler@{kisscpp\-::\-Request\-Handler}}
+\subsubsection[{get\-Description}]{\setlength{\rightskip}{0pt plus 5cm}std\-::string kisscpp\-::\-Request\-Handler\-::get\-Description (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{a00037_ab0f562cba2b870143c4861f3939e7c3d}
+\hypertarget{a00037_a3606f772c07297826847a8e36226cdaa}{\index{kisscpp\-::\-Request\-Handler@{kisscpp\-::\-Request\-Handler}!run@{run}}
+\index{run@{run}!kisscpp::RequestHandler@{kisscpp\-::\-Request\-Handler}}
+\subsubsection[{run}]{\setlength{\rightskip}{0pt plus 5cm}virtual void kisscpp\-::\-Request\-Handler\-::run (
+\begin{DoxyParamCaption}
+\item[{const {\bf Boost\-Ptree} \&}]{request, }
+\item[{{\bf Boost\-Ptree} \&}]{response}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{a00037_a3606f772c07297826847a8e36226cdaa}
+
+
+Implemented in \hyperlink{a00030_a971d59364d21bbaa283ea520caefa604}{kisscpp\-::\-Log\-Level\-Adjuster}, \hyperlink{a00027_a5085be2e4dcfa1e98bf517c8d0b5443f}{kisscpp\-::\-Handler\-Reporter}, \hyperlink{a00023_a7afc458c0a447f93f138f006acb57117}{kisscpp\-::\-Error\-Reporter}, and \hyperlink{a00043_af57d8c01b118a4693b8b226c3f9dbbe5}{kisscpp\-::\-Stats\-Reporter}.
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00073}{request\-\_\-handler.\-hpp}\end{DoxyCompactItemize}

@@ -1,0 +1,104 @@
+\hypertarget{a00019}{\section{kisscpp\-:\-:Base64\-Bi\-Coder$<$ T $>$ Class Template Reference}
+\label{a00019}\index{kisscpp\-::\-Base64\-Bi\-Coder$<$ T $>$@{kisscpp\-::\-Base64\-Bi\-Coder$<$ T $>$}}
+}
+
+
+{\ttfamily \#include $<$persisted\-\_\-queue.\-hpp$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef transform\-\_\-width\\*
+$<$ binary\-\_\-from\-\_\-base64\\*
+$<$ remove\-\_\-whitespace\\*
+$<$ std\-::string\-::const\-\_\-iterator $>$ $>$, 8, 6 $>$ \hyperlink{a00019_a3d4011fcafbdf230c7cc8188714ed499}{Binary\-Type}
+\item 
+typedef base64\-\_\-from\-\_\-binary\\*
+$<$ transform\-\_\-width\\*
+$<$ std\-::string\-::const\-\_\-iterator, 6, 8 $>$ $>$ \hyperlink{a00019_a54d2f4ba00e068e8d4d6fd6497ebf21d}{Base64\-Type}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00019_a64d95b2904f11acbddf6d70f19e61b35}{Base64\-Bi\-Coder} ()
+\item 
+\hyperlink{a00019_a203c4896daf408dfb45c9d57aea0d959}{$\sim$\-Base64\-Bi\-Coder} ()
+\item 
+virtual boost\-::shared\-\_\-ptr\\*
+$<$ std\-::string $>$ \hyperlink{a00019_ade4ace8899f97568458a62df0222b32c}{encode} (const boost\-::shared\-\_\-ptr$<$ T $>$ obj2encode)=0
+\item 
+virtual boost\-::shared\-\_\-ptr$<$ T $>$ \hyperlink{a00019_a8b3f9d0c6d4d88dded790f7627d0a3ea}{decode} (const std\-::string \&str2decode)=0
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+boost\-::shared\-\_\-ptr$<$ std\-::string $>$ \hyperlink{a00019_ab17cf7f1594fa761eca93d6a1ee614ef}{encode\-To\-Base64\-String} (const std\-::string \&s)
+\item 
+boost\-::shared\-\_\-ptr$<$ std\-::string $>$ \hyperlink{a00019_af8b91f925c229a0892be4e5d9428fb13}{decode\-From\-Base64} (const std\-::string \&s)
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{a00019_a54d2f4ba00e068e8d4d6fd6497ebf21d}{\index{kisscpp\-::\-Base64\-Bi\-Coder@{kisscpp\-::\-Base64\-Bi\-Coder}!Base64\-Type@{Base64\-Type}}
+\index{Base64\-Type@{Base64\-Type}!kisscpp::Base64BiCoder@{kisscpp\-::\-Base64\-Bi\-Coder}}
+\subsubsection[{Base64\-Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ typedef base64\-\_\-from\-\_\-binary$<$transform\-\_\-width$<$std\-::string\-::const\-\_\-iterator,6,8$>$ $>$ {\bf kisscpp\-::\-Base64\-Bi\-Coder}$<$ T $>$\-::{\bf Base64\-Type}}}\label{a00019_a54d2f4ba00e068e8d4d6fd6497ebf21d}
+\hypertarget{a00019_a3d4011fcafbdf230c7cc8188714ed499}{\index{kisscpp\-::\-Base64\-Bi\-Coder@{kisscpp\-::\-Base64\-Bi\-Coder}!Binary\-Type@{Binary\-Type}}
+\index{Binary\-Type@{Binary\-Type}!kisscpp::Base64BiCoder@{kisscpp\-::\-Base64\-Bi\-Coder}}
+\subsubsection[{Binary\-Type}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ typedef transform\-\_\-width$<$ binary\-\_\-from\-\_\-base64$<$remove\-\_\-whitespace$<$std\-::string\-::const\-\_\-iterator$>$ $>$ , 8, 6 $>$ {\bf kisscpp\-::\-Base64\-Bi\-Coder}$<$ T $>$\-::{\bf Binary\-Type}}}\label{a00019_a3d4011fcafbdf230c7cc8188714ed499}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{a00019_a64d95b2904f11acbddf6d70f19e61b35}{\index{kisscpp\-::\-Base64\-Bi\-Coder@{kisscpp\-::\-Base64\-Bi\-Coder}!Base64\-Bi\-Coder@{Base64\-Bi\-Coder}}
+\index{Base64\-Bi\-Coder@{Base64\-Bi\-Coder}!kisscpp::Base64BiCoder@{kisscpp\-::\-Base64\-Bi\-Coder}}
+\subsubsection[{Base64\-Bi\-Coder}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ {\bf kisscpp\-::\-Base64\-Bi\-Coder}$<$ T $>$\-::{\bf Base64\-Bi\-Coder} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{a00019_a64d95b2904f11acbddf6d70f19e61b35}
+\hypertarget{a00019_a203c4896daf408dfb45c9d57aea0d959}{\index{kisscpp\-::\-Base64\-Bi\-Coder@{kisscpp\-::\-Base64\-Bi\-Coder}!$\sim$\-Base64\-Bi\-Coder@{$\sim$\-Base64\-Bi\-Coder}}
+\index{$\sim$\-Base64\-Bi\-Coder@{$\sim$\-Base64\-Bi\-Coder}!kisscpp::Base64BiCoder@{kisscpp\-::\-Base64\-Bi\-Coder}}
+\subsubsection[{$\sim$\-Base64\-Bi\-Coder}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ {\bf kisscpp\-::\-Base64\-Bi\-Coder}$<$ T $>$\-::$\sim${\bf Base64\-Bi\-Coder} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{a00019_a203c4896daf408dfb45c9d57aea0d959}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{a00019_a8b3f9d0c6d4d88dded790f7627d0a3ea}{\index{kisscpp\-::\-Base64\-Bi\-Coder@{kisscpp\-::\-Base64\-Bi\-Coder}!decode@{decode}}
+\index{decode@{decode}!kisscpp::Base64BiCoder@{kisscpp\-::\-Base64\-Bi\-Coder}}
+\subsubsection[{decode}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ virtual boost\-::shared\-\_\-ptr$<$T$>$ {\bf kisscpp\-::\-Base64\-Bi\-Coder}$<$ T $>$\-::decode (
+\begin{DoxyParamCaption}
+\item[{const std\-::string \&}]{str2decode}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{a00019_a8b3f9d0c6d4d88dded790f7627d0a3ea}
+\hypertarget{a00019_af8b91f925c229a0892be4e5d9428fb13}{\index{kisscpp\-::\-Base64\-Bi\-Coder@{kisscpp\-::\-Base64\-Bi\-Coder}!decode\-From\-Base64@{decode\-From\-Base64}}
+\index{decode\-From\-Base64@{decode\-From\-Base64}!kisscpp::Base64BiCoder@{kisscpp\-::\-Base64\-Bi\-Coder}}
+\subsubsection[{decode\-From\-Base64}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ boost\-::shared\-\_\-ptr$<$std\-::string$>$ {\bf kisscpp\-::\-Base64\-Bi\-Coder}$<$ T $>$\-::decode\-From\-Base64 (
+\begin{DoxyParamCaption}
+\item[{const std\-::string \&}]{s}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}}\label{a00019_af8b91f925c229a0892be4e5d9428fb13}
+\hypertarget{a00019_ade4ace8899f97568458a62df0222b32c}{\index{kisscpp\-::\-Base64\-Bi\-Coder@{kisscpp\-::\-Base64\-Bi\-Coder}!encode@{encode}}
+\index{encode@{encode}!kisscpp::Base64BiCoder@{kisscpp\-::\-Base64\-Bi\-Coder}}
+\subsubsection[{encode}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ virtual boost\-::shared\-\_\-ptr$<$std\-::string$>$ {\bf kisscpp\-::\-Base64\-Bi\-Coder}$<$ T $>$\-::encode (
+\begin{DoxyParamCaption}
+\item[{const boost\-::shared\-\_\-ptr$<$ T $>$}]{obj2encode}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{a00019_ade4ace8899f97568458a62df0222b32c}
+
+
+Implemented in \hyperlink{a00036_a7f4bbf8b4b4626fa9228118889fd51d2}{kisscpp\-::\-Ptree\-Base64\-Bicoder}.
+
+\hypertarget{a00019_ab17cf7f1594fa761eca93d6a1ee614ef}{\index{kisscpp\-::\-Base64\-Bi\-Coder@{kisscpp\-::\-Base64\-Bi\-Coder}!encode\-To\-Base64\-String@{encode\-To\-Base64\-String}}
+\index{encode\-To\-Base64\-String@{encode\-To\-Base64\-String}!kisscpp::Base64BiCoder@{kisscpp\-::\-Base64\-Bi\-Coder}}
+\subsubsection[{encode\-To\-Base64\-String}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T$>$ boost\-::shared\-\_\-ptr$<$std\-::string$>$ {\bf kisscpp\-::\-Base64\-Bi\-Coder}$<$ T $>$\-::encode\-To\-Base64\-String (
+\begin{DoxyParamCaption}
+\item[{const std\-::string \&}]{s}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}}\label{a00019_ab17cf7f1594fa761eca93d6a1ee614ef}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00070}{persisted\-\_\-queue.\-hpp}\end{DoxyCompactItemize}

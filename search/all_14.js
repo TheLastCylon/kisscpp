@@ -1,0 +1,5 @@
+var searchData=
+[
+  ['why_20do_20this_3f_20what_27s_20the_20motivation_3f',['Why do this? What&apos;s the motivation?',['../md_motivation.html',1,'']]],
+  ['whitelisttype',['WhiteListType',['../namespacekisscpp.html#a6aa00ccbe46e3a892fa90d3fbf6e3439',1,'kisscpp']]]
+];

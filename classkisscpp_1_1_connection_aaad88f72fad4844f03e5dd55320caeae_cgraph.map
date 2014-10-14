@@ -1,6 +1,11 @@
 <map id="kisscpp::Connection::start" name="kisscpp::Connection::start">
-<area shape="rect" id="node3" href="$namespacekisscpp_1_1manip.html#ad682f16cb474bc7ff2c991ad2c45db66" title="kisscpp::manip::endl" alt="" coords="196,13,337,43"/>
-<area shape="rect" id="node5" href="$classkisscpp_1_1_log_stream.html#ab672ebf40d6162ba7114355d2c2cc7dd" title="kisscpp::LogStream\l::endl" alt="" coords="387,5,525,51"/>
-<area shape="rect" id="node7" href="$namespacekisscpp_1_1manip.html#a416806b7a937a2437ffadb9b523e1cf3" title="kisscpp::manip::flush" alt="" coords="573,13,720,43"/>
-<area shape="rect" id="node9" href="$classkisscpp_1_1_log_stream.html#a2814d0297db8339779e995c898861e0e" title="kisscpp::LogStream\l::flush" alt="" coords="768,5,907,51"/>
+<area shape="rect" id="node2" href="$namespacekisscpp_1_1manip.html#aee465aa1a8d15e1750422696f7d3dc81" title="kisscpp::manip::info\l_normal" alt="" coords="197,118,336,159"/>
+<area shape="rect" id="node7" href="$namespacekisscpp_1_1manip.html#ad682f16cb474bc7ff2c991ad2c45db66" title="kisscpp::manip::endl" alt="" coords="195,184,338,211"/>
+<area shape="rect" id="node9" href="$namespacekisscpp_1_1manip.html#af7d168675689cf70931df8d3acb4b4e9" title="kisscpp::manip::error\l_normal" alt="" coords="195,53,339,94"/>
+<area shape="rect" id="node3" href="$namespacekisscpp_1_1manip.html#aff72768a5e8b0486de0cecb0bd95f3e4" title="kisscpp::manip::info" alt="" coords="396,125,535,152"/>
+<area shape="rect" id="node5" href="$namespacekisscpp_1_1manip.html#a8f9aa3f28fd54225dee006e014efcf65" title="kisscpp::manip::normal" alt="" coords="387,75,544,101"/>
+<area shape="rect" id="node4" href="$classkisscpp_1_1_log_stream.html#a318a573183c8b552131a4225df381d9f" title="kisscpp::LogStream\l::setMessageType" alt="" coords="592,118,731,159"/>
+<area shape="rect" id="node6" href="$classkisscpp_1_1_log_stream.html#a7cb243c196903798707fc08b1cbb32c9" title="kisscpp::LogStream\l::setSeverity" alt="" coords="592,29,731,70"/>
+<area shape="rect" id="node8" href="$classkisscpp_1_1_log_stream.html#ab672ebf40d6162ba7114355d2c2cc7dd" title="kisscpp::LogStream\l::endl" alt="" coords="396,177,535,218"/>
+<area shape="rect" id="node10" href="$namespacekisscpp_1_1manip.html#a53df3ad3d908fa67b2d4a73000241b4f" title="kisscpp::manip::error" alt="" coords="393,24,537,51"/>
 </map>
