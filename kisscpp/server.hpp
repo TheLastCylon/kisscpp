@@ -54,8 +54,8 @@ namespace kisscpp
     public:
       // Construct the server to listen on the specified TCP address and port
       explicit Server(std::size_t        io_service_pool_size,
-                      const std::string& application_id       = "kisscpp_application",
-                      const std::string& application_instance = "0",
+                      const std::string& application_id,
+                      const std::string& application_instance,
                       bool               runAsDaemon          = true,
                       const std::string& config_root_path     = "",
                       const std::string& address              = "get_from_config",

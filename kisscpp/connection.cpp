@@ -79,9 +79,9 @@ namespace kisscpp
 
           log << manip::info_normal
               << "Request denied for client ["
-              << parsed_request_.get<std::string>("kcm_client.id")
+              << parsed_request_.get<std::string>("kcm-client.id")
               << "] instance ["
-              << parsed_request_.get<std::string>("kcm_client.instance")
+              << parsed_request_.get<std::string>("kcm-client.instance")
               << "]"
               << manip::endl;
 
@@ -130,8 +130,8 @@ namespace kisscpp
   //--------------------------------------------------------------------------------
   bool Connection::allowedClient()
   {
-    return (Config::instance()->isAllowedClient(parsed_request_.get<std::string>("kcm_client.id"),
-                                                parsed_request_.get<std::string>("kcm_client.instance")));
+    return (Config::instance()->isAllowedClient(parsed_request_.get<std::string>("kcm-client.id"),
+                                                parsed_request_.get<std::string>("kcm-client.instance")));
   }
 }
 

@@ -22,8 +22,8 @@ namespace kisscpp
 {
   //--------------------------------------------------------------------------------
   Server::Server(std::size_t        io_service_pool_size,
-                 const std::string& application_id       /*= "kisscpp_application"*/,
-                 const std::string& application_instance /*= "0"*/,
+                 const std::string& application_id,
+                 const std::string& application_instance,
                  bool               runAsDaemon          /*= true*/,
                  const std::string& config_root_path     /*= ""*/,
                  const std::string& address              /*= "get_from_config"*/,
@@ -48,8 +48,8 @@ namespace kisscpp
       initializeLogging((!runAsDaemon));
 
       // create the stats keeper instance here. So that it's available as soon as the server is constructed.
-      StatsKeeper::instance(Config::instance()->get<unsigned long int>("stats.gather_period" ,300),
-                            Config::instance()->get<unsigned long int>("stats.history_length",12));
+      StatsKeeper::instance(Config::instance()->get<unsigned long int>("kcc-stats.gather-period" ,300),
+                            Config::instance()->get<unsigned long int>("kcc-stats.history-length",12));
 
       ErrorStateList::instance();   // same goes for the error state list.
 
@@ -59,8 +59,8 @@ namespace kisscpp
       boost::asio::ip::tcp::resolver        resolver(acceptor_.get_io_service());
       //boost::asio::ip::tcp::resolver::query query(address, port);
 
-      boost::asio::ip::tcp::resolver::query query(Config::instance()->get<std::string>("server.address"),
-                                                  Config::instance()->get<std::string>("server.port"));
+      boost::asio::ip::tcp::resolver::query query(Config::instance()->get<std::string>("kcc-server.address"),
+                                                  Config::instance()->get<std::string>("kcc-server.port"));
 
       boost::asio::ip::tcp::endpoint        endpoint = *resolver.resolve(query);
 
@@ -90,12 +90,12 @@ namespace kisscpp
     LogStream log(__PRETTY_FUNCTION__);
 
     log << manip::info_normal
-        << "--------------------------------------------------------------------------------" << manip::endl
-        << "Starting Process : " << Config::instance()->getAppId()                            << manip::endl
-        << "Instance         : " << Config::instance()->getAppInstance()                      << manip::endl
-        << "Server address   : " << Config::instance()->get<std::string>("server.address")    << manip::endl
-        << "Server port      : " << Config::instance()->get<std::string>("server.port")       << manip::endl
-        << "--------------------------------------------------------------------------------" << manip::flush;
+        << "--------------------------------------------------------------------------------"  << manip::endl
+        << "Starting Process : " << Config::instance()->getAppId()                             << manip::endl
+        << "Instance         : " << Config::instance()->getAppInstance()                       << manip::endl
+        << "Server address   : " << Config::instance()->get<std::string>("kcc-server.address") << manip::endl
+        << "Server port      : " << Config::instance()->get<std::string>("kcc-server.port")    << manip::endl
+        << "--------------------------------------------------------------------------------"  << manip::flush;
 
     io_service_pool_.run();
   }
@@ -107,12 +107,12 @@ namespace kisscpp
     handle_stop();
 
     log << manip::info_normal
-        << "--------------------------------------------------------------------------------" << manip::endl
-        << "Stopping Process : " << Config::instance()->getAppId()                            << manip::endl
-        << "Instance         : " << Config::instance()->getAppInstance()                      << manip::endl
-        << "Server address   : " << Config::instance()->get<std::string>("server.address")    << manip::endl
-        << "Server port      : " << Config::instance()->get<std::string>("server.port")       << manip::endl
-        << "--------------------------------------------------------------------------------" << manip::flush;
+        << "--------------------------------------------------------------------------------"  << manip::endl
+        << "Stopping Process : " << Config::instance()->getAppId()                             << manip::endl
+        << "Instance         : " << Config::instance()->getAppInstance()                       << manip::endl
+        << "Server address   : " << Config::instance()->get<std::string>("kcc-server.address") << manip::endl
+        << "Server port      : " << Config::instance()->get<std::string>("kcc-server.port")    << manip::endl
+        << "--------------------------------------------------------------------------------"  << manip::flush;
   }
 
   //--------------------------------------------------------------------------------

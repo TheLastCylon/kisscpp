@@ -31,14 +31,18 @@ tools.
 
 Within the context of JSON as a protocol, we need to standardise on a few
 identifiers, in order to make sure we can handle communication basics.
+Note: The prefix of **kcm** is shorthand for (K)iss(C)pp (M)essage.
 
-| Identifier | Required in                  | purpose/meaning    | Description                                                  | typical values       |
-|------------|------------------------------|--------------------|--------------------------------------------------------------|----------------------|
-| kcm-cmd    | Request                      | Handler Id         | A string, uniquely identifying the server handler to invoke. | An arbitrary string. |
-| kcm-sts    | Response                     | Status             | Used in the response to indicate request status              | Enumerated.          |
-| kcm-erm    | Response: where kcm-sts != 0 | Error - message    | An error message                                             | An arbitrary string. |
-| kcm-hst    | instance of client class     | host               | used by client class to indicate server host                 | An arbitrary string. |
-| kcm-prt    | instance of client class     | port               | used by client class to indicate server port                 | An arbitrary string. |
+| Identifier          | Required in                  | purpose/meaning         | Description                                                                                          | typical values       |
+|---------------------|------------------------------|-------------------------|------------------------------------------------------------------------------------------------------|----------------------|
+| kcm-cmd             | Request                      | Handler Id/Command      | A string, uniquely identifying the server handler to invoke.                                         | An arbitrary string. |
+| kcm-sts             | Response                     | Status                  | Used in the response to indicate request status                                                      | Enumerated.          |
+| kcm-erm             | Response: where kcm-sts != 0 | Error - message         | An error message                                                                                     | An arbitrary string. |
+| kcm-hst             | instance of client class     | host                    | used by client class to indicate server host                                                         | An arbitrary string. |
+| kcm-prt             | instance of client class     | port                    | used by client class to indicate server port                                                         | An arbitrary string. |
+| kcm-client          | Request                      | A root node             | A root node for the id and instance of the requesting app                                            | Nothing              |
+| kcm-client.id       | Requests                     | App identifier          | The id of the application. Typically set to the name of the compiled binary executable.              | An arbitrary string. |
+| kcm-client.instance | Request                      | App instance identifier | The instance id of the application. Used to differentiate between multiple processes of the same app.| An arbitrary string. |
 
 ## Basic terminology
 

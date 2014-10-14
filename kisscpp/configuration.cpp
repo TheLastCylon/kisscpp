@@ -131,27 +131,27 @@ namespace kisscpp
   //--------------------------------------------------------------------------------
   void Config::populateWhiteLists()
   {
-    if(cfg_data.find("coms_white_list") != cfg_data.not_found()) {
+    if(cfg_data.find("kcc-white-list") != cfg_data.not_found()) {
 
-      allow_all_ip_addrs     = (cfg_data.get<std::string>("coms_white_list.all_ip_addrs","false") == "true")?true:false;
-      allow_all_applications = (cfg_data.get<std::string>("coms_white_list.all_apps"    ,"false") == "true")?true:false;
+      allow_all_ip_addrs     = (cfg_data.get<std::string>("kcc-white-list.all-ip-addrs","false") == "true")?true:false;
+      allow_all_applications = (cfg_data.get<std::string>("kcc-white-list.all-apps"    ,"false") == "true")?true:false;
 
       if(!allow_all_ip_addrs) {
-        BOOST_FOREACH(boost::property_tree::ptree::value_type &v, cfg_data.get_child("coms_white_list.ip_list")) {
+        BOOST_FOREACH(boost::property_tree::ptree::value_type &v, cfg_data.get_child("kcc-white-list.ip-list")) {
           comms_white_list_ip_addrs.insert(v.second.data());
         }
       }
 
       if(!allow_all_applications) {
-        BOOST_FOREACH(boost::property_tree::ptree::value_type &v, cfg_data.get_child("coms_white_list.application_list")) {
+        BOOST_FOREACH(boost::property_tree::ptree::value_type &v, cfg_data.get_child("kcc-white-list.application-list")) {
 
           if(v.first == "application") {
 
             std::string app_id                                    = v.second.get<std::string>("id");
-            (comms_white_list_applications[app_id]).all_instances = (v.second.get<std::string>("all_instances","false") == "true")?true:false;
+            (comms_white_list_applications[app_id]).all_instances = (v.second.get<std::string>("all-instances","false") == "true")?true:false;
 
             if(!(comms_white_list_applications[app_id]).all_instances) {
-              BOOST_FOREACH(boost::property_tree::ptree::value_type &app_data, v.second.get_child("instance_list")) {
+              BOOST_FOREACH(boost::property_tree::ptree::value_type &app_data, v.second.get_child("instance-list")) {
                 (comms_white_list_applications[app_id]).addAppInstance(app_data.second.data());
               }
             }
