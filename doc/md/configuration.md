@@ -14,18 +14,17 @@ files, you actually need way more than just a configuration file.
 The following are reserved identifiers, for use in configuration files:
 Note: The prefix of **kcc** is shorthand for (K)iss(C)pp (C)onfiguration.
 
-| **Identifier**          | **Description**                                                                                                          |
-|-------------------------|--------------------------------------------------------------------------------------------------------------------------|
-|kcc-server.address       | the hostname or ip address of the server.                                                                                |
-|kcc-server.port          | the port of the server.                                                                                                  |
-|kcc-stats.gather-period  | Seconds between gathering statistics for historic purposes.                                                              |
-|kcc-stats.history-length | Number of historic stats gatherings to keep.                                                                             |
-|kcc-log-level.type       | The default type limitation on logs.                                                                                     |
-|kcc-log-level.severity   | The default severity limitation on logs.                                                                                 |
-|kcc-white-list           | A root node containing data regarding white list communications. More detail available **TODO: Add link to more detail** |
+| **Identifier**          | **Description**                                                                                                                     |
+|-------------------------|-------------------------------------------------------------------------------------------------------------------------------------|
+|kcc-server.address       | the hostname or ip address of the server.                                                                                           |
+|kcc-server.port          | the port of the server.                                                                                                             |
+|kcc-stats.gather-period  | Seconds between gathering statistics for historic purposes.                                                                         |
+|kcc-stats.history-length | Number of historic stats gatherings to keep.                                                                                        |
+|kcc-log-level.type       | The default type limitation on logs.                                                                                                |
+|kcc-log-level.severity   | The default severity limitation on logs.                                                                                            |
+|kcc-white-list           | A root node containing data regarding white list communications. More detail available [here](md_white_listed_communications.html). |
 
 ## Configuration file naming standard
-
 KISSCPP applications will have configuration files named as follows:
 
 ~~~
@@ -107,7 +106,7 @@ Thus, with all the above and **KCPP\_EXEC\_ENV** set too: **live**
 
 Your application will look in:
 - /put/configurations/here/foo/live
-- for a files named
+- for files named
   + foo.common.kcppcfg and
   + foo.bar.kcppcfg
 
