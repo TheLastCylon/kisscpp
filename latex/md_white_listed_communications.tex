@@ -1,0 +1,257 @@
+K\-I\-S\-S\-C\-P\-P now supports white listed communications. This can be configured at application or instance level, through the data in the {\bfseries kcc-\/white-\/list} node in your configuration file.
+
+Note\-: Where the {\bfseries kcc-\/white-\/list} node does not exist in your configurations, K\-I\-S\-S\-C\-P\-P will default to allowing all ip addresses and all instances of all applications.
+
+i.\-e. Not specifying a white list, leaves your application open to communication from all sources.
+
+Nested directly under {\bfseries kcc-\/white-\/list}, you have nodes to indicate\-:
+\begin{DoxyItemize}
+\item which ip addresses are allowed,
+\item which other applications are allowed,
+\item as well which instances of those applications are allowed.
+\item There are also nodes to specify that you want to allow all ip-\/addresses, applications and instances of an application.
+\end{DoxyItemize}
+
+\subsection*{I\-P white listing.}
+
+Please take note, you do need to specify either a list of allowed ip addresses, or explicitly set {\bfseries all-\/ip-\/addrs} to {\bfseries true}. If you neglect to have either of these in your configuration, your application simply won't start. The moment you have a {\bfseries kcc-\/white-\/list} node in your configuration, it is assumed that you do want to have white listed communications, and K\-I\-S\-S\-C\-P\-P expects you to be explicit with what should be allowed.
+
+\subsubsection*{Allowing all ip addresses}
+
+This is achieved through setting {\bfseries kcc-\/white-\/list.\-all-\/ip-\/addrs} to {\bfseries true}. 
+\begin{DoxyCode}
+\{
+  \textcolor{stringliteral}{"kcc-white-list"} : \{
+    \textcolor{stringliteral}{"all-ip-addrs"} : \textcolor{stringliteral}{"true"},
+    .
+    .
+    .
+    .
+  \}
+\}
+\end{DoxyCode}
+ Take note\-: If {\bfseries all-\/ip-\/addrs} is set to {\bfseries true} at either common or instance level configuration, it will take effect over any {\bfseries ip-\/list} configuration, at any level. To prevent problems, make sure to only have {\bfseries all-\/ip-\/addrs} in your configuration files, if you {\bfseries really} want all ip addresses to be allowed.
+
+\subsubsection*{Allowing only a set of ip addresses}
+
+In the example below, only communications from 127.\-0.\-0.\-1 and 192.\-168.\-1.\-10 will be allowed to do requests to your application. 
+\begin{DoxyCode}
+\{
+  \textcolor{stringliteral}{"kcc-white-list"} : \{
+    \textcolor{stringliteral}{"ip-list"}      : \{
+      \textcolor{stringliteral}{"ip"} : \textcolor{stringliteral}{"127.0.0.1"},
+      \textcolor{stringliteral}{"ip"} : \textcolor{stringliteral}{"192.168.1.10"}
+    \},
+    .
+    .
+    .
+    .
+  \}
+\}
+\end{DoxyCode}
+
+
+\subsection*{Application white listing.}
+
+Application white listing, works in conjunction with ip white listing. i.\-e. Even if an application is allowed, if it is not running on an allowed ip address, it will still be blocked.
+
+\subsubsection*{Allow all applications}
+
+Setting {\bfseries all-\/apps} to true, will result in all instances of all applications being allowed to communicate with your application. Also note that, as with {\bfseries all-\/ip-\/addrs}, if it is specified at any configuration level, it will take effect over all application-\/lists. i.\-e. Only have {\bfseries all-\/apps} in your configurations, if you really want all applications to be allowed. 
+\begin{DoxyCode}
+\{
+  \textcolor{stringliteral}{"kcc-white-list"} : \{
+    \textcolor{stringliteral}{"all-apps"}     : \textcolor{stringliteral}{"true"},
+      .
+      .
+      .
+      .
+  \}
+\}
+\end{DoxyCode}
+
+
+\subsubsection*{Allow only a set of applications, but all instances of each application}
+
+In the list below, only applications having the application id of {\bfseries foo} and {\bfseries bar} will be allowed, but all instances of those applications will be allowed. 
+\begin{DoxyCode}
+\{
+  \textcolor{stringliteral}{"kcc-white-list"} : \{
+    \textcolor{stringliteral}{"application-list"} : \{
+      \textcolor{stringliteral}{"application"} : \{
+        \textcolor{stringliteral}{"id"}            : \textcolor{stringliteral}{"foo"},
+        \textcolor{stringliteral}{"all-instances"} : \textcolor{stringliteral}{"true"}
+      \},
+      \textcolor{stringliteral}{"application"} : \{
+        \textcolor{stringliteral}{"id"}            : \textcolor{stringliteral}{"bar"},
+        \textcolor{stringliteral}{"all-instances"} : \textcolor{stringliteral}{"true"}
+      \},
+    \}
+    .
+    .
+    .
+    .
+  \}
+\}
+\end{DoxyCode}
+
+
+\subsubsection*{Allow only a set of applications, and only a set of instances for an application.}
+
+In the example below, only applications {\bfseries foo}, {\bfseries bar} and {\bfseries coolcats} will be allowed. For {\bfseries foo} only instances 3, 5 and 7 will be allowed. For {\bfseries bar} only instances 1, 2 and 3 will be allowed. On the other hand, any instance of {\bfseries coolcats} will be allowed. 
+\begin{DoxyCode}
+\{
+  \textcolor{stringliteral}{"kcc-white-list"} : \{
+    \textcolor{stringliteral}{"application-list"} : \{
+      \textcolor{stringliteral}{"application"} : \{
+        \textcolor{stringliteral}{"id"}            : \textcolor{stringliteral}{"foo"},
+        \textcolor{stringliteral}{"instance\_list"} : \{
+          \textcolor{stringliteral}{"id"} : \textcolor{stringliteral}{"3"},
+          \textcolor{stringliteral}{"id"} : \textcolor{stringliteral}{"5"},
+          \textcolor{stringliteral}{"id"} : \textcolor{stringliteral}{"7"},
+        \},
+      \},
+      \textcolor{stringliteral}{"application"} : \{
+        \textcolor{stringliteral}{"id"}            : \textcolor{stringliteral}{"bar"},
+        \textcolor{stringliteral}{"instance\_list"} : \{
+          \textcolor{stringliteral}{"id"} : \textcolor{stringliteral}{"1"},
+          \textcolor{stringliteral}{"id"} : \textcolor{stringliteral}{"2"},
+          \textcolor{stringliteral}{"id"} : \textcolor{stringliteral}{"3"},
+        \},
+      \},
+      \textcolor{stringliteral}{"application"} : \{
+        \textcolor{stringliteral}{"id"}            : \textcolor{stringliteral}{"coolcats"},
+        \textcolor{stringliteral}{"all-instances"} : \textcolor{stringliteral}{"true"}
+      \},
+    \}
+    .
+    .
+    .
+    .
+  \}
+\}
+\end{DoxyCode}
+
+
+\subsection*{Putting it all into practice.}
+
+\subsubsection*{Explicitly allowing everything.}
+
+This is the functional equivalent of excluding the {\bfseries kcc-\/white-\/list} node from you configuration. 
+\begin{DoxyCode}
+\{
+  \textcolor{stringliteral}{"kcc-white-list"} : \{
+    \textcolor{stringliteral}{"all-ip-addrs"} : \textcolor{stringliteral}{"true"},
+    \textcolor{stringliteral}{"all-apps"}     : \textcolor{stringliteral}{"true"}
+  \}
+\}
+\end{DoxyCode}
+
+
+\subsubsection*{Explicitly allowing all ip addresses, but limiting applications.}
+
+
+\begin{DoxyCode}
+\{
+  \textcolor{stringliteral}{"kcc-white-list"} : \{
+    \textcolor{stringliteral}{"all-ip-addrs"}     : \textcolor{stringliteral}{"true"},
+
+    \textcolor{stringliteral}{"application-list"} : \{
+      \textcolor{stringliteral}{"application"} : \{
+        \textcolor{stringliteral}{"id"}            : \textcolor{stringliteral}{"foo"},
+        \textcolor{stringliteral}{"instance\_list"} : \{
+          \textcolor{stringliteral}{"id"} : \textcolor{stringliteral}{"3"},
+          \textcolor{stringliteral}{"id"} : \textcolor{stringliteral}{"5"},
+          \textcolor{stringliteral}{"id"} : \textcolor{stringliteral}{"7"},
+        \},
+      \},
+      \textcolor{stringliteral}{"application"} : \{
+        \textcolor{stringliteral}{"id"}            : \textcolor{stringliteral}{"bar"},
+        \textcolor{stringliteral}{"instance\_list"} : \{
+          \textcolor{stringliteral}{"id"} : \textcolor{stringliteral}{"1"},
+          \textcolor{stringliteral}{"id"} : \textcolor{stringliteral}{"2"},
+          \textcolor{stringliteral}{"id"} : \textcolor{stringliteral}{"3"},
+        \},
+      \},
+    \}
+  \}
+\}
+\end{DoxyCode}
+
+
+\subsubsection*{Explicitly allowing all applications, but limiting ip addresses.}
+
+
+\begin{DoxyCode}
+\{
+  \textcolor{stringliteral}{"kcc-white-list"} : \{
+    \textcolor{stringliteral}{"ip-list"}      : \{
+      \textcolor{stringliteral}{"ip"} : \textcolor{stringliteral}{"127.0.0.1"},
+      \textcolor{stringliteral}{"ip"} : \textcolor{stringliteral}{"192.168.1.10"}
+    \},
+
+    \textcolor{stringliteral}{"all-apps"} : \textcolor{stringliteral}{"true"}
+  \}
+\}
+\end{DoxyCode}
+
+
+\subsubsection*{Limiting both ip and applications.}
+
+
+\begin{DoxyCode}
+\{
+  \textcolor{stringliteral}{"kcc-white-list"} : \{
+    \textcolor{stringliteral}{"ip-list"}      : \{
+      \textcolor{stringliteral}{"ip"} : \textcolor{stringliteral}{"127.0.0.1"},
+      \textcolor{stringliteral}{"ip"} : \textcolor{stringliteral}{"192.168.1.10"}
+    \},
+
+    \textcolor{stringliteral}{"application-list"} : \{
+      \textcolor{stringliteral}{"application"} : \{
+        \textcolor{stringliteral}{"id"}            : \textcolor{stringliteral}{"foo"},
+        \textcolor{stringliteral}{"all-instances"} : \textcolor{stringliteral}{"true"}
+      \},
+      \textcolor{stringliteral}{"application"} : \{
+        \textcolor{stringliteral}{"id"}            : \textcolor{stringliteral}{"bar"},
+        \textcolor{stringliteral}{"all-instances"} : \textcolor{stringliteral}{"true"}
+      \},
+    \}
+  \}
+\}
+\end{DoxyCode}
+
+
+\subsubsection*{Limiting ip, application and instances of allowed applications}
+
+
+\begin{DoxyCode}
+\{
+  \textcolor{stringliteral}{"kcc-white-list"} : \{
+    \textcolor{stringliteral}{"ip-list"}      : \{
+      \textcolor{stringliteral}{"ip"} : \textcolor{stringliteral}{"127.0.0.1"},
+      \textcolor{stringliteral}{"ip"} : \textcolor{stringliteral}{"192.168.1.10"}
+    \},
+
+    \textcolor{stringliteral}{"application-list"} : \{
+      \textcolor{stringliteral}{"application"} : \{
+        \textcolor{stringliteral}{"id"}            : \textcolor{stringliteral}{"foo"},
+        \textcolor{stringliteral}{"instance\_list"} : \{
+          \textcolor{stringliteral}{"id"} : \textcolor{stringliteral}{"3"},
+          \textcolor{stringliteral}{"id"} : \textcolor{stringliteral}{"5"},
+          \textcolor{stringliteral}{"id"} : \textcolor{stringliteral}{"7"},
+        \},
+      \},
+      \textcolor{stringliteral}{"application"} : \{
+        \textcolor{stringliteral}{"id"}            : \textcolor{stringliteral}{"bar"},
+        \textcolor{stringliteral}{"instance\_list"} : \{
+          \textcolor{stringliteral}{"id"} : \textcolor{stringliteral}{"1"},
+          \textcolor{stringliteral}{"id"} : \textcolor{stringliteral}{"2"},
+          \textcolor{stringliteral}{"id"} : \textcolor{stringliteral}{"3"},
+        \}
+      \}
+    \}
+  \}
+\}
+\end{DoxyCode}
+ 
