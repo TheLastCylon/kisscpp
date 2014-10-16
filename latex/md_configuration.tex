@@ -1,10 +1,12 @@
 \subsection*{Format}
 
-After much investigation and debate, J\-S\-O\-N was yet again selected as the preferred format. In the case of configuration files, we found that I\-N\-I format lacks the ability for nested records and X\-M\-L quickly becomes an unreadable mess. The only down side we have identified with the use of J\-S\-O\-N as a configuration file format, was it's lack of native support for comments. This is a shortcoming we are more than willing to live with. If you need comments in your configuration files, you actually need way more than just a configuration file.
+After much investigation and debate, J\-S\-O\-N was yet again selected as the preferred format. In the case of configuration files, we found that I\-N\-I format lacks the ability for nested records and X\-M\-L quickly becomes an unreadable mess. The only down side we have identified with the use of J\-S\-O\-N as a configuration file format, was it's lack of native support for comments. This is a shortcoming we are more than willing to live with.
 
 \subsection*{Reserved identifiers}
 
 The following are reserved identifiers, for use in configuration files\-: Note\-: The prefix of {\bfseries kcc} is shorthand for (K)iss(\-C)pp (C)onfiguration.
+
+{\itshape The {\bfseries kcc} prefix, is shorthand for (K)iss(\-C)pp (C)onfiguration. To prevent conflict between K\-I\-S\-S\-C\-P\-P specific configuration and your own application data, do not prefix any of your custom configuration variables with {\bfseries kcc}.}
 
 \begin{TabularC}{2}
 \hline
@@ -97,7 +99,7 @@ Thus, with all the above and {\bfseries K\-C\-P\-P\-\_\-\-E\-X\-E\-C\-\_\-\-E\-N
 Your application will look in\-:
 \begin{DoxyItemize}
 \item /put/configurations/here/foo/live
-\item for a files named
+\item for files named
 \begin{DoxyItemize}
 \item foo.\-common.\-kcppcfg and
 \item foo.\-bar.\-kcppcfg

@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['standard_20handlers',['Standard Handlers',['../md_standard_handlers.html',1,'']]],
   ['safeptreeq',['SafePtreeQ',['../namespacekisscpp.html#ac48ab954f4898861f383b80e857e17cc',1,'kisscpp']]],
   ['scopedptree',['ScopedPtree',['../boost__ptree_8hpp.html#a06832735f6e8ab6b981a6274310e2c36',1,'boost_ptree.hpp']]],
   ['scopedptreeq',['ScopedPtreeQ',['../namespacekisscpp.html#a64a7093fe1bdc3f323b469e800eebc7f',1,'kisscpp']]],
@@ -35,10 +36,11 @@ var searchData=
   ['src',['src',['../namespacekisscpp_1_1manip.html#a0660364105e23b9121ecf3d6d19858a5',1,'kisscpp::manip']]],
   ['standard_5fhandlers_2ecpp',['standard_handlers.cpp',['../standard__handlers_8cpp.html',1,'']]],
   ['standard_5fhandlers_2ehpp',['standard_handlers.hpp',['../standard__handlers_8hpp.html',1,'']]],
+  ['standard_5fhandlers_2emd',['standard_handlers.md',['../standard__handlers_8md.html',1,'']]],
   ['start',['start',['../classkisscpp_1_1_connection.html#aaad88f72fad4844f03e5dd55320caeae',1,'kisscpp::Connection::start()'],['../classkisscpp_1_1_stats_keeper.html#a1d75a31af13458128e88afaf95280357',1,'kisscpp::StatsKeeper::start()']]],
   ['statable_5fqueue_2ehpp',['statable_queue.hpp',['../statable__queue_8hpp.html',1,'']]],
-  ['statablequeue',['StatAbleQueue',['../classkisscpp_1_1_stat_able_queue.html#ac48bf84d284a91a49a3120c7d41f59ae',1,'kisscpp::StatAbleQueue']]],
   ['statablequeue',['StatAbleQueue',['../classkisscpp_1_1_stat_able_queue.html',1,'kisscpp']]],
+  ['statablequeue',['StatAbleQueue',['../classkisscpp_1_1_stat_able_queue.html#ac48bf84d284a91a49a3120c7d41f59ae',1,'kisscpp::StatAbleQueue']]],
   ['statshistorymaptype',['StatsHistoryMapType',['../namespacekisscpp.html#a8dbb864ea5d1e1fae0d3a1435bd295e7',1,'kisscpp']]],
   ['statshistorymaptypeiterator',['StatsHistoryMapTypeIterator',['../namespacekisscpp.html#ae45d7146f3abe3c95364c6ea280f7487',1,'kisscpp']]],
   ['statshistorytype',['StatsHistoryType',['../namespacekisscpp.html#a4629097b5a6697a8a1eefd9ac5b0a2b6',1,'kisscpp']]],
@@ -47,8 +49,8 @@ var searchData=
   ['statskeeper_2ehpp',['statskeeper.hpp',['../statskeeper_8hpp.html',1,'']]],
   ['statsmaptype',['StatsMapType',['../namespacekisscpp.html#adb9e851c391ea02ff8f961f1cd37ed8c',1,'kisscpp']]],
   ['statsmaptypeiterator',['StatsMapTypeIterator',['../namespacekisscpp.html#a674afcb960d0097e39ef66ab83af14be',1,'kisscpp']]],
-  ['statsreporter',['StatsReporter',['../classkisscpp_1_1_stats_reporter.html',1,'kisscpp']]],
   ['statsreporter',['StatsReporter',['../classkisscpp_1_1_stats_reporter.html#a07215d1f69aabea8e60a49a930d11401',1,'kisscpp::StatsReporter']]],
+  ['statsreporter',['StatsReporter',['../classkisscpp_1_1_stats_reporter.html',1,'kisscpp']]],
   ['stdc_5fheaders',['STDC_HEADERS',['../config_8h.html#a550e5c272cc3cf3814651721167dcd23',1,'config.h']]],
   ['stop',['stop',['../classkisscpp_1_1_io_service_pool.html#a683d0e39dabdb14b1c70fb8b7984cfee',1,'kisscpp::IoServicePool::stop()'],['../classkisscpp_1_1_server.html#aba167cdf551f3b29937c923ad7d18964',1,'kisscpp::Server::stop()'],['../classkisscpp_1_1_stats_keeper.html#a4f6a639706fc26b421bc9ab2f0ef9ca0',1,'kisscpp::StatsKeeper::stop()']]]
 ];

@@ -1,0 +1,166 @@
+All but the most trivial of applications, require logging at some level. K\-I\-S\-S\-C\-P\-P has been designed with logging in mind, and presents the developer with a mechanism that closely emulates C++ streams, through the use of the Log\-Stream class.
+
+Each K\-I\-S\-S\-C\-P\-P application is restricted to having one log file, but you can log to that file, from anywhere in the application.
+
+\subsection*{Introduciton to log levels}
+
+There are nine log levels, divided into three log types and each log type has three severity levels.
+
+The three types of logs are {\itshape error}, {\itshape info} and {\itshape debug}. Refer to the table below for more detail on each.
+
+\begin{TabularC}{2}
+\hline
+\rowcolor{lightgray}\PBS\centering {\bf {\bfseries Log Type} }&{\bf {\bfseries Purpose}  }\\\cline{1-2}
+\PBS\centering error &Used to log actual processing errors, logs of this type are always at a higher log level than other log types. \\\cline{1-2}
+\PBS\centering info &For logging things that are valuable information on a live system. Typically things like business logic events. \\\cline{1-2}
+\PBS\centering debug &For use during development and stabilization of your applications. You should not be using this log type on a production system. \\\cline{1-2}
+\end{TabularC}
+Each of the above log types have three levels of severity associated with them. Those severities are {\itshape low}, {\itshape normal} and {\itshape high}.
+
+The combination of a log type and severity, gives you a logging level. The table bellow shows the various log levels associated with a type and severity combination.
+
+\begin{TabularC}{3}
+\hline
+\rowcolor{lightgray}\PBS\centering {\bf Log Level }&\PBS\centering {\bf Type }&\PBS\centering {\bf Severity  }\\\cline{1-3}
+\PBS\centering 9 &\PBS\centering error &\PBS\centering high \\\cline{1-3}
+\PBS\centering 8 &\PBS\centering error &\PBS\centering normal \\\cline{1-3}
+\PBS\centering 7 &\PBS\centering error &\PBS\centering low \\\cline{1-3}
+\PBS\centering 6 &\PBS\centering info &\PBS\centering high \\\cline{1-3}
+\PBS\centering {\bfseries 5} &\PBS\centering {\bfseries info} &\PBS\centering {\bfseries normal} \\\cline{1-3}
+\PBS\centering 4 &\PBS\centering info &\PBS\centering low \\\cline{1-3}
+\PBS\centering 3 &\PBS\centering debug &\PBS\centering high \\\cline{1-3}
+\PBS\centering 2 &\PBS\centering debug &\PBS\centering normal \\\cline{1-3}
+\PBS\centering 1 &\PBS\centering debug &\PBS\centering low \\\cline{1-3}
+\end{TabularC}
+K\-I\-S\-S\-C\-P\-P defaults to a logging level of 5.
+
+i.\-e. logs of type {\bfseries info} with severity {\bfseries normal}, or combinations that result in a higher log level, will be written.
+
+Yes, that is honestly how simple it is. K\-I\-S\-S\-C\-P\-P {\bfseries will not support} the ridiculous number of logging levels supplied by other libraries. If a developer can not work with only 9 log levels, 15 levels won't be enough either. There will be no support for so called \char`\"{}log filtering\char`\"{} either. Filtering huge amounts of text is well covered by tools like {\bfseries grep}, {\bfseries sed} and {\bfseries awk}. Even the most stringent logging practices, are easily managed with those tools.
+
+\subsection*{Using logging in your programs.}
+
+The header file you'll be needing is\-: 
+\begin{DoxyCode}
+\textcolor{preprocessor}{#include <\hyperlink{logstream_8hpp}{kisscpp/logstream.hpp}>}
+\end{DoxyCode}
+
+
+And here is an example of some code\-: 
+\begin{DoxyCode}
+\textcolor{keywordtype}{void} myFunction()
+\{
+  \hyperlink{classkisscpp_1_1_log_stream}{kisscpp::LogStream} my\_log(\_\_PRETTY\_FUNCTION\_\_);                    \textcolor{comment}{// Instantiate a
+       LogStream class.}
+                                                                     \textcolor{comment}{// Technically you can set the log
+       source to be any arbitrary string here.}
+                                                                     \textcolor{comment}{// Setting it to the value of
+       \_\_PRETTY\_FUNCTION\_\_ is good practice though,}
+                                                                     \textcolor{comment}{// and you should be doing it.}
+
+  my\_log << \hyperlink{namespacekisscpp_1_1manip_aee465aa1a8d15e1750422696f7d3dc81}{kisscpp::manip::info\_normal}                              \textcolor{comment}{// Set the
+       level of this log line}
+                                                                     \textcolor{comment}{// Untill you change it, this will be
+       the log level of all subsiquent log lines, logged}
+                                                                     \textcolor{comment}{// using this instance of LogStream.}
+         << \textcolor{stringliteral}{"This is an informational log, at normal severity"}       \textcolor{comment}{// Log your message.}
+         << \hyperlink{namespacekisscpp_1_1manip_ad682f16cb474bc7ff2c991ad2c45db66}{kisscpp::manip::endl};                                    \textcolor{comment}{// Mark the end of
+       your log line.}
+
+  my\_log << \textcolor{stringliteral}{"This is still an informational log, at normal severity"} \textcolor{comment}{// Another log message}
+         << \hyperlink{namespacekisscpp_1_1manip_ad682f16cb474bc7ff2c991ad2c45db66}{kisscpp::manip::endl};                                    \textcolor{comment}{// Mark the end of
+       your log line.}
+
+  my\_log << \hyperlink{namespacekisscpp_1_1manip_aaf086b98ab45fa8c08557762e019afb7}{kisscpp::manip::debug\_high}                               \textcolor{comment}{// Set the
+       log level again.}
+         << \textcolor{stringliteral}{"This is now a debug log, at high severity"}              \textcolor{comment}{// Another message.}
+         << \hyperlink{namespacekisscpp_1_1manip_ad682f16cb474bc7ff2c991ad2c45db66}{kisscpp::manip::endl};                                    \textcolor{comment}{// Mark the end of
+       your log line.}
+
+  my\_log << \textcolor{stringliteral}{"This is still a debug log, at high severity"}            \textcolor{comment}{// Another message.}
+         << \hyperlink{namespacekisscpp_1_1manip_a416806b7a937a2437ffadb9b523e1cf3}{kisscpp::manip::flush};                                   \textcolor{comment}{// Force a flush
+       of the content of the log buffer to file.}
+\}
+\end{DoxyCode}
+
+
+\subsection*{Log line format}
+
+
+\begin{DoxyCode}
+<ISO Formatted Time-stamp> [<log \hyperlink{namespacekisscpp_1_1manip_1_1helpers_a97784407250b5ea47c0b20441a7472e5}{source} identifier>] <+|-|:> <message>
+\end{DoxyCode}
+
+
+Where\-:
+\begin{DoxyItemize}
+\item (+) Indicates the point at which the Log\-Stream object is created.
+\item (-\/) Indicates the point at which the Log\-Stream object is destroyed.
+\item (\-:) Indicates a log line sent at a point between (+) and (-\/)
+\end{DoxyItemize}
+
+e.\-g. 
+\begin{DoxyCode}
+20141013T154716.537732 [\textcolor{keywordtype}{void} myFunction()] +
+20141013T154716.537732 [\textcolor{keywordtype}{void} myFunction()] : This is an informational log, at 
+      \hyperlink{namespacekisscpp_1_1manip_a8f9aa3f28fd54225dee006e014efcf65}{normal} severity
+20141013T154716.537732 [\textcolor{keywordtype}{void} myFunction()] : This is still an informational log, at 
+      \hyperlink{namespacekisscpp_1_1manip_a8f9aa3f28fd54225dee006e014efcf65}{normal} severity
+20141013T154716.537732 [\textcolor{keywordtype}{void} myFunction()] : This is now a \hyperlink{namespacekisscpp_1_1manip_a795be5b59b6a02e1d8f6d9d5bb41c3a4}{debug} log, at 
+      \hyperlink{namespacekisscpp_1_1manip_a210331dfe6a9773c4e8e1db1e889820b}{high} severity
+20141013T154716.537732 [\textcolor{keywordtype}{void} myFunction()] : This is still a \hyperlink{namespacekisscpp_1_1manip_a795be5b59b6a02e1d8f6d9d5bb41c3a4}{debug} log, at 
+      \hyperlink{namespacekisscpp_1_1manip_a210331dfe6a9773c4e8e1db1e889820b}{high} severity
+20141013T154716.537732 [\textcolor{keywordtype}{void} myFunction()] -
+\end{DoxyCode}
+
+
+\subsection*{Log file naming standard}
+
+K\-I\-S\-S\-C\-P\-P applications will have log files named as follows\-:
+
+
+\begin{DoxyCode}
+<application-\textcolor{keywordtype}{id}>.<application-instance-\textcolor{keywordtype}{id}>.log
+\end{DoxyCode}
+
+
+i.\-e. An application with the id {\bfseries foo}, being executed with an instance identifier of {\bfseries bar} will write to a log file named\-:
+
+
+\begin{DoxyCode}
+foo.bar.log
+\end{DoxyCode}
+
+
+\subsection*{Log file location}
+
+As with configuration files K\-I\-S\-S\-C\-P\-P has to consider more than just the developer. So here again, we have to enforce some standards. You will therefore only have control over the root directory where log files reside.
+
+The default directory for logging, regardless of operating system, is $\ast$$\ast$/tmp$\ast$$\ast$. This can be over ridden through the use of the {\bfseries K\-C\-P\-P\-\_\-\-L\-O\-G\-\_\-\-R\-O\-O\-T} and {\bfseries K\-C\-P\-P\-\_\-\-E\-X\-E\-C\-\_\-\-E\-N\-V} environment variables.
+
+The log file path, is constructed thus\-:
+
+
+\begin{DoxyItemize}
+\item Where {\bfseries K\-C\-P\-P\-\_\-\-L\-O\-G\-\_\-\-R\-O\-O\-T} and {\bfseries K\-C\-P\-P\-\_\-\-E\-X\-E\-C\-\_\-\-E\-N\-V} are used\-: \$\-K\-C\-P\-P\-\_\-\-L\-O\-G\-\_\-\-R\-O\-O\-T/$<$application-\/id$>$/\$\-K\-C\-P\-P\-\_\-\-E\-X\-E\-C\-\_\-\-E\-N\-V/$<$application-\/log-\/file-\/name$>$
+\item Where only {\bfseries K\-C\-P\-P\-\_\-\-L\-O\-G\-\_\-\-R\-O\-O\-T} is used\-: \$\-K\-C\-P\-P\-\_\-\-L\-O\-G\-\_\-\-R\-O\-O\-T/$<$application-\/id$>$/$<$application-\/log-\/file-\/name$>$
+\item Where {\bfseries K\-C\-P\-P\-\_\-\-L\-O\-G\-\_\-\-R\-O\-O\-T} is not used\-: /tmp/$<$application-\/id$>$/$<$application-\/log-\/file-\/name$>$
+\end{DoxyItemize}
+
+That means, when you have a K\-I\-S\-S\-C\-P\-P application with the name {\bfseries foo} and you start instance {\bfseries bar} of it, while having {\bfseries K\-C\-P\-P\-\_\-\-L\-O\-G\-\_\-\-R\-O\-O\-T} set to {\bfseries /put/logfiles/here}
+
+Your application will place log files in\-:
+\begin{DoxyItemize}
+\item /put/logfiles/here/foo
+\item and the log file name will be\-: foo.\-bar.\-log
+\end{DoxyItemize}
+
+Meaning that the full path to the log file will be\-:
+\begin{DoxyItemize}
+\item /put/logfiles/here/foo/foo.bar.\-log
+\end{DoxyItemize}
+
+If you take the extra measure of using {\bfseries K\-C\-P\-P\-\_\-\-E\-X\-E\-C\-\_\-\-E\-N\-V} and set it to a value {\bfseries live}, your application will write that same log file to\-:
+\begin{DoxyItemize}
+\item /put/logfiles/here/foo/live/foo.bar.\-log 
+\end{DoxyItemize}

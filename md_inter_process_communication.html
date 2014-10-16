@@ -89,7 +89,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>All software needs debugging at some point, and as such, needs to be read by humans. i.e. Human readable comms protocols are important, and KISSCPP will provide.</p>
 <p>This however, does not exclude the possibility of non-human readable protocols being used in the future, if such becomes available in the boost property tree tools.</p>
 <h2>Reserved identifiers.</h2>
-<p>Within the context of JSON as a protocol, we need to standardise on a few identifiers, in order to make sure we can handle communication basics. Note: The prefix of <b>kcm</b> is shorthand for (K)iss(C)pp (M)essage.</p>
+<p>Within the context of JSON as a protocol, we need to standardise on a few identifiers, in order to make sure we can handle communication basics. Note:</p>
+<p><em>The <b>kcm</b> prefix, is shorthand for (K)iss(C)pp (M)essage. To prevent conflict between KISSCPP specific communications and your own application data, do not prefix any of your custom configuration variables with <b>kcm</b>.</em></p>
 <table class="doxtable">
 <tr>
 <th>Identifier </th><th>Required in </th><th>purpose/meaning </th><th>Description </th><th>typical values  </th></tr>
@@ -127,7 +128,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Oct 15 2014 10:54:02 for KISSCPP by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Oct 16 2014 15:17:35 for KISSCPP by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

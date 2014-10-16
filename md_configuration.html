@@ -81,9 +81,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><h2>Format</h2>
-<p>After much investigation and debate, JSON was yet again selected as the preferred format. In the case of configuration files, we found that INI format lacks the ability for nested records and XML quickly becomes an unreadable mess. The only down side we have identified with the use of JSON as a configuration file format, was it's lack of native support for comments. This is a shortcoming we are more than willing to live with. If you need comments in your configuration files, you actually need way more than just a configuration file.</p>
+<p>After much investigation and debate, JSON was yet again selected as the preferred format. In the case of configuration files, we found that INI format lacks the ability for nested records and XML quickly becomes an unreadable mess. The only down side we have identified with the use of JSON as a configuration file format, was it's lack of native support for comments. This is a shortcoming we are more than willing to live with.</p>
 <h2>Reserved identifiers</h2>
 <p>The following are reserved identifiers, for use in configuration files: Note: The prefix of <b>kcc</b> is shorthand for (K)iss(C)pp (C)onfiguration.</p>
+<p><em>The <b>kcc</b> prefix, is shorthand for (K)iss(C)pp (C)onfiguration. To prevent conflict between KISSCPP specific configuration and your own application data, do not prefix any of your custom configuration variables with <b>kcc</b>.</em></p>
 <table class="doxtable">
 <tr>
 <th><b>Identifier</b> </th><th><b>Description</b>  </th></tr>
@@ -148,7 +149,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>Your application will look in:</p>
 <ul>
 <li>/put/configurations/here/foo/live</li>
-<li>for a files named<ul>
+<li>for files named<ul>
 <li>foo.common.kcppcfg and</li>
 <li>foo.bar.kcppcfg</li>
 </ul>
@@ -213,7 +214,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --> </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Oct 15 2014 10:54:02 for KISSCPP by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Oct 16 2014 15:17:35 for KISSCPP by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
