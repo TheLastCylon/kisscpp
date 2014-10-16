@@ -31,7 +31,10 @@ tools.
 
 Within the context of JSON as a protocol, we need to standardise on a few
 identifiers, in order to make sure we can handle communication basics.
-Note: The prefix of **kcm** is shorthand for (K)iss(C)pp (M)essage.
+Note:
+
+_The **kcm** prefix, is shorthand for (K)iss(C)pp (M)essage. To prevent conflict between KISSCPP specific communications
+and your own application data, do not prefix any of your custom configuration variables with **kcm**._
 
 | Identifier          | Required in                  | purpose/meaning         | Description                                                                                          | typical values       |
 |---------------------|------------------------------|-------------------------|------------------------------------------------------------------------------------------------------|----------------------|

@@ -2,17 +2,22 @@
 
 ## Format
 
-After much investigation and debate, JSON was yet again selected as the preferred format.
-In the case of configuration files, we found that INI format lacks the ability for nested records
-and XML quickly becomes an unreadable mess. The only down side we have identified with the use of
-JSON as a configuration file format, was it's lack of native support for comments. This is a
-shortcoming we are more than willing to live with. If you need comments in your configuration
-files, you actually need way more than just a configuration file.
+After much investigation and debate, JSON was yet again selected as the
+preferred format. In the case of configuration files, we found that INI format
+lacks the ability for nested records and XML quickly becomes an unreadable mess.
+The only down side we have identified with the use of JSON as a configuration
+file format, was it's lack of native support for comments. This is a shortcoming
+we are more than willing to live with.
 
 ## Reserved identifiers
 
 The following are reserved identifiers, for use in configuration files:
 Note: The prefix of **kcc** is shorthand for (K)iss(C)pp (C)onfiguration.
+
+_The **kcc** prefix, is shorthand for (K)iss(C)pp (C)onfiguration. To prevent
+conflict between KISSCPP specific configuration and your own application data, do
+not prefix any of your custom configuration variables with **kcc**._
+
 
 | **Identifier**          | **Description**                                                                                                                     |
 |-------------------------|-------------------------------------------------------------------------------------------------------------------------------------|

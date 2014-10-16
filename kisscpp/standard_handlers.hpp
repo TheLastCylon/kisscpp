@@ -7,9 +7,6 @@
 #include <boost/shared_ptr.hpp>
 #include <boost/algorithm/string.hpp>    
 
-
-
-
 #include "logstream.hpp"
 #include "request_handler.hpp"
 #include "request_router.hpp"
@@ -25,7 +22,7 @@ namespace kisscpp
   {
     public:
       StatsReporter() :
-        RequestHandler("get_statistics", "retrieves the application statistics")
+        RequestHandler("kch-statistics", "retrieves the application statistics")
       {
         LogStream log(__PRETTY_FUNCTION__);
       }
@@ -45,7 +42,7 @@ namespace kisscpp
   {
     public:
       ErrorReporter() :
-        RequestHandler("get_err_states", "retrieves the application error states")
+        RequestHandler("kch-status", "retrieves the application error states")
       {
         LogStream log(__PRETTY_FUNCTION__);
       }
@@ -62,7 +59,7 @@ namespace kisscpp
   {
     public:
       HandlerReporter(RequestRouter &rr) :
-        RequestHandler("show_handlers", "shows a list of the request handlers for this application"),
+        RequestHandler("kch-handlers", "shows a list of the request handlers for this application"),
         requestRouter(rr)
       {
         LogStream log(__PRETTY_FUNCTION__);
@@ -81,7 +78,7 @@ namespace kisscpp
   {
     public:
       LogLevelAdjuster() :
-        RequestHandler("set_log_level", "Adjust the log level to specified levels")
+        RequestHandler("kch-loglevel", "Adjust the log level to specified levels")
       {
         LogStream log(__PRETTY_FUNCTION__);
       }
@@ -92,7 +89,6 @@ namespace kisscpp
     protected:
     private:
   };
-
 }
 
 #endif // _STANDARD_HANDLERS_HPP_
