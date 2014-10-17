@@ -9,7 +9,7 @@ namespace kisscpp
 
     try {
 
-      std::string stat_type = request.get<std::string>("type");
+      std::string stat_type = request.get<std::string>("type","current");
 
       response.put("kcm-sts" , RQST_SUCCESS);
 
@@ -79,6 +79,42 @@ namespace kisscpp
       for(ErrorListMapIterator itr = selm->begin(); itr != selm->end(); ++itr) {
         response.put(itr->first, itr->second);
       }
+
+    } catch (boost::property_tree::ptree_bad_path &e) {
+
+      log << "Exception: " << e.what() << manip::endl;
+      response.put("kcm-sts", RQST_MISSING_PARAMETER);
+      response.put("kcm-erm", e.what());
+
+    } catch (std::exception& e) {
+
+      log << "Exception: " << e.what() << manip::endl;
+      response.put("kcm-sts", RQST_UNKNOWN);                    
+      response.put("kcm-erm", e.what());
+    }
+  }
+
+  //--------------------------------------------------------------------------------
+  void ErrorCleaner::run(const BoostPtree &request, BoostPtree &response)
+  {
+    LogStream log(__PRETTY_FUNCTION__);
+
+    try {
+      std::string  error_id            = request.get<std::string>("kcm-clear-error.id");
+      std::string  number_to_clear_str = request.get<std::string>("kcm-clear-error.count","all");
+      unsigned int number_to_clear_num = 0;
+
+      boost::algorithm::to_lower(error_id);
+      boost::algorithm::to_lower(number_to_clear_str);
+
+      if(number_to_clear_str == "all") {
+        kisscpp::ErrorStateList::instance()->clear_all(error_id);
+      } else {
+        number_to_clear_num = request.get<unsigned int>("kcm-clear-error.count");
+        kisscpp::ErrorStateList::instance()->clear(error_id, number_to_clear_num);
+      }
+
+      response.put("kcm-sts" , RQST_SUCCESS);
 
     } catch (boost::property_tree::ptree_bad_path &e) {
 

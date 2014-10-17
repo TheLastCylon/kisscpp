@@ -22,7 +22,7 @@ namespace kisscpp
   {
     public:
       StatsReporter() :
-        RequestHandler("kch-statistics", "retrieves the application statistics")
+        RequestHandler("kch-stats", "retrieves the application statistics")
       {
         LogStream log(__PRETTY_FUNCTION__);
       }
@@ -42,12 +42,29 @@ namespace kisscpp
   {
     public:
       ErrorReporter() :
-        RequestHandler("kch-status", "retrieves the application error states")
+        RequestHandler("kch-errstat", "retrieves the application error states")
       {
         LogStream log(__PRETTY_FUNCTION__);
       }
 
       ~ErrorReporter() {};
+
+      void run(const BoostPtree &request, BoostPtree &response);
+    protected:
+    private:
+  };
+
+  //--------------------------------------------------------------------------------
+  class ErrorCleaner : public RequestHandler
+  {
+    public:
+      ErrorCleaner() :
+        RequestHandler("kch-errclear", "Used to marks an application error state as cleared.")
+      {
+        LogStream log(__PRETTY_FUNCTION__);
+      }
+
+      ~ErrorCleaner() {};
 
       void run(const BoostPtree &request, BoostPtree &response);
     protected:

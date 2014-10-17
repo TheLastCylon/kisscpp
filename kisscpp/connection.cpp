@@ -71,22 +71,36 @@ namespace kisscpp
         ss << ts;
         read_json(ss, parsed_request_);
 
-        if(allowedClient()) {
+        try {
+          if(allowedClient()) {
+         
+            request_router_.route_request(parsed_request_, raw_response_);
+         
+          } else {
+         
+            log << manip::info_normal
+                << "Request denied for client ["
+                << parsed_request_.get<std::string>("kcm-client.id")
+                << "] instance ["
+                << parsed_request_.get<std::string>("kcm-client.instance")
+                << "]"
+                << manip::endl;
+         
+            raw_response_.put("kcm-sts", RQST_CLIENT_DENIED);
+            raw_response_.put("kcm-erm", "Request denied: Your application and/or instance id is not in my white-list.");
+         
+          }
+        } catch (boost::property_tree::ptree_bad_path &e) {
 
-          request_router_.route_request(parsed_request_, raw_response_);
-
-        } else {
-
-          log << manip::info_normal
-              << "Request denied for client ["
-              << parsed_request_.get<std::string>("kcm-client.id")
-              << "] instance ["
-              << parsed_request_.get<std::string>("kcm-client.instance")
-              << "]"
-              << manip::endl;
+          log << manip::error_normal << "Reqest does not contain kcm-client data." << e.what() << endl;
 
           raw_response_.put("kcm-sts", RQST_CLIENT_DENIED);
-          raw_response_.put("kcm-erm", "Your application and/or instance id is not in my white-list.");
+          raw_response_.put("kcm-erm", "Request denied: Your request does not contain kcm-client data.");
+
+          write_json(response, raw_response_, false);
+          log << manip::info_normal << "Sending response: " << response.str() << manip::endl; 
+          encoded_response_ << response.str();
+          boost::asio::write(socket_, outgoing_stream_buffer_, boost::asio::transfer_all());
 
         }
 
@@ -99,7 +113,7 @@ namespace kisscpp
             << manip::endl;
 
         raw_response_.put("kcm-sts", RQST_CLIENT_DENIED);
-        raw_response_.put("kcm-erm", "Your IP address is not in my white-list.");
+        raw_response_.put("kcm-erm", "Request denied: Your IP address is not in my white-list.");
 
       }
 

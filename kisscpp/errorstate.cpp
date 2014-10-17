@@ -33,44 +33,56 @@ namespace kisscpp
   }
 
   //--------------------------------------------------------------------------------
-  void ErrorStateList::set(std::string id)
+  void ErrorStateList::set(const std::string &id)
   {
     boost::lock_guard<boost::mutex> guard(errorMutex);
-    if(errorStateMap.find(id) != errorStateMap.end()) {
+    std::string                     err_id = id;
+
+    boost::algorithm::to_lower(err_id);
+
+    if(errorStateMap.find(err_id) != errorStateMap.end()) {
       errorStateMap[id]->set();
     } else {
       SharedErrorState tempErrorState;
-      tempErrorState.reset(new ErrorState(id));
+      tempErrorState.reset(new ErrorState(err_id));
       errorStateMap[id] = tempErrorState;
       errorStateMap[id]->set();
     }
   }
 
   //--------------------------------------------------------------------------------
-  void ErrorStateList::clear(std::string id, unsigned int amount /*= 1*/)
+  void ErrorStateList::clear(const std::string &id, const unsigned int &amount /*= 1*/)
   {
     boost::lock_guard<boost::mutex> guard(errorMutex);
-    if(errorStateMap.find(id) != errorStateMap.end()) {
-      errorStateMap[id]->clear(amount);
+    std::string                     err_id = id;
+
+    boost::algorithm::to_lower(err_id);
+
+    if(errorStateMap.find(err_id) != errorStateMap.end()) {
+      errorStateMap[err_id]->clear(amount);
     } else {
       SharedErrorState tempErrorState;
-      tempErrorState.reset(new ErrorState(id));
-      errorStateMap[id] = tempErrorState;
-      errorStateMap[id]->clear(amount);
+      tempErrorState.reset(new ErrorState(err_id));
+      errorStateMap[err_id] = tempErrorState;
+      errorStateMap[err_id]->clear(amount);
     }
   }
 
   //--------------------------------------------------------------------------------
-  void ErrorStateList::clear_all(std::string id)
+  void ErrorStateList::clear_all(const std::string &id)
   {
     boost::lock_guard<boost::mutex> guard(errorMutex);
-    if(errorStateMap.find(id) != errorStateMap.end()) {
-      errorStateMap[id]->clear_all();
+    std::string                     err_id = id;
+
+    boost::algorithm::to_lower(err_id);
+
+    if(errorStateMap.find(err_id) != errorStateMap.end()) {
+      errorStateMap[err_id]->clear_all();
     } else {
       SharedErrorState tempErrorState;
-      tempErrorState.reset(new ErrorState(id));
-      errorStateMap[id] = tempErrorState;
-      errorStateMap[id]->clear_all();
+      tempErrorState.reset(new ErrorState(err_id));
+      errorStateMap[err_id] = tempErrorState;
+      errorStateMap[err_id]->clear_all();
     }
   }
 

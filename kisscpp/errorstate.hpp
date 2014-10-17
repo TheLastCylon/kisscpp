@@ -21,6 +21,7 @@
 
 #include <string>
 #include <map>
+#include <boost/algorithm/string.hpp>    
 #include <boost/thread/mutex.hpp>
 #include <boost/thread/locks.hpp>
 #include <boost/shared_ptr.hpp>
@@ -33,15 +34,15 @@ namespace kisscpp
   class ErrorState
   {
     public:
-      ErrorState(std::string _id) : id(_id), count(0) {}
+      ErrorState(const std::string &_id) : id(_id), count(0) {}
 
       ~ErrorState() {};
 
-      void         set        ()                        { count++; }
-      void         clear      (unsigned int amount = 1) { count = count - amount; }
-      void         clear_all  ()                        { count = 0; }
-      unsigned int getSetCount()                        { return count; }
-      bool         isSet      ()                        { return (count > 0); }
+      void         set        ()                               { count++; }
+      void         clear      (const unsigned int &amount = 1) { count = count - amount; }
+      void         clear_all  ()                               { count = 0; }
+      unsigned int getSetCount()                               { return count; }
+      bool         isSet      ()                               { return (count > 0); }
 
     protected:
     private:
@@ -65,9 +66,9 @@ namespace kisscpp
 
       ~ErrorStateList() { kisscpp::LogStream log(__PRETTY_FUNCTION__); }
 
-      void               set      (std::string id);
-      void               clear    (std::string id, unsigned int amount = 1);
-      void               clear_all(std::string id);
+      void               set      (const std::string &id);
+      void               clear    (const std::string &id, const unsigned int &amount = 1);
+      void               clear_all(const std::string &id);
       SharedErrorListMap getStates();
 
     protected:
