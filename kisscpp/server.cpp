@@ -255,6 +255,11 @@ namespace kisscpp
     std::string  logFileRoot   = "/tmp";
     std::string  logFileName   = Config::instance()->getAppId()       + "." +
                                  Config::instance()->getAppInstance() + ".log";
+
+    std::string  logType       = Config::instance()->get<std::string> ("kcc-log-level.type"     ,"info");
+    std::string  logSeverity   = Config::instance()->get<std::string> ("kcc-log-level.severity" ,"low");
+    unsigned int maxLinesBuff  = Config::instance()->get<unsigned int>("kcc-log-level.buff-size",5000);
+
     char        *kcpp_log_root = std::getenv("KCPP_LOG_ROOT");
     char        *kcpp_exec_env = std::getenv("KCPP_EXEC_ENV");
     bfs::path    logFileRootPath;
@@ -276,7 +281,13 @@ namespace kisscpp
 
     logFilePath  = logFileRoot + "/" + logFileName;
 
-    kisscpp::LogStream log(__PRETTY_FUNCTION__, logFilePath.native(), log2console);
+    kisscpp::LogStream log(__PRETTY_FUNCTION__,
+                           logFilePath.native(),
+                           log2console,
+                           maxLinesBuff);
+
+    log.setMessageType(logType    , true);
+    log.setSeverity   (logSeverity, true);
   }
 
   //--------------------------------------------------------------------------------

@@ -30,6 +30,28 @@ namespace kisscpp
   unsigned int            LogStream::maxBufferSize;
 
   //--------------------------------------------------------------------------------
+  LogStream& LogStream::setMessageType(std::string mt, const bool permanent /*= false*/)
+  {
+    boost::algorithm::to_lower(mt);
+
+    if     (mt == "debug") { return setMessageType(LT_DEBUG , permanent); }
+    else if(mt == "info" ) { return setMessageType(LT_INFO  , permanent); }
+    else if(mt == "error") { return setMessageType(LT_ERROR , permanent); }
+    else                   { return setMessageType(LT_INFO  , permanent); } // yes, this default to info level is intentional
+  }
+
+  //--------------------------------------------------------------------------------
+  LogStream& LogStream::setSeverity(std::string ms, const bool permanent /*= false*/)
+  {
+    boost::algorithm::to_lower(ms);
+
+    if     (ms == "high"  ) { return setSeverity(LS_HIGH  , permanent); }
+    else if(ms == "normal") { return setSeverity(LS_NORMAL, permanent); }
+    else if(ms == "low"   ) { return setSeverity(LS_LOW   , permanent); }
+    else                    { return setSeverity(LS_LOW   , permanent); } // yes, this default to low is intentional
+  }
+
+  //--------------------------------------------------------------------------------
   void LogStream::set2ReOpen()
   {
     boost::lock_guard<boost::mutex> guard(objMutex);

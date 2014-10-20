@@ -27,6 +27,7 @@ not prefix any of your custom configuration variables with **kcc**._
 |kcc-stats.history-length | Number of historic stats gatherings to keep.                                                                                        |
 |kcc-log-level.type       | The default type limitation on logs.                                                                                                |
 |kcc-log-level.severity   | The default severity limitation on logs.                                                                                            |
+|kcc-log-level.buff-size  | The number of log lines to buffer, before writing to disk.                                                                          |
 |kcc-white-list           | A root node containing data regarding white list communications. More detail available [here](md_white_listed_communications.html). |
 
 ## Configuration file naming standard

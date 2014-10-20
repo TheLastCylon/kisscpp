@@ -28,6 +28,7 @@
 #include <boost/thread/mutex.hpp>
 #include <boost/thread/locks.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
+#include <boost/algorithm/string.hpp>
 
 #define DEFAULT_MAX_BUFF_SIZE 5000
 
@@ -251,10 +252,12 @@ namespace kisscpp
       LogStreamSettings& getTempSettings()               { return lssPerm; }
 
       // setter methods
-      LogStream& setMessageType    (log_type           mt, const bool perminant = false) { if(perminant) { lssPerm.setMessageType(mt);} lssTemp.setMessageType(mt); return *this; }
-      LogStream& setSeverity       (log_severity       ms, const bool perminant = false) { if(perminant) { lssPerm.setSeverity   (ms);} lssTemp.setSeverity   (ms); return *this; }
-      LogStream& setEntityName     (const std::string& en, const bool perminant = false) { if(perminant) { lssPerm.setEntityName (en);} lssTemp.setEntityName (en); return *this; }
-      LogStream& setSource         (const std::string& s , const bool perminant = false) { if(perminant) { lssPerm.setSource     (s) ;} lssTemp.setSource     (s) ; return *this; }
+      LogStream& setMessageType    (std::string        mt, const bool permanent = false);
+      LogStream& setSeverity       (std::string        ms, const bool permanent = false);
+      LogStream& setMessageType    (log_type           mt, const bool permanent = false) { if(permanent) { lssPerm.setMessageType(mt);} lssTemp.setMessageType(mt); return *this; }
+      LogStream& setSeverity       (log_severity       ms, const bool permanent = false) { if(permanent) { lssPerm.setSeverity   (ms);} lssTemp.setSeverity   (ms); return *this; }
+      LogStream& setEntityName     (const std::string& en, const bool permanent = false) { if(permanent) { lssPerm.setEntityName (en);} lssTemp.setEntityName (en); return *this; }
+      LogStream& setSource         (const std::string& s , const bool permanent = false) { if(permanent) { lssPerm.setSource     (s) ;} lssTemp.setSource     (s) ; return *this; }
       LogStream& setLevel          (manip_func1        f)                                { f(*this, true); return *this; }
 
       void       setOutFilePath    (std::string        path)                             { outFilePath     = path; };
