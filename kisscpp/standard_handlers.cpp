@@ -172,25 +172,26 @@ namespace kisscpp
       std::string newLogType       = request.get<std::string>("type");
       std::string newLogSeverity   = request.get<std::string>("severity");
 
-      boost::algorithm::to_lower(newLogType);
-      boost::algorithm::to_lower(newLogSeverity);
+      if(newLogType == "debug" ||
+         newLogType == "info"  ||
+         newLogType == "error") {
 
-      if     (newLogType     == "debug" ) { log.setMessageType(LT_DEBUG ,true); validLogType = true; }
-      else if(newLogType     == "info"  ) { log.setMessageType(LT_INFO  ,true); validLogType = true; }
-      else if(newLogType     == "error" ) { log.setMessageType(LT_ERROR ,true); validLogType = true; }
-      else {
-        response.put("kcm-sts", RQST_INVALID_PARAMETER);
-        response.put("kcm-erm", "invalid log type");
-      }
+        if(newLogSeverity == "low"    ||
+           newLogSeverity == "normal" ||
+           newLogSeverity == "high") {
 
-      if(validLogType) {
-        if     (newLogSeverity == "low"   ) { log.setSeverity(LS_LOW   ,true); validLogSeverity = true; }
-        else if(newLogSeverity == "normal") { log.setSeverity(LS_NORMAL,true); validLogSeverity = true; }
-        else if(newLogSeverity == "high"  ) { log.setSeverity(LS_HIGH  ,true); validLogSeverity = true; }
-        else {
+          log.setMessageType(newLogType    ,true);
+          log.setSeverity   (newLogSeverity,true);
+
+        } else {
           response.put("kcm-sts", RQST_INVALID_PARAMETER);
           response.put("kcm-erm", "invalid log severity");
         }
+
+
+      } else {
+        response.put("kcm-sts", RQST_INVALID_PARAMETER);
+        response.put("kcm-erm", "invalid log type");
       }
 
       if(validLogType && validLogSeverity) {
