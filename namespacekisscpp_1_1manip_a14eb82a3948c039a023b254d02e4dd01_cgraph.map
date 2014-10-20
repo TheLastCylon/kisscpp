@@ -1,6 +1,6 @@
 <map id="kisscpp::manip::debug_low" name="kisscpp::manip::debug_low">
-<area shape="rect" id="node2" href="$namespacekisscpp_1_1manip.html#a795be5b59b6a02e1d8f6d9d5bb41c3a4" title="kisscpp::manip::debug" alt="" coords="235,47,389,73"/>
-<area shape="rect" id="node4" href="$namespacekisscpp_1_1manip.html#a934867d04be842b8f6e9df5dfa07f40e" title="kisscpp::manip::low" alt="" coords="243,107,381,133"/>
-<area shape="rect" id="node3" href="$classkisscpp_1_1_log_stream.html#a318a573183c8b552131a4225df381d9f" title="kisscpp::LogStream\l::setMessageType" alt="" coords="437,29,576,70"/>
-<area shape="rect" id="node5" href="$classkisscpp_1_1_log_stream.html#a7cb243c196903798707fc08b1cbb32c9" title="kisscpp::LogStream\l::setSeverity" alt="" coords="437,118,576,159"/>
+<area shape="rect" id="node2" href="$namespacekisscpp_1_1manip.html#a795be5b59b6a02e1d8f6d9d5bb41c3a4" title="kisscpp::manip::debug" alt="" coords="235,16,389,43"/>
+<area shape="rect" id="node4" href="$namespacekisscpp_1_1manip.html#a934867d04be842b8f6e9df5dfa07f40e" title="kisscpp::manip::low" alt="" coords="243,71,381,97"/>
+<area shape="rect" id="node3" href="$classkisscpp_1_1_log_stream.html#ae71eea1ac14056104afb50c60740357f" title="kisscpp::LogStream\l::setMessageType" alt="" coords="437,5,576,46"/>
+<area shape="rect" id="node5" href="$classkisscpp_1_1_log_stream.html#a7cf4acefb95c5bee8ec7fc1ae346dca3" title="kisscpp::LogStream\l::setSeverity" alt="" coords="437,70,576,111"/>
 </map>

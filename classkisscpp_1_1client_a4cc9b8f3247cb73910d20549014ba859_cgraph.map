@@ -1,6 +1,6 @@
 <map id="kisscpp::client::client" name="kisscpp::client::client">
-<area shape="rect" id="node2" href="$namespacekisscpp_1_1manip.html#a53df3ad3d908fa67b2d4a73000241b4f" title="kisscpp::manip::error" alt="" coords="213,36,357,63"/>
-<area shape="rect" id="node4" href="$namespacekisscpp.html#a6bb122f9d1f472c12420a2ec59fdc287" title="kisscpp::ptreeAddOrPut" alt="" coords="205,87,366,113"/>
-<area shape="rect" id="node5" href="$classkisscpp_1_1_config.html#a235cf3d03c1211faa29efa63556921fc" title="kisscpp::Config::instance" alt="" coords="200,137,371,164"/>
-<area shape="rect" id="node3" href="$classkisscpp_1_1_log_stream.html#a318a573183c8b552131a4225df381d9f" title="kisscpp::LogStream\l::setMessageType" alt="" coords="419,29,557,70"/>
+<area shape="rect" id="node2" href="$namespacekisscpp_1_1manip.html#a53df3ad3d908fa67b2d4a73000241b4f" title="kisscpp::manip::error" alt="" coords="213,12,357,39"/>
+<area shape="rect" id="node4" href="$namespacekisscpp.html#a6bb122f9d1f472c12420a2ec59fdc287" title="kisscpp::ptreeAddOrPut" alt="" coords="205,63,366,89"/>
+<area shape="rect" id="node5" href="$classkisscpp_1_1_config.html#a235cf3d03c1211faa29efa63556921fc" title="kisscpp::Config::instance" alt="" coords="200,113,371,140"/>
+<area shape="rect" id="node3" href="$classkisscpp_1_1_log_stream.html#ae71eea1ac14056104afb50c60740357f" title="kisscpp::LogStream\l::setMessageType" alt="" coords="419,5,557,46"/>
 </map>

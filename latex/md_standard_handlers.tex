@@ -19,12 +19,15 @@ Here is a list of the standard handlers, currently implemented by K\-I\-S\-S\-C\
 \rowcolor{lightgray}{\bf {\bfseries Handler Id} }&{\bf {\bfseries Purpose}  }\\\cline{1-2}
 kch-\/loglevel &Adjust the logging to specified levels \\\cline{1-2}
 kch-\/handlers &shows a list of the request handlers for this application \\\cline{1-2}
-kch-\/status &retrieves the application error states \\\cline{1-2}
-kch-\/statistics &retrieves the application statistics \\\cline{1-2}
+kch-\/errstat &retrieves the application error states \\\cline{1-2}
+kch-\/errclear &Used to marks an application error state as cleared. \\\cline{1-2}
+kch-\/stat &retrieves the application statistics \\\cline{1-2}
 \end{TabularC}
 In order to ease the introduction to this here, we'll start with discussing the adjustment of log levels.
 
 \subsection*{Adjusting log level on the fly.}
+
+For a discussion on what log levels are and how they are used, please see the section on logging.
 
 \begin{TabularC}{2}
 \hline
@@ -43,7 +46,7 @@ severity &\PBS\centering Yes &\char`\"{}low\char`\"{}, \char`\"{}normal\char`\"{
 
 
 \begin{DoxyItemize}
-\item The example blow, will cause a K\-I\-S\-S\-C\-P\-P application to start logging everything at all log levels. For more detail on logging and log levels, please see the section on logging. 
+\item The example blow, will cause a K\-I\-S\-S\-C\-P\-P application to start logging everything at all log levels, because the lowest log level has a log type of {\itshape debug}, and a severity of {\itshape low}. 
 \begin{DoxyCode}
 \{\textcolor{stringliteral}{"kcm-cmd"}:\textcolor{stringliteral}{"kch\_loglevel"},\textcolor{stringliteral}{"type"}:\textcolor{stringliteral}{"debug"},\textcolor{stringliteral}{"severity"}:\textcolor{stringliteral}{"low"},\textcolor{stringliteral}{"kcm-client"}:\{\textcolor{stringliteral}{"id"}:\textcolor{stringliteral}{"foo"},\textcolor{stringliteral}{"instance"}:\textcolor{stringliteral}{"1"}\}\}
 \end{DoxyCode}
@@ -54,6 +57,43 @@ severity &\PBS\centering Yes &\char`\"{}low\char`\"{}, \char`\"{}normal\char`\"{
 \end{DoxyCode}
 
 \end{DoxyItemize}
+
+Here is an example of a bash script one can use for setting an application's log levels from the command line.
+
+
+\begin{DoxyCode}
+\{(.sh)\}
+#!/bin/bash
+KISSCPP\_HOSTNAME=\textcolor{stringliteral}{""}
+PORT=\textcolor{stringliteral}{""}
+LOG\_TYPE=\textcolor{stringliteral}{"info"}
+LOG\_SEVERITY=\textcolor{stringliteral}{"normal"}
+CLIENT\_ID=\textcolor{stringliteral}{"script"}
+CLIENT\_INSTANCE=\textcolor{stringliteral}{"1"}
+
+\textcolor{keywordflow}{if} [ -n $1 ]; then
+  KISSCPP\_HOSTNAME=$1
+\textcolor{keywordflow}{else}
+  echo \textcolor{stringliteral}{"You need to specify an address to send too."}
+  exit 1
+fi
+
+\textcolor{keywordflow}{if} [ -n $2 ]; then
+  PORT=$2
+\textcolor{keywordflow}{else}
+  echo \textcolor{stringliteral}{"You need to specify a port to send on."}
+  exit 1
+fi
+
+\textcolor{keywordflow}{if} [ -n $3 ]; then LOG\_TYPE=$3;        fi
+\textcolor{keywordflow}{if} [ -n $4 ]; then LOG\_SEVERITY=$4;    fi
+\textcolor{keywordflow}{if} [ -n $5 ]; then CLIENT\_ID=$5;       fi
+\textcolor{keywordflow}{if} [ -n $6 ]; then CLIENT\_INSTANCE=$6; fi
+
+echo \textcolor{stringliteral}{'\{"kcm-cmd":"kch-loglevel","type":"'}$LOG\_TYPE\textcolor{stringliteral}{'","severity":"'}$LOG\_SEVERITY\textcolor{stringliteral}{'","kcm-client":\{"id":"'}
+      $CLIENT\_ID\textcolor{stringliteral}{'","instance":"'}$CLIENT\_INSTANCE\textcolor{stringliteral}{'"\}\}'} | nc -w 2 $KISSCPP\_HOSTNAME $PORT
+\end{DoxyCode}
+
 
 Logging and it's implementation in K\-I\-S\-S\-C\-P\-P is discussed here.
 

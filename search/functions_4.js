@@ -9,6 +9,7 @@ var searchData=
   ['error_5fhigh',['error_high',['../namespacekisscpp_1_1manip.html#aee969aa657dcd750d102fc48a29ba516',1,'kisscpp::manip']]],
   ['error_5flow',['error_low',['../namespacekisscpp_1_1manip.html#ab5930b238c7e5301822bc09c41120a59',1,'kisscpp::manip']]],
   ['error_5fnormal',['error_normal',['../namespacekisscpp_1_1manip.html#af7d168675689cf70931df8d3acb4b4e9',1,'kisscpp::manip']]],
+  ['errorcleaner',['ErrorCleaner',['../classkisscpp_1_1_error_cleaner.html#a7f8acb2c065fdc55e729aba77eedc3a1',1,'kisscpp::ErrorCleaner']]],
   ['errorreporter',['ErrorReporter',['../classkisscpp_1_1_error_reporter.html#ae772ce0549cded2acb8909b420c4b6d7',1,'kisscpp::ErrorReporter']]],
-  ['errorstate',['ErrorState',['../classkisscpp_1_1_error_state.html#ad51f90a7606a12bc2d9053151441d343',1,'kisscpp::ErrorState']]]
+  ['errorstate',['ErrorState',['../classkisscpp_1_1_error_state.html#a0b9109ca4cb0c58114b7b0e32638f18c',1,'kisscpp::ErrorState']]]
 ];

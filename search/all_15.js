@@ -4,6 +4,7 @@ var searchData=
   ['_7eclient',['~client',['../classkisscpp_1_1client.html#aa93289217a779bbf3d080035d95e60e1',1,'kisscpp::client']]],
   ['_7econfig',['~Config',['../classkisscpp_1_1_config.html#ae6fd9d0a11285f8dd5658bf07f728e01',1,'kisscpp::Config']]],
   ['_7econnection',['~Connection',['../classkisscpp_1_1_connection.html#acdc21c339ec95978cf74f38c395430dd',1,'kisscpp::Connection']]],
+  ['_7eerrorcleaner',['~ErrorCleaner',['../classkisscpp_1_1_error_cleaner.html#aabd0cdc6eaad8ff9b02d4f43c11b88a6',1,'kisscpp::ErrorCleaner']]],
   ['_7eerrorreporter',['~ErrorReporter',['../classkisscpp_1_1_error_reporter.html#a497e32bd73503b28283b3e64fd0ac45c',1,'kisscpp::ErrorReporter']]],
   ['_7eerrorstate',['~ErrorState',['../classkisscpp_1_1_error_state.html#a75f55fa61878bb008abd861012b88662',1,'kisscpp::ErrorState']]],
   ['_7eerrorstatelist',['~ErrorStateList',['../classkisscpp_1_1_error_state_list.html#a0c53a01c63906189fad454dd5e217181',1,'kisscpp::ErrorStateList']]],

@@ -1,6 +1,6 @@
 <map id="kisscpp::LogLevelAdjuster::run" name="kisscpp::LogLevelAdjuster::run">
-<area shape="rect" id="node2" href="$classkisscpp_1_1_log_stream.html#a318a573183c8b552131a4225df381d9f" title="kisscpp::LogStream\l::setMessageType" alt="" coords="259,29,397,70"/>
-<area shape="rect" id="node3" href="$classkisscpp_1_1_log_stream.html#a7cb243c196903798707fc08b1cbb32c9" title="kisscpp::LogStream\l::setSeverity" alt="" coords="259,118,397,159"/>
-<area shape="rect" id="node4" href="$namespacekisscpp_1_1manip.html#ad682f16cb474bc7ff2c991ad2c45db66" title="kisscpp::manip::endl" alt="" coords="257,184,399,211"/>
-<area shape="rect" id="node5" href="$classkisscpp_1_1_log_stream.html#ab672ebf40d6162ba7114355d2c2cc7dd" title="kisscpp::LogStream\l::endl" alt="" coords="448,177,587,218"/>
+<area shape="rect" id="node2" href="$classkisscpp_1_1_log_stream.html#ae71eea1ac14056104afb50c60740357f" title="kisscpp::LogStream\l::setMessageType" alt="" coords="259,5,397,46"/>
+<area shape="rect" id="node3" href="$classkisscpp_1_1_log_stream.html#a7cf4acefb95c5bee8ec7fc1ae346dca3" title="kisscpp::LogStream\l::setSeverity" alt="" coords="259,70,397,111"/>
+<area shape="rect" id="node4" href="$namespacekisscpp_1_1manip.html#ad682f16cb474bc7ff2c991ad2c45db66" title="kisscpp::manip::endl" alt="" coords="257,136,399,163"/>
+<area shape="rect" id="node5" href="$classkisscpp_1_1_log_stream.html#ab672ebf40d6162ba7114355d2c2cc7dd" title="kisscpp::LogStream\l::endl" alt="" coords="448,129,587,170"/>
 </map>

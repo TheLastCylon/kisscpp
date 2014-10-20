@@ -1,15 +1,15 @@
 <map id="kisscpp::Server::stop" name="kisscpp::Server::stop">
-<area shape="rect" id="node2" href="$namespacekisscpp_1_1manip.html#aee465aa1a8d15e1750422696f7d3dc81" title="kisscpp::manip::info\l_normal" alt="" coords="237,109,376,150"/>
-<area shape="rect" id="node7" href="$namespacekisscpp_1_1manip.html#ad682f16cb474bc7ff2c991ad2c45db66" title="kisscpp::manip::endl" alt="" coords="235,175,378,201"/>
-<area shape="rect" id="node9" href="$classkisscpp_1_1_config.html#a235cf3d03c1211faa29efa63556921fc" title="kisscpp::Config::instance" alt="" coords="221,225,392,252"/>
-<area shape="rect" id="node10" href="$classkisscpp_1_1_config.html#a5f970e234e909ccb7b18bf4e7705e336" title="kisscpp::Config::getAppId" alt="" coords="220,276,393,303"/>
-<area shape="rect" id="node11" href="$classkisscpp_1_1_config.html#a9a68e47e345ee1fa208397f1c19859f2" title="kisscpp::Config::getAppInstance" alt="" coords="201,327,413,353"/>
-<area shape="rect" id="node12" href="$classkisscpp_1_1_config.html#ae237509831f23cd9cbfc67dcd6ed8c9d" title="kisscpp::Config::get" alt="" coords="237,377,376,404"/>
-<area shape="rect" id="node13" href="$namespacekisscpp_1_1manip.html#a416806b7a937a2437ffadb9b523e1cf3" title="kisscpp::manip::flush" alt="" coords="233,428,380,455"/>
-<area shape="rect" id="node3" href="$namespacekisscpp_1_1manip.html#aff72768a5e8b0486de0cecb0bd95f3e4" title="kisscpp::manip::info" alt="" coords="471,47,609,73"/>
-<area shape="rect" id="node5" href="$namespacekisscpp_1_1manip.html#a8f9aa3f28fd54225dee006e014efcf65" title="kisscpp::manip::normal" alt="" coords="461,116,619,143"/>
-<area shape="rect" id="node4" href="$classkisscpp_1_1_log_stream.html#a318a573183c8b552131a4225df381d9f" title="kisscpp::LogStream\l::setMessageType" alt="" coords="667,29,805,70"/>
-<area shape="rect" id="node6" href="$classkisscpp_1_1_log_stream.html#a7cb243c196903798707fc08b1cbb32c9" title="kisscpp::LogStream\l::setSeverity" alt="" coords="667,118,805,159"/>
-<area shape="rect" id="node8" href="$classkisscpp_1_1_log_stream.html#ab672ebf40d6162ba7114355d2c2cc7dd" title="kisscpp::LogStream\l::endl" alt="" coords="471,167,609,209"/>
-<area shape="rect" id="node14" href="$classkisscpp_1_1_log_stream.html#a2814d0297db8339779e995c898861e0e" title="kisscpp::LogStream\l::flush" alt="" coords="471,421,609,462"/>
+<area shape="rect" id="node2" href="$namespacekisscpp_1_1manip.html#aee465aa1a8d15e1750422696f7d3dc81" title="kisscpp::manip::info\l_normal" alt="" coords="237,66,376,107"/>
+<area shape="rect" id="node7" href="$namespacekisscpp_1_1manip.html#ad682f16cb474bc7ff2c991ad2c45db66" title="kisscpp::manip::endl" alt="" coords="235,132,378,159"/>
+<area shape="rect" id="node9" href="$classkisscpp_1_1_config.html#a235cf3d03c1211faa29efa63556921fc" title="kisscpp::Config::instance" alt="" coords="221,183,392,209"/>
+<area shape="rect" id="node10" href="$classkisscpp_1_1_config.html#a5f970e234e909ccb7b18bf4e7705e336" title="kisscpp::Config::getAppId" alt="" coords="220,233,393,260"/>
+<area shape="rect" id="node11" href="$classkisscpp_1_1_config.html#a9a68e47e345ee1fa208397f1c19859f2" title="kisscpp::Config::getAppInstance" alt="" coords="201,284,413,311"/>
+<area shape="rect" id="node12" href="$classkisscpp_1_1_config.html#ae237509831f23cd9cbfc67dcd6ed8c9d" title="kisscpp::Config::get" alt="" coords="237,335,376,361"/>
+<area shape="rect" id="node13" href="$namespacekisscpp_1_1manip.html#a416806b7a937a2437ffadb9b523e1cf3" title="kisscpp::manip::flush" alt="" coords="233,385,380,412"/>
+<area shape="rect" id="node3" href="$namespacekisscpp_1_1manip.html#aff72768a5e8b0486de0cecb0bd95f3e4" title="kisscpp::manip::info" alt="" coords="471,16,609,43"/>
+<area shape="rect" id="node5" href="$namespacekisscpp_1_1manip.html#a8f9aa3f28fd54225dee006e014efcf65" title="kisscpp::manip::normal" alt="" coords="461,73,619,100"/>
+<area shape="rect" id="node4" href="$classkisscpp_1_1_log_stream.html#ae71eea1ac14056104afb50c60740357f" title="kisscpp::LogStream\l::setMessageType" alt="" coords="667,5,805,46"/>
+<area shape="rect" id="node6" href="$classkisscpp_1_1_log_stream.html#a7cf4acefb95c5bee8ec7fc1ae346dca3" title="kisscpp::LogStream\l::setSeverity" alt="" coords="667,70,805,111"/>
+<area shape="rect" id="node8" href="$classkisscpp_1_1_log_stream.html#ab672ebf40d6162ba7114355d2c2cc7dd" title="kisscpp::LogStream\l::endl" alt="" coords="471,125,609,166"/>
+<area shape="rect" id="node14" href="$classkisscpp_1_1_log_stream.html#a2814d0297db8339779e995c898861e0e" title="kisscpp::LogStream\l::flush" alt="" coords="471,378,609,419"/>
 </map>

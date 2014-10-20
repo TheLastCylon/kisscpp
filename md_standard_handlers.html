@@ -98,12 +98,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr>
 <td>kch-handlers </td><td>shows a list of the request handlers for this application </td></tr>
 <tr>
-<td>kch-status </td><td>retrieves the application error states </td></tr>
+<td>kch-errstat </td><td>retrieves the application error states </td></tr>
 <tr>
-<td>kch-statistics </td><td>retrieves the application statistics </td></tr>
+<td>kch-errclear </td><td>Used to marks an application error state as cleared. </td></tr>
+<tr>
+<td>kch-stat </td><td>retrieves the application statistics </td></tr>
 </table>
 <p>In order to ease the introduction to this here, we'll start with discussing the adjustment of log levels.</p>
 <h2>Adjusting log level on the fly.</h2>
+<p>For a discussion on what log levels are and how they are used, please see the section on logging.</p>
 <table class="doxtable">
 <tr>
 <th align="center"><b>Handler</b> </th><th align="center"><b>Purpose</b>  </th></tr>
@@ -121,12 +124,42 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </table>
 <h3>Examples</h3>
 <ul>
-<li>The example blow, will cause a KISSCPP application to start logging everything at all log levels. For more detail on logging and log levels, please see the section on logging. <div class="fragment"><div class="line">{<span class="stringliteral">&quot;kcm-cmd&quot;</span>:<span class="stringliteral">&quot;kch_loglevel&quot;</span>,<span class="stringliteral">&quot;type&quot;</span>:<span class="stringliteral">&quot;debug&quot;</span>,<span class="stringliteral">&quot;severity&quot;</span>:<span class="stringliteral">&quot;low&quot;</span>,<span class="stringliteral">&quot;kcm-client&quot;</span>:{<span class="stringliteral">&quot;id&quot;</span>:<span class="stringliteral">&quot;foo&quot;</span>,<span class="stringliteral">&quot;instance&quot;</span>:<span class="stringliteral">&quot;1&quot;</span>}}</div>
+<li>The example blow, will cause a KISSCPP application to start logging everything at all log levels, because the lowest log level has a log type of <em>debug</em>, and a severity of <em>low</em>. <div class="fragment"><div class="line">{<span class="stringliteral">&quot;kcm-cmd&quot;</span>:<span class="stringliteral">&quot;kch_loglevel&quot;</span>,<span class="stringliteral">&quot;type&quot;</span>:<span class="stringliteral">&quot;debug&quot;</span>,<span class="stringliteral">&quot;severity&quot;</span>:<span class="stringliteral">&quot;low&quot;</span>,<span class="stringliteral">&quot;kcm-client&quot;</span>:{<span class="stringliteral">&quot;id&quot;</span>:<span class="stringliteral">&quot;foo&quot;</span>,<span class="stringliteral">&quot;instance&quot;</span>:<span class="stringliteral">&quot;1&quot;</span>}}</div>
 </div><!-- fragment --></li>
 <li>And in the second example bellow, logging will be restricted to logs of type <em>info</em> or <em>error</em> with a severity of at least "normal". <div class="fragment"><div class="line">{<span class="stringliteral">&quot;kcm-cmd&quot;</span>:<span class="stringliteral">&quot;kch_loglevel&quot;</span>,<span class="stringliteral">&quot;type&quot;</span>:<span class="stringliteral">&quot;info&quot;</span>,<span class="stringliteral">&quot;severity&quot;</span>:<span class="stringliteral">&quot;normal&quot;</span>,<span class="stringliteral">&quot;kcm-client&quot;</span>:{<span class="stringliteral">&quot;id&quot;</span>:<span class="stringliteral">&quot;foo&quot;</span>,<span class="stringliteral">&quot;instance&quot;</span>:<span class="stringliteral">&quot;1&quot;</span>}}</div>
 </div><!-- fragment --></li>
 </ul>
-<p>Logging and it's implementation in KISSCPP is discussed here.</p>
+<p>Here is an example of a bash script one can use for setting an application's log levels from the command line.</p>
+<div class="fragment"><div class="line">{(.sh)}</div>
+<div class="line">#!/bin/bash</div>
+<div class="line">KISSCPP_HOSTNAME=<span class="stringliteral">&quot;&quot;</span></div>
+<div class="line">PORT=<span class="stringliteral">&quot;&quot;</span></div>
+<div class="line">LOG_TYPE=<span class="stringliteral">&quot;info&quot;</span></div>
+<div class="line">LOG_SEVERITY=<span class="stringliteral">&quot;normal&quot;</span></div>
+<div class="line">CLIENT_ID=<span class="stringliteral">&quot;script&quot;</span></div>
+<div class="line">CLIENT_INSTANCE=<span class="stringliteral">&quot;1&quot;</span></div>
+<div class="line"></div>
+<div class="line"><span class="keywordflow">if</span> [ -n $1 ]; then</div>
+<div class="line">  KISSCPP_HOSTNAME=$1</div>
+<div class="line"><span class="keywordflow">else</span></div>
+<div class="line">  echo <span class="stringliteral">&quot;You need to specify an address to send too.&quot;</span></div>
+<div class="line">  exit 1</div>
+<div class="line">fi</div>
+<div class="line"></div>
+<div class="line"><span class="keywordflow">if</span> [ -n $2 ]; then</div>
+<div class="line">  PORT=$2</div>
+<div class="line"><span class="keywordflow">else</span></div>
+<div class="line">  echo <span class="stringliteral">&quot;You need to specify a port to send on.&quot;</span></div>
+<div class="line">  exit 1</div>
+<div class="line">fi</div>
+<div class="line"></div>
+<div class="line"><span class="keywordflow">if</span> [ -n $3 ]; then LOG_TYPE=$3;        fi</div>
+<div class="line"><span class="keywordflow">if</span> [ -n $4 ]; then LOG_SEVERITY=$4;    fi</div>
+<div class="line"><span class="keywordflow">if</span> [ -n $5 ]; then CLIENT_ID=$5;       fi</div>
+<div class="line"><span class="keywordflow">if</span> [ -n $6 ]; then CLIENT_INSTANCE=$6; fi</div>
+<div class="line"></div>
+<div class="line">echo <span class="stringliteral">&#39;{&quot;kcm-cmd&quot;:&quot;kch-loglevel&quot;,&quot;type&quot;:&quot;&#39;</span>$LOG_TYPE<span class="stringliteral">&#39;&quot;,&quot;severity&quot;:&quot;&#39;</span>$LOG_SEVERITY<span class="stringliteral">&#39;&quot;,&quot;kcm-client&quot;:{&quot;id&quot;:&quot;&#39;</span>$CLIENT_ID<span class="stringliteral">&#39;&quot;,&quot;instance&quot;:&quot;&#39;</span>$CLIENT_INSTANCE<span class="stringliteral">&#39;&quot;}}&#39;</span> | nc -w 2 $KISSCPP_HOSTNAME $PORT</div>
+</div><!-- fragment --><p>Logging and it's implementation in KISSCPP is discussed here.</p>
 <p>This is a discussion on how to change the type and severity of logs that are written by an application, while the application is running.</p>
 <p>The standard handler for this is called</p>
 <h2>Format</h2>
@@ -263,7 +296,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --> </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Oct 16 2014 15:17:35 for KISSCPP by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Oct 20 2014 14:51:55 for KISSCPP by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
