@@ -10,6 +10,17 @@ AM_INIT_AUTOMAKE([1.10 -Wall no-define])
 # the library.
 AC_CONFIG_HEADERS([config.h kisscppconfig.h])
 AC_PROG_CXX
+AC_CONFIG_MACRO_DIR([m4])
+
+BOOST_REQUIRE([1.54.0])
+BOOST_SYSTEM
+BOOST_ASIO
+BOOST_DATE_TIME
+BOOST_FILESYSTEM
+BOOST_REGEX
+BOOST_THREAD
+BOOST_DATE_TIME
+
 LT_INIT([disable-static])
 
 # Define these substitions here to keep all version information in one place.

@@ -37,7 +37,8 @@ namespace kisscpp
   void StatsKeeper::start()
   {
     if(!running) {
-      running = true;
+      startTime = time(NULL);
+      running   = true;
       threadGroup.create_thread(boost::bind(&StatsKeeper::gatherStats, this));
     }
   }
@@ -92,12 +93,16 @@ namespace kisscpp
 
     retval.reset(new StatsMapType());
 
+    statsMap["kcs-uptime"] = time(NULL) - startTime;
+
     for(StatsMapTypeIterator         itr = statsMap.begin()        ; itr != statsMap.end()        ; ++itr) {
-      (*retval)[itr->first] = itr->second;
+      std::string tpath = "stats.";
+      (*retval)[tpath + itr->first] = itr->second;
     }
 
     for(QueueStatsMapTypeIterator    itr = queueStatsMap.begin()   ; itr != queueStatsMap.end()   ; ++itr) {
-      (*retval)[itr->first] = (itr->second)->size();
+      std::string tpath = "stats.";
+      (*retval)[tpath + itr->first] = (itr->second)->size();
     }
 
     return retval;
@@ -112,7 +117,8 @@ namespace kisscpp
     retval.reset(new StatsMapType());
 
     for(GatheredStatsMapTypeIterator itr = gatheredStatsMap.begin(); itr != gatheredStatsMap.end(); ++itr) {
-      (*retval)[itr->first] = (itr->second)[0];
+      std::string tpath = "stats.";
+      (*retval)[tpath + itr->first] = (itr->second)[0];
     }
 
     return retval;
@@ -128,7 +134,9 @@ namespace kisscpp
 
     for(GatheredStatsMapTypeIterator itr = gatheredStatsMap.begin(); itr != gatheredStatsMap.end(); ++itr) {
       for(unsigned int i = 0; i < historyLength; ++i) {
-        (*retval)[itr->first].push_back((itr->second)[i]);
+        std::stringstream tmppath;
+        tmppath << "stats." << itr->first << "." << std::setfill('0') << std::setw(2) << i;
+        (*retval)[tmppath.str()].push_back((itr->second)[i]);
       }
     }
     return retval;
@@ -146,6 +154,9 @@ namespace kisscpp
       }
 
       if(running) {
+
+        statsMap["kcs-uptime"] = time(NULL) - startTime;
+
         for(StatsMapTypeIterator itr = statsMap.begin(); itr != statsMap.end(); ++itr) {
           gatheredStatsMap[itr->first].push_front(itr->second);
           itr->second = 0;

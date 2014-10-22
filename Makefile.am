@@ -8,7 +8,9 @@ AUTOMAKE_OPTIONS = subdir-objects
 ## Additional flags to pass to aclocal when it is invoked automatically at
 ## make time. The ${ACLOCAL_FLAGS} variable is picked up from the environment
 ## to provide a way for the user to supply additional arguments.
-ACLOCAL_AMFLAGS = ${ACLOCAL_FLAGS}
+ACLOCAL_AMFLAGS  = -I m4
+
+EXTRA_DIST       = bootstrap
 
 ## Define a libtool archive target "libexample-@EXAMPLE_API_VERSION@.la", with
 ## @EXAMPLE_API_VERSION@ substituted into the generated Makefile at configure

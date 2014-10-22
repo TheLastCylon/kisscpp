@@ -23,6 +23,7 @@
 
 #include <string>
 #include <map>
+#include <ctime>
 #include <boost/thread.hpp>
 #include <boost/thread/mutex.hpp>
 #include <boost/thread/locks.hpp>
@@ -105,6 +106,7 @@ namespace kisscpp
       boost::thread_group   threadGroup;
       GatheredStatsMapType  gatheredStatsMap;
       StatsMapType          statsMap;
+      time_t                startTime;
       QueueStatsMapType     queueStatsMap;
   };
 }
