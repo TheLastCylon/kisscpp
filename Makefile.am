@@ -42,7 +42,8 @@ libkisscpp_@KISSCPP_API_VERSION@_la_SOURCES = kisscpp/boost_ptree.cpp \
 ## Instruct libtool to include ABI version information in the generated shared
 ## library file (.so).  The library ABI version is defined in configure.ac, so
 ## that all version information is kept in one place.
-libkisscpp_@KISSCPP_API_VERSION@_la_LDFLAGS = -version-info $(KISSCPP_API_VERSION)
+#libkisscpp_@KISSCPP_API_VERSION@_la_LDFLAGS = -version-info $(KISSCPP_API_VERSION)
+libkisscpp_@KISSCPP_API_VERSION@_la_LDFLAGS = -version-info 1
 
 ## Define the list of public header files and their install location.  The
 ## nobase_ prefix instructs Automake to not strip the directory part from each
@@ -83,6 +84,7 @@ nobase_kisscpp_include_HEADERS = kisscpp/boost_ptree.hpp \
 ## configuration header file is generated at configure time and should not be
 ## shipped with the source tarball.
 kisscpp_libincludedir = $(libdir)/kisscpp-$(KISSCPP_API_VERSION)/include
+#kisscpp_libincludedir = $(libdir)/kisscpp/include
 nodist_kisscpp_libinclude_HEADERS = kisscppconfig.h
 
 ## Install the generated pkg-config file (.pc) into the expected location for
