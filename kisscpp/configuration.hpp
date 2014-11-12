@@ -59,6 +59,7 @@ namespace kisscpp
       };
 
       //--------------------------------------------------------------------------------
+      BoostPtree                              get_child   (const std::string &s)                  { return cfg_data.get_child      (s);               }
       template<typename T> T                  get         (const std::string &s)                  { return cfg_data.get         <T>(s);               }
       template<typename T> T                  get         (const std::string &s, T default_value) { return cfg_data.get         <T>(s,default_value); }
       template<typename T> boost::optional<T> get_optional(const std::string &s)                  { return cfg_data.get_optional<T>(s);               }

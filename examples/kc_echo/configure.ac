@@ -25,7 +25,7 @@ AC_ARG_WITH([boost-lib-path],
             [BOOST_LIBS='-lboost_system -lboost_thread -lboost_filesystem -lboost_regex -lboost_date_time'])
 AC_SUBST([BOOST_LIBS])
 
-PKG_CHECK_MODULES([DEPS], [kisscpp-1 >= 0.5])
+PKG_CHECK_MODULES([DEPS], [kisscpp-0.5 >= 0.5])
 
 # Checks for header files.
 #AC_CHECK_HEADERS([stdint.h unistd.h])
