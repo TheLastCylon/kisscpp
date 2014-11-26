@@ -227,6 +227,7 @@ namespace kisscpp
       LogStream& operator<< (const long               v) { mBuf <<                      v ; return *this; }
       LogStream& operator<< (const float              v) { mBuf <<                      v ; return *this; }
       LogStream& operator<< (const double             v) { mBuf <<                      v ; return *this; }
+      LogStream& operator<< (const long double        v) { mBuf <<                      v ; return *this; }
       LogStream& operator<< (const u_char             v) { mBuf << static_cast<u_short>(v); return *this; }
       LogStream& operator<< (const u_short            v) { mBuf <<                      v ; return *this; }
       LogStream& operator<< (const u_int              v) { mBuf <<                      v ; return *this; }
@@ -260,9 +261,10 @@ namespace kisscpp
       LogStream& setSource         (const std::string& s , const bool permanent = false) { if(permanent) { lssPerm.setSource     (s) ;} lssTemp.setSource     (s) ; return *this; }
       LogStream& setLevel          (manip_func1        f)                                { f(*this, true); return *this; }
 
-      void       setOutFilePath    (std::string        path)                             { outFilePath     = path; };
+      void       setOutFilePath    (std::string        path)                             { outFilePath     = path; }
       void       setLog2consoleFlag(bool               b)                                { log2consoleFlag = b;    }
       void       set2ReOpen        ();
+      void       setMaxBufferSize  (unsigned int       i)                                { maxBufferSize   = i;    }
 
     private:
       template<typename T>

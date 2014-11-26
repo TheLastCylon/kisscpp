@@ -176,12 +176,17 @@ namespace kisscpp
          newLogType == "info"  ||
          newLogType == "error") {
 
+
         if(newLogSeverity == "low"    ||
            newLogSeverity == "normal" ||
            newLogSeverity == "high") {
 
           log.setMessageType(newLogType    ,true);
           log.setSeverity   (newLogSeverity,true);
+
+          response.put("kcm-sts"               , RQST_SUCCESS);
+          response.put("new-log-level.type"    , newLogType);
+          response.put("new-log-level.severity", newLogSeverity);
 
         } else {
           response.put("kcm-sts", RQST_INVALID_PARAMETER);
@@ -192,10 +197,6 @@ namespace kisscpp
       } else {
         response.put("kcm-sts", RQST_INVALID_PARAMETER);
         response.put("kcm-erm", "invalid log type");
-      }
-
-      if(validLogType && validLogSeverity) {
-        response.put("kcm-sts" , RQST_SUCCESS);
       }
 
     } catch (boost::property_tree::ptree_bad_path &e) {

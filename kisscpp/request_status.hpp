@@ -37,6 +37,7 @@ namespace kisscpp
     RQST_APPLICATION_BUSY,              //!< used by server applications to inform requesters that a request won't be processed due to server overload.
     RQST_APPLICATION_SHUTING_DOWN,      //!< used by server applications to inform requesters that a request won't be processed due to the server shutting down.
     RQST_CLIENT_DENIED,                 //!< The Client is not in the white list and my not communicate to this process.
+    RQST_PROCESSING_FAILURE,            //!< for use by apps that need to report on an internal processing failure not related to KISSCPP communications.
     RQST_UNKNOWN                        //!< Sorry, I don't know what went wrong.
   };
 
