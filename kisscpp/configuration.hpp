@@ -93,9 +93,10 @@ namespace kisscpp
         initiate(explicit_config_path);
       }
 
-      void loadConfig        ();
-      bool loadConfig        (std::string &cfg_path, BoostPtree &pt);
-      void populateWhiteLists();
+      void loadConfig         ();
+      bool loadConfig         (std::string &cfg_path, BoostPtree &pt);
+      void populateWhiteLists ();
+      void populateDefaultDirs();
 
       static Config      *singleton_instance;
                              

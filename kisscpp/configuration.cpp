@@ -37,9 +37,9 @@ namespace kisscpp
   //--------------------------------------------------------------------------------
   void Config::initiate(const std::string explicit_config_path /* = "" */)
   {
-    std::string        cfg_root_path     = "/etc/kisscpp";
-    char              *kcpp_cfg_root     = std::getenv("KCPP_CFG_ROOT");
-    char              *kcpp_exec_env     = std::getenv("KCPP_EXEC_ENV");
+    std::string  cfg_root_path = "/etc/kisscpp";
+    char        *kcpp_cfg_root = std::getenv("KCPP_CFG_ROOT");
+    char        *kcpp_exec_env = std::getenv("KCPP_EXEC_ENV");
 
     if(explicit_config_path.empty()) {
       if(kcpp_cfg_root) {
@@ -105,6 +105,7 @@ namespace kisscpp
     }
 
     populateWhiteLists();
+    populateDefaultDirs();
   }
 
   //--------------------------------------------------------------------------------
@@ -166,6 +167,32 @@ namespace kisscpp
       allow_all_applications = true;
 
     }
+  }
+
+  //--------------------------------------------------------------------------------
+  void Config::populateDefaultDirs()
+  {
+    std::string  cache_dir       = "/tmp";
+    std::string  queue_dir       = "/tmp";
+    char        *kcpp_cache_root = std::getenv("KCPP_CACHE_ROOT");
+    char        *kcpp_queue_root = std::getenv("KCPP_QUE_ROOT");
+
+    if(kcpp_cache_root && kcpp_queue_root) {
+      cache_dir = kcpp_cache_root;
+      queue_dir = kcpp_queue_root;
+    }
+
+    cache_dir += ("/" + application_id + "/" + application_instance);
+    queue_dir += ("/" + application_id + "/" + application_instance);
+
+    bfs::path cache_path(cache_dir);
+    bfs::path queue_path(queue_dir);
+
+    bfs::create_directories(cache_path);
+    bfs::create_directories(queue_path);
+
+    cfg_data.put("app-cache-dir", cache_dir);
+    cfg_data.put("app-queue-dir", queue_dir);
   }
 }
 
