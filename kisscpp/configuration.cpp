@@ -180,6 +180,12 @@ namespace kisscpp
     if(kcpp_cache_root && kcpp_queue_root) {
       cache_dir = kcpp_cache_root;
       queue_dir = kcpp_queue_root;
+    } else if(kcpp_cache_root) {
+      cache_dir = kcpp_cache_root;
+      queue_dir = cache_dir;
+    } else if(kcpp_queue_root) {
+      queue_dir = kcpp_queue_root;
+      cache_dir = queue_dir;
     }
 
     cache_dir += ("/" + application_id + "/" + application_instance);
