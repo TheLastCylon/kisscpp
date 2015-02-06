@@ -25,6 +25,7 @@
 #include <deque>
 #include <algorithm>
 #include <cerrno>
+#include <ctime>
 
 #include <boost/noncopyable.hpp>
 #include <boost/shared_ptr.hpp>
@@ -53,22 +54,11 @@ class Base64BiCoder
     typedef transform_width< binary_from_base64<remove_whitespace<std::string::const_iterator> > , 8, 6 > BinaryType;
     typedef base64_from_binary<transform_width<std::string::const_iterator,6,8> >                         Base64Type;
 
-    Base64BiCoder() {};
+     Base64BiCoder() {};
     ~Base64BiCoder() {};
 
     virtual boost::shared_ptr<std::string> encode(const boost::shared_ptr<T> obj2encode) = 0;
-//    {
-//      boost::shared_ptr<std::string> retval;
-//      retval.reset(new std::string());
-//      return retval;
-//    }
-
     virtual boost::shared_ptr<T>           decode(const std::string&         str2decode) = 0;
-//    {
-//      boost::shared_ptr<T> retval;
-//      retval.reset(new T());
-//      return retval;
-//    }
 
   protected:
     boost::shared_ptr<std::string> encodeToBase64String(const std::string&  s)
@@ -106,89 +96,6 @@ class Base64BiCoder
     }
 
   private:
-};
-
-//--------------------------------------------------------------------------------
-const unsigned NumberOfFileSequinceDigits = 3;
-
-class FileSequinceString
-{
-  public:
-    FileSequinceString()
-    {
-      for(unsigned i = 0; i < NumberOfFileSequinceDigits; ++i) {
-        digits[i] = 'a';
-      }
-    }
-
-    ~FileSequinceString() {}
-
-    //--------------------------------------------------------------------------------
-    FileSequinceString & operator=(const FileSequinceString &rhs)
-    {
-      if(this != &rhs) {
-        for(unsigned j = 0; j < NumberOfFileSequinceDigits-1; ++j) {
-          digits[j] = rhs.digits[j];
-        }
-      }
-      return *this;
-    }
-
-    //--------------------------------------------------------------------------------
-    FileSequinceString & operator=(const std::string &rhs)
-    {
-      if(rhs.size() < NumberOfFileSequinceDigits) {
-        // TODO: throw some kind of error.
-      } else {
-        for(unsigned j = 0; j < NumberOfFileSequinceDigits-1; ++j) {
-          digits[j] = rhs[j];
-        }
-      }
-
-      return *this;
-    }
-
-    //--------------------------------------------------------------------------------
-    void reset()
-    {
-      for(unsigned j = 0; j < NumberOfFileSequinceDigits-1; ++j) {
-        digits[j] = 'a';
-      }
-    }
-
-    //--------------------------------------------------------------------------------
-    std::string next()
-    {
-      std::string retval = "";
-
-      bool        rollup = true;
-      unsigned    i      = NumberOfFileSequinceDigits-1;
-
-      while(i >= 0 && rollup) {
-        if(digits[i] == 'z') {
-          rollup    = true;
-          digits[i] = 'a';
-        } else {
-          rollup    = false;
-          digits[i] = (char)((unsigned)digits[i]+1);
-        }
-        --i;
-      }
-
-      if(i < 0) {
-        // TODO: we have a rollup, beyond the currently allowed number of digits, throw some kind of exception;
-      }
-
-      for(unsigned j = 0; j < NumberOfFileSequinceDigits; ++j) {
-        retval += digits[j];
-      }
-
-      return retval;
-    }
-
-  protected:
-  private:
-    char digits[NumberOfFileSequinceDigits];
 };
 
 //--------------------------------------------------------------------------------
@@ -237,6 +144,7 @@ class PersistedQueue : public boost::noncopyable
     void         loadStateFile         ();
     void         writeFirstAndLastPage ();
     void         writeStateFile        ();
+    std::string  seqNumber             ();
 
     std::string             _queueName;
     boost::filesystem::path _workingDirectory;
@@ -251,7 +159,6 @@ class PersistedQueue : public boost::noncopyable
     QueueTypePtr            swapPage;
 
     _sT                     biCoder;
-    FileSequinceString      fileSequinceString;
 };
 
 #include "persisted_queue.tpp"

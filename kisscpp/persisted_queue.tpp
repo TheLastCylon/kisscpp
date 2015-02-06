@@ -50,7 +50,7 @@ void PersistedQueue<_qoT, _sT>::push_back(QueuedObjectPointerType p)
     if(lastPage == firstPage) {
       lastPage.reset(new QueueType());
     } else {
-      persistToFile(fileSequinceString.next(), lastPage); 
+      persistToFile(seqNumber(), lastPage); 
       lastPage.reset(new QueueType());
     }
   }
@@ -160,7 +160,7 @@ void PersistedQueue<_qoT, _sT>::persistToFile(std::string seq, QueueTypePtr p)
 
   nativeFilePathStr = nativeFilePath.native();
 
-  if(seq != "aaa") {
+  if(seq != "0") {
     persistedFileNames.push_back(nativeFilePathStr);
   } else {
     persistedFileNames.push_front(nativeFilePathStr);
@@ -336,11 +336,11 @@ template <class _qoT, class _sT>
 void PersistedQueue<_qoT, _sT>::writeFirstAndLastPage()
 {
   if(firstPage->size() > 0) {
-    persistToFile("aaa", firstPage); 
+    persistToFile("0", firstPage); 
   }
 
   if(lastPage != firstPage) {
-    persistToFile(fileSequinceString.next(), lastPage); 
+    persistToFile(seqNumber(), lastPage); 
   }
 }
 
@@ -361,4 +361,14 @@ void PersistedQueue<_qoT, _sT>::writeStateFile()
     outFile.close();
   }
 }
+
+//--------------------------------------------------------------------------------
+template <class _qoT, class _sT>
+std::string PersistedQueue<_qoT, _sT>::seqNumber()
+{
+  std::stringstream retval;
+  retval << time(NULL);
+  return retval.str();
+}
+
 
