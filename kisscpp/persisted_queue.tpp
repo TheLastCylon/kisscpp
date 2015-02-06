@@ -82,7 +82,6 @@ QueuedObjectPointerType PersistedQueue<_qoT, _sT>::pop_front()
 
   if(firstPage->empty()) {
     retval.reset();
-    fileSequinceString.reset();
   } else {
     retval = firstPage->front();
     firstPage->pop_front();
@@ -108,7 +107,7 @@ QueuedObjectPointerType PersistedQueue<_qoT, _sT>::front()
 
   if(firstPage->empty()) {
     retval.reset();
-    fileSequinceString.reset();
+    //fileSequinceString.reset();
   } else {
     retval = firstPage->front();
   }
@@ -242,7 +241,7 @@ void PersistedQueue<_qoT, _sT>::loadFirstAndLastPage()
 
       if(persistedFileNames.size() > 0) {
         std::string tmpstr = persistedFileNames[persistedFileNames.size()-1];
-        fileSequinceString = tmpstr.substr((tmpstr.find_last_of('_')+1));
+        //fileSequinceString = tmpstr.substr((tmpstr.find_last_of('_')+1));
       }
     }
   } else {
@@ -370,5 +369,4 @@ std::string PersistedQueue<_qoT, _sT>::seqNumber()
   retval << time(NULL);
   return retval.str();
 }
-
 
