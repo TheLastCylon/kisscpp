@@ -21,6 +21,7 @@
 
 #include <string>
 #include <map>
+#include <vector>
 #include <boost/algorithm/string.hpp>    
 #include <boost/thread/mutex.hpp>
 #include <boost/thread/locks.hpp>
@@ -34,19 +35,22 @@ namespace kisscpp
   class ErrorState
   {
     public:
-      ErrorState(const std::string &_id) : id(_id), count(0) {}
+       ErrorState(const std::string &_id, const std::string _description = "") : id(_id), description(_description), count(0) {}
 
       ~ErrorState() {};
 
-      void         set        ()                               { count++; }
-      void         clear      (const unsigned int &amount = 1) { count = count - amount; }
-      void         clear_all  ()                               { count = 0; }
-      unsigned int getSetCount()                               { return count; }
-      bool         isSet      ()                               { return (count > 0); }
+      void         set           ()                               { count++;                }
+      void         clear         (const unsigned int &amount = 1) { count = count - amount; }
+      void         clear_all     ()                               { count = 0;              }
+      unsigned int getSetCount   ()                               { return count;           }
+      bool         isSet         ()                               { return (count > 0);     }
+      std::string  getId         ()                               { return id;              }
+      std::string  getDescription()                               { return description;     }
 
     protected:
     private:
       std::string  id;
+      std::string  description;
       unsigned int count;
   };
 
@@ -54,9 +58,9 @@ namespace kisscpp
   typedef std::map<std::string, SharedErrorState> ErrorStateMapType;
   typedef ErrorStateMapType::iterator             ErrorStateMapTypeIterator;
 
-  typedef std::map<std::string, double>           ErrorListMap;
-  typedef boost::shared_ptr<ErrorListMap>         SharedErrorListMap;
-  typedef ErrorListMap::iterator                  ErrorListMapIterator;
+  typedef std::vector<SharedErrorState>           ErrorList;
+  typedef boost::shared_ptr<ErrorList>            SharedErrorList;
+  typedef ErrorList::iterator                     ErrorListIterator;
 
   //--------------------------------------------------------------------------------
   class ErrorStateList
@@ -66,10 +70,10 @@ namespace kisscpp
 
       ~ErrorStateList() { kisscpp::LogStream log(__PRETTY_FUNCTION__); }
 
-      void               set      (const std::string &id);
-      void               clear    (const std::string &id, const unsigned int &amount = 1);
-      void               clear_all(const std::string &id);
-      SharedErrorListMap getStates();
+      void            set      (const std::string &id, const std::string  &description = "");
+      void            clear    (const std::string &id, const unsigned int &amount = 1);
+      void            clear_all(const std::string &id);
+      SharedErrorList getStates();
 
     protected:
     private:

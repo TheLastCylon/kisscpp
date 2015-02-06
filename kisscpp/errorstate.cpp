@@ -33,7 +33,7 @@ namespace kisscpp
   }
 
   //--------------------------------------------------------------------------------
-  void ErrorStateList::set(const std::string &id)
+  void ErrorStateList::set(const std::string &id, const std::string &description /* = ""*/)
   {
     boost::lock_guard<boost::mutex> guard(errorMutex);
     std::string                     err_id = id;
@@ -44,7 +44,7 @@ namespace kisscpp
       errorStateMap[id]->set();
     } else {
       SharedErrorState tempErrorState;
-      tempErrorState.reset(new ErrorState(err_id));
+      tempErrorState.reset(new ErrorState(err_id,description));
       errorStateMap[id] = tempErrorState;
       errorStateMap[id]->set();
     }
@@ -87,16 +87,16 @@ namespace kisscpp
   }
 
   //--------------------------------------------------------------------------------
-  SharedErrorListMap ErrorStateList::getStates()
+  SharedErrorList ErrorStateList::getStates()
   {
     boost::lock_guard<boost::mutex> guard(errorMutex);
-    SharedErrorListMap              retval;
+    SharedErrorList                 retval;
 
-    retval.reset(new ErrorListMap());
+    retval.reset(new ErrorList());
 
     for(ErrorStateMapTypeIterator itr = errorStateMap.begin(); itr != errorStateMap.end(); itr++) {
       if((itr->second)->isSet()) {
-        (*retval)[itr->first] = (itr->second)->getSetCount();
+        retval->push_back(itr->second);
       }
     }
 

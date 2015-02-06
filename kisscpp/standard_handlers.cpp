@@ -70,14 +70,16 @@ namespace kisscpp
 
     try {
 
-      SharedErrorListMap selm;
+      SharedErrorList selm;
 
       selm = ErrorStateList::instance()->getStates();
 
       response.put("kcm-sts" , RQST_SUCCESS);
 
-      for(ErrorListMapIterator itr = selm->begin(); itr != selm->end(); ++itr) {
-        response.put(itr->first, itr->second);
+      for(ErrorListIterator itr = selm->begin(); itr != selm->end(); ++itr) {
+        std::stringstream sstr;
+        sstr << "[" << (*itr)->getSetCount() << "] " << (*itr)->getDescription();
+        response.put((*itr)->getId(), sstr.str());
       }
 
     } catch (boost::property_tree::ptree_bad_path &e) {
