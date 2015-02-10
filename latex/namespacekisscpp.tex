@@ -31,8 +31,6 @@ class \hyperlink{classkisscpp_1_1_log_stream}{Log\-Stream}
 \item 
 class \hyperlink{classkisscpp_1_1_base64_bi_coder}{Base64\-Bi\-Coder}
 \item 
-class \hyperlink{classkisscpp_1_1_file_sequince_string}{File\-Sequince\-String}
-\item 
 class \hyperlink{classkisscpp_1_1_persisted_queue}{Persisted\-Queue}
 \item 
 class \hyperlink{classkisscpp_1_1_ptree_base64_bicoder}{Ptree\-Base64\-Bicoder}
@@ -86,13 +84,13 @@ typedef std\-::map$<$ std\-::string, \\*
 \item 
 typedef Error\-State\-Map\-Type\-::iterator \hyperlink{namespacekisscpp_a37b3f68e4626dc05d9d2381803a889b4}{Error\-State\-Map\-Type\-Iterator}
 \item 
-typedef std\-::map$<$ std\-::string, \\*
-double $>$ \hyperlink{namespacekisscpp_a325b559f17774bf1155d5dda8fe335e3}{Error\-List\-Map}
+typedef std\-::vector\\*
+$<$ \hyperlink{namespacekisscpp_af77de115307b379cbcab83a1fc54fdad}{Shared\-Error\-State} $>$ \hyperlink{namespacekisscpp_aa2a0b418a2607a322f2f821cdfe30c29}{Error\-List}
 \item 
 typedef boost\-::shared\-\_\-ptr\\*
-$<$ \hyperlink{namespacekisscpp_a325b559f17774bf1155d5dda8fe335e3}{Error\-List\-Map} $>$ \hyperlink{namespacekisscpp_a52b7a11959a119c1da931042d7751db0}{Shared\-Error\-List\-Map}
+$<$ \hyperlink{namespacekisscpp_aa2a0b418a2607a322f2f821cdfe30c29}{Error\-List} $>$ \hyperlink{namespacekisscpp_a97f51b10e50fc4e1f9142a9e909d477b}{Shared\-Error\-List}
 \item 
-typedef Error\-List\-Map\-::iterator \hyperlink{namespacekisscpp_a5493eddaf40e71c5f85672b1ab37afcb}{Error\-List\-Map\-Iterator}
+typedef Error\-List\-::iterator \hyperlink{namespacekisscpp_a0e777bb04ad695eccf10fe83263ef220}{Error\-List\-Iterator}
 \item 
 typedef \hyperlink{classkisscpp_1_1_persisted_queue}{Persisted\-Queue}\\*
 $<$ boost\-::property\-\_\-tree\-::ptree, \\*
@@ -189,6 +187,8 @@ enum \hyperlink{namespacekisscpp_af5792fb0f68695c1a1e7a4c720d9262e}{Request\-Sta
 \hyperlink{namespacekisscpp_af5792fb0f68695c1a1e7a4c720d9262eaa411a8dcb60e0303c992c74dd4df4f43}{R\-Q\-S\-T\-\_\-\-A\-P\-P\-L\-I\-C\-A\-T\-I\-O\-N\-\_\-\-B\-U\-S\-Y}, 
 \hyperlink{namespacekisscpp_af5792fb0f68695c1a1e7a4c720d9262ea1e1bd5f607c7cc861e2f7173253115b4}{R\-Q\-S\-T\-\_\-\-A\-P\-P\-L\-I\-C\-A\-T\-I\-O\-N\-\_\-\-S\-H\-U\-T\-I\-N\-G\-\_\-\-D\-O\-W\-N}, 
 \hyperlink{namespacekisscpp_af5792fb0f68695c1a1e7a4c720d9262eab5769a29096e43de01864a3322d45a03}{R\-Q\-S\-T\-\_\-\-C\-L\-I\-E\-N\-T\-\_\-\-D\-E\-N\-I\-E\-D}, 
+\hyperlink{namespacekisscpp_af5792fb0f68695c1a1e7a4c720d9262ea808534e6dd0075c88704e0149b5b7589}{R\-Q\-S\-T\-\_\-\-P\-R\-O\-C\-E\-S\-S\-I\-N\-G\-\_\-\-F\-A\-I\-L\-U\-R\-E}, 
+\\*
 \hyperlink{namespacekisscpp_af5792fb0f68695c1a1e7a4c720d9262ea8b54c6e47b50ce90a375d79b957f5ddb}{R\-Q\-S\-T\-\_\-\-U\-N\-K\-N\-O\-W\-N}
  \}
 \end{DoxyCompactItemize}
@@ -201,23 +201,18 @@ void \hyperlink{namespacekisscpp_a6bb122f9d1f472c12420a2ec59fdc287}{ptree\-Add\-
 \item 
 {\footnotesize template$<$typename T $>$ }\\\hyperlink{classkisscpp_1_1_log_stream}{Log\-Stream} \& \hyperlink{namespacekisscpp_a7a056a2a9cc68e577ced326d1ebf86c1}{operator$<$$<$} (\hyperlink{classkisscpp_1_1_log_stream}{Log\-Stream} \&s, \hyperlink{classkisscpp_1_1_manip_result}{Manip\-Result}$<$ T $>$ m)
 \end{DoxyCompactItemize}
-\subsection*{Variables}
-\begin{DoxyCompactItemize}
-\item 
-const unsigned \hyperlink{namespacekisscpp_a743621016edf95f7afda64b2da3bb576}{Number\-Of\-File\-Sequince\-Digits} = 3
-\end{DoxyCompactItemize}
 
 
 \subsection{Typedef Documentation}
 \hypertarget{namespacekisscpp_a4632e92aebdc8fa1c220da260469cbb2}{\index{kisscpp@{kisscpp}!Connection\-Ptr@{Connection\-Ptr}}
 \index{Connection\-Ptr@{Connection\-Ptr}!kisscpp@{kisscpp}}
 \subsubsection[{Connection\-Ptr}]{\setlength{\rightskip}{0pt plus 5cm}typedef boost\-::shared\-\_\-ptr$<${\bf Connection}$>$ {\bf kisscpp\-::\-Connection\-Ptr}}}\label{namespacekisscpp_a4632e92aebdc8fa1c220da260469cbb2}
-\hypertarget{namespacekisscpp_a325b559f17774bf1155d5dda8fe335e3}{\index{kisscpp@{kisscpp}!Error\-List\-Map@{Error\-List\-Map}}
-\index{Error\-List\-Map@{Error\-List\-Map}!kisscpp@{kisscpp}}
-\subsubsection[{Error\-List\-Map}]{\setlength{\rightskip}{0pt plus 5cm}typedef std\-::map$<$std\-::string, double$>$ {\bf kisscpp\-::\-Error\-List\-Map}}}\label{namespacekisscpp_a325b559f17774bf1155d5dda8fe335e3}
-\hypertarget{namespacekisscpp_a5493eddaf40e71c5f85672b1ab37afcb}{\index{kisscpp@{kisscpp}!Error\-List\-Map\-Iterator@{Error\-List\-Map\-Iterator}}
-\index{Error\-List\-Map\-Iterator@{Error\-List\-Map\-Iterator}!kisscpp@{kisscpp}}
-\subsubsection[{Error\-List\-Map\-Iterator}]{\setlength{\rightskip}{0pt plus 5cm}typedef Error\-List\-Map\-::iterator {\bf kisscpp\-::\-Error\-List\-Map\-Iterator}}}\label{namespacekisscpp_a5493eddaf40e71c5f85672b1ab37afcb}
+\hypertarget{namespacekisscpp_aa2a0b418a2607a322f2f821cdfe30c29}{\index{kisscpp@{kisscpp}!Error\-List@{Error\-List}}
+\index{Error\-List@{Error\-List}!kisscpp@{kisscpp}}
+\subsubsection[{Error\-List}]{\setlength{\rightskip}{0pt plus 5cm}typedef std\-::vector$<${\bf Shared\-Error\-State}$>$ {\bf kisscpp\-::\-Error\-List}}}\label{namespacekisscpp_aa2a0b418a2607a322f2f821cdfe30c29}
+\hypertarget{namespacekisscpp_a0e777bb04ad695eccf10fe83263ef220}{\index{kisscpp@{kisscpp}!Error\-List\-Iterator@{Error\-List\-Iterator}}
+\index{Error\-List\-Iterator@{Error\-List\-Iterator}!kisscpp@{kisscpp}}
+\subsubsection[{Error\-List\-Iterator}]{\setlength{\rightskip}{0pt plus 5cm}typedef Error\-List\-::iterator {\bf kisscpp\-::\-Error\-List\-Iterator}}}\label{namespacekisscpp_a0e777bb04ad695eccf10fe83263ef220}
 \hypertarget{namespacekisscpp_ab99725cc511536c050d9cab582313d0c}{\index{kisscpp@{kisscpp}!Error\-State\-Map\-Type@{Error\-State\-Map\-Type}}
 \index{Error\-State\-Map\-Type@{Error\-State\-Map\-Type}!kisscpp@{kisscpp}}
 \subsubsection[{Error\-State\-Map\-Type}]{\setlength{\rightskip}{0pt plus 5cm}typedef std\-::map$<$std\-::string, {\bf Shared\-Error\-State}$>$ {\bf kisscpp\-::\-Error\-State\-Map\-Type}}}\label{namespacekisscpp_ab99725cc511536c050d9cab582313d0c}
@@ -266,9 +261,9 @@ const unsigned \hyperlink{namespacekisscpp_a743621016edf95f7afda64b2da3bb576}{Nu
 \hypertarget{namespacekisscpp_a20653e6629a85affc6a1b8529e0a8da0}{\index{kisscpp@{kisscpp}!Scoped\-Safe\-Ptree\-Q@{Scoped\-Safe\-Ptree\-Q}}
 \index{Scoped\-Safe\-Ptree\-Q@{Scoped\-Safe\-Ptree\-Q}!kisscpp@{kisscpp}}
 \subsubsection[{Scoped\-Safe\-Ptree\-Q}]{\setlength{\rightskip}{0pt plus 5cm}typedef boost\-::scoped\-\_\-ptr$<${\bf Safe\-Ptree\-Q}$>$ {\bf kisscpp\-::\-Scoped\-Safe\-Ptree\-Q}}}\label{namespacekisscpp_a20653e6629a85affc6a1b8529e0a8da0}
-\hypertarget{namespacekisscpp_a52b7a11959a119c1da931042d7751db0}{\index{kisscpp@{kisscpp}!Shared\-Error\-List\-Map@{Shared\-Error\-List\-Map}}
-\index{Shared\-Error\-List\-Map@{Shared\-Error\-List\-Map}!kisscpp@{kisscpp}}
-\subsubsection[{Shared\-Error\-List\-Map}]{\setlength{\rightskip}{0pt plus 5cm}typedef boost\-::shared\-\_\-ptr$<${\bf Error\-List\-Map}$>$ {\bf kisscpp\-::\-Shared\-Error\-List\-Map}}}\label{namespacekisscpp_a52b7a11959a119c1da931042d7751db0}
+\hypertarget{namespacekisscpp_a97f51b10e50fc4e1f9142a9e909d477b}{\index{kisscpp@{kisscpp}!Shared\-Error\-List@{Shared\-Error\-List}}
+\index{Shared\-Error\-List@{Shared\-Error\-List}!kisscpp@{kisscpp}}
+\subsubsection[{Shared\-Error\-List}]{\setlength{\rightskip}{0pt plus 5cm}typedef boost\-::shared\-\_\-ptr$<${\bf Error\-List}$>$ {\bf kisscpp\-::\-Shared\-Error\-List}}}\label{namespacekisscpp_a97f51b10e50fc4e1f9142a9e909d477b}
 \hypertarget{namespacekisscpp_af77de115307b379cbcab83a1fc54fdad}{\index{kisscpp@{kisscpp}!Shared\-Error\-State@{Shared\-Error\-State}}
 \index{Shared\-Error\-State@{Shared\-Error\-State}!kisscpp@{kisscpp}}
 \subsubsection[{Shared\-Error\-State}]{\setlength{\rightskip}{0pt plus 5cm}typedef boost\-::shared\-\_\-ptr$<${\bf Error\-State}$>$ {\bf kisscpp\-::\-Shared\-Error\-State}}}\label{namespacekisscpp_af77de115307b379cbcab83a1fc54fdad}
@@ -370,7 +365,9 @@ Used in conjunction with log\-\_\-serverity as a log filter.
 \hypertarget{namespacekisscpp_af5792fb0f68695c1a1e7a4c720d9262ea1e1bd5f607c7cc861e2f7173253115b4}{R\-Q\-S\-T\-\_\-\-A\-P\-P\-L\-I\-C\-A\-T\-I\-O\-N\-\_\-\-S\-H\-U\-T\-I\-N\-G\-\_\-\-D\-O\-W\-N}\label{namespacekisscpp_af5792fb0f68695c1a1e7a4c720d9262ea1e1bd5f607c7cc861e2f7173253115b4}
 }]used by server applications to inform requesters that a request won't be processed due to the server shutting down. \index{R\-Q\-S\-T\-\_\-\-C\-L\-I\-E\-N\-T\-\_\-\-D\-E\-N\-I\-E\-D@{R\-Q\-S\-T\-\_\-\-C\-L\-I\-E\-N\-T\-\_\-\-D\-E\-N\-I\-E\-D}!kisscpp@{kisscpp}}\index{kisscpp@{kisscpp}!R\-Q\-S\-T\-\_\-\-C\-L\-I\-E\-N\-T\-\_\-\-D\-E\-N\-I\-E\-D@{R\-Q\-S\-T\-\_\-\-C\-L\-I\-E\-N\-T\-\_\-\-D\-E\-N\-I\-E\-D}}\item[{\em 
 \hypertarget{namespacekisscpp_af5792fb0f68695c1a1e7a4c720d9262eab5769a29096e43de01864a3322d45a03}{R\-Q\-S\-T\-\_\-\-C\-L\-I\-E\-N\-T\-\_\-\-D\-E\-N\-I\-E\-D}\label{namespacekisscpp_af5792fb0f68695c1a1e7a4c720d9262eab5769a29096e43de01864a3322d45a03}
-}]The Client is not in the white list and my not communicate to this process. \index{R\-Q\-S\-T\-\_\-\-U\-N\-K\-N\-O\-W\-N@{R\-Q\-S\-T\-\_\-\-U\-N\-K\-N\-O\-W\-N}!kisscpp@{kisscpp}}\index{kisscpp@{kisscpp}!R\-Q\-S\-T\-\_\-\-U\-N\-K\-N\-O\-W\-N@{R\-Q\-S\-T\-\_\-\-U\-N\-K\-N\-O\-W\-N}}\item[{\em 
+}]The Client is not in the white list and my not communicate to this process. \index{R\-Q\-S\-T\-\_\-\-P\-R\-O\-C\-E\-S\-S\-I\-N\-G\-\_\-\-F\-A\-I\-L\-U\-R\-E@{R\-Q\-S\-T\-\_\-\-P\-R\-O\-C\-E\-S\-S\-I\-N\-G\-\_\-\-F\-A\-I\-L\-U\-R\-E}!kisscpp@{kisscpp}}\index{kisscpp@{kisscpp}!R\-Q\-S\-T\-\_\-\-P\-R\-O\-C\-E\-S\-S\-I\-N\-G\-\_\-\-F\-A\-I\-L\-U\-R\-E@{R\-Q\-S\-T\-\_\-\-P\-R\-O\-C\-E\-S\-S\-I\-N\-G\-\_\-\-F\-A\-I\-L\-U\-R\-E}}\item[{\em 
+\hypertarget{namespacekisscpp_af5792fb0f68695c1a1e7a4c720d9262ea808534e6dd0075c88704e0149b5b7589}{R\-Q\-S\-T\-\_\-\-P\-R\-O\-C\-E\-S\-S\-I\-N\-G\-\_\-\-F\-A\-I\-L\-U\-R\-E}\label{namespacekisscpp_af5792fb0f68695c1a1e7a4c720d9262ea808534e6dd0075c88704e0149b5b7589}
+}]for use by apps that need to report on an internal processing failure not related to K\-I\-S\-S\-C\-P\-P communications. \index{R\-Q\-S\-T\-\_\-\-U\-N\-K\-N\-O\-W\-N@{R\-Q\-S\-T\-\_\-\-U\-N\-K\-N\-O\-W\-N}!kisscpp@{kisscpp}}\index{kisscpp@{kisscpp}!R\-Q\-S\-T\-\_\-\-U\-N\-K\-N\-O\-W\-N@{R\-Q\-S\-T\-\_\-\-U\-N\-K\-N\-O\-W\-N}}\item[{\em 
 \hypertarget{namespacekisscpp_af5792fb0f68695c1a1e7a4c720d9262ea8b54c6e47b50ce90a375d79b957f5ddb}{R\-Q\-S\-T\-\_\-\-U\-N\-K\-N\-O\-W\-N}\label{namespacekisscpp_af5792fb0f68695c1a1e7a4c720d9262ea8b54c6e47b50ce90a375d79b957f5ddb}
 }]Sorry, I don't know what went wrong. \end{description}
 \end{Desc}
@@ -396,7 +393,8 @@ Used in conjunction with log\-\_\-serverity as a log filter.
 )}}\label{namespacekisscpp_a6bb122f9d1f472c12420a2ec59fdc287}
 
 
-Here is the caller graph for this function\-:\nopagebreak
+Here is the caller graph for this function\-:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -414,9 +412,3 @@ Here is the caller graph for this function\-:\nopagebreak
 \item[{std\-::string}]{node}
 \end{DoxyParamCaption}
 )}}\label{namespacekisscpp_a36b9e65a0a3786bd85198e4530c65bf9}
-
-
-\subsection{Variable Documentation}
-\hypertarget{namespacekisscpp_a743621016edf95f7afda64b2da3bb576}{\index{kisscpp@{kisscpp}!Number\-Of\-File\-Sequince\-Digits@{Number\-Of\-File\-Sequince\-Digits}}
-\index{Number\-Of\-File\-Sequince\-Digits@{Number\-Of\-File\-Sequince\-Digits}!kisscpp@{kisscpp}}
-\subsubsection[{Number\-Of\-File\-Sequince\-Digits}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned kisscpp\-::\-Number\-Of\-File\-Sequince\-Digits = 3}}\label{namespacekisscpp_a743621016edf95f7afda64b2da3bb576}

@@ -100,8 +100,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a0b9109ca4cb0c58114b7b0e32638f18c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkisscpp_1_1_error_state.html#a0b9109ca4cb0c58114b7b0e32638f18c">ErrorState</a> (const std::string &amp;_id)</td></tr>
-<tr class="separator:a0b9109ca4cb0c58114b7b0e32638f18c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6136e6d85bb86357c348bf1fe86d33c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkisscpp_1_1_error_state.html#ab6136e6d85bb86357c348bf1fe86d33c">ErrorState</a> (const std::string &amp;_id, const std::string _description=&quot;&quot;)</td></tr>
+<tr class="separator:ab6136e6d85bb86357c348bf1fe86d33c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a75f55fa61878bb008abd861012b88662"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkisscpp_1_1_error_state.html#a75f55fa61878bb008abd861012b88662">~ErrorState</a> ()</td></tr>
 <tr class="separator:a75f55fa61878bb008abd861012b88662"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adba9283ecd7976c57ef48d438da86778"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkisscpp_1_1_error_state.html#adba9283ecd7976c57ef48d438da86778">set</a> ()</td></tr>
@@ -114,9 +114,13 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a211a4d0740010a7aa7c78b8514bc6969"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a79c9043eb6c04a10e7c4b86888697ce8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkisscpp_1_1_error_state.html#a79c9043eb6c04a10e7c4b86888697ce8">isSet</a> ()</td></tr>
 <tr class="separator:a79c9043eb6c04a10e7c4b86888697ce8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5a968379c634aac795876be977c8420"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkisscpp_1_1_error_state.html#aa5a968379c634aac795876be977c8420">getId</a> ()</td></tr>
+<tr class="separator:aa5a968379c634aac795876be977c8420"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98341b8b71401981fadb66779d540a45"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkisscpp_1_1_error_state.html#a98341b8b71401981fadb66779d540a45">getDescription</a> ()</td></tr>
+<tr class="separator:a98341b8b71401981fadb66779d540a45"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a0b9109ca4cb0c58114b7b0e32638f18c"></a>
+<a class="anchor" id="ab6136e6d85bb86357c348bf1fe86d33c"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -127,8 +131,18 @@ Public Member Functions</h2></td></tr>
           <td class="memname">kisscpp::ErrorState::ErrorState </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>_id</em></td><td>)</td>
+          <td class="paramname"><em>_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const std::string&#160;</td>
+          <td class="paramname"><em>_description</em> = <code>&quot;&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -197,6 +211,52 @@ Public Member Functions</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">void kisscpp::ErrorState::clear_all </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a98341b8b71401981fadb66779d540a45"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kisscpp::ErrorState::getDescription </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aa5a968379c634aac795876be977c8420"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string kisscpp::ErrorState::getId </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -286,7 +346,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Oct 20 2014 14:51:55 for KISSCPP by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Feb 10 2015 11:05:03 for KISSCPP by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

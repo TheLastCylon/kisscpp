@@ -2,6 +2,7 @@ var searchData=
 [
   ['handlerreporter',['HandlerReporter',['../classkisscpp_1_1_handler_reporter.html',1,'kisscpp']]],
   ['handlerreporter',['HandlerReporter',['../classkisscpp_1_1_handler_reporter.html#a3453f6a6fa7a265c64d10703be4ba0bd',1,'kisscpp::HandlerReporter']]],
+  ['have_5fboost',['HAVE_BOOST',['../config_8h.html#a1644f282a4f84575a270f96b98d4f3c6',1,'config.h']]],
   ['have_5fdlfcn_5fh',['HAVE_DLFCN_H',['../config_8h.html#a0ee1617ff2f6885ef384a3dd46f9b9d7',1,'config.h']]],
   ['have_5finttypes_5fh',['HAVE_INTTYPES_H',['../config_8h.html#ab90a030ff2790ebdc176660a6dd2a478',1,'config.h']]],
   ['have_5fmemory_5fh',['HAVE_MEMORY_H',['../config_8h.html#ae93a78f9d076138897af441c9f86f285',1,'config.h']]],

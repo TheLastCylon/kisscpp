@@ -6,6 +6,7 @@ var searchData=
   ['rqst_5fcommand_5fnot_5fsupported',['RQST_COMMAND_NOT_SUPPORTED',['../namespacekisscpp.html#af5792fb0f68695c1a1e7a4c720d9262ead080a858803c520f16f1d575431e19ec',1,'kisscpp']]],
   ['rqst_5finvalid_5fparameter',['RQST_INVALID_PARAMETER',['../namespacekisscpp.html#af5792fb0f68695c1a1e7a4c720d9262ea94213a4c1e365e07fad5537b158ccd8c',1,'kisscpp']]],
   ['rqst_5fmissing_5fparameter',['RQST_MISSING_PARAMETER',['../namespacekisscpp.html#af5792fb0f68695c1a1e7a4c720d9262ea3ad7cafe8fc0329ea5edde0ebf5c807e',1,'kisscpp']]],
+  ['rqst_5fprocessing_5ffailure',['RQST_PROCESSING_FAILURE',['../namespacekisscpp.html#af5792fb0f68695c1a1e7a4c720d9262ea808534e6dd0075c88704e0149b5b7589',1,'kisscpp']]],
   ['rqst_5fsuccess',['RQST_SUCCESS',['../namespacekisscpp.html#af5792fb0f68695c1a1e7a4c720d9262ea48f403b25d056ead863e1bb74664b388',1,'kisscpp']]],
   ['rqst_5funknown',['RQST_UNKNOWN',['../namespacekisscpp.html#af5792fb0f68695c1a1e7a4c720d9262ea8b54c6e47b50ce90a375d79b957f5ddb',1,'kisscpp']]]
 ];

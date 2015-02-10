@@ -92,6 +92,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <div class="textblock"><code>#include &lt;string&gt;</code><br/>
 <code>#include &lt;map&gt;</code><br/>
+<code>#include &lt;vector&gt;</code><br/>
 <code>#include &lt;boost/algorithm/string.hpp&gt;</code><br/>
 <code>#include &lt;boost/thread/mutex.hpp&gt;</code><br/>
 <code>#include &lt;boost/thread/locks.hpp&gt;</code><br/>
@@ -103,7 +104,7 @@ Include dependency graph for errorstate.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="errorstate_8hpp__incl.png" border="0" usemap="#errorstate_8hpp" alt=""/></div>
 <map name="errorstate_8hpp" id="errorstate_8hpp">
-<area shape="rect" id="node8" href="boost__ptree_8hpp.html" title="boost_ptree.hpp" alt="" coords="433,80,548,107"/><area shape="rect" id="node13" href="logstream_8hpp.html" title="logstream.hpp" alt="" coords="1608,80,1712,107"/></map>
+<area shape="rect" id="node9" href="boost__ptree_8hpp.html" title="boost_ptree.hpp" alt="" coords="433,80,548,107"/><area shape="rect" id="node14" href="logstream_8hpp.html" title="logstream.hpp" alt="" coords="1608,80,1712,107"/></map>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
@@ -137,19 +138,19 @@ SharedErrorState &gt;&#160;</td><td class="memItemRight" valign="bottom"><a clas
 <tr class="separator:ab99725cc511536c050d9cab582313d0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a37b3f68e4626dc05d9d2381803a889b4"><td class="memItemLeft" align="right" valign="top">typedef ErrorStateMapType::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekisscpp.html#a37b3f68e4626dc05d9d2381803a889b4">kisscpp::ErrorStateMapTypeIterator</a></td></tr>
 <tr class="separator:a37b3f68e4626dc05d9d2381803a889b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a325b559f17774bf1155d5dda8fe335e3"><td class="memItemLeft" align="right" valign="top">typedef std::map&lt; std::string, <br class="typebreak"/>
-double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekisscpp.html#a325b559f17774bf1155d5dda8fe335e3">kisscpp::ErrorListMap</a></td></tr>
-<tr class="separator:a325b559f17774bf1155d5dda8fe335e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a52b7a11959a119c1da931042d7751db0"><td class="memItemLeft" align="right" valign="top">typedef boost::shared_ptr<br class="typebreak"/>
-&lt; ErrorListMap &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekisscpp.html#a52b7a11959a119c1da931042d7751db0">kisscpp::SharedErrorListMap</a></td></tr>
-<tr class="separator:a52b7a11959a119c1da931042d7751db0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5493eddaf40e71c5f85672b1ab37afcb"><td class="memItemLeft" align="right" valign="top">typedef ErrorListMap::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekisscpp.html#a5493eddaf40e71c5f85672b1ab37afcb">kisscpp::ErrorListMapIterator</a></td></tr>
-<tr class="separator:a5493eddaf40e71c5f85672b1ab37afcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2a0b418a2607a322f2f821cdfe30c29"><td class="memItemLeft" align="right" valign="top">typedef std::vector<br class="typebreak"/>
+&lt; SharedErrorState &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekisscpp.html#aa2a0b418a2607a322f2f821cdfe30c29">kisscpp::ErrorList</a></td></tr>
+<tr class="separator:aa2a0b418a2607a322f2f821cdfe30c29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97f51b10e50fc4e1f9142a9e909d477b"><td class="memItemLeft" align="right" valign="top">typedef boost::shared_ptr<br class="typebreak"/>
+&lt; ErrorList &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekisscpp.html#a97f51b10e50fc4e1f9142a9e909d477b">kisscpp::SharedErrorList</a></td></tr>
+<tr class="separator:a97f51b10e50fc4e1f9142a9e909d477b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e777bb04ad695eccf10fe83263ef220"><td class="memItemLeft" align="right" valign="top">typedef ErrorList::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacekisscpp.html#a0e777bb04ad695eccf10fe83263ef220">kisscpp::ErrorListIterator</a></td></tr>
+<tr class="separator:a0e777bb04ad695eccf10fe83263ef220"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Oct 20 2014 14:51:55 for KISSCPP by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Feb 10 2015 11:05:02 for KISSCPP by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

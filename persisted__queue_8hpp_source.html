@@ -113,267 +113,166 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &lt;deque&gt;</span></div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &lt;algorithm&gt;</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &lt;cerrno&gt;</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &lt;boost/noncopyable.hpp&gt;</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &lt;boost/shared_ptr.hpp&gt;</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &lt;boost/regex.hpp&gt;</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &lt;boost/archive/iterators/base64_from_binary.hpp&gt;</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &lt;boost/archive/iterators/binary_from_base64.hpp&gt;</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &lt;boost/archive/iterators/transform_width.hpp&gt;</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &lt;boost/archive/iterators/remove_whitespace.hpp&gt;</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &lt;boost/filesystem/operations.hpp&gt;</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#include &lt;boost/filesystem/path.hpp&gt;</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#include &lt;boost/filesystem/exception.hpp&gt;</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classkisscpp_1_1_persisted_queue.html#aa7b51ad9ce0381d197eea1c5aabcac12">   40</a></span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="logstream_8hpp.html">logstream.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">//--------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keyword">using namespace </span>boost::archive::iterators;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">namespace </span>kisscpp</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;{</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classkisscpp_1_1_persisted_queue.html#aad570ffebafdabe33d565563aa037d9c">   48</a></span>&#160;<span class="comment">//--------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="classkisscpp_1_1_base64_bi_coder.html">   50</a></span>&#160;<span class="keyword">class </span><a class="code" href="classkisscpp_1_1_base64_bi_coder.html">Base64BiCoder</a></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;{</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;  <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="classkisscpp_1_1_base64_bi_coder.html#a3d4011fcafbdf230c7cc8188714ed499">   53</a></span>&#160;    <span class="keyword">typedef</span> transform_width&lt; binary_from_base64&lt;remove_whitespace&lt;std::string::const_iterator&gt; &gt; , 8, 6 &gt; <a class="code" href="classkisscpp_1_1_base64_bi_coder.html#a3d4011fcafbdf230c7cc8188714ed499">BinaryType</a>;</div>
-<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="classkisscpp_1_1_base64_bi_coder.html#a54d2f4ba00e068e8d4d6fd6497ebf21d">   54</a></span>&#160;    <span class="keyword">typedef</span> base64_from_binary&lt;transform_width&lt;std::string::const_iterator,6,8&gt; &gt;                         <a class="code" href="classkisscpp_1_1_base64_bi_coder.html#a54d2f4ba00e068e8d4d6fd6497ebf21d">Base64Type</a>;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="classkisscpp_1_1_base64_bi_coder.html#a64d95b2904f11acbddf6d70f19e61b35">   56</a></span>&#160;    <a class="code" href="classkisscpp_1_1_base64_bi_coder.html#a64d95b2904f11acbddf6d70f19e61b35">Base64BiCoder</a>() {};</div>
-<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="classkisscpp_1_1_base64_bi_coder.html#a203c4896daf408dfb45c9d57aea0d959">   57</a></span>&#160;    <a class="code" href="classkisscpp_1_1_base64_bi_coder.html#a203c4896daf408dfb45c9d57aea0d959">~Base64BiCoder</a>() {};</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keyword">virtual</span> boost::shared_ptr&lt;std::string&gt; encode(<span class="keyword">const</span> boost::shared_ptr&lt;T&gt; obj2encode) = 0;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">//    {</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">//      boost::shared_ptr&lt;std::string&gt; retval;</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">//      retval.reset(new std::string());</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">//      return retval;</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="classkisscpp_1_1_persisted_queue.html#a7c621270f05ecb9bcffb3112e5f46ec4">   64</a></span>&#160;<span class="comment">//    }</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keyword">virtual</span> boost::shared_ptr&lt;T&gt;           decode(<span class="keyword">const</span> std::string&amp;         str2decode) = 0;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">//    {</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">//      boost::shared_ptr&lt;T&gt; retval;</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">//      retval.reset(new T());</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">//      return retval;</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="classkisscpp_1_1_persisted_queue.html#a59281db3a6b7e50c6291d6c707152aea">   71</a></span>&#160;<span class="comment">//    }</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;  <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="classkisscpp_1_1_base64_bi_coder.html#ab17cf7f1594fa761eca93d6a1ee614ef">   74</a></span>&#160;    boost::shared_ptr&lt;std::string&gt; <a class="code" href="classkisscpp_1_1_base64_bi_coder.html#ab17cf7f1594fa761eca93d6a1ee614ef">encodeToBase64String</a>(<span class="keyword">const</span> std::string&amp;  s)</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    {</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;      <a class="code" href="classkisscpp_1_1_log_stream.html">LogStream</a>                      log(__PRETTY_FUNCTION__);</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;      <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                   writePaddChars = (3 - s.length() % 3) % 3;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;      boost::shared_ptr&lt;std::string&gt; base64;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;      base64.reset(<span class="keyword">new</span> std::string(<a class="code" href="classkisscpp_1_1_base64_bi_coder.html#a54d2f4ba00e068e8d4d6fd6497ebf21d">Base64Type</a>(s.begin()),<a class="code" href="classkisscpp_1_1_base64_bi_coder.html#a54d2f4ba00e068e8d4d6fd6497ebf21d">Base64Type</a>(s.end())));</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;      base64-&gt;append(writePaddChars,<span class="charliteral">&#39;=&#39;</span>);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &lt;ctime&gt;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &lt;boost/noncopyable.hpp&gt;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &lt;boost/shared_ptr.hpp&gt;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &lt;boost/regex.hpp&gt;</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &lt;boost/archive/iterators/base64_from_binary.hpp&gt;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &lt;boost/archive/iterators/binary_from_base64.hpp&gt;</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &lt;boost/archive/iterators/transform_width.hpp&gt;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &lt;boost/archive/iterators/remove_whitespace.hpp&gt;</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#include &lt;boost/filesystem/operations.hpp&gt;</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#include &lt;boost/filesystem/path.hpp&gt;</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#include &lt;boost/filesystem/exception.hpp&gt;</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classkisscpp_1_1_persisted_queue.html#aa7b51ad9ce0381d197eea1c5aabcac12">   40</a></span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="logstream_8hpp.html">logstream.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">//--------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keyword">using namespace </span>boost::archive::iterators;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keyword">namespace </span>kisscpp</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;{</div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classkisscpp_1_1_persisted_queue.html#aad570ffebafdabe33d565563aa037d9c">   48</a></span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">//--------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="classkisscpp_1_1_base64_bi_coder.html">   51</a></span>&#160;<span class="keyword">class </span><a class="code" href="classkisscpp_1_1_base64_bi_coder.html">Base64BiCoder</a></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;{</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;  <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="classkisscpp_1_1_base64_bi_coder.html#a3d4011fcafbdf230c7cc8188714ed499">   54</a></span>&#160;    <span class="keyword">typedef</span> transform_width&lt; binary_from_base64&lt;remove_whitespace&lt;std::string::const_iterator&gt; &gt; , 8, 6 &gt; <a class="code" href="classkisscpp_1_1_base64_bi_coder.html#a3d4011fcafbdf230c7cc8188714ed499">BinaryType</a>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="classkisscpp_1_1_base64_bi_coder.html#a54d2f4ba00e068e8d4d6fd6497ebf21d">   55</a></span>&#160;    <span class="keyword">typedef</span> base64_from_binary&lt;transform_width&lt;std::string::const_iterator,6,8&gt; &gt;                         <a class="code" href="classkisscpp_1_1_base64_bi_coder.html#a54d2f4ba00e068e8d4d6fd6497ebf21d">Base64Type</a>;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="classkisscpp_1_1_base64_bi_coder.html#a64d95b2904f11acbddf6d70f19e61b35">   57</a></span>&#160;     <a class="code" href="classkisscpp_1_1_base64_bi_coder.html#a64d95b2904f11acbddf6d70f19e61b35">Base64BiCoder</a>() {};</div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="classkisscpp_1_1_base64_bi_coder.html#a203c4896daf408dfb45c9d57aea0d959">   58</a></span>&#160;    <a class="code" href="classkisscpp_1_1_base64_bi_coder.html#a203c4896daf408dfb45c9d57aea0d959">~Base64BiCoder</a>() {};</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keyword">virtual</span> boost::shared_ptr&lt;std::string&gt; encode(<span class="keyword">const</span> boost::shared_ptr&lt;T&gt; obj2encode) = 0;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keyword">virtual</span> boost::shared_ptr&lt;T&gt;           decode(<span class="keyword">const</span> std::string&amp;         str2decode) = 0;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;  <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="classkisscpp_1_1_persisted_queue.html#a7c621270f05ecb9bcffb3112e5f46ec4">   64</a></span>&#160;    boost::shared_ptr&lt;std::string&gt; encodeToBase64String(<span class="keyword">const</span> std::string&amp;  s)</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    {</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;      <a class="code" href="classkisscpp_1_1_log_stream.html">LogStream</a>                      log(__PRETTY_FUNCTION__);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;      <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                   writePaddChars = (3 - s.length() % 3) % 3;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;      boost::shared_ptr&lt;std::string&gt; base64;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;      base64.reset(<span class="keyword">new</span> std::string(Base64Type(s.begin()),Base64Type(s.end())));</div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="classkisscpp_1_1_persisted_queue.html#a59281db3a6b7e50c6291d6c707152aea">   71</a></span>&#160;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;      base64-&gt;append(writePaddChars,<span class="charliteral">&#39;=&#39;</span>);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;      <span class="keywordflow">return</span> base64;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    }</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="classkisscpp_1_1_base64_bi_coder.html#af8b91f925c229a0892be4e5d9428fb13">   77</a></span>&#160;    boost::shared_ptr&lt;std::string&gt; <a class="code" href="classkisscpp_1_1_base64_bi_coder.html#af8b91f925c229a0892be4e5d9428fb13">decodeFromBase64</a>(<span class="keyword">const</span> std::string&amp; s)</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    {</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;      <a class="code" href="classkisscpp_1_1_log_stream.html">LogStream</a>                      log(__PRETTY_FUNCTION__);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;      <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                   paddChars = count(s.begin(), s.end(), <span class="charliteral">&#39;=&#39;</span>);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;      std::string                    is        = s;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;      boost::shared_ptr&lt;std::string&gt; result;</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;      <span class="keywordflow">return</span> base64;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    }</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
-<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="classkisscpp_1_1_base64_bi_coder.html#af8b91f925c229a0892be4e5d9428fb13">   87</a></span>&#160;    boost::shared_ptr&lt;std::string&gt; <a class="code" href="classkisscpp_1_1_base64_bi_coder.html#af8b91f925c229a0892be4e5d9428fb13">decodeFromBase64</a>(<span class="keyword">const</span> std::string&amp; s)</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    {</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;      <a class="code" href="classkisscpp_1_1_log_stream.html">LogStream</a>                      log(__PRETTY_FUNCTION__);</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;      <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>                   paddChars = count(s.begin(), s.end(), <span class="charliteral">&#39;=&#39;</span>);</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;      std::string                    is        = s;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;      boost::shared_ptr&lt;std::string&gt; result;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;      log &lt;&lt; <a class="code" href="namespacekisscpp_1_1manip.html#ac4893fff26af38ff60229792840064b3">manip::debug_normal</a> &lt;&lt; <span class="stringliteral">&quot;base 64 string to decode : &quot;</span> &lt;&lt; s &lt;&lt; <a class="code" href="namespacekisscpp_1_1manip.html#ad682f16cb474bc7ff2c991ad2c45db66">endl</a>;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;      <span class="keywordflow">if</span>(is[is.size()-1] == <span class="charliteral">&#39;=&#39;</span>) is[is.size()-1] = <span class="charliteral">&#39;A&#39;</span>;</div>
-<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="classkisscpp_1_1_persisted_queue.html#a845cd8c74c5c8996b57bc0663f540940">   97</a></span>&#160;      <span class="keywordflow">if</span>(is[is.size()-2] == <span class="charliteral">&#39;=&#39;</span>) is[is.size()-2] = <span class="charliteral">&#39;A&#39;</span>;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;      result.reset(<span class="keyword">new</span> std::string(BinaryType(is.begin()), BinaryType(is.end()))); <span class="comment">// decode</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;      log &lt;&lt; <a class="code" href="namespacekisscpp_1_1manip.html#ac4893fff26af38ff60229792840064b3">manip::debug_normal</a> &lt;&lt; <span class="stringliteral">&quot;base 64 string to decode : &quot;</span> &lt;&lt; s &lt;&lt; <a class="code" href="namespacekisscpp_1_1manip.html#ad682f16cb474bc7ff2c991ad2c45db66">endl</a>;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;      <span class="keywordflow">if</span>(is[is.size()-1] == <span class="charliteral">&#39;=&#39;</span>) is[is.size()-1] = <span class="charliteral">&#39;A&#39;</span>;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;      <span class="keywordflow">if</span>(is[is.size()-2] == <span class="charliteral">&#39;=&#39;</span>) is[is.size()-2] = <span class="charliteral">&#39;A&#39;</span>;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;      result.reset(<span class="keyword">new</span> std::string(<a class="code" href="classkisscpp_1_1_base64_bi_coder.html#a3d4011fcafbdf230c7cc8188714ed499">BinaryType</a>(is.begin()), <a class="code" href="classkisscpp_1_1_base64_bi_coder.html#a3d4011fcafbdf230c7cc8188714ed499">BinaryType</a>(is.end()))); <span class="comment">// decode</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;      result-&gt;erase(result-&gt;end()-paddChars,result-&gt;end());  <span class="comment">// erase padding &#39;\0&#39; characters</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;      log &lt;&lt; <a class="code" href="namespacekisscpp_1_1manip.html#ac4893fff26af38ff60229792840064b3">manip::debug_normal</a> &lt;&lt; <span class="stringliteral">&quot;decoded base 64 string: &quot;</span> &lt;&lt; result-&gt;c_str() &lt;&lt; <a class="code" href="namespacekisscpp_1_1manip.html#ad682f16cb474bc7ff2c991ad2c45db66">endl</a>;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;      <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="classkisscpp_1_1_persisted_queue.html#a845cd8c74c5c8996b57bc0663f540940">   96</a></span>&#160;    }</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;  <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;};</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;      result-&gt;erase(result-&gt;end()-paddChars,result-&gt;end());  <span class="comment">// erase padding &#39;\0&#39; characters</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;      log &lt;&lt; <a class="code" href="namespacekisscpp_1_1manip.html#ac4893fff26af38ff60229792840064b3">manip::debug_normal</a> &lt;&lt; <span class="stringliteral">&quot;decoded base 64 string: &quot;</span> &lt;&lt; result-&gt;c_str() &lt;&lt; <a class="code" href="namespacekisscpp_1_1manip.html#ad682f16cb474bc7ff2c991ad2c45db66">endl</a>;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;      <span class="keywordflow">return</span> result;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    }</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;  <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;};</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment">//--------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="namespacekisscpp.html#a743621016edf95f7afda64b2da3bb576">  112</a></span>&#160;<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <a class="code" href="namespacekisscpp.html#a743621016edf95f7afda64b2da3bb576">NumberOfFileSequinceDigits</a> = 3;</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;</div>
-<div class="line"><a name="l00114"></a><span class="lineno"><a class="line" href="classkisscpp_1_1_file_sequince_string.html">  114</a></span>&#160;<span class="keyword">class </span><a class="code" href="classkisscpp_1_1_file_sequince_string.html">FileSequinceString</a></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment">//--------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment">// These define statements exist for code readabililty purposes</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment">// Normally they should be typedef statements, but this is a templitized class.</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment">// There are probably better ways of dealing with this, but I&#39;m rather pushed for</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment">// time right now, and this is cleanest, most convenient solution available to me.</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno"><a class="line" href="persisted__queue_8hpp.html#afaed39dc5f50bc993872e2d46490667c">  106</a></span>&#160;<span class="preprocessor">#define QueuedObjectPointerType boost::shared_ptr&lt;_qoT &gt;</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="persisted__queue_8hpp.html#a0f866dc82edb46503a53b3e043f81f2f">  107</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define QueueType               std::deque&lt;QueuedObjectPointerType &gt;</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno"><a class="line" href="persisted__queue_8hpp.html#a36c99d1cf9ec37c4de496d05bf664cd0">  108</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define QueueTypePtr            boost::shared_ptr&lt;QueueType &gt;</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno"><a class="line" href="persisted__queue_8hpp.html#a55cfd939382843e351914f95c204427e">  109</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define QueueTypeIterator       typename std::deque&lt;boost::shared_ptr&lt;_qoT &gt; &gt;::iterator</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="persisted__queue_8hpp.html#a77d3f6a01bab89b6b730110f7809ead6">  110</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define value_type              QueueType::value_type</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment">//--------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> _qoT, <span class="keyword">class</span> _sT&gt;</div>
+<div class="line"><a name="l00114"></a><span class="lineno"><a class="line" href="classkisscpp_1_1_persisted_queue.html">  114</a></span>&#160;<span class="keyword">class </span><a class="code" href="classkisscpp_1_1_persisted_queue.html">PersistedQueue</a> : <span class="keyword">public</span> boost::noncopyable</div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;{</div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;  <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00117"></a><span class="lineno"><a class="line" href="classkisscpp_1_1_file_sequince_string.html#ab378cb573d6b5fbef2669823e51b0bd6">  117</a></span>&#160;    <a class="code" href="classkisscpp_1_1_file_sequince_string.html#ab378cb573d6b5fbef2669823e51b0bd6">FileSequinceString</a>()</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    {</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;      <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> i = 0; i &lt; <a class="code" href="namespacekisscpp.html#a743621016edf95f7afda64b2da3bb576">NumberOfFileSequinceDigits</a>; ++i) {</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        digits[i] = <span class="charliteral">&#39;a&#39;</span>;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;      }</div>
-<div class="line"><a name="l00122"></a><span class="lineno"><a class="line" href="classkisscpp_1_1_persisted_queue.html#a1ad220b2617f732878013e8df8cfadce">  122</a></span>&#160;    }</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;</div>
-<div class="line"><a name="l00124"></a><span class="lineno"><a class="line" href="classkisscpp_1_1_file_sequince_string.html#a65e065469610a9c0405faf7af34e10c8">  124</a></span>&#160;    <a class="code" href="classkisscpp_1_1_file_sequince_string.html#a65e065469610a9c0405faf7af34e10c8">~FileSequinceString</a>() {}</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="comment">//--------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00127"></a><span class="lineno"><a class="line" href="classkisscpp_1_1_file_sequince_string.html#a942e78a3d1ba76e8b8d5671c4ca9358d">  127</a></span>&#160;    <a class="code" href="classkisscpp_1_1_file_sequince_string.html">FileSequinceString</a> &amp; <a class="code" href="classkisscpp_1_1_file_sequince_string.html#a942e78a3d1ba76e8b8d5671c4ca9358d">operator=</a>(<span class="keyword">const</span> <a class="code" href="classkisscpp_1_1_file_sequince_string.html">FileSequinceString</a> &amp;rhs)</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    {</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;      <span class="keywordflow">if</span>(<span class="keyword">this</span> != &amp;rhs) {</div>
-<div class="line"><a name="l00130"></a><span class="lineno"><a class="line" href="classkisscpp_1_1_persisted_queue.html#a59ce4b260c250368e50ed77becb02415">  130</a></span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> j = 0; j &lt; <a class="code" href="namespacekisscpp.html#a743621016edf95f7afda64b2da3bb576">NumberOfFileSequinceDigits</a>-1; ++j) {</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;          digits[j] = rhs.digits[j];</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        }</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;      }</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;      <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    }</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;</div>
-<div class="line"><a name="l00137"></a><span class="lineno"><a class="line" href="classkisscpp_1_1_persisted_queue.html#ab6c18f15d6ac9ccad453729f0e7fa935">  137</a></span>&#160;    <span class="comment">//--------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00138"></a><span class="lineno"><a class="line" href="classkisscpp_1_1_file_sequince_string.html#a0a5f8c8c6fba6177297c98dbe92b5772">  138</a></span>&#160;    <a class="code" href="classkisscpp_1_1_file_sequince_string.html">FileSequinceString</a> &amp; <a class="code" href="classkisscpp_1_1_file_sequince_string.html#a0a5f8c8c6fba6177297c98dbe92b5772">operator=</a>(<span class="keyword">const</span> std::string &amp;rhs)</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    {</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;      <span class="keywordflow">if</span>(rhs.size() &lt; <a class="code" href="namespacekisscpp.html#a743621016edf95f7afda64b2da3bb576">NumberOfFileSequinceDigits</a>) {</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        <span class="comment">// TODO: throw some kind of error.</span></div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;      } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> j = 0; j &lt; <a class="code" href="namespacekisscpp.html#a743621016edf95f7afda64b2da3bb576">NumberOfFileSequinceDigits</a>-1; ++j) {</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;          digits[j] = rhs[j];</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        }</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;      }</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;      <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    }</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    <span class="comment">//--------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00152"></a><span class="lineno"><a class="line" href="classkisscpp_1_1_file_sequince_string.html#a501332a509814ab09021030b3e433a94">  152</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classkisscpp_1_1_file_sequince_string.html#a501332a509814ab09021030b3e433a94">reset</a>()</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    {</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;      <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> j = 0; j &lt; <a class="code" href="namespacekisscpp.html#a743621016edf95f7afda64b2da3bb576">NumberOfFileSequinceDigits</a>-1; ++j) {</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        digits[j] = <span class="charliteral">&#39;a&#39;</span>;</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;      }</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    }</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    <span class="comment">//--------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00160"></a><span class="lineno"><a class="line" href="classkisscpp_1_1_file_sequince_string.html#ac836ea7811841f47eaeeb0f749ae74dc">  160</a></span>&#160;    std::string <a class="code" href="classkisscpp_1_1_file_sequince_string.html#ac836ea7811841f47eaeeb0f749ae74dc">next</a>()</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    {</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;      std::string retval = <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <a class="code" href="classkisscpp_1_1_persisted_queue.html">PersistedQueue</a>(<span class="keyword">const</span> std::string&amp; queueName,</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                   <span class="keyword">const</span> std::string&amp; queueWorkingDir,</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                   <span class="keyword">const</span> <span class="keywordtype">unsigned</span>     maxItemsPerPage);</div>
+<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="classkisscpp_1_1_persisted_queue.html#a1ad220b2617f732878013e8df8cfadce">  120</a></span>&#160;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    ~<a class="code" href="classkisscpp_1_1_persisted_queue.html">PersistedQueue</a>();</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="keywordtype">void</span>                    push_back (<a class="code" href="persisted__queue_8hpp.html#afaed39dc5f50bc993872e2d46490667c">QueuedObjectPointerType</a> p);</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="keywordtype">void</span>                    push_front(<a class="code" href="persisted__queue_8hpp.html#afaed39dc5f50bc993872e2d46490667c">QueuedObjectPointerType</a> p);</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    <a class="code" href="persisted__queue_8hpp.html#afaed39dc5f50bc993872e2d46490667c">QueuedObjectPointerType</a> pop_front ();</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    <a class="code" href="persisted__queue_8hpp.html#afaed39dc5f50bc993872e2d46490667c">QueuedObjectPointerType</a> front();</div>
+<div class="line"><a name="l00128"></a><span class="lineno"><a class="line" href="classkisscpp_1_1_persisted_queue.html#a59ce4b260c250368e50ed77becb02415">  128</a></span>&#160;    <span class="keywordtype">void</span>                    clear();</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <span class="keywordtype">bool</span>                    <a class="code" href="classkisscpp_1_1_persisted_queue.html#a59ce4b260c250368e50ed77becb02415">empty</a>();</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <span class="keywordtype">size_t</span>                  size();</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;  <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;  <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00135"></a><span class="lineno"><a class="line" href="classkisscpp_1_1_persisted_queue.html#ab6c18f15d6ac9ccad453729f0e7fa935">  135</a></span>&#160;    <span class="keywordtype">void</span>         setWorkingDirectory   (std::string wdir);</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    <span class="keywordtype">void</span>         persistToFile         (std::string seq, <a class="code" href="persisted__queue_8hpp.html#a36c99d1cf9ec37c4de496d05bf664cd0">QueueTypePtr</a> p);</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    <a class="code" href="persisted__queue_8hpp.html#a36c99d1cf9ec37c4de496d05bf664cd0">QueueTypePtr</a> loadFromFile          (<span class="keyword">const</span> std::string&amp; path2File);</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    <span class="keywordtype">void</span>         load                  ();</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    <span class="keywordtype">void</span>         loadFirstAndLastPage  ();</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    <span class="keywordtype">void</span>         loadPersistedFileNames();</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <span class="keywordtype">void</span>         loadOrphanedQueueFiles();</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    <span class="keywordtype">void</span>         makeStateFilePath     ();</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    <span class="keywordtype">bool</span>         stateFileExists       ();</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    <span class="keywordtype">void</span>         loadStateFile         ();</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    <span class="keywordtype">void</span>         writeFirstAndLastPage ();</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    <span class="keywordtype">void</span>         writeStateFile        ();</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    std::string  seqNumber             ();</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    std::string             _queueName;</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    boost::filesystem::path _workingDirectory;</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    boost::filesystem::path _stateFilePath;</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    <span class="keywordtype">unsigned</span>                _maxItemsPerPage;</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    boost::regex            _queueFileRegex;</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    std::deque&lt;std::string&gt; persistedFileNames;</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    <a class="code" href="persisted__queue_8hpp.html#a36c99d1cf9ec37c4de496d05bf664cd0">QueueTypePtr</a>            firstPage;</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    <a class="code" href="persisted__queue_8hpp.html#a36c99d1cf9ec37c4de496d05bf664cd0">QueueTypePtr</a>            lastPage;</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    <a class="code" href="persisted__queue_8hpp.html#a36c99d1cf9ec37c4de496d05bf664cd0">QueueTypePtr</a>            swapPage;</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    _sT                     biCoder;</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;};</div>
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;      <span class="keywordtype">bool</span>        rollup = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;      <span class="keywordtype">unsigned</span>    i      = <a class="code" href="namespacekisscpp.html#a743621016edf95f7afda64b2da3bb576">NumberOfFileSequinceDigits</a>-1;</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;      <span class="keywordflow">while</span>(i &gt;= 0 &amp;&amp; rollup) {</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        <span class="keywordflow">if</span>(digits[i] == <span class="charliteral">&#39;z&#39;</span>) {</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;          rollup    = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;          digits[i] = <span class="charliteral">&#39;a&#39;</span>;</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;          rollup    = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;          digits[i] = (char)((<span class="keywordtype">unsigned</span>)digits[i]+1);</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;        }</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;        --i;</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;      }</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;      <span class="keywordflow">if</span>(i &lt; 0) {</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        <span class="comment">// TODO: we have a rollup, beyond the currently allowed number of digits, throw some kind of exception;</span></div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;      }</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;      <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> j = 0; j &lt; <a class="code" href="namespacekisscpp.html#a743621016edf95f7afda64b2da3bb576">NumberOfFileSequinceDigits</a>; ++j) {</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        retval += digits[j];</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;      }</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;      <span class="keywordflow">return</span> retval;</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    }</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;  <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;  <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    <span class="keywordtype">char</span> digits[<a class="code" href="namespacekisscpp.html#a743621016edf95f7afda64b2da3bb576">NumberOfFileSequinceDigits</a>];</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;};</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;<span class="comment">//--------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<span class="comment">// These define statements exist for code readabililty purposes</span></div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="comment">// Normally they should be typedef statements, but this is a templitized class.</span></div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="comment">// There are probably better ways of dealing with this, but I&#39;m rather pushed for</span></div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;<span class="comment">// time right now, and this is cleanest, most convenient solution available to me.</span></div>
-<div class="line"><a name="l00199"></a><span class="lineno"><a class="line" href="persisted__queue_8hpp.html#afaed39dc5f50bc993872e2d46490667c">  199</a></span>&#160;<span class="preprocessor">#define QueuedObjectPointerType boost::shared_ptr&lt;_qoT &gt;</span></div>
-<div class="line"><a name="l00200"></a><span class="lineno"><a class="line" href="persisted__queue_8hpp.html#a0f866dc82edb46503a53b3e043f81f2f">  200</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define QueueType               std::deque&lt;QueuedObjectPointerType &gt;</span></div>
-<div class="line"><a name="l00201"></a><span class="lineno"><a class="line" href="persisted__queue_8hpp.html#a36c99d1cf9ec37c4de496d05bf664cd0">  201</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define QueueTypePtr            boost::shared_ptr&lt;QueueType &gt;</span></div>
-<div class="line"><a name="l00202"></a><span class="lineno"><a class="line" href="persisted__queue_8hpp.html#a55cfd939382843e351914f95c204427e">  202</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define QueueTypeIterator       typename std::deque&lt;boost::shared_ptr&lt;_qoT &gt; &gt;::iterator</span></div>
-<div class="line"><a name="l00203"></a><span class="lineno"><a class="line" href="persisted__queue_8hpp.html#a77d3f6a01bab89b6b730110f7809ead6">  203</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define value_type              QueueType::value_type</span></div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<span class="comment">//--------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> _qoT, <span class="keyword">class</span> _sT&gt;</div>
-<div class="line"><a name="l00207"></a><span class="lineno"><a class="line" href="classkisscpp_1_1_persisted_queue.html">  207</a></span>&#160;<span class="keyword">class </span><a class="code" href="classkisscpp_1_1_persisted_queue.html">PersistedQueue</a> : <span class="keyword">public</span> boost::noncopyable</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;{</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;  <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    <a class="code" href="classkisscpp_1_1_persisted_queue.html">PersistedQueue</a>(<span class="keyword">const</span> std::string&amp; queueName,</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;                   <span class="keyword">const</span> std::string&amp; queueWorkingDir,</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;                   <span class="keyword">const</span> <span class="keywordtype">unsigned</span>     maxItemsPerPage);</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    ~<a class="code" href="classkisscpp_1_1_persisted_queue.html">PersistedQueue</a>();</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;    <span class="keywordtype">void</span>                    push_back (<a class="code" href="persisted__queue_8hpp.html#afaed39dc5f50bc993872e2d46490667c">QueuedObjectPointerType</a> p);</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;    <span class="keywordtype">void</span>                    push_front(<a class="code" href="persisted__queue_8hpp.html#afaed39dc5f50bc993872e2d46490667c">QueuedObjectPointerType</a> p);</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    <a class="code" href="persisted__queue_8hpp.html#afaed39dc5f50bc993872e2d46490667c">QueuedObjectPointerType</a> pop_front ();</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    <a class="code" href="persisted__queue_8hpp.html#afaed39dc5f50bc993872e2d46490667c">QueuedObjectPointerType</a> front();</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    <span class="keywordtype">void</span>                    clear();</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    <span class="keywordtype">bool</span>                    empty();</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    <span class="keywordtype">size_t</span>                  size();</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;  <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;  <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    <span class="keywordtype">void</span>         setWorkingDirectory   (std::string wdir);</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    <span class="keywordtype">void</span>         persistToFile         (std::string seq, <a class="code" href="persisted__queue_8hpp.html#a36c99d1cf9ec37c4de496d05bf664cd0">QueueTypePtr</a> p);</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    <a class="code" href="persisted__queue_8hpp.html#a36c99d1cf9ec37c4de496d05bf664cd0">QueueTypePtr</a> loadFromFile          (<span class="keyword">const</span> std::string&amp; path2File);</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    <span class="keywordtype">void</span>         load                  ();</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    <span class="keywordtype">void</span>         loadFirstAndLastPage  ();</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    <span class="keywordtype">void</span>         loadPersistedFileNames();</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    <span class="keywordtype">void</span>         loadOrphanedQueueFiles();</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    <span class="keywordtype">void</span>         makeStateFilePath     ();</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;    <span class="keywordtype">bool</span>         stateFileExists       ();</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    <span class="keywordtype">void</span>         loadStateFile         ();</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    <span class="keywordtype">void</span>         writeFirstAndLastPage ();</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;    <span class="keywordtype">void</span>         writeStateFile        ();</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    std::string             _queueName;</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    boost::filesystem::path _workingDirectory;</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    boost::filesystem::path _stateFilePath;</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    <span class="keywordtype">unsigned</span>                _maxItemsPerPage;</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    boost::regex            _queueFileRegex;</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    std::deque&lt;std::string&gt; persistedFileNames;</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    <a class="code" href="persisted__queue_8hpp.html#a36c99d1cf9ec37c4de496d05bf664cd0">QueueTypePtr</a>            firstPage;</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    <a class="code" href="persisted__queue_8hpp.html#a36c99d1cf9ec37c4de496d05bf664cd0">QueueTypePtr</a>            lastPage;</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    <a class="code" href="persisted__queue_8hpp.html#a36c99d1cf9ec37c4de496d05bf664cd0">QueueTypePtr</a>            swapPage;</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    _sT                     biCoder;</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    <a class="code" href="classkisscpp_1_1_file_sequince_string.html">FileSequinceString</a>      fileSequinceString;</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;};</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;</div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;<span class="preprocessor">#include &quot;persisted_queue.tpp&quot;</span></div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;}</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;<span class="preprocessor"></span></div>
-<div class="ttc" id="classkisscpp_1_1_file_sequince_string_html_a0a5f8c8c6fba6177297c98dbe92b5772"><div class="ttname"><a href="classkisscpp_1_1_file_sequince_string.html#a0a5f8c8c6fba6177297c98dbe92b5772">kisscpp::FileSequinceString::operator=</a></div><div class="ttdeci">FileSequinceString &amp; operator=(const std::string &amp;rhs)</div><div class="ttdef"><b>Definition:</b> persisted_queue.hpp:138</div></div>
-<div class="ttc" id="classkisscpp_1_1_persisted_queue_html"><div class="ttname"><a href="classkisscpp_1_1_persisted_queue.html">kisscpp::PersistedQueue</a></div><div class="ttdef"><b>Definition:</b> persisted_queue.hpp:207</div></div>
-<div class="ttc" id="classkisscpp_1_1_base64_bi_coder_html_a64d95b2904f11acbddf6d70f19e61b35"><div class="ttname"><a href="classkisscpp_1_1_base64_bi_coder.html#a64d95b2904f11acbddf6d70f19e61b35">kisscpp::Base64BiCoder::Base64BiCoder</a></div><div class="ttdeci">Base64BiCoder()</div><div class="ttdef"><b>Definition:</b> persisted_queue.hpp:56</div></div>
-<div class="ttc" id="classkisscpp_1_1_file_sequince_string_html_ab378cb573d6b5fbef2669823e51b0bd6"><div class="ttname"><a href="classkisscpp_1_1_file_sequince_string.html#ab378cb573d6b5fbef2669823e51b0bd6">kisscpp::FileSequinceString::FileSequinceString</a></div><div class="ttdeci">FileSequinceString()</div><div class="ttdef"><b>Definition:</b> persisted_queue.hpp:117</div></div>
-<div class="ttc" id="classkisscpp_1_1_file_sequince_string_html"><div class="ttname"><a href="classkisscpp_1_1_file_sequince_string.html">kisscpp::FileSequinceString</a></div><div class="ttdef"><b>Definition:</b> persisted_queue.hpp:114</div></div>
-<div class="ttc" id="classkisscpp_1_1_base64_bi_coder_html_ab17cf7f1594fa761eca93d6a1ee614ef"><div class="ttname"><a href="classkisscpp_1_1_base64_bi_coder.html#ab17cf7f1594fa761eca93d6a1ee614ef">kisscpp::Base64BiCoder::encodeToBase64String</a></div><div class="ttdeci">boost::shared_ptr&lt; std::string &gt; encodeToBase64String(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> persisted_queue.hpp:74</div></div>
-<div class="ttc" id="classkisscpp_1_1_base64_bi_coder_html"><div class="ttname"><a href="classkisscpp_1_1_base64_bi_coder.html">kisscpp::Base64BiCoder</a></div><div class="ttdef"><b>Definition:</b> persisted_queue.hpp:50</div></div>
-<div class="ttc" id="classkisscpp_1_1_base64_bi_coder_html_a3d4011fcafbdf230c7cc8188714ed499"><div class="ttname"><a href="classkisscpp_1_1_base64_bi_coder.html#a3d4011fcafbdf230c7cc8188714ed499">kisscpp::Base64BiCoder::BinaryType</a></div><div class="ttdeci">transform_width&lt; binary_from_base64&lt; remove_whitespace&lt; std::string::const_iterator &gt; &gt;, 8, 6 &gt; BinaryType</div><div class="ttdef"><b>Definition:</b> persisted_queue.hpp:53</div></div>
-<div class="ttc" id="persisted__queue_8hpp_html_afaed39dc5f50bc993872e2d46490667c"><div class="ttname"><a href="persisted__queue_8hpp.html#afaed39dc5f50bc993872e2d46490667c">QueuedObjectPointerType</a></div><div class="ttdeci">#define QueuedObjectPointerType</div><div class="ttdef"><b>Definition:</b> persisted_queue.hpp:199</div></div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<span class="preprocessor">#include &quot;persisted_queue.tpp&quot;</span></div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;}</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;<span class="preprocessor"></span></div>
+<div class="ttc" id="classkisscpp_1_1_persisted_queue_html"><div class="ttname"><a href="classkisscpp_1_1_persisted_queue.html">kisscpp::PersistedQueue</a></div><div class="ttdef"><b>Definition:</b> persisted_queue.hpp:114</div></div>
+<div class="ttc" id="classkisscpp_1_1_base64_bi_coder_html_a64d95b2904f11acbddf6d70f19e61b35"><div class="ttname"><a href="classkisscpp_1_1_base64_bi_coder.html#a64d95b2904f11acbddf6d70f19e61b35">kisscpp::Base64BiCoder::Base64BiCoder</a></div><div class="ttdeci">Base64BiCoder()</div><div class="ttdef"><b>Definition:</b> persisted_queue.hpp:57</div></div>
+<div class="ttc" id="classkisscpp_1_1_base64_bi_coder_html"><div class="ttname"><a href="classkisscpp_1_1_base64_bi_coder.html">kisscpp::Base64BiCoder</a></div><div class="ttdef"><b>Definition:</b> persisted_queue.hpp:51</div></div>
+<div class="ttc" id="classkisscpp_1_1_base64_bi_coder_html_a3d4011fcafbdf230c7cc8188714ed499"><div class="ttname"><a href="classkisscpp_1_1_base64_bi_coder.html#a3d4011fcafbdf230c7cc8188714ed499">kisscpp::Base64BiCoder::BinaryType</a></div><div class="ttdeci">transform_width&lt; binary_from_base64&lt; remove_whitespace&lt; std::string::const_iterator &gt; &gt;, 8, 6 &gt; BinaryType</div><div class="ttdef"><b>Definition:</b> persisted_queue.hpp:54</div></div>
+<div class="ttc" id="persisted__queue_8hpp_html_afaed39dc5f50bc993872e2d46490667c"><div class="ttname"><a href="persisted__queue_8hpp.html#afaed39dc5f50bc993872e2d46490667c">QueuedObjectPointerType</a></div><div class="ttdeci">#define QueuedObjectPointerType</div><div class="ttdef"><b>Definition:</b> persisted_queue.hpp:106</div></div>
+<div class="ttc" id="classkisscpp_1_1_persisted_queue_html_a59ce4b260c250368e50ed77becb02415"><div class="ttname"><a href="classkisscpp_1_1_persisted_queue.html#a59ce4b260c250368e50ed77becb02415">kisscpp::PersistedQueue::empty</a></div><div class="ttdeci">bool empty()</div><div class="ttdef"><b>Definition:</b> persisted_queue.hpp:128</div></div>
 <div class="ttc" id="logstream_8hpp_html"><div class="ttname"><a href="logstream_8hpp.html">logstream.hpp</a></div></div>
-<div class="ttc" id="classkisscpp_1_1_base64_bi_coder_html_a54d2f4ba00e068e8d4d6fd6497ebf21d"><div class="ttname"><a href="classkisscpp_1_1_base64_bi_coder.html#a54d2f4ba00e068e8d4d6fd6497ebf21d">kisscpp::Base64BiCoder::Base64Type</a></div><div class="ttdeci">base64_from_binary&lt; transform_width&lt; std::string::const_iterator, 6, 8 &gt; &gt; Base64Type</div><div class="ttdef"><b>Definition:</b> persisted_queue.hpp:54</div></div>
-<div class="ttc" id="classkisscpp_1_1_file_sequince_string_html_a942e78a3d1ba76e8b8d5671c4ca9358d"><div class="ttname"><a href="classkisscpp_1_1_file_sequince_string.html#a942e78a3d1ba76e8b8d5671c4ca9358d">kisscpp::FileSequinceString::operator=</a></div><div class="ttdeci">FileSequinceString &amp; operator=(const FileSequinceString &amp;rhs)</div><div class="ttdef"><b>Definition:</b> persisted_queue.hpp:127</div></div>
-<div class="ttc" id="classkisscpp_1_1_base64_bi_coder_html_a203c4896daf408dfb45c9d57aea0d959"><div class="ttname"><a href="classkisscpp_1_1_base64_bi_coder.html#a203c4896daf408dfb45c9d57aea0d959">kisscpp::Base64BiCoder::~Base64BiCoder</a></div><div class="ttdeci">~Base64BiCoder()</div><div class="ttdef"><b>Definition:</b> persisted_queue.hpp:57</div></div>
-<div class="ttc" id="namespacekisscpp_1_1manip_html_ac4893fff26af38ff60229792840064b3"><div class="ttname"><a href="namespacekisscpp_1_1manip.html#ac4893fff26af38ff60229792840064b3">kisscpp::manip::debug_normal</a></div><div class="ttdeci">LogStream &amp; debug_normal(LogStream &amp;s, const bool permanent=false)</div><div class="ttdef"><b>Definition:</b> logstream.hpp:351</div></div>
-<div class="ttc" id="classkisscpp_1_1_file_sequince_string_html_ac836ea7811841f47eaeeb0f749ae74dc"><div class="ttname"><a href="classkisscpp_1_1_file_sequince_string.html#ac836ea7811841f47eaeeb0f749ae74dc">kisscpp::FileSequinceString::next</a></div><div class="ttdeci">std::string next()</div><div class="ttdef"><b>Definition:</b> persisted_queue.hpp:160</div></div>
+<div class="ttc" id="classkisscpp_1_1_base64_bi_coder_html_a54d2f4ba00e068e8d4d6fd6497ebf21d"><div class="ttname"><a href="classkisscpp_1_1_base64_bi_coder.html#a54d2f4ba00e068e8d4d6fd6497ebf21d">kisscpp::Base64BiCoder::Base64Type</a></div><div class="ttdeci">base64_from_binary&lt; transform_width&lt; std::string::const_iterator, 6, 8 &gt; &gt; Base64Type</div><div class="ttdef"><b>Definition:</b> persisted_queue.hpp:55</div></div>
+<div class="ttc" id="classkisscpp_1_1_base64_bi_coder_html_a203c4896daf408dfb45c9d57aea0d959"><div class="ttname"><a href="classkisscpp_1_1_base64_bi_coder.html#a203c4896daf408dfb45c9d57aea0d959">kisscpp::Base64BiCoder::~Base64BiCoder</a></div><div class="ttdeci">~Base64BiCoder()</div><div class="ttdef"><b>Definition:</b> persisted_queue.hpp:58</div></div>
+<div class="ttc" id="namespacekisscpp_1_1manip_html_ac4893fff26af38ff60229792840064b3"><div class="ttname"><a href="namespacekisscpp_1_1manip.html#ac4893fff26af38ff60229792840064b3">kisscpp::manip::debug_normal</a></div><div class="ttdeci">LogStream &amp; debug_normal(LogStream &amp;s, const bool permanent=false)</div><div class="ttdef"><b>Definition:</b> logstream.hpp:353</div></div>
 <div class="ttc" id="classkisscpp_1_1_log_stream_html"><div class="ttname"><a href="classkisscpp_1_1_log_stream.html">kisscpp::LogStream</a></div><div class="ttdef"><b>Definition:</b> logstream.hpp:145</div></div>
-<div class="ttc" id="classkisscpp_1_1_file_sequince_string_html_a501332a509814ab09021030b3e433a94"><div class="ttname"><a href="classkisscpp_1_1_file_sequince_string.html#a501332a509814ab09021030b3e433a94">kisscpp::FileSequinceString::reset</a></div><div class="ttdeci">void reset()</div><div class="ttdef"><b>Definition:</b> persisted_queue.hpp:152</div></div>
-<div class="ttc" id="classkisscpp_1_1_base64_bi_coder_html_af8b91f925c229a0892be4e5d9428fb13"><div class="ttname"><a href="classkisscpp_1_1_base64_bi_coder.html#af8b91f925c229a0892be4e5d9428fb13">kisscpp::Base64BiCoder::decodeFromBase64</a></div><div class="ttdeci">boost::shared_ptr&lt; std::string &gt; decodeFromBase64(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> persisted_queue.hpp:87</div></div>
-<div class="ttc" id="namespacekisscpp_html_a743621016edf95f7afda64b2da3bb576"><div class="ttname"><a href="namespacekisscpp.html#a743621016edf95f7afda64b2da3bb576">kisscpp::NumberOfFileSequinceDigits</a></div><div class="ttdeci">const unsigned NumberOfFileSequinceDigits</div><div class="ttdef"><b>Definition:</b> persisted_queue.hpp:112</div></div>
-<div class="ttc" id="persisted__queue_8hpp_html_a36c99d1cf9ec37c4de496d05bf664cd0"><div class="ttname"><a href="persisted__queue_8hpp.html#a36c99d1cf9ec37c4de496d05bf664cd0">QueueTypePtr</a></div><div class="ttdeci">#define QueueTypePtr</div><div class="ttdef"><b>Definition:</b> persisted_queue.hpp:201</div></div>
-<div class="ttc" id="classkisscpp_1_1_file_sequince_string_html_a65e065469610a9c0405faf7af34e10c8"><div class="ttname"><a href="classkisscpp_1_1_file_sequince_string.html#a65e065469610a9c0405faf7af34e10c8">kisscpp::FileSequinceString::~FileSequinceString</a></div><div class="ttdeci">~FileSequinceString()</div><div class="ttdef"><b>Definition:</b> persisted_queue.hpp:124</div></div>
-<div class="ttc" id="namespacekisscpp_1_1manip_html_ad682f16cb474bc7ff2c991ad2c45db66"><div class="ttname"><a href="namespacekisscpp_1_1manip.html#ad682f16cb474bc7ff2c991ad2c45db66">kisscpp::manip::endl</a></div><div class="ttdeci">LogStream &amp; endl(LogStream &amp;s)</div><div class="ttdef"><b>Definition:</b> logstream.hpp:326</div></div>
+<div class="ttc" id="classkisscpp_1_1_base64_bi_coder_html_af8b91f925c229a0892be4e5d9428fb13"><div class="ttname"><a href="classkisscpp_1_1_base64_bi_coder.html#af8b91f925c229a0892be4e5d9428fb13">kisscpp::Base64BiCoder::decodeFromBase64</a></div><div class="ttdeci">boost::shared_ptr&lt; std::string &gt; decodeFromBase64(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> persisted_queue.hpp:77</div></div>
+<div class="ttc" id="persisted__queue_8hpp_html_a36c99d1cf9ec37c4de496d05bf664cd0"><div class="ttname"><a href="persisted__queue_8hpp.html#a36c99d1cf9ec37c4de496d05bf664cd0">QueueTypePtr</a></div><div class="ttdeci">#define QueueTypePtr</div><div class="ttdef"><b>Definition:</b> persisted_queue.hpp:108</div></div>
+<div class="ttc" id="namespacekisscpp_1_1manip_html_ad682f16cb474bc7ff2c991ad2c45db66"><div class="ttname"><a href="namespacekisscpp_1_1manip.html#ad682f16cb474bc7ff2c991ad2c45db66">kisscpp::manip::endl</a></div><div class="ttdeci">LogStream &amp; endl(LogStream &amp;s)</div><div class="ttdef"><b>Definition:</b> logstream.hpp:328</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Oct 20 2014 14:51:54 for KISSCPP by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Feb 10 2015 11:05:02 for KISSCPP by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

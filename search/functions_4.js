@@ -11,5 +11,5 @@ var searchData=
   ['error_5fnormal',['error_normal',['../namespacekisscpp_1_1manip.html#af7d168675689cf70931df8d3acb4b4e9',1,'kisscpp::manip']]],
   ['errorcleaner',['ErrorCleaner',['../classkisscpp_1_1_error_cleaner.html#a7f8acb2c065fdc55e729aba77eedc3a1',1,'kisscpp::ErrorCleaner']]],
   ['errorreporter',['ErrorReporter',['../classkisscpp_1_1_error_reporter.html#ae772ce0549cded2acb8909b420c4b6d7',1,'kisscpp::ErrorReporter']]],
-  ['errorstate',['ErrorState',['../classkisscpp_1_1_error_state.html#a0b9109ca4cb0c58114b7b0e32638f18c',1,'kisscpp::ErrorState']]]
+  ['errorstate',['ErrorState',['../classkisscpp_1_1_error_state.html#ab6136e6d85bb86357c348bf1fe86d33c',1,'kisscpp::ErrorState']]]
 ];

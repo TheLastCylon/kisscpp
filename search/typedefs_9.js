@@ -5,7 +5,7 @@ var searchData=
   ['scopedptreeq',['ScopedPtreeQ',['../namespacekisscpp.html#a64a7093fe1bdc3f323b469e800eebc7f',1,'kisscpp']]],
   ['scopedsafeptreeq',['ScopedSafePtreeQ',['../namespacekisscpp.html#a20653e6629a85affc6a1b8529e0a8da0',1,'kisscpp']]],
   ['sharedclient',['SharedClient',['../client_8hpp.html#a397be11bebf53d9d2cbed76362248eb5',1,'client.hpp']]],
-  ['sharederrorlistmap',['SharedErrorListMap',['../namespacekisscpp.html#a52b7a11959a119c1da931042d7751db0',1,'kisscpp']]],
+  ['sharederrorlist',['SharedErrorList',['../namespacekisscpp.html#a97f51b10e50fc4e1f9142a9e909d477b',1,'kisscpp']]],
   ['sharederrorstate',['SharedErrorState',['../namespacekisscpp.html#af77de115307b379cbcab83a1fc54fdad',1,'kisscpp']]],
   ['sharedptree',['SharedPtree',['../boost__ptree_8hpp.html#a6ae398e86fa933d7157221802015c517',1,'boost_ptree.hpp']]],
   ['sharedptreeq',['SharedPtreeQ',['../namespacekisscpp.html#aecf9f29bb4c41e0d4dbc74731a3020cd',1,'kisscpp']]],

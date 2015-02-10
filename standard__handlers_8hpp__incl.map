@@ -1,10 +1,10 @@
 <map id="standard_handlers.hpp" name="standard_handlers.hpp">
-<area shape="rect" id="node7" href="$logstream_8hpp.html" title="logstream.hpp" alt="" coords="817,229,921,256"/>
-<area shape="rect" id="node16" href="$request__handler_8hpp.html" title="request_handler.hpp" alt="" coords="809,155,948,181"/>
-<area shape="rect" id="node18" href="$boost__ptree_8hpp.html" title="boost_ptree.hpp" alt="" coords="1092,229,1207,256"/>
-<area shape="rect" id="node23" href="$request__router_8hpp.html" title="request_router.hpp" alt="" coords="971,80,1100,107"/>
-<area shape="rect" id="node25" href="$request__status_8hpp.html" title="request_status.hpp" alt="" coords="1073,155,1207,181"/>
-<area shape="rect" id="node26" href="$statskeeper_8hpp.html" title="statskeeper.hpp" alt="" coords="1656,155,1771,181"/>
-<area shape="rect" id="node29" href="$errorstate_8hpp.html" title="errorstate.hpp" alt="" coords="1383,155,1485,181"/>
-<area shape="rect" id="node28" href="$statable__queue_8hpp.html" title="statable_queue.hpp" alt="" coords="1953,229,2087,256"/>
+<area shape="rect" id="node7" href="$logstream_8hpp.html" title="logstream.hpp" alt="" coords="753,229,857,256"/>
+<area shape="rect" id="node16" href="$request__handler_8hpp.html" title="request_handler.hpp" alt="" coords="736,155,875,181"/>
+<area shape="rect" id="node18" href="$boost__ptree_8hpp.html" title="boost_ptree.hpp" alt="" coords="1019,229,1133,256"/>
+<area shape="rect" id="node23" href="$request__router_8hpp.html" title="request_router.hpp" alt="" coords="912,80,1041,107"/>
+<area shape="rect" id="node25" href="$request__status_8hpp.html" title="request_status.hpp" alt="" coords="1000,155,1133,181"/>
+<area shape="rect" id="node26" href="$statskeeper_8hpp.html" title="statskeeper.hpp" alt="" coords="1673,155,1788,181"/>
+<area shape="rect" id="node30" href="$errorstate_8hpp.html" title="errorstate.hpp" alt="" coords="1325,155,1427,181"/>
+<area shape="rect" id="node29" href="$statable__queue_8hpp.html" title="statable_queue.hpp" alt="" coords="2091,229,2225,256"/>
 </map>

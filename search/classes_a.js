@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['server',['Server',['../classkisscpp_1_1_server.html',1,'kisscpp']]],
-  ['statablequeue',['StatAbleQueue',['../classkisscpp_1_1_stat_able_queue.html',1,'kisscpp']]],
-  ['statskeeper',['StatsKeeper',['../classkisscpp_1_1_stats_keeper.html',1,'kisscpp']]],
-  ['statsreporter',['StatsReporter',['../classkisscpp_1_1_stats_reporter.html',1,'kisscpp']]]
+  ['threadsafepersistedpriorityqueue',['ThreadsafePersistedPriorityQueue',['../classkisscpp_1_1_threadsafe_persisted_priority_queue.html',1,'kisscpp']]],
+  ['threadsafepersistedqueue',['ThreadsafePersistedQueue',['../classkisscpp_1_1_threadsafe_persisted_queue.html',1,'kisscpp']]],
+  ['threadsafequeue',['ThreadsafeQueue',['../classkisscpp_1_1_threadsafe_queue.html',1,'kisscpp']]]
 ];

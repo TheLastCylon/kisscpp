@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['requesthandler',['RequestHandler',['../classkisscpp_1_1_request_handler.html',1,'kisscpp']]],
-  ['requestrouter',['RequestRouter',['../classkisscpp_1_1_request_router.html',1,'kisscpp']]],
-  ['retryablecommsfailure',['RetryableCommsFailure',['../classkisscpp_1_1_retryable_comms_failure.html',1,'kisscpp']]]
+  ['server',['Server',['../classkisscpp_1_1_server.html',1,'kisscpp']]],
+  ['statablequeue',['StatAbleQueue',['../classkisscpp_1_1_stat_able_queue.html',1,'kisscpp']]],
+  ['statskeeper',['StatsKeeper',['../classkisscpp_1_1_stats_keeper.html',1,'kisscpp']]],
+  ['statsreporter',['StatsReporter',['../classkisscpp_1_1_stats_reporter.html',1,'kisscpp']]]
 ];

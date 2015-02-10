@@ -8,7 +8,6 @@ var searchData=
   ['_7eerrorreporter',['~ErrorReporter',['../classkisscpp_1_1_error_reporter.html#a497e32bd73503b28283b3e64fd0ac45c',1,'kisscpp::ErrorReporter']]],
   ['_7eerrorstate',['~ErrorState',['../classkisscpp_1_1_error_state.html#a75f55fa61878bb008abd861012b88662',1,'kisscpp::ErrorState']]],
   ['_7eerrorstatelist',['~ErrorStateList',['../classkisscpp_1_1_error_state_list.html#a0c53a01c63906189fad454dd5e217181',1,'kisscpp::ErrorStateList']]],
-  ['_7efilesequincestring',['~FileSequinceString',['../classkisscpp_1_1_file_sequince_string.html#a65e065469610a9c0405faf7af34e10c8',1,'kisscpp::FileSequinceString']]],
   ['_7ehandlerreporter',['~HandlerReporter',['../classkisscpp_1_1_handler_reporter.html#a8fa462a342186238f7a3e956b936d9b4',1,'kisscpp::HandlerReporter']]],
   ['_7elogleveladjuster',['~LogLevelAdjuster',['../classkisscpp_1_1_log_level_adjuster.html#a631d7d4e29b6069219e92a7835189bb5',1,'kisscpp::LogLevelAdjuster']]],
   ['_7elogstream',['~LogStream',['../classkisscpp_1_1_log_stream.html#ae2b779d35193c4eb8dbefd4c0ae5e51b',1,'kisscpp::LogStream']]],

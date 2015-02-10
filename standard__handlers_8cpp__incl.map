@@ -1,11 +1,11 @@
 <map id="standard_handlers.cpp" name="standard_handlers.cpp">
-<area shape="rect" id="node2" href="$standard__handlers_8hpp.html" title="standard_handlers.hpp" alt="" coords="1011,80,1164,107"/>
-<area shape="rect" id="node8" href="$logstream_8hpp.html" title="logstream.hpp" alt="" coords="817,304,921,331"/>
-<area shape="rect" id="node17" href="$request__handler_8hpp.html" title="request_handler.hpp" alt="" coords="809,229,948,256"/>
-<area shape="rect" id="node19" href="$boost__ptree_8hpp.html" title="boost_ptree.hpp" alt="" coords="1092,304,1207,331"/>
-<area shape="rect" id="node24" href="$request__router_8hpp.html" title="request_router.hpp" alt="" coords="971,155,1100,181"/>
-<area shape="rect" id="node26" href="$request__status_8hpp.html" title="request_status.hpp" alt="" coords="1073,229,1207,256"/>
-<area shape="rect" id="node27" href="$statskeeper_8hpp.html" title="statskeeper.hpp" alt="" coords="1656,229,1771,256"/>
-<area shape="rect" id="node30" href="$errorstate_8hpp.html" title="errorstate.hpp" alt="" coords="1383,229,1485,256"/>
-<area shape="rect" id="node29" href="$statable__queue_8hpp.html" title="statable_queue.hpp" alt="" coords="1953,304,2087,331"/>
+<area shape="rect" id="node2" href="$standard__handlers_8hpp.html" title="standard_handlers.hpp" alt="" coords="1055,80,1208,107"/>
+<area shape="rect" id="node8" href="$logstream_8hpp.html" title="logstream.hpp" alt="" coords="753,304,857,331"/>
+<area shape="rect" id="node17" href="$request__handler_8hpp.html" title="request_handler.hpp" alt="" coords="736,229,875,256"/>
+<area shape="rect" id="node19" href="$boost__ptree_8hpp.html" title="boost_ptree.hpp" alt="" coords="1019,304,1133,331"/>
+<area shape="rect" id="node24" href="$request__router_8hpp.html" title="request_router.hpp" alt="" coords="912,155,1041,181"/>
+<area shape="rect" id="node26" href="$request__status_8hpp.html" title="request_status.hpp" alt="" coords="1000,229,1133,256"/>
+<area shape="rect" id="node27" href="$statskeeper_8hpp.html" title="statskeeper.hpp" alt="" coords="1673,229,1788,256"/>
+<area shape="rect" id="node31" href="$errorstate_8hpp.html" title="errorstate.hpp" alt="" coords="1325,229,1427,256"/>
+<area shape="rect" id="node30" href="$statable__queue_8hpp.html" title="statable_queue.hpp" alt="" coords="2091,304,2225,331"/>
 </map>

@@ -1,11 +1,12 @@
 var searchData=
 [
   ['server',['Server',['../classkisscpp_1_1_server.html#a87029a4be5b4825225eb88e36fb3ddfb',1,'kisscpp::Server']]],
-  ['set',['set',['../classkisscpp_1_1_error_state.html#adba9283ecd7976c57ef48d438da86778',1,'kisscpp::ErrorState::set()'],['../classkisscpp_1_1_error_state_list.html#ae3998a49baee5f0aa709dbd6bb9e0397',1,'kisscpp::ErrorStateList::set()']]],
+  ['set',['set',['../classkisscpp_1_1_error_state.html#adba9283ecd7976c57ef48d438da86778',1,'kisscpp::ErrorState::set()'],['../classkisscpp_1_1_error_state_list.html#aa86f762158b9106efa816e45b9da8647',1,'kisscpp::ErrorStateList::set()']]],
   ['set2reopen',['set2ReOpen',['../classkisscpp_1_1_log_stream.html#a739a620e8f2e957e79cfbdd3e7f58500',1,'kisscpp::LogStream']]],
   ['setentityname',['setEntityName',['../classkisscpp_1_1_log_stream_settings.html#a147829d31ae248a3b510d7f721fc4891',1,'kisscpp::LogStreamSettings::setEntityName()'],['../classkisscpp_1_1_log_stream.html#a2eb0e6909fbdce8648f349dde4b3330c',1,'kisscpp::LogStream::setEntityName()']]],
   ['setlevel',['setLevel',['../classkisscpp_1_1_log_stream.html#afbccf2eeb34441a14113b29b89c15f88',1,'kisscpp::LogStream']]],
   ['setlog2consoleflag',['setLog2consoleFlag',['../classkisscpp_1_1_log_stream.html#ab9813d6efb18c2533dd0489306af5f3d',1,'kisscpp::LogStream']]],
+  ['setmaxbuffersize',['setMaxBufferSize',['../classkisscpp_1_1_log_stream.html#a97cbac369b8096467f286fcc9d92a13a',1,'kisscpp::LogStream']]],
   ['setmessagetype',['setMessageType',['../classkisscpp_1_1_log_stream_settings.html#a45dbf8235751be1255e9b8aa0e64c282',1,'kisscpp::LogStreamSettings::setMessageType()'],['../classkisscpp_1_1_log_stream.html#ae71eea1ac14056104afb50c60740357f',1,'kisscpp::LogStream::setMessageType(std::string mt, const bool permanent=false)'],['../classkisscpp_1_1_log_stream.html#accdbdc4d7876d4b1160321d0e49a4a24',1,'kisscpp::LogStream::setMessageType(log_type mt, const bool permanent=false)']]],
   ['setoutfilepath',['setOutFilePath',['../classkisscpp_1_1_log_stream.html#afb35292a073160d5fc74b1e94512226e',1,'kisscpp::LogStream']]],
   ['setseverity',['setSeverity',['../classkisscpp_1_1_log_stream_settings.html#a8512012926ee2b32b5768ba87eaba788',1,'kisscpp::LogStreamSettings::setSeverity()'],['../classkisscpp_1_1_log_stream.html#a7cf4acefb95c5bee8ec7fc1ae346dca3',1,'kisscpp::LogStream::setSeverity(std::string ms, const bool permanent=false)'],['../classkisscpp_1_1_log_stream.html#acc6d5cdabae2f2febd89518dee4ef14a',1,'kisscpp::LogStream::setSeverity(log_severity ms, const bool permanent=false)']]],
