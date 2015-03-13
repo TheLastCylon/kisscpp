@@ -70,6 +70,8 @@ namespace kisscpp
 
     try {
 
+      unsigned int    error_type_count  = 0;
+      unsigned int    total_error_count = 0;
       SharedErrorList selm;
 
       selm = ErrorStateList::instance()->getStates();
@@ -77,10 +79,27 @@ namespace kisscpp
       response.put("kcm-sts" , RQST_SUCCESS);
 
       for(ErrorListIterator itr = selm->begin(); itr != selm->end(); ++itr) {
-        std::stringstream sstr;
-        sstr << "[" << (*itr)->getSetCount() << "] " << (*itr)->getDescription();
-        response.put((*itr)->getId(), sstr.str());
+        std::stringstream error_name;
+        std::stringstream error_description;
+
+        error_name        << (*itr)->getId();
+        error_description << (*itr)->getDescription();
+
+        BoostPtree error;
+
+        error.put("type"       ,(*itr)->getId());
+        error.put("description",(*itr)->getDescription());
+        error.put("count"      ,(*itr)->getSetCount());
+
+        response.add_child("error-state.errors", error);
+
+        total_error_count += (*itr)->getSetCount();
+
+        error_type_count++;
       }
+
+      response.put("error-state.error-type-count"  , error_type_count);
+      response.put("error-state.total-error-count" , total_error_count);
 
     } catch (boost::property_tree::ptree_bad_path &e) {
 
