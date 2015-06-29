@@ -21,14 +21,15 @@
 namespace kisscpp
 {
   //--------------------------------------------------------------------------------
-  client::client(BoostPtree &_request, BoostPtree *_response, int timeout /* = 10 */) :
+  client::client(BoostPtree &_request, BoostPtree &_response, int timeout /* = 10 */) :
     socket_       (io_service_),
     timeout_timer_(io_service_, boost::posix_time::seconds(timeout)),
-    request_      (_request)
+    request_      (_request),
+    response_     (_response)
   {
     timeout_timer_.async_wait(boost::bind(&client::handle_timeout, this, boost::asio::placeholders::error));
 
-    response_ = _response;
+    //response_ = _response;
     //request_  = _request;
  
     LogStream            log     (__PRETTY_FUNCTION__);
@@ -111,14 +112,14 @@ namespace kisscpp
 
       log << manip::debug_normal << "Done reading from socket." << endl;
 
-      read_json(ss, *response_);
+      read_json(ss, response_);
 
-      unsigned int commsStatus = response_->get<unsigned int>("kcm-sts", RQST_UNKNOWN);
+      unsigned int commsStatus = response_.get<unsigned int>("kcm-sts", RQST_UNKNOWN);
 
       if(commsStatus != RQST_SUCCESS) {
         socket_.close();
         timeout_timer_.cancel();
-        std::string message = response_->get<std::string>("kcm-erm");
+        std::string message = response_.get<std::string>("kcm-erm");
         switch(commsStatus) {
           case RQST_APPLICATION_BUSY        :
           case RQST_APPLICATION_SHUTING_DOWN: throw RetryableCommsFailure(message); break;
