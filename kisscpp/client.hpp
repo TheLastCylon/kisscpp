@@ -36,7 +36,7 @@ namespace kisscpp
   class client
   {
     public:
-      client(BoostPtree &_request, BoostPtree &_response, int timeout = 10);
+      client(BoostPtree &_request, BoostPtree *_response, int timeout = 10);
 
       ~client() { socket_.close(); };
 
@@ -52,7 +52,7 @@ namespace kisscpp
       tcp::resolver::iterator     endpoint_iterator_;
       char                       *ackMessage_;
       BoostPtree                 &request_;
-      BoostPtree                 &response_;
+      BoostPtree                 *response_;
       boost::asio::deadline_timer timeout_timer_;
       boost::asio::streambuf      incomming_stream_buffer_;
   };
