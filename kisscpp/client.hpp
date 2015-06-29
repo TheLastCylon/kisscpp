@@ -51,8 +51,8 @@ namespace kisscpp
       tcp::socket                 socket_;
       tcp::resolver::iterator     endpoint_iterator_;
       char                       *ackMessage_;
-      BoostPtree                  request_;
-      BoostPtree                  response_;
+      BoostPtree                 &request_;
+      BoostPtree                 &response_;
       boost::asio::deadline_timer timeout_timer_;
       boost::asio::streambuf      incomming_stream_buffer_;
   };

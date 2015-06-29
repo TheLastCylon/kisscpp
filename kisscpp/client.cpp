@@ -22,13 +22,15 @@ namespace kisscpp
 {
   //--------------------------------------------------------------------------------
   client::client(BoostPtree &_request, BoostPtree &_response, int timeout /* = 10 */) :
-    socket_         (io_service_),
-    timeout_timer_  (io_service_, boost::posix_time::seconds(timeout))
+    socket_       (io_service_),
+    timeout_timer_(io_service_, boost::posix_time::seconds(timeout)),
+    request_      (_request),
+    response_     (_response)
   {
     timeout_timer_.async_wait(boost::bind(&client::handle_timeout, this, boost::asio::placeholders::error));
 
-    response_ = _response;
-    request_  = _request;
+    //response_ = _response;
+    //request_  = _request;
  
     LogStream            log     (__PRETTY_FUNCTION__);
     tcp::resolver        resolver(io_service_);
