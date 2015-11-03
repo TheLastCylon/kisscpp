@@ -49,7 +49,7 @@ class PtreeBase64Bicoder : public Base64BiCoder<boost::property_tree::ptree>
     }
 
     //--------------------------------------------------------------------------------
-    boost::shared_ptr<boost::property_tree::ptree> decode(std::string& str2decode)
+    boost::shared_ptr<boost::property_tree::ptree> decode(const std::string& str2decode)
     {
       using namespace boost::property_tree::json_parser;
 
