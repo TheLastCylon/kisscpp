@@ -103,6 +103,8 @@ class Base64BiCoder
 // Normally they should be typedef statements, but this is a templitized class.
 // There are probably better ways of dealing with this, but I'm rather pushed for
 // time right now, and this is cleanest, most convenient solution available to me.
+class _qoT;
+
 #define QueuedObjectPointerType boost::shared_ptr<_qoT >
 #define QueueType               std::deque<QueuedObjectPointerType >
 #define QueueTypePtr            boost::shared_ptr<QueueType >

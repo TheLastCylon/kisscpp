@@ -306,16 +306,17 @@ namespace kisscpp
     }
 
     umask(0);
-                
+
     sid = setsid();
+
     if (sid < 0) {
       throw std::runtime_error("Could not obtain valid session id for this child process.");
     }
-        
+
     if ((chdir("/")) < 0) {
       throw std::runtime_error("Could not change working directory to save, guarenteed root path.");
     }
-        
+
     close(STDIN_FILENO);
     close(STDOUT_FILENO);
     close(STDERR_FILENO);
