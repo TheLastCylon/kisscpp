@@ -26,7 +26,7 @@ PersistedQueue<_qoT, _sT>::PersistedQueue(const std::string& queueName,
   _maxItemsPerPage(maxItemsPerPage)
 {
   std::stringstream tmpRegex;
-  tmpRegex << "^" << _queueName << "_[a-z]*";
+  tmpRegex << "^" << _queueName << "_[0-9]*";
   _queueFileRegex = tmpRegex.str();
 
   makeStateFilePath();
