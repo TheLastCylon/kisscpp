@@ -21,9 +21,12 @@ template <class _qoT, class _sT>
 PersistedQueue<_qoT, _sT>::PersistedQueue(const std::string& queueName,
                                                      const std::string& queueWorkingDir,
                                                      const unsigned     maxItemsPerPage) :
-  _queueName(queueName),
+  _shut_down       (false),
+  _lastSeqNum      (0),
+  _seqNumCount     (0),
+  _queueName       (queueName),
   _workingDirectory(queueWorkingDir),
-  _maxItemsPerPage(maxItemsPerPage)
+  _maxItemsPerPage (maxItemsPerPage)
 {
   std::stringstream tmpRegex;
   tmpRegex << "^" << _queueName << "_[0-9]*";
@@ -38,45 +41,79 @@ PersistedQueue<_qoT, _sT>::PersistedQueue(const std::string& queueName,
 template <class _qoT, class _sT>
 PersistedQueue<_qoT, _sT>::~PersistedQueue()
 {
-  writeFirstAndLastPage();
-  writeStateFile();
+  LogStream log(__PRETTY_FUNCTION__);
+  shutdown();
 }
 
 //--------------------------------------------------------------------------------
 template <class _qoT, class _sT>
 void PersistedQueue<_qoT, _sT>::push_back(boost::shared_ptr< _qoT > p)
 {
-  if(lastPage->size() >= _maxItemsPerPage) {
-    if(lastPage == firstPage) {
-      lastPage.reset(new std::deque<boost::shared_ptr< _qoT > >());
-    } else {
-      persistToFile(seqNumber(), lastPage); 
+  if(!_shut_down) {
+    if(lastPage->size() >= _maxItemsPerPage) {
+      if(lastPage != firstPage) {
+        persistToFile(seqNumber(), lastPage); 
+      }
       lastPage.reset(new std::deque<boost::shared_ptr< _qoT > >());
     }
-  }
 
-  lastPage->push_back(p);
+    lastPage->push_back(p);
+  } else {
+    throw QueueShutDown();
+  }
 }
 
 //--------------------------------------------------------------------------------
 template <class _qoT, class _sT>
 void PersistedQueue<_qoT, _sT>::push_front(boost::shared_ptr< _qoT > p)
 {
-  firstPage->push_front(p);
+  if(!_shut_down) {
+    firstPage->push_front(p);
+  } else {
+    throw QueueShutDown();
+  }
 }
 
 //--------------------------------------------------------------------------------
 template <class _qoT, class _sT>
 boost::shared_ptr<_qoT> PersistedQueue<_qoT, _sT>::pop_front()
 {
-  boost::shared_ptr< _qoT >         retval;
+  if(!_shut_down) {
+    boost::shared_ptr< _qoT > retval;
+
+    if(firstPage->empty()) {
+      if(persistedFileNames.empty()) {
+        firstPage = lastPage;
+      } else {
+        firstPage = loadFrontFile();
+      }
+    }
+
+    if(firstPage->empty()) {
+      retval.reset();
+    } else {
+      retval = firstPage->front();
+      firstPage->pop_front();
+    }
+
+    return retval;
+  } else {
+    throw QueueShutDown();
+  }
+}
+
+//--------------------------------------------------------------------------------
+template <class _qoT, class _sT>
+boost::shared_ptr< _qoT > PersistedQueue<_qoT, _sT>::front()
+{
+  LogStream                 log(__PRETTY_FUNCTION__);
+  boost::shared_ptr< _qoT > retval;
 
   if(firstPage->empty()) {
     if(persistedFileNames.empty()) {
       firstPage = lastPage;
     } else {
-      firstPage = loadFromFile(persistedFileNames.front());
-      persistedFileNames.pop_front();
+      firstPage = loadFrontFile();
     }
   }
 
@@ -84,7 +121,6 @@ boost::shared_ptr<_qoT> PersistedQueue<_qoT, _sT>::pop_front()
     retval.reset();
   } else {
     retval = firstPage->front();
-    firstPage->pop_front();
   }
 
   return retval;
@@ -92,26 +128,11 @@ boost::shared_ptr<_qoT> PersistedQueue<_qoT, _sT>::pop_front()
 
 //--------------------------------------------------------------------------------
 template <class _qoT, class _sT>
-boost::shared_ptr< _qoT > PersistedQueue<_qoT, _sT>::front()
+void PersistedQueue<_qoT, _sT>::shutdown()
 {
-  boost::shared_ptr< _qoT > retval;
-
-  if(firstPage->empty()) {
-    if(persistedFileNames.empty()) {
-      firstPage = lastPage;
-    } else {
-      firstPage = loadFromFile(persistedFileNames.front());
-      persistedFileNames.pop_front();
-    }
-  }
-
-  if(firstPage->empty()) {
-    retval.reset();
-  } else {
-    retval = firstPage->front();
-  }
-
-  return retval;
+  _shut_down = true;
+  writeFirstAndLastPage();
+  writeStateFile();
 }
 
 //--------------------------------------------------------------------------------
@@ -133,7 +154,14 @@ bool PersistedQueue<_qoT, _sT>::empty()
 template <class _qoT, class _sT>
 size_t PersistedQueue<_qoT, _sT>::size()
 {
-  return (firstPage->size() + lastPage->size()  + (persistedFileNames.size() * _maxItemsPerPage));
+  size_t retval = 0;
+  if(firstPage == lastPage) {
+    retval = (firstPage->size()                    + (persistedFileNames.size() * _maxItemsPerPage));
+  } else {
+    retval = (firstPage->size() + lastPage->size() + (persistedFileNames.size() * _maxItemsPerPage));
+  }
+
+  return retval;
 }
 
 //--------------------------------------------------------------------------------
@@ -147,6 +175,7 @@ void PersistedQueue<_qoT, _sT>::setWorkingDirectory(std::string wdir)
 template <class _qoT, class _sT>
 void PersistedQueue<_qoT, _sT>::persistToFile(std::string seq, boost::shared_ptr<std::deque<boost::shared_ptr< _qoT > > > p)
 {
+  LogStream               log(__PRETTY_FUNCTION__);
   std::stringstream       fileName; 
   std::ofstream           outFile;
   boost::filesystem::path nativeFilePath = _workingDirectory;
@@ -158,61 +187,90 @@ void PersistedQueue<_qoT, _sT>::persistToFile(std::string seq, boost::shared_ptr
 
   nativeFilePathStr = nativeFilePath.native();
 
-  if(seq != "0") {
-    persistedFileNames.push_back(nativeFilePathStr);
-  } else {
-    persistedFileNames.push_front(nativeFilePathStr);
-  }
-
   outFile.open(nativeFilePathStr.c_str());
 
-  std::stringstream tmpstrm;
-  for(typename std::deque<boost::shared_ptr<_qoT > >::iterator i = p->begin(); i != p->end(); ++i) {
-    tmpstrm << (biCoder.encode(*i))->c_str() << '\n';
+  if(outFile.fail()) {
+    throw CouldNotWriteQueueFile(nativeFilePathStr, strerror(errno));
+  } else {
+    if(seq != "0") {
+      persistedFileNames.push_back(nativeFilePathStr);
+    } else {
+      persistedFileNames.push_front(nativeFilePathStr);
+    }
+
+    std::stringstream tmpstrm;
+    for(typename std::deque<boost::shared_ptr<_qoT > >::iterator i = p->begin(); i != p->end(); ++i) {
+      tmpstrm << (biCoder.encode(*i))->c_str() << '\n';
+    }
+
+    outFile << tmpstrm.str(); // write once, strategy, to minimize disk i/o
+
+    outFile.close();
   }
-
-  outFile << tmpstrm.str(); // write once, strategy, to minimize disk i/o
-
-  outFile.close();
 }
 
 //--------------------------------------------------------------------------------
 template <class _qoT, class _sT>
 boost::shared_ptr<std::deque<boost::shared_ptr< _qoT > > > PersistedQueue<_qoT, _sT>::loadFromFile(const std::string& path2File)
 {
-  std::string   record;
-  std::ifstream inFile;
+  LogStream                                                   log(__PRETTY_FUNCTION__);
+  std::string                                                 record;
+  std::string                                                 contents;
+  std::ifstream                                               inFile;
   boost::shared_ptr<std::deque<boost::shared_ptr< _qoT > > >  tmpQueue;
-  std::string   contents;
   
-  tmpQueue.reset(new std::deque<boost::shared_ptr< _qoT > >());
+  //tmpQueue.reset(new std::deque<boost::shared_ptr< _qoT > >());
 
   inFile.open(path2File.c_str(), std::ios::in | std::ios::binary);
 
-  if(inFile)
-  {
+  if(inFile.fail()) {
+    throw CouldNotLoadQueueFile(path2File, strerror(errno));
+  } else {
     inFile.seekg(0, std::ios::end);
     contents.resize(inFile.tellg());
     inFile.seekg(0, std::ios::beg);
     inFile.read(&contents[0], contents.size());
     inFile.close();
-    boost::filesystem::path file2remove(path2File);
-    boost::filesystem::remove(file2remove); // Once the file is loaded it should be removed.
-
 
     std::stringstream fileBuf(contents);
 
+    tmpQueue.reset(new std::deque<boost::shared_ptr< _qoT > >());
     std::getline(fileBuf, record);
 
     while(!fileBuf.eof()) {
       tmpQueue->push_back(biCoder.decode(record));
       std::getline(fileBuf, record);
     }
-  } else {
-    // TODO: Some kind of error processing/notification.
-  }
+
+    boost::filesystem::path file2remove(path2File);
+    boost::filesystem::remove(file2remove); // Once the file is loaded it should be removed.
+  } 
 
   return tmpQueue;
+}
+
+//--------------------------------------------------------------------------------
+template <class _qoT, class _sT>
+boost::shared_ptr<std::deque<boost::shared_ptr< _qoT > > > PersistedQueue<_qoT, _sT>::loadFrontFile()
+{
+  LogStream   log(__PRETTY_FUNCTION__);
+  std::string filename = persistedFileNames.front();
+
+  persistedFileNames.pop_front();
+
+  return loadFromFile(filename);
+}
+
+//--------------------------------------------------------------------------------
+template <class _qoT, class _sT>
+boost::shared_ptr<std::deque<boost::shared_ptr< _qoT > > > PersistedQueue<_qoT, _sT>::loadBackFile()
+{
+  LogStream   log(__PRETTY_FUNCTION__);
+  std::string filename = persistedFileNames.back();
+
+  persistedFileNames.pop_back();
+
+  return loadFromFile(filename);
 }
 
 //--------------------------------------------------------------------------------
@@ -229,18 +287,17 @@ void PersistedQueue<_qoT, _sT>::loadFirstAndLastPage()
 {
   if(persistedFileNames.size() > 0) {
     if(persistedFileNames.size() == 1) {
-      firstPage = loadFromFile(persistedFileNames.front());
+      firstPage = loadFrontFile();
       lastPage  = firstPage;
-      persistedFileNames.pop_front();
     } else {
-      firstPage = loadFromFile(persistedFileNames.front());
-      lastPage  = loadFromFile(persistedFileNames.back());
-      persistedFileNames.pop_front();
-      persistedFileNames.pop_back();
+      firstPage = loadFrontFile();
+      lastPage  = loadBackFile();
+      //persistedFileNames.pop_front();
+      //persistedFileNames.pop_back();
 
-      if(persistedFileNames.size() > 0) {
-        std::string tmpstr = persistedFileNames[persistedFileNames.size()-1];
-      }
+      //if(persistedFileNames.size() > 0) {
+      //  std::string tmpstr = persistedFileNames[persistedFileNames.size()-1];
+      //}
     }
   } else {
     firstPage.reset(new std::deque<boost::shared_ptr< _qoT > >());
@@ -332,19 +389,18 @@ void PersistedQueue<_qoT, _sT>::loadStateFile()
 template <class _qoT, class _sT>
 void PersistedQueue<_qoT, _sT>::writeFirstAndLastPage()
 {
-  if(firstPage->size() > 0) {
-    persistToFile("0", firstPage); 
-  }
+  LogStream                 log(__PRETTY_FUNCTION__);
 
-  if(lastPage != firstPage) {
-    persistToFile(seqNumber(), lastPage); 
-  }
+  if(firstPage->size() > 0) { persistToFile("0"        , firstPage); }
+  if(lastPage != firstPage) { persistToFile(seqNumber(), lastPage); }
 }
 
 //--------------------------------------------------------------------------------
 template <class _qoT, class _sT>
 void PersistedQueue<_qoT, _sT>::writeStateFile()
 {
+  LogStream                 log(__PRETTY_FUNCTION__);
+
   if(persistedFileNames.size() > 0) {
     std::ofstream outFile;
 
@@ -364,7 +420,23 @@ template <class _qoT, class _sT>
 std::string PersistedQueue<_qoT, _sT>::seqNumber()
 {
   std::stringstream retval;
-  retval << time(NULL);
+  time_t            newSeqNum = time(NULL);
+
+  if(_lastSeqNum == newSeqNum) {
+    _seqNumCount++;
+  } else {
+    _lastSeqNum  = newSeqNum;
+    _seqNumCount = 0;
+  }
+
+  retval << _lastSeqNum;
+  
+  if(_seqNumCount < 1000) { retval << 0; }
+  if(_seqNumCount <  100) { retval << 0; }
+  if(_seqNumCount <   10) { retval << 0; }
+
+  retval << _seqNumCount;
+
   return retval.str();
 }
 

@@ -26,6 +26,7 @@
 #include <algorithm>
 #include <cerrno>
 #include <ctime>
+#include <stdexcept>
 
 #include <boost/noncopyable.hpp>
 #include <boost/shared_ptr.hpp>
@@ -100,6 +101,42 @@ class Base64BiCoder
 };
 
 //--------------------------------------------------------------------------------
+class PersistedQueueError : public std::runtime_error
+{
+  public:
+  protected:
+    explicit PersistedQueueError(const std::string& msg) : std::runtime_error(msg) {}
+
+    //PersistedQueueError(const CommandStatus stat);
+    //PersistedQueueError(const CommandStatus stat, const std::string& msg);
+
+    virtual ~PersistedQueueError() throw() {};
+
+  private:
+};
+
+//--------------------------------------------------------------------------------
+class CouldNotLoadQueueFile : public PersistedQueueError
+{
+  public:
+    explicit CouldNotLoadQueueFile(const std::string file_name,const std::string error_msg) : PersistedQueueError("Could not load queue file [" + file_name + "] error: " + error_msg) {};
+};
+
+//--------------------------------------------------------------------------------
+class CouldNotWriteQueueFile : public PersistedQueueError
+{
+  public:
+    explicit CouldNotWriteQueueFile(const std::string file_name,const std::string error_msg) : PersistedQueueError("Could not write queue file [" + file_name + "] error: " + error_msg) {};
+};
+
+//--------------------------------------------------------------------------------
+class QueueShutDown : public PersistedQueueError
+{
+  public:
+    explicit QueueShutDown() : PersistedQueueError("No action allowed. Queue has been shut down") {};
+};
+
+//--------------------------------------------------------------------------------
 // These define statements exist for code readabililty purposes
 // Normally they should be typedef statements, but this is a templitized class.
 // There are probably better ways of dealing with this, but I'm rather pushed for
@@ -121,16 +158,17 @@ class PersistedQueue : public StatAbleQueue, public boost::noncopyable
 //typedef typename QueueType::value_type                             value_type             ;
 
   public:
-    PersistedQueue(const std::string& queueName,
-                   const std::string& queueWorkingDir,
-                   const unsigned     maxItemsPerPage);
+             PersistedQueue(const std::string& queueName,
+                            const std::string& queueWorkingDir,
+                            const unsigned     maxItemsPerPage);
 
-    ~PersistedQueue();
+    virtual ~PersistedQueue();
 
     void                      push_back (boost::shared_ptr< _qoT > p);
     void                      push_front(boost::shared_ptr< _qoT > p);
     boost::shared_ptr< _qoT > pop_front ();
     boost::shared_ptr< _qoT > front();
+    void                      shutdown();
     void                      clear();
     bool                      empty();
     size_t                    size();
@@ -141,6 +179,8 @@ class PersistedQueue : public StatAbleQueue, public boost::noncopyable
     void                                                       setWorkingDirectory   (std::string wdir);
     void                                                       persistToFile         (std::string seq, boost::shared_ptr<std::deque<boost::shared_ptr< _qoT > > > p);
     boost::shared_ptr<std::deque<boost::shared_ptr< _qoT > > > loadFromFile          (const std::string& path2File);
+    boost::shared_ptr<std::deque<boost::shared_ptr< _qoT > > > loadFrontFile         ();
+    boost::shared_ptr<std::deque<boost::shared_ptr< _qoT > > > loadBackFile          ();
     void                                                       load                  ();
     void                                                       loadFirstAndLastPage  ();
     void                                                       loadPersistedFileNames();
@@ -152,6 +192,9 @@ class PersistedQueue : public StatAbleQueue, public boost::noncopyable
     void                                                       writeStateFile        ();
     std::string                                                seqNumber             ();
 
+    bool                    _shut_down;
+    time_t                  _lastSeqNum;
+    unsigned int            _seqNumCount;
     std::string             _queueName;
     boost::filesystem::path _workingDirectory;
     boost::filesystem::path _stateFilePath;
