@@ -99,6 +99,13 @@ class ThreadsafePersistedPriorityQueue : public boost::noncopyable
       return (i == levels);
     }
 
+    void shutdown()
+    {
+      for(unsigned i = 0; i < levels; ++i) {
+        persistedQList[i]->shutdown();
+      }
+    }
+
     void clear(unsigned level)
     {
       persistedQList[level]->clear();

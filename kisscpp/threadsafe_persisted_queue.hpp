@@ -54,6 +54,11 @@ class ThreadsafePersistedQueue : public StatAbleQueue, public boost::noncopyable
       persistedQ->push_back(p);
     }
 
+    void shutdown()
+    {
+      persistedQ->shutdown();
+    }
+
     boost::shared_ptr<_qoT> pop()
     {
       boost::lock_guard<boost::mutex> guard(objectMutex);
