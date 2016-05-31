@@ -37,38 +37,55 @@ namespace kisscpp
   {
     if (createLockFile(application_id, application_instance)) {
 
+      std::cerr << "Lock file created for: [" << application_id << "] [" << application_instance << "]" << std::endl;
+
       if(runAsDaemon) {
+        std::cerr << "Running as Daemon." << std::endl;
         becomeDaemonProcess();
       }
 
       signalRegistrations();
+      std::cerr << "Signal registration completed." << std::endl;
 
       Config::instance(application_id, application_instance, config_root_path);
+      std::cerr << "Configuration instance created." << std::endl;
 
       initializeLogging((!runAsDaemon));
+      std::cerr << "Initialized Logging." << std::endl;
 
       // create the stats keeper instance here. So that it's available as soon as the server is constructed.
       StatsKeeper::instance(Config::instance()->get<unsigned long int>("kcc-stats.gather-period" ,300),
                             Config::instance()->get<unsigned long int>("kcc-stats.history-length",12));
+      std::cerr << "Initialized StatsKeeper." << std::endl;
 
       ErrorStateList::instance();   // same goes for the error state list.
+      std::cerr << "Initialized ErrorStateList." << std::endl;
 
       initialize_standard_handlers();
+      std::cerr << "Initialized Standard Handlers." << std::endl;
 
-      // Open the acceptor with the option to reuse the address (i.e. SO_REUSEADDR).
-      boost::asio::ip::tcp::resolver        resolver(acceptor_.get_io_service());
-      //boost::asio::ip::tcp::resolver::query query(address, port);
+      boost::asio::ip::tcp::resolver        resolver(acceptor_.get_io_service()); // Open the acceptor with the option to reuse the address (i.e. SO_REUSEADDR).
+      std::cerr << "Initialized resolver." << std::endl;
 
       boost::asio::ip::tcp::resolver::query query(Config::instance()->get<std::string>("kcc-server.address"),
                                                   Config::instance()->get<std::string>("kcc-server.port"));
+      std::cerr << "Initialized query object." << std::endl;
 
       boost::asio::ip::tcp::endpoint        endpoint = *resolver.resolve(query);
+      std::cerr << "Initialized endpoint." << std::endl;
 
       acceptor_.open(endpoint.protocol());
+      std::cerr << "Acceptor opened." << std::endl;
+
       acceptor_.set_option(boost::asio::ip::tcp::acceptor::reuse_address(true));
+      std::cerr << "Acceptor options set." << std::endl;
+
       acceptor_.bind(endpoint);
+      std::cerr << "Acceptor bound." << std::endl;
+
       acceptor_.listen();
 
+      std::cerr << "Server started, now accepting connections." << std::endl;
       start_accept();
     } else {
       std::cerr << "Could not create Lockfile for this appid and instance: ["
