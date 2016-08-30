@@ -37,9 +37,10 @@ namespace kisscpp
   //--------------------------------------------------------------------------------
   void Config::initiate(const std::string explicit_config_path /* = "" */)
   {
-    std::string  cfg_root_path = "/etc/kisscpp";
-    char        *kcpp_cfg_root = std::getenv("KCPP_CFG_ROOT");
-    char        *kcpp_exec_env = std::getenv("KCPP_EXEC_ENV");
+    kisscpp::LogStream log(__PRETTY_FUNCTION__);
+    std::string        cfg_root_path = "/etc/kisscpp";
+    char              *kcpp_cfg_root = std::getenv("KCPP_CFG_ROOT");
+    char              *kcpp_exec_env = std::getenv("KCPP_EXEC_ENV");
 
     if(explicit_config_path.empty()) {
       if(kcpp_cfg_root) {
@@ -57,6 +58,10 @@ namespace kisscpp
 
     config_path_instance = cfg_root_path + '/' + application_id + '.' + application_instance + ".kcppcfg";
     config_path_common   = cfg_root_path + '/' + application_id + '.' + "common"             + ".kcppcfg";
+
+    log << "About to load configuration for instance [" << config_path_instance
+        << "] and common ["                             << config_path_common
+        << kisscpp::manip::flush;
 
     loadConfig();
   }

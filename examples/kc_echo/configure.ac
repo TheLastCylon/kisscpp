@@ -25,6 +25,25 @@ AC_ARG_WITH([boost-lib-path],
             [BOOST_LIBS='-lboost_system -lboost_thread -lboost_filesystem -lboost_regex -lboost_date_time'])
 AC_SUBST([BOOST_LIBS])
 
+AC_ARG_WITH([pthread],
+            [AS_HELP_STRING([--without-pthread], [ignore pthread support @<:@default: automatic@:>@])],
+            [PTHREAD_LIB=""],
+            [PTHREAD_LIB="-lpthread"])
+AC_SUBST([PTHREAD_LIB])
+
+KISSCPP_CFLAGS="-I/usr/include/kisscpp-0.5"
+AC_ARG_WITH([kisscpp-include-path],
+            [AS_HELP_STRING([--with-kisscpp-include-path], [location of the kisscpp headers, defaults to /usr/include/kisscpp-0.5])],
+            [KISSCPP_CFLAGS="-I$withval"],
+            [KISSCPP_CFLAGS="-I/usr/include/kisscpp-0.5"])
+AC_SUBST([KISSCPP_CFLAGS]) 
+
+AC_ARG_WITH([kisscpp-lib-path],
+            [AS_HELP_STRING([--with-kisscpp-lib-path], [location of the kisscpp library])],
+            [KISSCPP_LIB="-L$withval -lkisscpp"],
+            [KISSCPP_LIB="-lkisscpp"])
+AC_SUBST([KISSCPP_LIB])
+
 PKG_CHECK_MODULES([DEPS], [kisscpp-0.5 >= 0.5])
 
 # Checks for header files.

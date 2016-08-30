@@ -71,6 +71,8 @@ namespace kisscpp
 
       void register_handler(RequestHandlerPtr _handler);
 
+      IoServicePool &getIoServicePool() { return io_service_pool_; };
+
     private:
       void start_accept();                                    // Initiate an asynchronous accept operation.
       void handle_accept(const boost::system::error_code& e); // Handle completion of an asynchronous accept operation.

@@ -87,6 +87,7 @@ namespace kisscpp
 
       std::cerr << "Server started, now accepting connections." << std::endl;
       start_accept();
+      std::cerr << "Server Ready." << std::endl;
     } else {
       std::cerr << "Could not create Lockfile for this appid and instance: ["
                 << lockFilePath.native()
