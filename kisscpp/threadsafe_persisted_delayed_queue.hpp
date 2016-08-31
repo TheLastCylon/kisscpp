@@ -23,6 +23,9 @@
 #include <map>
 #include <ctime>
 
+#include <boost/range/adaptor/map.hpp>
+#include <boost/range/algorithm/copy.hpp>
+
 #include <boost/scoped_ptr.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/thread/mutex.hpp>
@@ -37,6 +40,11 @@ namespace kisscpp
 template <class _qoT, class _sT>
 class ThreadsafePersistedDelayedQueue : public StatAbleQueue, public boost::noncopyable
 {
+  typedef boost::shared_ptr<_qoT>                       sqot;
+  typedef std::list        <sqot>                       sqotList;
+  typedef std::map         <time_t, sqotList>           sqotListMap;
+  typedef typename std::map<time_t, sqotList>::iterator sqotListMapIter;
+
   public:
     ThreadsafePersistedDelayedQueue(const std::string& queueName,
                                     const std::string& queueWorkingDir,
@@ -93,11 +101,23 @@ class ThreadsafePersistedDelayedQueue : public StatAbleQueue, public boost::nonc
       return persistedQ->size();
     }
 
+    size_t mapSize()
+    {
+      boost::lock_guard<boost::mutex>                                  guard(objectMutex);
+      size_t                                                           count = 0;
+
+      for(sqotListMapIter delayedMapIter = delayedMap.begin(); delayedMapIter != delayedMap.end(); ++delayedMapIter) {
+        count += (delayedMapIter->second).size();
+      }
+
+      return count;
+    }
+
   protected:
   private:
     void moveExpired(bool force_move = false)
     {
-      if(persistedQ->empty()) {
+      if(force_move || persistedQ->empty()) {
         std::vector<time_t> map_keys;
         time_t              now = time(NULL);
 
@@ -116,9 +136,13 @@ class ThreadsafePersistedDelayedQueue : public StatAbleQueue, public boost::nonc
     }
 
     boost::scoped_ptr<PersistedQueue<_qoT, _sT> > persistedQ;
-    std::map         <time_t, std::list<_qoT> >   delayedMap;
+    sqotListMap                                   delayedMap;
     boost::mutex                                  objectMutex;
 };
+
+typedef ThreadsafePersistedDelayedQueue<boost::property_tree::ptree, kisscpp::PtreeBase64Bicoder> SafeDelayedQueue;
+typedef boost::shared_ptr<SafeDelayedQueue>                                                       SharedSafeDelayedQueue;
+
 
 }
 #endif
