@@ -68,6 +68,7 @@ nobase_kisscpp_include_HEADERS = kisscpp/boost_ptree.hpp \
                                  kisscpp/standard_handlers.hpp \
                                  kisscpp/statable_queue.hpp \
                                  kisscpp/statskeeper.hpp \
+                                 kisscpp/threadsafe_persisted_delayed_queue.hpp \
                                  kisscpp/threadsafe_persisted_priority_queue.hpp \
                                  kisscpp/threadsafe_persisted_queue.hpp \
                                  kisscpp/threadsafe_queue.hpp
