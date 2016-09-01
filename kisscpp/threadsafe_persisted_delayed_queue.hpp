@@ -25,11 +25,13 @@
 
 #include <boost/range/adaptor/map.hpp>
 #include <boost/range/algorithm/copy.hpp>
-
 #include <boost/scoped_ptr.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/thread/mutex.hpp>
 #include <boost/thread/locks.hpp>
+#include <boost/property_tree/ptree.hpp>
+
+#include "ptree_queue.hpp"
 #include "persisted_queue.hpp"
 #include "statable_queue.hpp"
 
@@ -92,19 +94,20 @@ class ThreadsafePersistedDelayedQueue : public StatAbleQueue, public boost::nonc
     bool empty()
     {
       boost::lock_guard<boost::mutex> guard(objectMutex);
-      return persistedQ->empty();
+      moveExpired();
+      return (persistedQ->empty() && mapSize() == 0);
     }
 
     size_t size()
     {
       boost::lock_guard<boost::mutex> guard(objectMutex);
-      return persistedQ->size();
+      return (persistedQ->size() + mapSize());
     }
 
     size_t mapSize()
     {
-      boost::lock_guard<boost::mutex>                                  guard(objectMutex);
-      size_t                                                           count = 0;
+      boost::lock_guard<boost::mutex> guard(objectMutex);
+      size_t                          count = 0;
 
       for(sqotListMapIter delayedMapIter = delayedMap.begin(); delayedMapIter != delayedMap.end(); ++delayedMapIter) {
         count += (delayedMapIter->second).size();
