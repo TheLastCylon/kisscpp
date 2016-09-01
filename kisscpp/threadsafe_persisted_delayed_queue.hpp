@@ -42,10 +42,11 @@ namespace kisscpp
 template <class _qoT, class _sT>
 class ThreadsafePersistedDelayedQueue : public StatAbleQueue, public boost::noncopyable
 {
-  typedef boost::shared_ptr<_qoT>                       sqot;
-  typedef std::list        <sqot>                       sqotList;
-  typedef std::map         <time_t, sqotList>           sqotListMap;
-  typedef typename std::map<time_t, sqotList>::iterator sqotListMapIter;
+  typedef boost::shared_ptr<_qoT>              sqot;
+  typedef std::list        <sqot>              sqotList;
+  typedef boost::shared_ptr<sqotList>          ssqotList;
+  typedef std::map         <time_t, ssqotList> sqotListMap;
+  typedef typename sqotListMap::iterator       sqotListMapIter;
 
   public:
     ThreadsafePersistedDelayedQueue(const std::string& queueName,
@@ -72,7 +73,13 @@ class ThreadsafePersistedDelayedQueue : public StatAbleQueue, public boost::nonc
       if(seconds2delay == 0) {
         persistedQ->push_back(p);
       } else {
-        delayedMap[time2release].push_back(p);
+        if(delayedMap.find(time2release) == delayedMap.end()) {
+          ssqotList tlist;
+          tlist.reset(new sqotList());
+          delayedMap[time2release] = tlist;
+        }
+
+        delayedMap[time2release]->push_back(p);
       }
 
       moveExpired();
@@ -117,13 +124,11 @@ class ThreadsafePersistedDelayedQueue : public StatAbleQueue, public boost::nonc
       size_t                          count = 0;
 
       for(sqotListMapIter delayedMapIter = delayedMap.begin(); delayedMapIter != delayedMap.end(); ++delayedMapIter) {
-        count += (delayedMapIter->second).size();
+        count += (delayedMapIter->second)->size();
       }
 
       return count;
     }
-
-
 
     void moveExpired(bool force_move = false)
     {
@@ -135,9 +140,9 @@ class ThreadsafePersistedDelayedQueue : public StatAbleQueue, public boost::nonc
 
         for(unsigned int i = 0; i < map_keys.size(); ++i) {
           if(force_move || map_keys[i] < now) {
-            while(delayedMap[map_keys[i]].size() > 0) {
-              persistedQ->push_back(delayedMap[map_keys[i]].front());
-              delayedMap[map_keys[i]].pop_front();
+            while(delayedMap[map_keys[i]]->size() > 0) {
+              persistedQ->push_back(delayedMap[map_keys[i]]->front());
+              delayedMap[map_keys[i]]->pop_front();
             }
             delayedMap.erase(map_keys[i]);
           }
