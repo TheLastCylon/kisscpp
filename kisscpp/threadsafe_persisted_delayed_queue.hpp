@@ -95,18 +95,25 @@ class ThreadsafePersistedDelayedQueue : public StatAbleQueue, public boost::nonc
     {
       boost::lock_guard<boost::mutex> guard(objectMutex);
       moveExpired();
-      return (persistedQ->empty() && mapSize() == 0);
+      return (persistedQ->empty() && noLockmapSize() == 0);
     }
 
     size_t size()
     {
       boost::lock_guard<boost::mutex> guard(objectMutex);
-      return (persistedQ->size() + mapSize());
+      return (persistedQ->size() + noLockmapSize());
     }
 
     size_t mapSize()
     {
       boost::lock_guard<boost::mutex> guard(objectMutex);
+      return noLockmapSize();
+    }
+
+  protected:
+  private:
+    size_t noLockmapSize()
+    {
       size_t                          count = 0;
 
       for(sqotListMapIter delayedMapIter = delayedMap.begin(); delayedMapIter != delayedMap.end(); ++delayedMapIter) {
@@ -116,8 +123,8 @@ class ThreadsafePersistedDelayedQueue : public StatAbleQueue, public boost::nonc
       return count;
     }
 
-  protected:
-  private:
+
+
     void moveExpired(bool force_move = false)
     {
       if(force_move || persistedQ->empty()) {
