@@ -102,7 +102,7 @@ class ThreadsafePersistedDelayedQueue : public StatAbleQueue, public boost::nonc
     {
       boost::lock_guard<boost::mutex> guard(objectMutex);
       moveExpired();
-      return (persistedQ->empty() && noLockmapSize() == 0);
+      return persistedQ->empty();
     }
 
     size_t size()
