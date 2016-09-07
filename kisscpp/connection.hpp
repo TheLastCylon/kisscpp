@@ -19,6 +19,8 @@
 #ifndef _SERVER_CONNECTION_HPP
 #define _SERVER_CONNECTION_HPP
 
+#define BOOST_SPIRIT_THREADSAFE
+
 #include <iostream>
 #include <sstream>
 #include <string>
