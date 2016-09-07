@@ -70,10 +70,19 @@ namespace kisscpp
 
         ss << ts;
 
-        log << manip::debug_low << "Reading Json." << manip::endl;
+        log << manip::debug_low << "Reading Json: " << ss.str() << manip::endl;
+        log << manip::debug_low << "Reading Json: " << ss.str() << manip::endl;
+        log << manip::debug_low << "Reading Json: " << ss.str() << manip::endl;
+        log << manip::debug_low << "Reading Json: " << ss.str() << manip::endl;
+        log << manip::debug_low << "Reading Json: " << ss.str() << manip::endl;
+        log << manip::debug_low << "Reading Json: " << ss.str() << manip::endl;
 
         read_json(ss, parsed_request_);
 
+        log << manip::debug_low << "Done Reading Json." << manip::endl;
+        log << manip::debug_low << "Done Reading Json." << manip::endl;
+        log << manip::debug_low << "Done Reading Json." << manip::endl;
+        log << manip::debug_low << "Done Reading Json." << manip::endl;
         log << manip::debug_low << "Done Reading Json." << manip::endl;
 
         try {
