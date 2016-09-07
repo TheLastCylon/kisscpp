@@ -77,9 +77,12 @@ namespace kisscpp
         log << manip::debug_low << "Done Reading Json." << manip::endl;
 
         try {
+      log << "connection debug 0000" << manip::endl;
           if(allowedClient()) {
+      log << "connection debug 0001" << manip::endl;
          
             request_router_.route_request(parsed_request_, raw_response_);
+      log << "connection debug 0002" << manip::endl;
          
           } else {
          
@@ -97,7 +100,7 @@ namespace kisscpp
           }
         } catch (boost::property_tree::ptree_bad_path &e) {
 
-          log << manip::error_normal << "Reqest does not contain kcm-client data." << e.what() << endl;
+          log << manip::error_normal << "Reqest does not contain kcm-client data." << e.what() << manip::endl;
 
           raw_response_.put("kcm-sts", RQST_CLIENT_DENIED);
           raw_response_.put("kcm-erm", "Request denied: Your request does not contain kcm-client data.");
@@ -110,12 +113,12 @@ namespace kisscpp
         } catch(std::exception& e) {
           std::stringstream tmsg;
           tmsg << "std::exception: " << e.what();
-          log << manip::error_normal << tmsg.str() << endl;
+          log << manip::error_normal << tmsg.str() << manip::endl;
           raw_response_.put("kcm-sts", RQST_UNKNOWN);
           raw_response_.put("kcm-erm", tmsg.str());
         } catch (...) {
           std::string tmsg = "Unhandled exception while routing request!";
-          log << manip::error_normal << tmsg << endl;
+          log << manip::error_normal << tmsg << manip::endl;
           raw_response_.put("kcm-sts", RQST_UNKNOWN);
           raw_response_.put("kcm-erm", tmsg);
         }
@@ -134,6 +137,8 @@ namespace kisscpp
 
       }
 
+      log << "connection debug 0003" << manip::endl;
+
       write_json(response, raw_response_, false);
 
       log << manip::info_normal
@@ -143,16 +148,20 @@ namespace kisscpp
 
       encoded_response_ << response.str();
 
+      log << "connection debug 0004" << manip::endl;
+
       boost::asio::write(socket_, outgoing_stream_buffer_, boost::asio::transfer_all());
 
+      log << "connection debug 0005" << manip::endl;
+
     } catch(boost::property_tree::json_parser::json_parser_error &je) {
-      log << manip::error_normal << "json parsing Error: " << je.message() << endl;
+      log << manip::error_normal << "json parsing Error: " << je.message() << manip::endl;
     } catch(std::exception& e) {
       std::stringstream tmsg;
       tmsg << "std::exception: " << e.what();
-      log << manip::error_normal << tmsg.str() << endl;
+      log << manip::error_normal << tmsg.str() << manip::endl;
     } catch (...) {
-      log << manip::error_normal << "Unhandled exception while routing request!" << endl;
+      log << manip::error_normal << "Unhandled exception while routing request!" << manip::endl;
     }
 
   }
