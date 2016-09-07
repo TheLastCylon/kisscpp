@@ -107,7 +107,19 @@ namespace kisscpp
           encoded_response_ << response.str();
           boost::asio::write(socket_, outgoing_stream_buffer_, boost::asio::transfer_all());
 
+        } catch(std::exception& e) {
+          std::stringstream tmsg;
+          tmsg << "std::exception: " << e.what();
+          log << manip::error_normal << tmsg.str() << endl;
+          raw_response_.put("kcm-sts", RQST_UNKNOWN);
+          raw_response_.put("kcm-erm", tmsg.str());
+        } catch (...) {
+          std::string tmsg = "Unhandled exception while routing request!";
+          log << manip::error_normal << tmsg << endl;
+          raw_response_.put("kcm-sts", RQST_UNKNOWN);
+          raw_response_.put("kcm-erm", tmsg);
         }
+
 
       } else {
 
@@ -135,9 +147,14 @@ namespace kisscpp
 
     } catch(boost::property_tree::json_parser::json_parser_error &je) {
       log << manip::error_normal << "json parsing Error: " << je.message() << endl;
-    } catch(boost::system::system_error &se) {
-      log << manip::error_normal << "Boost System Error: " << se.what() << endl;
+    } catch(std::exception& e) {
+      std::stringstream tmsg;
+      tmsg << "std::exception: " << e.what();
+      log << manip::error_normal << tmsg.str() << endl;
+    } catch (...) {
+      log << manip::error_normal << "Unhandled exception while routing request!" << endl;
     }
+
   }
 
   //--------------------------------------------------------------------------------
