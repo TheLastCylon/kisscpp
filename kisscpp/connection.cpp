@@ -69,7 +69,12 @@ namespace kisscpp
       if(allowedIpAddress(client_ip)) {
 
         ss << ts;
+
+        log << manip::debug_low << "Reading Json." << manip::endl;
+
         read_json(ss, parsed_request_);
+
+        log << manip::debug_low << "Done Reading Json." << manip::endl;
 
         try {
           if(allowedClient()) {
@@ -138,12 +143,14 @@ namespace kisscpp
   //--------------------------------------------------------------------------------
   bool Connection::allowedIpAddress(const std::string &ip_address)
   {
+    LogStream log(__PRETTY_FUNCTION__);
     return (Config::instance()->isAllowedIp(ip_address));
   }
 
   //--------------------------------------------------------------------------------
   bool Connection::allowedClient()
   {
+    LogStream log(__PRETTY_FUNCTION__);
     return (Config::instance()->isAllowedClient(parsed_request_.get<std::string>("kcm-client.id"),
                                                 parsed_request_.get<std::string>("kcm-client.instance")));
   }
