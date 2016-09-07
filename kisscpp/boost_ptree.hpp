@@ -19,7 +19,10 @@
 #ifndef _BOOST_PTREE_HPP_
 #define _BOOST_PTREE_HPP_
 
-#define BOOST_SPIRIT_THREADSAFE
+// #define BOOST_SPIRIT_THREADSAFE
+// Moved this define to global at compile time.
+// NOTE: If an application uses read_json, it should have the same define in the compilation options.
+// This absolutely has to be a GLOBAL define in order to prevent read_json crashing.
 
 #include <string>
 #include <boost/shared_ptr.hpp>

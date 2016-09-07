@@ -70,29 +70,11 @@ namespace kisscpp
 
         ss << ts;
 
-        log << manip::debug_low << "Reading Json: " << ss.str() << manip::endl;
-        log << manip::debug_low << "Reading Json: " << ss.str() << manip::endl;
-        log << manip::debug_low << "Reading Json: " << ss.str() << manip::endl;
-        log << manip::debug_low << "Reading Json: " << ss.str() << manip::endl;
-        log << manip::debug_low << "Reading Json: " << ss.str() << manip::endl;
-        log << manip::debug_low << "Reading Json: " << ss.str() << manip::endl;
-
         read_json(ss, parsed_request_);
 
-        log << manip::debug_low << "Done Reading Json." << manip::endl;
-        log << manip::debug_low << "Done Reading Json." << manip::endl;
-        log << manip::debug_low << "Done Reading Json." << manip::endl;
-        log << manip::debug_low << "Done Reading Json." << manip::endl;
-        log << manip::debug_low << "Done Reading Json." << manip::endl;
-
         try {
-      log << "connection debug 0000" << manip::endl;
           if(allowedClient()) {
-      log << "connection debug 0001" << manip::endl;
-         
             request_router_.route_request(parsed_request_, raw_response_);
-      log << "connection debug 0002" << manip::endl;
-         
           } else {
          
             log << manip::info_normal
@@ -146,8 +128,6 @@ namespace kisscpp
 
       }
 
-      log << "connection debug 0003" << manip::endl;
-
       write_json(response, raw_response_, false);
 
       log << manip::info_normal
@@ -157,11 +137,7 @@ namespace kisscpp
 
       encoded_response_ << response.str();
 
-      log << "connection debug 0004" << manip::endl;
-
       boost::asio::write(socket_, outgoing_stream_buffer_, boost::asio::transfer_all());
-
-      log << "connection debug 0005" << manip::endl;
 
     } catch(boost::property_tree::json_parser::json_parser_error &je) {
       log << manip::error_normal << "json parsing Error: " << je.message() << manip::endl;
