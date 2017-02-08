@@ -23,3 +23,5 @@ missing
 .deps
 .gitignore
 compile
+*.pc
+ar-lib

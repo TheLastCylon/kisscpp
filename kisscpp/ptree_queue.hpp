@@ -20,6 +20,7 @@
 #define _PTREE_QUEUE_HPP_
 
 #include <sstream>
+#include <boost/shared_ptr.hpp>
 #include <boost/scoped_ptr.hpp>
 #include <boost/asio.hpp>
 #include <boost/property_tree/ptree.hpp>
