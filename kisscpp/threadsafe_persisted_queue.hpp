@@ -65,6 +65,12 @@ class ThreadsafePersistedQueue : public StatAbleQueue, public boost::noncopyable
       return persistedQ->pop_front();
     }
 
+    boost::shared_ptr<_qoT> front()
+    {
+      boost::lock_guard<boost::mutex> guard(objectMutex);
+      return persistedQ->front();
+    }
+
     bool empty()
     {
       boost::lock_guard<boost::mutex> guard(objectMutex);
