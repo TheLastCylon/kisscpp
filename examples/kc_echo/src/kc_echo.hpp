@@ -10,7 +10,7 @@
 class kc_echo : public kisscpp::Server /// Step 1: Derive your application's main class, from kisscpp::Server
 {
   public:
-    kc_echo();
+     kc_echo();
     ~kc_echo();
 
   protected:

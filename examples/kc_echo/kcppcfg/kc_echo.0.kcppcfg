@@ -1,17 +1,22 @@
 {
-  "server" : {
-    "address"        : "localhost",
-    "port"           : "9100"
+  "kcc-server" : {
+    "address"        : "0.0.0.0",
+    "port"           : "9000"
   },
 
   "stats"  : {
     "gather_period"  : "300",
     "history_length" : "12"
-  }
+  },
 
   "coms_white_list" : {
     "all_ip_addrs" : "true",
     "all_apps"     : "true"
-  }
+  },
 
+  "kcc-log-level" : {
+    "type"           : "debug",
+    "severity"       : "low",
+    "buff-size"      : "0"
+  }
 }

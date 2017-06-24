@@ -2,8 +2,10 @@
 
 //--------------------------------------------------------------------------------
 kc_echo::kc_echo() :
-  Server(1, "kc_echo", "0")
+  Server(1, "kc_echo", "0", false)
 {
+  kisscpp::LogStream log(__PRETTY_FUNCTION__);
+
   registerHandlers();
 }
 
