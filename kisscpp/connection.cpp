@@ -96,11 +96,6 @@ namespace kisscpp
           raw_response_.put("kcm-sts", RQST_CLIENT_DENIED);
           raw_response_.put("kcm-erm", "Request denied: Your request does not contain kcm-client data.");
 
-//          write_json(response, raw_response_, false);
-//          log << manip::info_normal << "Sending response: " << response.str() << manip::endl; 
-//          encoded_response_ << response.str();
-//          boost::asio::write(socket_, outgoing_stream_buffer_, boost::asio::transfer_all());
-
         } catch(std::exception& e) {
           std::stringstream tmsg;
           tmsg << "std::exception: " << e.what();
