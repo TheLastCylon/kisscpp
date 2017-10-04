@@ -34,11 +34,20 @@ namespace kisscpp
   //--------------------------------------------------------------------------------
   void StatsReporter::gathered(BoostPtree &response)
   {
-    SharedStatsMapType ssmt = StatsKeeper::instance()->getLastGatheredStats();
+    SharedStatsMapType ssmt  = StatsKeeper::instance()->getLastGatheredStats();
+    bool               first = true;
+    std::stringstream  cacti_fromat;
 
     for(StatsMapTypeIterator itr = ssmt->begin(); itr != ssmt->end(); ++itr) {
       response.put(itr->first, itr->second);
+
+      if(first) { first = false;
+      } else    { cacti_fromat << " ";
+      }
+      cacti_fromat << itr->first << ":" << itr->second;
     }
+
+    response.put("cacti_format_stats", cacti_fromat.str());
   }
 
   //--------------------------------------------------------------------------------
@@ -56,11 +65,20 @@ namespace kisscpp
   //--------------------------------------------------------------------------------
   void StatsReporter::current (BoostPtree &response)
   {
-    SharedStatsMapType ssmt = StatsKeeper::instance()->getCurrentStats();
+    SharedStatsMapType ssmt  = StatsKeeper::instance()->getCurrentStats();
+    bool               first = true;
+    std::stringstream  cacti_fromat;
 
     for(StatsMapTypeIterator itr = ssmt->begin(); itr != ssmt->end(); ++itr) {
       response.put(itr->first, itr->second);
+
+      if(first) { first = false;
+      } else    { cacti_fromat << " ";
+      }
+      cacti_fromat << itr->first << ":" << itr->second;
     }
+
+    response.put("cacti_format_stats", cacti_fromat.str());
   }
 
   //--------------------------------------------------------------------------------
