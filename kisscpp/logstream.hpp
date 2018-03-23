@@ -168,7 +168,7 @@ namespace kisscpp
       }
 
       // ------------
-      LogStream(const std::string &src)
+      explicit LogStream(const std::string &src)
       {
         lssTemp = lssPerm;
         doFlush = false;
@@ -193,9 +193,9 @@ namespace kisscpp
         start_write();
       }
 
-      LogStream(const LogStream &o)
+      LogStream(const LogStream &o) : lssTemp(o.lssTemp)
       {
-        lssTemp       = o.lssTemp;
+//        lssTemp       = o.lssTemp;
         doFlush       = false;
         maxBufferSize = o.maxBufferSize;
         start_write();
@@ -245,12 +245,13 @@ namespace kisscpp
       LogStream& base () { mBuf << std::showbase; return *this; }; // Show the base when printing numbers.
 
       // getter methods
-      log_type           getMessageType () const throw() { return lssPerm.getMessageType(); }
-      log_severity       getSeverity    () const throw() { return lssPerm.getSeverity(); }
-      const std::string& getEntityName  () const throw() { if(!lssTemp.getEntityName().empty()) return lssTemp.getEntityName(); else return lssPerm.getEntityName(); }
-      const std::string& getSource      () const throw() { if(!lssTemp.getSource    ().empty()) return lssTemp.getSource();     else return lssPerm.getSource();     }
-      LogStreamSettings& getPermSettings()               { return lssTemp; }
-      LogStreamSettings& getTempSettings()               { return lssPerm; }
+      static log_type           getMessageType () throw() { return lssPerm.getMessageType(); }
+      static log_severity       getSeverity    () throw() { return lssPerm.getSeverity(); }
+                               
+      const  std::string&       getEntityName  () const throw() { if(!lssTemp.getEntityName().empty()) return lssTemp.getEntityName(); else return lssPerm.getEntityName(); }
+      const  std::string&       getSource      () const throw() { if(!lssTemp.getSource    ().empty()) return lssTemp.getSource();     else return lssPerm.getSource();     }
+             LogStreamSettings& getPermSettings()               { return lssTemp; }
+             LogStreamSettings& getTempSettings()               { return lssPerm; }
 
       // setter methods
       LogStream& setMessageType    (std::string        mt, const bool permanent = false);
@@ -261,22 +262,22 @@ namespace kisscpp
       LogStream& setSource         (const std::string& s , const bool permanent = false) { if(permanent) { lssPerm.setSource     (s) ;} lssTemp.setSource     (s) ; return *this; }
       LogStream& setLevel          (manip_func1        f)                                { f(*this, true); return *this; }
 
-      void       setOutFilePath    (std::string        path)                             { outFilePath     = path; }
-      void       setLog2consoleFlag(bool               b)                                { log2consoleFlag = b;    }
-      void       set2ReOpen        ();
-      void       setMaxBufferSize  (unsigned int       i)                                { maxBufferSize   = i;    }
+      static void setOutFilePath    (std::string        path) throw() { outFilePath     = path; }
+      static void setLog2consoleFlag(bool               b)    throw() { log2consoleFlag = b;    }
+      static void set2ReOpen        ();
+      static void setMaxBufferSize  (unsigned int       i)    throw() { maxBufferSize   = i;    }
 
     private:
       template<typename T>
-      void put         (const T            t)         { mBuf << t; } // Writes a value (template)
-      void put         (const std::string &s)         { mBuf << s; } // Writes a value
-      void do_write    (bool               b = false);
-      void start_write ();
-      void end_write   ();
-      void write       ();                            // Writes to the underlying logging object. This results in a new, timestamped line in the logfile.
-      void locked_write(std::string &s);
-      void openLogFile ();
-      void writeLogFile();
+             void put         (const T            t)         { mBuf << t; } // Writes a value (template)
+             void put         (const std::string &s)         { mBuf << s; } // Writes a value
+             void do_write    (bool               b = false);
+             void start_write ()               const;
+             void end_write   ()               const;
+             void write       ()               const; // Writes to the underlying logging object. This results in a new, timestamped line in the logfile.
+             void locked_write(std::string &s) const;
+      static void openLogFile ();
+             void writeLogFile();
 
       LogStreamSettings              lssTemp;         // temporary settings
       std::ostringstream             mBuf;            // The buffer where the log message is built up in.

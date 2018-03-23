@@ -23,9 +23,9 @@ namespace kisscpp
   Config                          * Config::singleton_instance;
 
   //--------------------------------------------------------------------------------
-  Config* Config::instance(const std::string app_id               /* = "kisscpp_application" */,
-                           const std::string app_instance         /* = "0" */,
-                           const std::string explicit_config_path /* = "" */)
+  Config* Config::instance(const std::string &app_id               /* = "kisscpp_application" */,
+                           const std::string &app_instance         /* = "0" */,
+                           const std::string &explicit_config_path /* = "" */)
   {
     if (!singleton_instance) {
       singleton_instance = new Config(app_id, app_instance, explicit_config_path);
@@ -35,7 +35,7 @@ namespace kisscpp
   }
 
   //--------------------------------------------------------------------------------
-  void Config::initiate(const std::string explicit_config_path /* = "" */)
+  void Config::initiate(const std::string &explicit_config_path /* = "" */)
   {
     kisscpp::LogStream log(__PRETTY_FUNCTION__);
     std::string        cfg_root_path = "/etc/kisscpp";

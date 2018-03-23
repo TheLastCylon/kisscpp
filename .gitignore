@@ -21,7 +21,6 @@ libtool
 ltmain.sh
 missing
 .deps
-.gitignore
 compile
 *.pc
 ar-lib

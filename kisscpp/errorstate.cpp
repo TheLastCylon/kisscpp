@@ -94,7 +94,7 @@ namespace kisscpp
 
     retval.reset(new ErrorList());
 
-    for(ErrorStateMapTypeIterator itr = errorStateMap.begin(); itr != errorStateMap.end(); itr++) {
+    for(ErrorStateMapTypeIterator itr = errorStateMap.begin(); itr != errorStateMap.end(); ++itr) {
       if((itr->second)->isSet()) {
         retval->push_back(itr->second);
       }

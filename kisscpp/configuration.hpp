@@ -47,11 +47,11 @@ namespace kisscpp
   class Config
   {
     public:
-      static Config* instance(const std::string app_id               = "kisscpp_application",
-                              const std::string app_instance         = "0",
-                              const std::string explicit_config_path = "");
+      static Config* instance(const std::string &app_id               = "kisscpp_application",
+                              const std::string &app_instance         = "0",
+                              const std::string &explicit_config_path = "");
 
-      void           initiate(const std::string explicit_config_path = "");
+      void           initiate(const std::string &explicit_config_path = "");
 
       ~Config()
       {
@@ -64,8 +64,8 @@ namespace kisscpp
       template<typename T> T                  get         (const std::string &s, T default_value) { return cfg_data.get         <T>(s,default_value); }
       template<typename T> boost::optional<T> get_optional(const std::string &s)                  { return cfg_data.get_optional<T>(s);               }
 
-      std::string getAppId()       { return application_id; }
-      std::string getAppInstance() { return application_instance; }
+      std::string getAppId()       const throw() { return application_id; }
+      std::string getAppInstance() const throw() { return application_instance; }
 
       bool        isAllowedIp    (const std::string &ip_address);
       bool        isAllowedClient(const std::string &app_id, const std::string &app_instance);
@@ -77,11 +77,12 @@ namespace kisscpp
     private:
       Config           ()              { kisscpp::LogStream log(__PRETTY_FUNCTION__); };
       Config           (Config const&) { kisscpp::LogStream log(__PRETTY_FUNCTION__); };
-      Config& operator=(Config const&) { kisscpp::LogStream log(__PRETTY_FUNCTION__); };
+      Config& operator=(Config const&);
+//      Config& operator=(Config const&) { kisscpp::LogStream log(__PRETTY_FUNCTION__); };
 
-      Config(const std::string app_id,
-             const std::string app_instance,
-             const std::string explicit_config_path) :
+      Config(const std::string &app_id,
+             const std::string &app_instance,
+             const std::string &explicit_config_path) :
         allow_all_ip_addrs    (false),
         allow_all_applications(false)
       {
@@ -93,10 +94,10 @@ namespace kisscpp
         initiate(explicit_config_path);
       }
 
-      void loadConfig         ();
-      bool loadConfig         (std::string &cfg_path, BoostPtree &pt);
-      void populateWhiteLists ();
-      void populateDefaultDirs();
+             void loadConfig         ();
+      static bool loadConfig         (std::string &cfg_path, BoostPtree &pt);
+             void populateWhiteLists ();
+             void populateDefaultDirs();
 
       static Config      *singleton_instance;
                              

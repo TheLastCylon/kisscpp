@@ -9,7 +9,7 @@ namespace kisscpp
   {
     public:
       StatAbleQueue() {};
-      ~StatAbleQueue() {};
+      virtual ~StatAbleQueue() {};
 
       virtual size_t size() = 0;
 

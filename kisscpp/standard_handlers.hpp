@@ -75,7 +75,7 @@ namespace kisscpp
   class HandlerReporter : public RequestHandler
   {
     public:
-      HandlerReporter(RequestRouter &rr) :
+      explicit HandlerReporter(RequestRouter &rr) :
         RequestHandler("kch-handlers", "shows a list of the request handlers for this application"),
         requestRouter(rr)
       {

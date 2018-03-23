@@ -84,7 +84,7 @@ namespace kisscpp
     private:
       StatsKeeper           ()                  { kisscpp::LogStream log(__PRETTY_FUNCTION__); }  // Private to prevent copying.
       StatsKeeper           (StatsKeeper const&){ kisscpp::LogStream log(__PRETTY_FUNCTION__); }; // Private to prevent copying.
-      StatsKeeper& operator=(StatsKeeper const&){ kisscpp::LogStream log(__PRETTY_FUNCTION__); }; // Private to prevent assignment.
+      StatsKeeper& operator=(StatsKeeper const&); //{ kisscpp::LogStream log(__PRETTY_FUNCTION__); }; // Private to prevent assignment.
 
       StatsKeeper(unsigned long int gp,
                   unsigned long int hl) :

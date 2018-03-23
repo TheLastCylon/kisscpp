@@ -35,17 +35,17 @@ namespace kisscpp
   class ErrorState
   {
     public:
-       ErrorState(const std::string &_id, const std::string _description = "") : id(_id), description(_description), count(0) {}
+       ErrorState(const std::string &_id, const std::string &_description = "") : id(_id), description(_description), count(0) {}
 
       ~ErrorState() {};
 
       void         set           ()                               { count++;                }
       void         clear         (const unsigned int &amount = 1) { count = count - amount; }
       void         clear_all     ()                               { count = 0;              }
-      unsigned int getSetCount   ()                               { return count;           }
-      bool         isSet         ()                               { return (count > 0);     }
-      std::string  getId         ()                               { return id;              }
-      std::string  getDescription()                               { return description;     }
+      unsigned int getSetCount   () const throw()                 { return count;           }
+      bool         isSet         () const throw()                 { return (count > 0);     }
+      std::string  getId         () const throw()                 { return id;              }
+      std::string  getDescription() const throw()                 { return description;     }
 
     protected:
     private:
@@ -79,7 +79,7 @@ namespace kisscpp
     private:
       ErrorStateList           ()                     { kisscpp::LogStream log(__PRETTY_FUNCTION__); }  // Private to prevent copying.
       ErrorStateList           (ErrorStateList const&){ kisscpp::LogStream log(__PRETTY_FUNCTION__); }; // Private to prevent copying.
-      ErrorStateList& operator=(ErrorStateList const&){ kisscpp::LogStream log(__PRETTY_FUNCTION__); }; // Private to prevent assignment.
+      ErrorStateList& operator=(ErrorStateList const&); //{ kisscpp::LogStream log(__PRETTY_FUNCTION__); }; // Private to prevent assignment.
 
       static ErrorStateList *singleton_instance;
 

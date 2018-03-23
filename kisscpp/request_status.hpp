@@ -45,14 +45,14 @@ namespace kisscpp
   class RetryableCommsFailure : public std::runtime_error
   {
     public:
-      RetryableCommsFailure(std::string s) : std::runtime_error(s) {};
+      explicit RetryableCommsFailure(std::string s) : std::runtime_error(s) {};
   };
 
   //--------------------------------------------------------------------------------
   class PerminantCommsFailure : public std::runtime_error
   {
     public:
-      PerminantCommsFailure(std::string s) : std::runtime_error(s) {};
+      explicit PerminantCommsFailure(std::string s) : std::runtime_error(s) {};
   };
 }
 

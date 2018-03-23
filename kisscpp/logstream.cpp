@@ -47,7 +47,7 @@ namespace kisscpp
 
     if     (ms == "high"  ) { return setSeverity(LS_HIGH  , permanent); }
     else if(ms == "normal") { return setSeverity(LS_NORMAL, permanent); }
-    else if(ms == "low"   ) { return setSeverity(LS_LOW   , permanent); }
+    // else if(ms == "low"   ) { return setSeverity(LS_LOW   , permanent); }
     else                    { return setSeverity(LS_LOW   , permanent); } // yes, this default to low is intentional
   }
 
@@ -70,7 +70,7 @@ namespace kisscpp
   };
 
   //--------------------------------------------------------------------------------
-  void LogStream::start_write()
+  void LogStream::start_write() const
   {
     if(lssPerm.getMessageType() <= LT_DEBUG &&
        lssPerm.getSeverity   () <= LS_LOW) {
@@ -80,7 +80,7 @@ namespace kisscpp
   }
 
   //--------------------------------------------------------------------------------
-  void LogStream::end_write()
+  void LogStream::end_write() const
   {
     if(lssPerm.getMessageType() <= LT_DEBUG &&
        lssPerm.getSeverity   () <= LS_LOW) {
@@ -90,7 +90,7 @@ namespace kisscpp
   }
 
   //--------------------------------------------------------------------------------
-  void LogStream::write()
+  void LogStream::write() const
   {
     if        (lssPerm.getMessageType() <  lssTemp.getMessageType()) {
       std::string msg = ": " + mBuf.str();
@@ -103,7 +103,7 @@ namespace kisscpp
   }
 
   //--------------------------------------------------------------------------------
-  void LogStream::locked_write(std::string &s)
+  void LogStream::locked_write(std::string &s) const
   {
     boost::posix_time::ptime now = boost::posix_time::microsec_clock::local_time();
     std::string              str = boost::posix_time::to_iso_string(now) + " [" + getSource() + "] " + s;

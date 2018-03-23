@@ -135,7 +135,6 @@ namespace kisscpp
     try {
       std::string  error_id            = request.get<std::string>("kcm-clear-error.id");
       std::string  number_to_clear_str = request.get<std::string>("kcm-clear-error.count","all");
-      unsigned int number_to_clear_num = 0;
 
       boost::algorithm::to_lower(error_id);
       boost::algorithm::to_lower(number_to_clear_str);
@@ -143,8 +142,7 @@ namespace kisscpp
       if(number_to_clear_str == "all") {
         kisscpp::ErrorStateList::instance()->clear_all(error_id);
       } else {
-        number_to_clear_num = request.get<unsigned int>("kcm-clear-error.count");
-        kisscpp::ErrorStateList::instance()->clear(error_id, number_to_clear_num);
+        kisscpp::ErrorStateList::instance()->clear(error_id, request.get<unsigned int>("kcm-clear-error.count"));
       }
 
       response.put("kcm-sts" , RQST_SUCCESS);
@@ -200,19 +198,14 @@ namespace kisscpp
     LogStream log(__PRETTY_FUNCTION__);
 
     try {
-      bool        validLogType     = false;
-      bool        validLogSeverity = false;
+//      bool        validLogType     = false;
+//      bool        validLogSeverity = false;
       std::string newLogType       = request.get<std::string>("type");
       std::string newLogSeverity   = request.get<std::string>("severity");
 
-      if(newLogType == "debug" ||
-         newLogType == "info"  ||
-         newLogType == "error") {
+      if(newLogType == "debug" || newLogType == "info" || newLogType == "error") {
 
-
-        if(newLogSeverity == "low"    ||
-           newLogSeverity == "normal" ||
-           newLogSeverity == "high") {
+        if(newLogSeverity == "low" || newLogSeverity == "normal" || newLogSeverity == "high") {
 
           log.setMessageType(newLogType    ,true);
           log.setSeverity   (newLogSeverity,true);
