@@ -25,7 +25,7 @@ AC_ARG_WITH([boost-lib-path],
             [BOOST_LIBS='-lboost_system -lboost_thread -lboost_filesystem -lboost_regex -lboost_date_time -lboost_program_options'])
 AC_SUBST([BOOST_LIBS])
 
-PKG_CHECK_MODULES([DEPS], [kisscpp-1 >= 0.5])
+PKG_CHECK_MODULES([DEPS], [kisscpp-0.5 >= 0.5])
 
 AC_CONFIG_FILES([Makefile])
 

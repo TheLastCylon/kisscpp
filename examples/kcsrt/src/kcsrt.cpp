@@ -101,7 +101,7 @@ void kcsrt::sendingProcessor()
 
       request.put("message", msg.str());
 
-      kisscpp::client requestSender(request, response, 5); // Instantiation of the kisscpp::client class, sends the message.
+      kisscpp::client requestSender(request, &response, 5); // Instantiation of the kisscpp::client class, sends the message.
 
       log << kisscpp::manip::debug_normal << i_port << "->" << o_port << " : Sent             : " << messageCount << kisscpp::manip::endl;
 
