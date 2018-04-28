@@ -108,12 +108,12 @@ namespace kisscpp
     LogStream log(__PRETTY_FUNCTION__);
 
     log << manip::info_normal
-        << "--------------------------------------------------------------------------------"  << manip::endl
-        << "Starting Process : " << Config::instance()->getAppId()                             << manip::endl
-        << "Instance         : " << Config::instance()->getAppInstance()                       << manip::endl
-        << "Server address   : " << Config::instance()->get<std::string>("kcc-server.address") << manip::endl
-        << "Server port      : " << Config::instance()->get<std::string>("kcc-server.port")    << manip::endl
-        << "--------------------------------------------------------------------------------"  << manip::flush;
+        << "--------------------------------------------------------------------------------\n"
+        << "Starting Process : " << Config::instance()->getAppId()                             << '\n'
+        << "Instance         : " << Config::instance()->getAppInstance()                       << '\n'
+        << "Server address   : " << Config::instance()->get<std::string>("kcc-server.address") << '\n'
+        << "Server port      : " << Config::instance()->get<std::string>("kcc-server.port")    << '\n'
+        << "--------------------------------------------------------------------------------"  << manip::endl;
 
     io_service_pool_.run();
   }
@@ -125,12 +125,12 @@ namespace kisscpp
     handle_stop();
 
     log << manip::info_normal
-        << "--------------------------------------------------------------------------------"  << manip::endl
-        << "Stopping Process : " << Config::instance()->getAppId()                             << manip::endl
-        << "Instance         : " << Config::instance()->getAppInstance()                       << manip::endl
-        << "Server address   : " << Config::instance()->get<std::string>("kcc-server.address") << manip::endl
-        << "Server port      : " << Config::instance()->get<std::string>("kcc-server.port")    << manip::endl
-        << "--------------------------------------------------------------------------------"  << manip::flush;
+        << "--------------------------------------------------------------------------------"  << '\n'
+        << "Stopping Process : " << Config::instance()->getAppId()                             << '\n'
+        << "Instance         : " << Config::instance()->getAppInstance()                       << '\n'
+        << "Server address   : " << Config::instance()->get<std::string>("kcc-server.address") << '\n'
+        << "Server port      : " << Config::instance()->get<std::string>("kcc-server.port")    << '\n'
+        << "--------------------------------------------------------------------------------"  << manip::endl;
   }
 
   //--------------------------------------------------------------------------------

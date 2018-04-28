@@ -25,3 +25,4 @@ compile
 *.pc
 ar-lib
 *.srctr*
+kcsrt
