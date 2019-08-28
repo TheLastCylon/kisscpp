@@ -19,8 +19,7 @@
 #ifndef _THREADSAFE_PERSISTED_QUEUE_HPP_
 #define _THREADSAFE_PERSISTED_QUEUE_HPP_
 
-#include <boost/scoped_ptr.hpp>
-#include <boost/shared_ptr.hpp>
+#include <memory>
 #include <boost/thread/mutex.hpp>
 #include <boost/thread/locks.hpp>
 #include "persisted_queue.hpp"
@@ -48,7 +47,7 @@ class ThreadsafePersistedQueue : public StatAbleQueue, public boost::noncopyable
       persistedQ.reset();
     }
 
-    void push(boost::shared_ptr<_qoT> p)
+    void push(std::shared_ptr<_qoT> p)
     {
       boost::lock_guard<boost::mutex> guard(objectMutex);
       persistedQ->push_back(p);
@@ -59,13 +58,13 @@ class ThreadsafePersistedQueue : public StatAbleQueue, public boost::noncopyable
       persistedQ->shutdown();
     }
 
-    boost::shared_ptr<_qoT> pop()
+    std::shared_ptr<_qoT> pop()
     {
       boost::lock_guard<boost::mutex> guard(objectMutex);
       return persistedQ->pop_front();
     }
 
-    boost::shared_ptr<_qoT> front()
+    std::shared_ptr<_qoT> front()
     {
       boost::lock_guard<boost::mutex> guard(objectMutex);
       return persistedQ->front();
@@ -86,8 +85,8 @@ class ThreadsafePersistedQueue : public StatAbleQueue, public boost::noncopyable
   protected:
   private:
 
-    boost::scoped_ptr<PersistedQueue<_qoT, _sT> > persistedQ;
-    boost::mutex                                  objectMutex;
+    std::unique_ptr<PersistedQueue<_qoT, _sT> > persistedQ;
+    boost::mutex                                objectMutex;
 };
 
 }

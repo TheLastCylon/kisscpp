@@ -24,10 +24,11 @@
 #include <string>
 #include <map>
 #include <ctime>
+#include <memory>
+
 #include <boost/thread.hpp>
 #include <boost/thread/mutex.hpp>
 #include <boost/thread/locks.hpp>
-#include <boost/shared_ptr.hpp>
 #include "boost_ptree.hpp"
 #include "logstream.hpp"
 #include "statable_queue.hpp"
@@ -39,12 +40,12 @@ namespace kisscpp
 
   typedef std::map<std::string, double             > StatsMapType;
   typedef StatsMapType::iterator                     StatsMapTypeIterator;
-  typedef boost::shared_ptr<StatsMapType>            SharedStatsMapType;
+  typedef std::shared_ptr<StatsMapType>              SharedStatsMapType;
 
   typedef std::vector<double>                        StatsHistoryType;
   typedef std::map<std::string, StatsHistoryType>    StatsHistoryMapType;
   typedef StatsHistoryMapType::iterator              StatsHistoryMapTypeIterator;
-  typedef boost::shared_ptr<StatsHistoryMapType>     SharedStatsHistoryMapType;
+  typedef std::shared_ptr<StatsHistoryMapType>       SharedStatsHistoryMapType;
 
   typedef std::map<std::string, sharedStatAbleQ    > QueueStatsMapType;
   typedef QueueStatsMapType::iterator                QueueStatsMapTypeIterator;

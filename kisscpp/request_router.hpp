@@ -19,12 +19,13 @@
 #ifndef _SERVER_REQUEST_ROUTER_HPP
 #define _SERVER_REQUEST_ROUTER_HPP
 
-#include <iostream>
+//#include <iostream> WHY IS THIS HERE?!?!?!?
 
 #include <string>
 #include <map>
+#include <memory>
+
 #include <boost/noncopyable.hpp>
-#include <boost/shared_ptr.hpp>
 #include "boost_ptree.hpp"
 #include "request_handler.hpp"
 #include "logstream.hpp"
@@ -32,11 +33,11 @@
 
 namespace kisscpp
 {
-  typedef std::map<std::string, RequestHandlerPtr>  requestHandlerMapType;
-  typedef requestHandlerMapType::iterator           requestHandlerMapTypeIter;
-  typedef std::map<std::string, std::string>        requestHandlerInfoList;
-  typedef requestHandlerInfoList::iterator          requestHandlerInfoListIter;
-  typedef boost::shared_ptr<requestHandlerInfoList> sharedRequestHandlerInfoList;
+  typedef std::map<std::string, RequestHandlerPtr> requestHandlerMapType;
+  typedef requestHandlerMapType::iterator          requestHandlerMapTypeIter;
+  typedef std::map<std::string, std::string>       requestHandlerInfoList;
+  typedef requestHandlerInfoList::iterator         requestHandlerInfoListIter;
+  typedef std::shared_ptr<requestHandlerInfoList>  sharedRequestHandlerInfoList;
 
   //--------------------------------------------------------------------------------
   // The router for all incoming requests.
@@ -96,7 +97,7 @@ namespace kisscpp
       requestHandlerMapType requestHandlerMap;
   };
 
-  typedef boost::shared_ptr<RequestRouter> sharedRequestRouter;
+  typedef std::shared_ptr<RequestRouter> sharedRequestRouter;
 }
 
 #endif

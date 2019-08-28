@@ -20,8 +20,7 @@
 #define _THREADSAFE_PERSISTED_PRIORITY_QUEUE_HPP_
 
 #include <vector>
-#include <boost/scoped_ptr.hpp>
-#include <boost/shared_ptr.hpp>
+#include <memory>
 #include <boost/thread/mutex.hpp>
 #include <boost/thread/locks.hpp>
 #include "persisted_queue.hpp"
@@ -53,7 +52,7 @@ class ThreadsafePersistedPriorityQueue : public boost::noncopyable
       destroyQueues();
     }
 
-    void push(boost::shared_ptr<_qoT> p, unsigned priority)
+    void push(std::shared_ptr<_qoT> p, unsigned priority)
     {
       boost::lock_guard<boost::mutex> guard(objectMutex);
       if(priority >= levels) {
@@ -62,7 +61,7 @@ class ThreadsafePersistedPriorityQueue : public boost::noncopyable
       persistedQList[priority]->push_back(p);
     }
 
-    boost::shared_ptr<_qoT> pop()
+    std::shared_ptr<_qoT> pop()
     {
       boost::lock_guard<boost::mutex> guard(objectMutex);
       unsigned i = 0;
@@ -74,7 +73,7 @@ class ThreadsafePersistedPriorityQueue : public boost::noncopyable
       return lastPopedObject;
     }
 
-    boost::shared_ptr<_qoT> last_pop_object()
+    std::shared_ptr<_qoT> last_pop_object()
     {
       return lastPopedObject;
     }
@@ -130,7 +129,7 @@ class ThreadsafePersistedPriorityQueue : public boost::noncopyable
         ss << "priority_" << i;
         qn = name + ss.str();
 
-        boost::shared_ptr<PersistedQueue<_qoT, _sT> > persistedQ;
+        std::shared_ptr<PersistedQueue<_qoT, _sT> > persistedQ;
         persistedQ.reset(new PersistedQueue<_qoT, _sT>(qn, workingDir, maxPageSize));
         persistedQList.push_back(persistedQ);
       }
@@ -144,14 +143,14 @@ class ThreadsafePersistedPriorityQueue : public boost::noncopyable
       }
     }
 
-    std::string                                                 name;
-    std::string                                                 workingDir;
-    unsigned                                                    levels;
-    unsigned                                                    maxPageSize;
-    int                                                         lastPopLevel;
-    boost::shared_ptr<_qoT>                                     lastPopedObject;
-    std::vector<boost::shared_ptr<PersistedQueue<_qoT, _sT> > > persistedQList;
-    boost::mutex                                                objectMutex;
+    std::string                                               name;
+    std::string                                               workingDir;
+    unsigned                                                  levels;
+    unsigned                                                  maxPageSize;
+    int                                                       lastPopLevel;
+    std::shared_ptr<_qoT>                                     lastPopedObject;
+    std::vector<std::shared_ptr<PersistedQueue<_qoT, _sT> > > persistedQList;
+    boost::mutex                                              objectMutex;
 };
 
 }

@@ -51,7 +51,7 @@ namespace kisscpp
       std::string description;
   };
 
-  typedef boost::shared_ptr<RequestHandler> RequestHandlerPtr;
+  typedef std::shared_ptr<RequestHandler> RequestHandlerPtr;
 
 }
 

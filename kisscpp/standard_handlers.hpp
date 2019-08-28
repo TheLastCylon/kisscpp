@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 #include <unistd.h>
-#include <boost/shared_ptr.hpp>
+#include <memory>
 #include <boost/algorithm/string.hpp>    
 
 #include "logstream.hpp"

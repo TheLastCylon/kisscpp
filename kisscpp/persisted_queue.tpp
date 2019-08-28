@@ -47,14 +47,14 @@ PersistedQueue<_qoT, _sT>::~PersistedQueue()
 
 //--------------------------------------------------------------------------------
 template <class _qoT, class _sT>
-void PersistedQueue<_qoT, _sT>::push_back(boost::shared_ptr< _qoT > p)
+void PersistedQueue<_qoT, _sT>::push_back(std::shared_ptr< _qoT > p)
 {
   if(!_shut_down) {
     if(lastPage->size() >= _maxItemsPerPage) {
       if(lastPage != firstPage) {
         persistToFile(seqNumber(), lastPage); 
       }
-      lastPage.reset(new std::deque<boost::shared_ptr< _qoT > >());
+      lastPage.reset(new std::deque<std::shared_ptr< _qoT > >());
     }
 
     lastPage->push_back(p);
@@ -65,7 +65,7 @@ void PersistedQueue<_qoT, _sT>::push_back(boost::shared_ptr< _qoT > p)
 
 //--------------------------------------------------------------------------------
 template <class _qoT, class _sT>
-void PersistedQueue<_qoT, _sT>::push_front(boost::shared_ptr< _qoT > p)
+void PersistedQueue<_qoT, _sT>::push_front(std::shared_ptr< _qoT > p)
 {
   if(!_shut_down) {
     firstPage->push_front(p);
@@ -76,10 +76,10 @@ void PersistedQueue<_qoT, _sT>::push_front(boost::shared_ptr< _qoT > p)
 
 //--------------------------------------------------------------------------------
 template <class _qoT, class _sT>
-boost::shared_ptr<_qoT> PersistedQueue<_qoT, _sT>::pop_front()
+std::shared_ptr<_qoT> PersistedQueue<_qoT, _sT>::pop_front()
 {
   if(!_shut_down) {
-    boost::shared_ptr< _qoT > retval;
+    std::shared_ptr< _qoT > retval;
 
     if(firstPage->empty()) {
       if(persistedFileNames.empty()) {
@@ -104,10 +104,10 @@ boost::shared_ptr<_qoT> PersistedQueue<_qoT, _sT>::pop_front()
 
 //--------------------------------------------------------------------------------
 template <class _qoT, class _sT>
-boost::shared_ptr< _qoT > PersistedQueue<_qoT, _sT>::front()
+std::shared_ptr< _qoT > PersistedQueue<_qoT, _sT>::front()
 {
   LogStream                 log(__PRETTY_FUNCTION__);
-  boost::shared_ptr< _qoT > retval;
+  std::shared_ptr< _qoT > retval;
 
   if(firstPage->empty()) {
     if(persistedFileNames.empty()) {
@@ -173,7 +173,7 @@ void PersistedQueue<_qoT, _sT>::setWorkingDirectory(std::string wdir)
 
 //--------------------------------------------------------------------------------
 template <class _qoT, class _sT>
-void PersistedQueue<_qoT, _sT>::persistToFile(std::string seq, boost::shared_ptr<std::deque<boost::shared_ptr< _qoT > > > p)
+void PersistedQueue<_qoT, _sT>::persistToFile(std::string seq, std::shared_ptr<std::deque<std::shared_ptr< _qoT > > > p)
 {
   LogStream               log(__PRETTY_FUNCTION__);
   std::stringstream       fileName; 
@@ -199,7 +199,7 @@ void PersistedQueue<_qoT, _sT>::persistToFile(std::string seq, boost::shared_ptr
     }
 
     std::stringstream tmpstrm;
-    for(typename std::deque<boost::shared_ptr<_qoT > >::iterator i = p->begin(); i != p->end(); ++i) {
+    for(typename std::deque<std::shared_ptr<_qoT > >::iterator i = p->begin(); i != p->end(); ++i) {
       tmpstrm << (biCoder.encode(*i))->c_str() << '\n';
     }
 
@@ -211,15 +211,15 @@ void PersistedQueue<_qoT, _sT>::persistToFile(std::string seq, boost::shared_ptr
 
 //--------------------------------------------------------------------------------
 template <class _qoT, class _sT>
-boost::shared_ptr<std::deque<boost::shared_ptr< _qoT > > > PersistedQueue<_qoT, _sT>::loadFromFile(const std::string& path2File)
+std::shared_ptr<std::deque<std::shared_ptr< _qoT > > > PersistedQueue<_qoT, _sT>::loadFromFile(const std::string& path2File)
 {
   LogStream                                                   log(__PRETTY_FUNCTION__);
   std::string                                                 record;
   std::string                                                 contents;
   std::ifstream                                               inFile;
-  boost::shared_ptr<std::deque<boost::shared_ptr< _qoT > > >  tmpQueue;
+  std::shared_ptr<std::deque<std::shared_ptr< _qoT > > >  tmpQueue;
   
-  //tmpQueue.reset(new std::deque<boost::shared_ptr< _qoT > >());
+  //tmpQueue.reset(new std::deque<std::shared_ptr< _qoT > >());
 
   inFile.open(path2File.c_str(), std::ios::in | std::ios::binary);
 
@@ -234,7 +234,7 @@ boost::shared_ptr<std::deque<boost::shared_ptr< _qoT > > > PersistedQueue<_qoT, 
 
     std::stringstream fileBuf(contents);
 
-    tmpQueue.reset(new std::deque<boost::shared_ptr< _qoT > >());
+    tmpQueue.reset(new std::deque<std::shared_ptr< _qoT > >());
     std::getline(fileBuf, record);
 
     while(!fileBuf.eof()) {
@@ -251,7 +251,7 @@ boost::shared_ptr<std::deque<boost::shared_ptr< _qoT > > > PersistedQueue<_qoT, 
 
 //--------------------------------------------------------------------------------
 template <class _qoT, class _sT>
-boost::shared_ptr<std::deque<boost::shared_ptr< _qoT > > > PersistedQueue<_qoT, _sT>::loadFrontFile()
+std::shared_ptr<std::deque<std::shared_ptr< _qoT > > > PersistedQueue<_qoT, _sT>::loadFrontFile()
 {
   LogStream   log(__PRETTY_FUNCTION__);
   std::string filename = persistedFileNames.front();
@@ -263,7 +263,7 @@ boost::shared_ptr<std::deque<boost::shared_ptr< _qoT > > > PersistedQueue<_qoT, 
 
 //--------------------------------------------------------------------------------
 template <class _qoT, class _sT>
-boost::shared_ptr<std::deque<boost::shared_ptr< _qoT > > > PersistedQueue<_qoT, _sT>::loadBackFile()
+std::shared_ptr<std::deque<std::shared_ptr< _qoT > > > PersistedQueue<_qoT, _sT>::loadBackFile()
 {
   LogStream   log(__PRETTY_FUNCTION__);
   std::string filename = persistedFileNames.back();
@@ -300,7 +300,7 @@ void PersistedQueue<_qoT, _sT>::loadFirstAndLastPage()
       //}
     }
   } else {
-    firstPage.reset(new std::deque<boost::shared_ptr< _qoT > >());
+    firstPage.reset(new std::deque<std::shared_ptr< _qoT > >());
     lastPage = firstPage;
   }
 }

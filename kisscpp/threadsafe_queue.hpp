@@ -19,7 +19,7 @@
 #ifndef _THREADSAFE_QUEUE_HPP_
 #define _THREADSAFE_QUEUE_HPP_
 
-#include <boost/shared_ptr.hpp>
+#include <memory>
 #include <boost/thread/mutex.hpp>
 #include <boost/thread/locks.hpp>
 #include "statable_queue.hpp"
@@ -36,25 +36,25 @@ namespace kisscpp
 
       ~ThreadsafeQueue() {}
 
-      void push(boost::shared_ptr<_qoT> p)
+      void push(std::shared_ptr<_qoT> p)
       {
         boost::lock_guard<boost::mutex> guard(queueMutex);
         queue->push_back(p);
       }
 
-      boost::shared_ptr<_qoT> pop()
+      std::shared_ptr<_qoT> pop()
       {
         boost::lock_guard<boost::mutex> guard(queueMutex);
         return queue->pop_front();
       }
 
-      boost::shared_ptr<_qoT> front()
+      std::shared_ptr<_qoT> front()
       {
         boost::lock_guard<boost::mutex> guard(queueMutex);
         return queue->front();
       }
 
-      boost::shared_ptr<_qoT> back()
+      std::shared_ptr<_qoT> back()
       {
         boost::lock_guard<boost::mutex> guard(queueMutex);
         return queue->back();
@@ -74,8 +74,8 @@ namespace kisscpp
 
     protected:
     private:
-      std::deque<boost::shared_ptr<_qoT> > queue;
-      boost::mutex                         queueMutex;
+      std::deque<std::shared_ptr<_qoT> > queue;
+      boost::mutex                       queueMutex;
   };
 
 }

@@ -58,7 +58,7 @@ namespace kisscpp
   };
 }
 
-typedef boost::shared_ptr<kisscpp::client> SharedClient;
+typedef std::shared_ptr<kisscpp::client> SharedClient;
 
 #endif //_CLIENT_CLIENT_HPP_
 

@@ -20,8 +20,8 @@
 #define _PTREE_QUEUE_HPP_
 
 #include <sstream>
-#include <boost/shared_ptr.hpp>
-#include <boost/scoped_ptr.hpp>
+#include <memory>
+
 #include <boost/asio.hpp>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
@@ -38,7 +38,7 @@ class PtreeBase64Bicoder : public Base64BiCoder<boost::property_tree::ptree>
     ~PtreeBase64Bicoder() {};
 
     //--------------------------------------------------------------------------------
-    virtual boost::shared_ptr<std::string> encode(const boost::shared_ptr<boost::property_tree::ptree> obj2encode)
+    virtual std::shared_ptr<std::string> encode(const std::shared_ptr<boost::property_tree::ptree> obj2encode)
     {
       using namespace boost::property_tree::json_parser;
 
@@ -50,12 +50,12 @@ class PtreeBase64Bicoder : public Base64BiCoder<boost::property_tree::ptree>
     }
 
     //--------------------------------------------------------------------------------
-    virtual boost::shared_ptr<boost::property_tree::ptree> decode(const std::string& str2decode)
+    virtual std::shared_ptr<boost::property_tree::ptree> decode(const std::string& str2decode)
     {
       using namespace boost::property_tree::json_parser;
 
-      boost::shared_ptr<boost::property_tree::ptree> tPtreePtr;
-      boost::shared_ptr<std::string>                 jsonString = decodeFromBase64(str2decode);
+      std::shared_ptr<boost::property_tree::ptree> tPtreePtr;
+      std::shared_ptr<std::string>                 jsonString = decodeFromBase64(str2decode);
       std::stringstream                              fromStream;
 
       tPtreePtr.reset(new boost::property_tree::ptree());
@@ -69,12 +69,12 @@ class PtreeBase64Bicoder : public Base64BiCoder<boost::property_tree::ptree>
 };
 
 typedef PersistedQueue<boost::property_tree::ptree, PtreeBase64Bicoder>           PtreeQ;
-typedef boost::shared_ptr<PtreeQ>                                                 SharedPtreeQ;
-typedef boost::scoped_ptr<PtreeQ>                                                 ScopedPtreeQ;
+typedef std::shared_ptr<PtreeQ>                                                   SharedPtreeQ;
+typedef std::unique_ptr<PtreeQ>                                                   ScopedPtreeQ;
 
 typedef ThreadsafePersistedQueue<boost::property_tree::ptree, PtreeBase64Bicoder> SafePtreeQ;
-typedef boost::shared_ptr<SafePtreeQ>                                             SharedSafePtreeQ;
-typedef boost::scoped_ptr<SafePtreeQ>                                             ScopedSafePtreeQ;
+typedef std::shared_ptr<SafePtreeQ>                                               SharedSafePtreeQ;
+typedef std::unique_ptr<SafePtreeQ>                                               ScopedSafePtreeQ;
 
 }
 

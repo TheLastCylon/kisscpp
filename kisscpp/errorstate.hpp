@@ -22,10 +22,10 @@
 #include <string>
 #include <map>
 #include <vector>
+#include <memory>
 #include <boost/algorithm/string.hpp>    
 #include <boost/thread/mutex.hpp>
 #include <boost/thread/locks.hpp>
-#include <boost/shared_ptr.hpp>
 #include "boost_ptree.hpp"
 #include "logstream.hpp"
 
@@ -54,12 +54,12 @@ namespace kisscpp
       unsigned int count;
   };
 
-  typedef boost::shared_ptr<ErrorState>           SharedErrorState;
+  typedef std::shared_ptr<ErrorState>           SharedErrorState;
   typedef std::map<std::string, SharedErrorState> ErrorStateMapType;
   typedef ErrorStateMapType::iterator             ErrorStateMapTypeIterator;
 
   typedef std::vector<SharedErrorState>           ErrorList;
-  typedef boost::shared_ptr<ErrorList>            SharedErrorList;
+  typedef std::shared_ptr<ErrorList>            SharedErrorList;
   typedef ErrorList::iterator                     ErrorListIterator;
 
   //--------------------------------------------------------------------------------

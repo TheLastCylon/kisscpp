@@ -25,15 +25,14 @@
 // This absolutely has to be a GLOBAL define in order to prevent read_json crashing.
 
 #include <string>
-#include <boost/shared_ptr.hpp>
-#include <boost/scoped_ptr.hpp>
+#include <memory>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
 #include <boost/foreach.hpp>
 
-typedef boost::property_tree::ptree   BoostPtree;
-typedef boost::shared_ptr<BoostPtree> SharedPtree;
-typedef boost::scoped_ptr<BoostPtree> ScopedPtree;
+typedef boost::property_tree::ptree BoostPtree;
+typedef std::shared_ptr<BoostPtree> SharedPtree;
+typedef std::unique_ptr<BoostPtree> ScopedPtree;
 
 namespace bpt = boost::property_tree;
 

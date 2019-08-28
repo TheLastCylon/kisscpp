@@ -22,11 +22,10 @@
 #include <string>
 #include <map>
 #include <ctime>
+#include <memory>
 
 #include <boost/range/adaptor/map.hpp>
 #include <boost/range/algorithm/copy.hpp>
-#include <boost/scoped_ptr.hpp>
-#include <boost/shared_ptr.hpp>
 #include <boost/thread/mutex.hpp>
 #include <boost/thread/locks.hpp>
 #include <boost/property_tree/ptree.hpp>
@@ -42,11 +41,11 @@ namespace kisscpp
 template <class _qoT, class _sT>
 class ThreadsafePersistedDelayedQueue : public StatAbleQueue, public boost::noncopyable
 {
-  typedef boost::shared_ptr<_qoT>              sqot;
-  typedef std::list        <sqot>              sqotList;
-  typedef boost::shared_ptr<sqotList>          ssqotList;
-  typedef std::map         <time_t, ssqotList> sqotListMap;
-  typedef typename sqotListMap::iterator       sqotListMapIter;
+  typedef std::shared_ptr<_qoT>              sqot;
+  typedef std::list      <sqot>              sqotList;
+  typedef std::shared_ptr<sqotList>          ssqotList;
+  typedef std::map       <time_t, ssqotList> sqotListMap;
+  typedef typename sqotListMap::iterator     sqotListMapIter;
 
   public:
     ThreadsafePersistedDelayedQueue(const std::string& queueName,
@@ -65,7 +64,7 @@ class ThreadsafePersistedDelayedQueue : public StatAbleQueue, public boost::nonc
       persistedQ.reset();
     }
 
-    void push(boost::shared_ptr<_qoT> p, unsigned int seconds2delay = 0)
+    void push(std::shared_ptr<_qoT> p, unsigned int seconds2delay = 0)
     {
       boost::lock_guard<boost::mutex> guard(objectMutex);
       time_t                          time2release = time(NULL) + seconds2delay;
@@ -91,7 +90,7 @@ class ThreadsafePersistedDelayedQueue : public StatAbleQueue, public boost::nonc
       persistedQ->shutdown();
     }
 
-    boost::shared_ptr<_qoT> pop()
+    std::shared_ptr<_qoT> pop()
     {
       boost::lock_guard<boost::mutex> guard(objectMutex);
       moveExpired();
@@ -150,13 +149,13 @@ class ThreadsafePersistedDelayedQueue : public StatAbleQueue, public boost::nonc
       }
     }
 
-    boost::scoped_ptr<PersistedQueue<_qoT, _sT> > persistedQ;
-    sqotListMap                                   delayedMap;
-    boost::mutex                                  objectMutex;
+    std::unique_ptr<PersistedQueue<_qoT, _sT> > persistedQ;
+    sqotListMap                                 delayedMap;
+    boost::mutex                                objectMutex;
 };
 
 typedef ThreadsafePersistedDelayedQueue<boost::property_tree::ptree, kisscpp::PtreeBase64Bicoder> SafeDelayedQueue;
-typedef boost::shared_ptr<SafeDelayedQueue>                                                       SharedSafeDelayedQueue;
+typedef std::shared_ptr<SafeDelayedQueue>                                                         SharedSafeDelayedQueue;
 
 
 }

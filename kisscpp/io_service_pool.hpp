@@ -21,10 +21,10 @@
 
 #include <stdexcept>
 #include <vector>
+#include <memory>
 #include <boost/asio.hpp>
 #include <boost/bind.hpp>
 #include <boost/noncopyable.hpp>
-#include <boost/shared_ptr.hpp>
 #include <boost/thread/thread.hpp>
 
 namespace kisscpp
@@ -38,8 +38,8 @@ namespace kisscpp
       boost::asio::io_service &get_io_service();                       /// Get an io_service to use.
 
     private:
-      typedef boost::shared_ptr<boost::asio::io_service>       io_service_ptr;
-      typedef boost::shared_ptr<boost::asio::io_service::work> work_ptr;
+      typedef std::shared_ptr<boost::asio::io_service>       io_service_ptr;
+      typedef std::shared_ptr<boost::asio::io_service::work> work_ptr;
 
       std::vector<io_service_ptr> io_services_;     /// The pool of io_services.
       std::vector<work_ptr>       work_;            /// The work that keeps the io_services running.

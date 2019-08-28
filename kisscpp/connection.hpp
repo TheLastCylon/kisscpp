@@ -22,11 +22,11 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <memory>
 
 #include <boost/asio.hpp>
 #include <boost/array.hpp>
 #include <boost/noncopyable.hpp>
-#include <boost/shared_ptr.hpp>
 #include <boost/enable_shared_from_this.hpp>
 #include <boost/asio/basic_streambuf.hpp>
 
@@ -62,7 +62,7 @@ namespace kisscpp
       BoostPtree                   raw_response_;
   };
 
-  typedef boost::shared_ptr<Connection> ConnectionPtr;
+  typedef std::shared_ptr<Connection> ConnectionPtr;
 }
 
 #endif

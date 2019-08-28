@@ -1,7 +1,7 @@
 #ifndef _STATABLE_QUEUE_HPP_
 #define _STATABLE_QUEUE_HPP_
 
-#include <boost/shared_ptr.hpp>
+#include <memory>
 
 namespace kisscpp
 {
@@ -17,7 +17,7 @@ namespace kisscpp
     private:
   };
 
-  typedef boost::shared_ptr<StatAbleQueue> sharedStatAbleQ;
+  typedef std::shared_ptr<StatAbleQueue> sharedStatAbleQ;
 }
 
 #endif

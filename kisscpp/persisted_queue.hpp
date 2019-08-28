@@ -27,9 +27,9 @@
 #include <cerrno>
 #include <ctime>
 #include <stdexcept>
+#include <memory>
 
 #include <boost/noncopyable.hpp>
-#include <boost/shared_ptr.hpp>
 #include <boost/regex.hpp>
 #include <boost/archive/iterators/base64_from_binary.hpp>
 #include <boost/archive/iterators/binary_from_base64.hpp>
@@ -59,15 +59,15 @@ class Base64BiCoder
      Base64BiCoder() {};
     ~Base64BiCoder() {};
 
-    virtual boost::shared_ptr<std::string> encode(const boost::shared_ptr<T> obj2encode) = 0;
-    virtual boost::shared_ptr<T>           decode(const std::string&         str2decode) = 0;
+    virtual std::shared_ptr<std::string> encode(const std::shared_ptr<T> obj2encode) = 0;
+    virtual std::shared_ptr<T>           decode(const std::string&       str2decode) = 0;
 
   protected:
-    boost::shared_ptr<std::string> encodeToBase64String(const std::string&  s)
+    std::shared_ptr<std::string> encodeToBase64String(const std::string&  s)
     {
       LogStream                      log(__PRETTY_FUNCTION__);
       unsigned int                   writePaddChars = (3 - s.length() % 3) % 3;
-      boost::shared_ptr<std::string> base64;
+      std::shared_ptr<std::string> base64;
 
       base64.reset(new std::string(Base64Type(s.begin()),Base64Type(s.end())));
 
@@ -76,12 +76,12 @@ class Base64BiCoder
       return base64;
     }
 
-    boost::shared_ptr<std::string> decodeFromBase64(const std::string& s)
+    std::shared_ptr<std::string> decodeFromBase64(const std::string& s)
     {
       LogStream                      log(__PRETTY_FUNCTION__);
       unsigned int                   paddChars = count(s.begin(), s.end(), '=');
       std::string                    is        = s;
-      boost::shared_ptr<std::string> result;
+      std::shared_ptr<std::string> result;
 
       log << manip::debug_normal << "base 64 string to decode : " << s << endl;
 
@@ -164,23 +164,23 @@ class PersistedQueue : public StatAbleQueue, public boost::noncopyable
 
     virtual ~PersistedQueue();
 
-    void                      push_back (boost::shared_ptr< _qoT > p);
-    void                      push_front(boost::shared_ptr< _qoT > p);
-    boost::shared_ptr< _qoT > pop_front ();
-    boost::shared_ptr< _qoT > front();
-    void                      shutdown();
-    void                      clear();
-    bool                      empty();
-    size_t                    size();
+    void                    push_back (std::shared_ptr< _qoT > p);
+    void                    push_front(std::shared_ptr< _qoT > p);
+    std::shared_ptr< _qoT > pop_front ();
+    std::shared_ptr< _qoT > front();
+    void                    shutdown();
+    void                    clear();
+    bool                    empty();
+    size_t                  size();
 
   protected:
 
   private:
     void                                                       setWorkingDirectory   (std::string wdir);
-    void                                                       persistToFile         (std::string seq, boost::shared_ptr<std::deque<boost::shared_ptr< _qoT > > > p);
-    boost::shared_ptr<std::deque<boost::shared_ptr< _qoT > > > loadFromFile          (const std::string& path2File);
-    boost::shared_ptr<std::deque<boost::shared_ptr< _qoT > > > loadFrontFile         ();
-    boost::shared_ptr<std::deque<boost::shared_ptr< _qoT > > > loadBackFile          ();
+    void                                                       persistToFile         (std::string seq, std::shared_ptr<std::deque<std::shared_ptr< _qoT > > > p);
+    std::shared_ptr<std::deque<std::shared_ptr< _qoT > > > loadFromFile          (const std::string& path2File);
+    std::shared_ptr<std::deque<std::shared_ptr< _qoT > > > loadFrontFile         ();
+    std::shared_ptr<std::deque<std::shared_ptr< _qoT > > > loadBackFile          ();
     void                                                       load                  ();
     void                                                       loadFirstAndLastPage  ();
     void                                                       loadPersistedFileNames();
@@ -203,9 +203,9 @@ class PersistedQueue : public StatAbleQueue, public boost::noncopyable
 
     std::deque<std::string> persistedFileNames;
 
-    boost::shared_ptr<std::deque<boost::shared_ptr< _qoT > > > firstPage;
-    boost::shared_ptr<std::deque<boost::shared_ptr< _qoT > > > lastPage;
-    boost::shared_ptr<std::deque<boost::shared_ptr< _qoT > > > swapPage;
+    std::shared_ptr<std::deque<std::shared_ptr< _qoT > > > firstPage;
+    std::shared_ptr<std::deque<std::shared_ptr< _qoT > > > lastPage;
+    std::shared_ptr<std::deque<std::shared_ptr< _qoT > > > swapPage;
 
     _sT                     biCoder;
 };
