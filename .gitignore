@@ -26,3 +26,4 @@ compile
 ar-lib
 *.srctr*
 kcsrt
+build/*
