@@ -21,9 +21,10 @@ libtool
 ltmain.sh
 missing
 .deps
+.dirstamp
 compile
 *.pc
 ar-lib
 *.srctr*
 kcsrt
-build/*
+*build*
