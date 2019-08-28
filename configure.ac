@@ -1,7 +1,7 @@
 ## libkisscpp:
 ## put a splurge here
 
-AC_INIT([libkisscpp], [0.5], [botahdj@gmail.com], [kisscpp], [http://www.djb.co.za])
+AC_INIT([libkisscpp], [0.5.17], [botahdj@gmail.com], [kisscpp], [http://www.djb.co.za])
 AC_PREREQ([2.59])
 AM_INIT_AUTOMAKE([1.10 -Wall no-define])
 
@@ -30,8 +30,8 @@ LT_INIT([disable-static])
 # For information on how to properly maintain the library version information,
 # refer to the libtool manual, section "Updating library version information":
 # http://www.gnu.org/software/libtool/manual/html_node/Updating-version-info.html
-AC_SUBST([KISSCPP_SO_VERSION], [0:5:0])
-AC_SUBST([KISSCPP_API_VERSION], [0.5])
+AC_SUBST([KISSCPP_SO_VERSION], [0:5:17])
+AC_SUBST([KISSCPP_API_VERSION], [0.5.17])
 
 # Override the template file name of the generated .pc file, so that there
 # is no need to rename the template file when the API version changes.
