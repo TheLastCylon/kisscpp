@@ -19,11 +19,11 @@ AC_ARG_WITH([pthread],
             [PTHREAD_LIB="-lpthread"])
 AC_SUBST([PTHREAD_LIB])
 
-KISSCPP_CPPFLAGS="-I../../build/.libs"
+KISSCPP_CPPFLAGS=""
 AC_ARG_WITH([kisscpp-include-path],
             [AS_HELP_STRING([--with-kisscpp-include-path], [location of the kisscpp headers, defaults to /usr/include/kisscpp-0.5])],
             [KISSCPP_CPPFLAGS="-I$withval"],
-            [KISSCPP_CPPFLAGS="-I../../kisscpp"])
+            [KISSCPP_CPPFLAGS=""])
 AC_SUBST([KISSCPP_CPPFLAGS]) 
 
 AC_ARG_WITH([kisscpp-lib-path],
@@ -32,7 +32,7 @@ AC_ARG_WITH([kisscpp-lib-path],
             [KISSCPP_LIB="-lkisscpp"])
 AC_SUBST([KISSCPP_LIB])
 
-PKG_CHECK_MODULES([DEPS], [kisscpp-0.5 >= 0.5])
+#PKG_CHECK_MODULES([DEPS], [kisscpp-0.5 >= 0.5])
 
 AC_CONFIG_FILES([Makefile])
 

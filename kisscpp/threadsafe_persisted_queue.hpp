@@ -38,7 +38,7 @@ class ThreadsafePersistedQueue : public StatAbleQueue, public boost::noncopyable
                              const unsigned     maxItemsPerPage)
     {
       boost::lock_guard<boost::mutex> guard(objectMutex);
-      persistedQ.reset(new PersistedQueue<_qoT, _sT>(queueName, queueWorkingDir, maxItemsPerPage));
+      persistedQ = std::make_shared<PersistedQueue<_qoT,_sT>>(queueName, queueWorkingDir, maxItemsPerPage);
     }
 
     ~ThreadsafePersistedQueue()

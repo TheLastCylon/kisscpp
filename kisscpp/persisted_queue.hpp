@@ -65,12 +65,9 @@ class Base64BiCoder
   protected:
     std::shared_ptr<std::string> encodeToBase64String(const std::string&  s)
     {
-      LogStream                      log(__PRETTY_FUNCTION__);
-      unsigned int                   writePaddChars = (3 - s.length() % 3) % 3;
-      std::shared_ptr<std::string> base64;
-
-      base64.reset(new std::string(Base64Type(s.begin()),Base64Type(s.end())));
-
+      LogStream                    log(__PRETTY_FUNCTION__);
+      unsigned int                 writePaddChars = (3 - s.length() % 3) % 3;
+      std::shared_ptr<std::string> base64 = std::make_shared<std::string>(Base64Type(s.begin()),Base64Type(s.end()));
       base64->append(writePaddChars,'=');
 
       return base64;
@@ -78,17 +75,16 @@ class Base64BiCoder
 
     std::shared_ptr<std::string> decodeFromBase64(const std::string& s)
     {
-      LogStream                      log(__PRETTY_FUNCTION__);
-      unsigned int                   paddChars = count(s.begin(), s.end(), '=');
-      std::string                    is        = s;
-      std::shared_ptr<std::string> result;
+      LogStream    log(__PRETTY_FUNCTION__);
+      unsigned int paddChars = count(s.begin(), s.end(), '=');
+      std::string  is        = s;
 
       log << manip::debug_normal << "base 64 string to decode : " << s << endl;
 
       if(is[is.size()-1] == '=') is[is.size()-1] = 'A';
       if(is[is.size()-2] == '=') is[is.size()-2] = 'A';
 
-      result.reset(new std::string(BinaryType(is.begin()), BinaryType(is.end()))); // decode
+      std::shared_ptr<std::string> result = std::make_shared<std::string>(BinaryType(is.begin()), BinaryType(is.end()));
 
       result->erase(result->end()-paddChars,result->end());  // erase padding '\0' characters
 
@@ -106,10 +102,6 @@ class PersistedQueueError : public std::runtime_error
   public:
   protected:
     explicit PersistedQueueError(const std::string& msg) : std::runtime_error(msg) {}
-
-    //PersistedQueueError(const CommandStatus stat);
-    //PersistedQueueError(const CommandStatus stat, const std::string& msg);
-
     virtual ~PersistedQueueError() throw() {};
 
   private:
@@ -137,26 +129,15 @@ class QueueShutDown : public PersistedQueueError
 };
 
 //--------------------------------------------------------------------------------
-// These define statements exist for code readabililty purposes
-// Normally they should be typedef statements, but this is a templitized class.
-// There are probably better ways of dealing with this, but I'm rather pushed for
-// time right now, and this is cleanest, most convenient solution available to me.
-//#define QueuedObjectPointerType boost::shared_ptr< _qoT >
-//#define QueueType               std::deque<QueuedObjectPointerType >
-//#define QueueTypePtr            boost::shared_ptr<QueueType >
-//#define QueueTypeIterator       typename std::deque<boost::shared_ptr<_qoT > >::iterator
-//#define value_type              QueueType::value_type
+template<typename T> using DequeOfSharedObjects       = std::deque<std::shared_ptr<T>>;
+template<typename T> using DequeOfSharedObjectsIter   = typename std::deque<std::shared_ptr<T>>::iterator;
+template<typename T> using SharedDequeOfSharedObjects = std::shared_ptr<DequeOfSharedObjects<T>>;
 
 //--------------------------------------------------------------------------------
+// _qoT : Queued Object Type
 template <class _qoT, class _sT>
 class PersistedQueue : public StatAbleQueue, public boost::noncopyable
 {
-//typedef boost::shared_ptr< _qoT >                                  QueuedObjectPointerType;
-//typedef std::deque<boost::shared_ptr< _qoT > >                     QueueType              ;
-//typedef boost::shared_ptr<std::deque<boost::shared_ptr< _qoT > > > QueueTypePtr           ;
-//typedef typename std::deque<boost::shared_ptr<_qoT > >::iterator   QueueTypeIterator      ;
-//typedef typename QueueType::value_type                             value_type             ;
-
   public:
              PersistedQueue(const std::string& queueName,
                             const std::string& queueWorkingDir,
@@ -176,21 +157,21 @@ class PersistedQueue : public StatAbleQueue, public boost::noncopyable
   protected:
 
   private:
-    void                                                       setWorkingDirectory   (std::string wdir);
-    void                                                       persistToFile         (std::string seq, std::shared_ptr<std::deque<std::shared_ptr< _qoT > > > p);
-    std::shared_ptr<std::deque<std::shared_ptr< _qoT > > > loadFromFile          (const std::string& path2File);
-    std::shared_ptr<std::deque<std::shared_ptr< _qoT > > > loadFrontFile         ();
-    std::shared_ptr<std::deque<std::shared_ptr< _qoT > > > loadBackFile          ();
-    void                                                       load                  ();
-    void                                                       loadFirstAndLastPage  ();
-    void                                                       loadPersistedFileNames();
-    void                                                       loadOrphanedQueueFiles();
-    void                                                       makeStateFilePath     ();
-    bool                                                       stateFileExists       ();
-    void                                                       loadStateFile         ();
-    void                                                       writeFirstAndLastPage ();
-    void                                                       writeStateFile        ();
-    std::string                                                seqNumber             ();
+    void                             setWorkingDirectory   (std::string wdir);
+    void                             persistToFile         (std::string seq, SharedDequeOfSharedObjects<_qoT> p);
+    SharedDequeOfSharedObjects<_qoT> loadFromFile          (const std::string& path2File);
+    SharedDequeOfSharedObjects<_qoT> loadFrontFile         ();
+    SharedDequeOfSharedObjects<_qoT> loadBackFile          ();
+    void                             load                  ();
+    void                             loadFirstAndLastPage  ();
+    void                             loadPersistedFileNames();
+    void                             loadOrphanedQueueFiles();
+    void                             makeStateFilePath     ();
+    bool                             stateFileExists       ();
+    void                             loadStateFile         ();
+    void                             writeFirstAndLastPage ();
+    void                             writeStateFile        ();
+    std::string                      seqNumber             ();
 
     bool                    _shut_down;
     time_t                  _lastSeqNum;
@@ -203,9 +184,9 @@ class PersistedQueue : public StatAbleQueue, public boost::noncopyable
 
     std::deque<std::string> persistedFileNames;
 
-    std::shared_ptr<std::deque<std::shared_ptr< _qoT > > > firstPage;
-    std::shared_ptr<std::deque<std::shared_ptr< _qoT > > > lastPage;
-    std::shared_ptr<std::deque<std::shared_ptr< _qoT > > > swapPage;
+    SharedDequeOfSharedObjects<_qoT> firstPage;
+    SharedDequeOfSharedObjects<_qoT> lastPage;
+    SharedDequeOfSharedObjects<_qoT> swapPage;
 
     _sT                     biCoder;
 };

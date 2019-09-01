@@ -3,6 +3,7 @@
 #include <string>
 #include <sstream>
 #include <chrono>
+#include <memory>
 #include "../catch.hpp"
 #include "../kisscpp/persisted_queue.hpp"
 
@@ -14,23 +15,23 @@ class StringBiCoder : public kisscpp::Base64BiCoder<std::string>
     ~StringBiCoder() {};
 
     //--------------------------------------------------------------------------------
-    virtual boost::shared_ptr<std::string> encode(const boost::shared_ptr<std::string> obj2encode)
+    virtual std::shared_ptr<std::string> encode(const std::shared_ptr<std::string> obj2encode)
     {
       return encodeToBase64String(*obj2encode);
     }
 
     //--------------------------------------------------------------------------------
-    virtual boost::shared_ptr<std::string> decode(const std::string& str2decode)
+    virtual std::shared_ptr<std::string> decode(const std::string& str2decode)
     {
-      boost::shared_ptr<std::string> retval = decodeFromBase64(str2decode);
+      std::shared_ptr<std::string> retval = decodeFromBase64(str2decode);
       return retval;
     }
 };
 
 typedef kisscpp::PersistedQueue<std::string, StringBiCoder> StringQ;
-typedef boost::shared_ptr<StringQ>                          SharedStringQ;
-typedef boost::scoped_ptr<StringQ>                          ScopedStringQ;
-typedef boost::shared_ptr<std::string>                      SharedString;
+typedef std::shared_ptr<StringQ>                            SharedStringQ;
+typedef std::unique_ptr<StringQ>                            ScopedStringQ;
+typedef std::shared_ptr<std::string>                        SharedString;
 
 SCENARIO("Queued data correctly persisted", "[persisted_queue]")
 {
